@@ -1,0 +1,42 @@
+
+setMethod(
+  f = "clustering",
+  signature = "ExposomeSet",
+  definition = function(object, method, cmethod, ..., warnings = TRUE) {
+    if (warnings) {
+      warning("Non continuous exposures will be discarded.")
+    }
+
+    if (!"data" %in% names(formals(method))) {
+      stop("Invalid method for clustering analysis. Requested method with 'data' argument.")
+    }
+
+    select <- rownames(fData(object))[fData(object)$`_type` == "numeric"]
+
+    data.clust <- as.data.frame(object, phe = FALSE)[ , select]
+
+    method <- match.fun(method)
+
+    mod.l <- list()
+    mod.l$model <- method(data = data.clust, ...)
+
+    method <- as.character(sys.calls()[[1]])[3]
+    call <- deparse(sys.calls()[[1]])
+
+    if(!missing(cmethod)){
+        cl <- cmethod(mod.l$model)
+    } else {
+        cl <- mod.l$model$classification
+    }
+
+    return(new("ExposomeClust",
+       assayData = assayDataNew("environment", exp = t(data.clust)),
+       phenoData = AnnotatedDataFrame(cbind(pData(object)[rownames(data.clust), ], cluster=cl)),
+       featureData = featureData(object)[colnames(data.clust), ],
+       model = mod.l,
+       call = call,
+       method = method,
+       samples = sampleNames(object)
+    ))
+
+  })

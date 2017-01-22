@@ -1,0 +1,12 @@
+setMethod(
+  f = "dim",
+  signature = "ExposomeSet",
+  definition = function(x) {
+    nexp <- nrow(assayData(x)[["exp"]])
+    nsam <- ncol(assayData(x)[["exp"]])
+    nphe <- ncol(pData(x))
+    x <- c(nexp, nsam, nphe)
+    names(x) <- c("exposures", "samples", "phenotyes")
+    return(x)
+  }
+)

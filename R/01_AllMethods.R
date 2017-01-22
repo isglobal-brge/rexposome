@@ -1,0 +1,1421 @@
+#' Getter to obtain the exposures's names of an ExposomeSet.
+#'
+#' @name exposureNames
+#' @rdname exposureNames-methods
+#' @aliases exposureNames,ExposomeSet-methods
+#' @param object \link{ExposomeSet} that will be queried for the exposures's
+#' names.
+#' @return The name of the exposures as a character vector.
+#' @examples
+#' data("exposome")
+#' exposureNames(exp)
+#' @export exposureNames
+#' @seealso \link{individualNames} to get the name of the samples,
+#' \link{phenotypeNames} to get the phenotypes,
+#' \link{familyNames} to get the families of exposures
+#' @section Warning:
+#' \link{exposureNames} collides with \link{featureNames} of \link{eSet}.
+#' Although in \code{rexposome 1.0.0} both function can be used as
+#' synonyms, this usage is discouraged and it is not assured.
+setGeneric("exposureNames", function(object)
+    standardGeneric("exposureNames")
+)
+
+#' Getter to obtain the individual names (sample names) of an ExposomeSet.
+#'
+#' @name individualNames
+#' @rdname individualNames-methods
+#' @aliases individualNames,ExposomeSet-methods
+#' @param object \link{ExposomeSet} that will be queried for the individuals's
+#' names.
+#' @return The name of the individuals as a character vector.
+#' @examples
+#' data("exposome")
+#' individualNames(exp)
+#' @export individualNames
+#' @seealso \link{individualNames} to get the name of the samples,
+#' \link{phenotypeNames} to get the phenotypes,
+#' \link{familyNames} to get the families of exposures
+#' @section Warning:
+#' \link{individualNames} collides with \link{sampleNames} of \link{eSet}.
+#' Although in \code{rexposome 1.0.0} both function can be used as
+#' synonyms, this usage is discouraged and it is not assured.
+setGeneric("individualNames", function(object)
+    standardGeneric("individualNames")
+)
+
+#' Setter to assign individual names (sample names) of an ExposomeSet.
+#'
+#' @name individualNames
+#' @rdname individualNames-methods
+#' @aliases individualNames,ExposomeSet-methods
+#' @param object \link{ExposomeSet} that will be queried for the individuals's
+#' names.
+#' @param value Vector of \code{character} to be assigned as individual's
+#' names.
+#' @examples
+#' data("exposome")
+#' individualNames(exp) <- paste0(individualNames(exp), "__")
+#' @export individualNames<-
+#' @seealso \link{individualNames} to get the name of the samples,
+#' \link{phenotypeNames} to get the phenotypes,
+#' \link{familyNames} to get the families of exposures
+#' @section Warning:
+#' \link{individualNames<-} collides with \link{sampleNames<-} of \link{eSet}.
+#' Although in \code{rexposome 1.0.0} both function can be used as
+#' synonyms, this usage is discouraged and it is not assured.
+setGeneric("individualNames<-", function(object, value)
+    standardGeneric("individualNames<-")
+)
+
+#' Getter to obtain the phenotype's names of an ExposomeSet.
+#'
+#' @name phenotypeNames
+#' @rdname phenotypeNames-methods
+#' @aliases phenotypeNames,ExposomeSet-methods
+#' @param object \code{ExposomeSet} that will be queried for the phenotype's
+#' names.
+#' @return The name of the phenotypes as a a character vector.
+#' @examples
+#' data("exposome")
+#' phenotypeNames(exp)
+#' @export phenotypeNames
+#' @seealso \link{individualNames} to get the name of the samples,
+#' \link{exposureNames} to get the name of the exposures,
+#' \link{familyNames} to get the families of exposures
+setGeneric("phenotypeNames", function(object)
+    standardGeneric("phenotypeNames")
+)
+
+#' Getter to obtain the exposures's names of an ExposomeSet.
+#'
+#' This method returns the name of the families in an \link{ExposomeSet}, but
+#' it can return a vector, labeled with the exposures in the
+#' \link{ExposomeSet}, containing the family belonging to each exposure.
+#'
+#' @name familyNames
+#' @rdname familyNames-methods
+#' @aliases familyNames,ExposomeSet-methods
+#' @param object \code{ExposomeSet} that will be queried for the exposures's
+#' family-names.
+#' @param by.exposure (default \code{FALSE}) If \code{TRUE} a vector
+#' labeled with each exposure name will be returned with the family of each
+#' exposures. If \code{FALSE} a vector with the (unique) name of the families
+#' of exposures will be returned.
+#' @return The families of the exposures into the \link{ExposomeSet}, or the
+#' family of each exposure into the \link{ExposomeSet}.
+#' @examples
+#' data("exposome")
+#' # Get families
+#' familyNames(exp)
+#'
+#' # Get the family of each exposure
+#' familyNames(exp, by.exposure = TRUE)
+#' @export familyNames
+#' @seealso \link{individualNames} to get the name of the samples,
+#' \link{exposureNames} to get the name of the exposures,
+#' \link{phenotypeNames} to get the phenotypes
+setGeneric("familyNames", function(object, by.exposure = FALSE)
+    standardGeneric("familyNames")
+)
+
+#' Rsturns the exposures matrix of an ExposomeSet.
+#'
+#' Given an \link{ExposomeSet} it returns the inner matrix of exposures,
+#' having the exposures as columns and the samples as rows.
+#'
+#' @param object An \link{ExposomeSet}.
+#' @return A matrix of exposures
+#' @export expos
+setGeneric("expos", function(object)
+    standardGeneric("expos")
+)
+
+
+#' Summary of an ExposomeSet.
+#'
+#' Given an \link{ExposomeSet} is shows a summary for its exposures or
+#' its phenotypes.
+#'
+#' @name Summary
+#' @rdname Summary-methods
+#' @aliases Summary
+#' @param object code{ExposomeSet} with 'set' will be summarized.
+#' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
+#' @param select Subseting of exposures of phenotypes.
+#' @examples
+#' data("exposome")
+#' Summary(exp, "exposures")
+#' @export Summary
+setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
+                               select, ...)
+    standardGeneric("Summary")
+)
+
+
+#' Restore original data of an ExposomeSet.
+#'
+#' Given an \link{ExposomeSet} is restores the original data and remove
+#' all changes (standardization, transformation, imputation) that exposures
+#' could have.
+#'
+#' @name restore
+#' @rdname restore-methods
+#' @aliases restore
+#' @param object code{ExposomeSet} with 'set' will be summarized.
+#' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
+#' @param select Subseting of exposures of phenotypes.
+#' @examples
+#' data("exposome")
+#' restore(exp)
+#' @export restore
+setGeneric("restore", function(object)
+    standardGeneric("restore")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Standardize of an ExposomeSet.
+#'
+#' Given an \link{ExposomeSet} it standardizes the exposures by using mean/sd
+#' if method is \code{"normal"} or by using median/mad if method is
+#' \code{"robust"}.
+#'
+#' @name standardize
+#' @rdname standardize-methods
+#' @aliases standardize,ExposomeSet-methods
+#' @param object \code{ExposomeSet} with exposures to be standardized.
+#' @param method Character selecting the method to be applied (\code{'normal'}
+#' or \code{'robust'}).
+#' @param na.rm (by default \code{TRUE}) Removes NA data to perform
+#' standardization.
+#' @return An \code{ExposomeSet} with the selected exposures standardized and
+#' keeping the others exposures as the original input object.
+#' @examples
+#' data("exposome")
+#' exp.sn <- standardize(exp, method = "normal", select = "ldde_lip")
+#' exp.rs <- standardize(exp, method = "robust", select = "ldde_lip")
+#' @export standardize
+#' @seealso \link{sData} to chek the status of the exposures,
+#' \link{highAndLow} to transform the continuous exposures to levelled factors,
+#' \link{trans} to transform the exposures,
+setGeneric("standardize", function(object, select, method = "normal", na.rm = TRUE, warnings = TRUE)
+    standardGeneric("standardize")
+)
+
+#' Function to apply a transformation to the exposures of an ExposomeSet
+#'
+#' The exposures in an \link{ExposomeSet} can be transformed using this
+#' function. \code{transform} apples a function \code{fun} to the selected
+#' exposures.
+#'
+#' @name trans
+#' @rdname trans-methods
+#' @aliases trans,ExposomeSet-methods
+#' @param object \code{ExposomeSet} which exposures will be transformed.
+#' @param fun Function to be applied on the exposures.
+#' @param select If not set, receive the name of all exposures. It can takes a
+#' character vector to select specific exposures.
+#' @param by.exposure (default \code{FALSE}) If \code{TRUE} applies \code{fun}
+#' to each exposure (given as a vector ). If \code{FALSE} the matrix of
+#' exposures is fiven to \code{fun}.
+#' @param ... Argument given to \code{fun}.
+#' @return A new \code{ExposomeSet} with selected exposures transformed with
+#' \code{fun}.
+#' @examples
+#' data("exposome")
+#' exp.t <- trans(exp, fun = log, select = "ldde_lip")
+#' @export trans
+#' @seealso \link{sData} to chek the status of the exposures,
+#' \link{highAndLow} to transform the continuous exposures to levelled factors,
+#' \link{standardize} to standardize by normal or robust methods the exposures
+setGeneric("trans", function(object, fun, select, ...)
+    standardGeneric("trans")
+)
+
+#' Function to convert all continuous exposures of an ExposomeSet
+#' to categorical exposures
+#'
+#' This function is able to convert the continuous exposures of an
+#' \link{ExposomeSet} to categorical exposures using the n-percentile groups
+#' defined by \code{ngroups}. By default, all levels are kept but if
+#' \code{intervals} is set to \code{"extreme"}, the levels between the extremes
+#' (lowest and highest) are discarded and their values are set to \code{NA}.
+#'
+#' @name highAndLow
+#' @rdname highAndLow-methods
+#' @aliases highAndLow,ExposomeSet-methods
+#' @param object \code{ExposomeSet} which exposures will be factored.
+#' @param ngroups (default \code{3}) Number of intervals to be created.
+#' @param intervals (default \code{"standard"}) If \code{"standard"} all levels
+#' are keep. If \code{"extreme"} only the extreme levels are keep.
+#' @param select If not set, receive the name of all exposures. It can takes a
+#' character vector to select specific exposures.
+#' @param drop (default \code{FALSE}) By default the original exposures are
+#' kept, if it set to \code{TRUE} the original and continuous variables are
+#' drop and only the factored ones are returned.
+#' @param warnings (default \code{TRUE}) If \code{TRUE} warnings will be shown.
+#' @return A new \link{ExposomeSet} with the original and continuous exposures
+#' plus the new factored exposures if \code{drop} was \code{FALSE}, otherwise
+#' a new \link{ExposomeSet} with factored exposures.
+#' @examples
+#' data("exposome")
+#' # No drop
+#' exp.hl <- highAndLow(exp, intervals = "extreme",
+#'     select = c("ldde_lip", "logpb", "lcotinine"))
+#' dim(exp.hl)
+#' #[1]  107 1200    5
+#' dim(exp)
+#' #[1]  104 1200    5
+#' # exps.hl has 107 exposures: the original 104 plus the new
+#' #         3 factored exposures
+#'
+#' # Drop
+#' exp.hl <- highAndLow(exp, intervals = "extreme",
+#'     select = c("ldde_lip", "logpb", "lcotinine"), drop=TRUE)
+#' dim(exp.hl)
+#' #[1]  104 1200    5
+#' dim(exp)
+#' #[1]  104 1200    5
+#' # exps.hl has 104 exposures: the 3 factored exposures plus the
+#' #         other 101 (104 - 3) original exposures
+#' @export highAndLow
+#' @seealso \link{sData} to chek the status of the exposures,
+#' \link{trans} to transform the exposures,
+#' \link{standardize} to standardize by normal or robust methods the exposures
+setGeneric("highAndLow", function(object, ngroups = 3,
+                                  intervals = "standard", select, drop = FALSE, warnings = TRUE)
+    standardGeneric("highAndLow")
+)
+
+# -----------------------------------------------------------------------------
+
+#' It creates a \code{data.frame} of boolean indicating if the exposures follows
+#' a normal distribution or not.
+#'
+#' This functions uses \link{shapiro.test} to test the normality of the
+#' exposures and returns a \code{data.frame} with a boolean value and a
+#' p-value for each exposure.
+#'
+#' @name normalityTest
+#' @rdname normalityTest-methods
+#' @aliases normalityTest,ExposomeSet-methods
+#' @param object \link{ExposomeSet} with the exposome to be tested.
+#' @param exposure Name of the exposure to be tested, if missing all the
+#' exposures will be tested.
+#' @param th (by default \code{0.05}) Threshold to considere an exposure to
+#' follow a normal distribution.
+#' @param min.val (by default \code{5}) Minimum number of values not missings
+#' to test the exposures.
+#' @param na.rm (by default \code{TRUE}) Removes the NA values to test the
+#' normality on the exposure.
+#' @examples
+#' data("exposome")
+#' normalityTest(exposome)
+#' @export normalityTest
+#' @seealso \link{plotHistogram} to draw the shape of an exposure,
+#' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
+#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+setGeneric("normalityTest", function(object, exposure, th = 0.05, min.val = 5,
+                                     na.rm = TRUE) {
+    standardGeneric("normalityTest")
+})
+
+#' It creates a vector with the amount of missing in an ExposomeSet
+#'
+#' This function can be used to obtain a table with the missing data in
+#' exposures and in phenotypes of an \link{ExposomeSet}.
+#'
+#' @name tableMissings
+#' @rdname tableMissings-methods
+#' @aliases tableMissings,ExposomeSet-methods
+#' @param object \link{ExposomeSet} which exposome will be plotted.
+#' @param set Can be set to \code{"exposures"} or to \code{"phenotypes"}.
+#' @param output (default \code{"n"}) Can be \code{"n"} for number of values,
+#' and \code{"p"} for percentage.
+#' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
+#' from the features with less missing data to the ones with more missing data.
+#' @examples
+#' data("exposome")
+#' # The included has no missing data
+#' tableMissings(exp, set = "exposures")
+#' tableMissings(exp, set = "phenotypes")
+#' @export tableMissings
+#' @seealso \link{plotFamily} to draw the profile of a family of exposures,
+#' \link{plotHistogram} to draw the shape of an exposure,
+#' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
+#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
+    standardGeneric("tableMissings")
+})
+
+#' It creates a vector with the amount of under-LOD exposures in an ExposomeSet
+#'
+#' This function can be used to obtain a table with the under-LOD data in
+#' exposures of an \link{ExposomeSet}.
+#'
+#' @name tableLOD
+#' @rdname tableLOD-methods
+#' @aliases tableLOD,ExposomeSet-methods
+#' @param object \link{ExposomeSet} which exposome will be plotted.
+#' @param output (default \code{"n"}) Can be \code{"n"} for number of values,
+#' and \code{"p"} for percentage.
+#' @param lod.col (default \code{"LOD"}) Name of the column in \code{fData}
+#' containing the LOD thresholds.
+#' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
+#' from the features with less missing data to the ones with more under-LOD
+#' values.
+#' @examples
+#' data("exposome")
+#' # The included has no missing data
+#' tableLOD(exp, output = "n")
+#' @export tableLOD
+#' @seealso \link{plotFamily} to draw the profile of a family of exposures,
+#' \link{plotHistogram} to draw the shape of an exposure,
+#' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
+#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TRUE) {
+    standardGeneric("tableLOD")
+})
+
+#' #' Getter to obtain the "status" of an ExposomeSet
+#' #'
+#' #' It returns the \code{data.frame} that stores the status of each exposure in
+#' #' the \link{ExposomeSet}. The status show if the exposures were standardized,
+#' #' transformed and/or imputed.
+#' #'
+#' #' @name sData
+#' #' @rdname sData-methods
+#' #' @aliases sData,ExposomeSet-methods
+#' #' @param object \link{ExposomeSet} that will be queried for the status.
+#' #' @return A \code{data.frame} with the status of each exposure. The
+#' #' \code{data.frame} contains 4 columns: \code{fct}, \code{trs}, \code{std},
+#' #' \code{imp}. They corresponds to 1) was the exposure converted to factor with
+#' #' \link{highAndLow}? 2) was the exposure transformed with \link{trans}? 3) was
+#' #' the exposure standardize with \link{standardize} and 4) was the exposure
+#' #' imputed? Columns 1 and 3 will contain blanks or logical (blank means
+#' #' \code{FALSE}) while 2 and 4 will contain character indicating the function
+#' #' used to transform and/or impute the exposure.
+#' #' @examples
+#' #' data("exposome")
+#' #' sData(exp)
+#' #' @export sData
+#' #' @seealso \link{highAndLow} to transform the continuous exposures to levelled
+#' #' factors, \link{trans} to transform the exposures, \link{standardize} to
+#' #' standardize by normal or robust methods the exposures
+#' setGeneric("sData", function(object)
+#'     standardGeneric("sData")
+#' )
+
+# -----------------------------------------------------------------------------
+
+#' It draws a chart with the percentage of missing in an ExposomeSet
+#'
+#' This function can be used to draw the number of missing data in exposures and
+#' in phenotypes of an \link{ExposomeSet}.
+#'
+#' @name plotMissings
+#' @rdname plotMissings-methods
+#' @aliases plotMissings,ExposomeSet-methods
+#' @param object \link{ExposomeSet} which exposome will be plotted.
+#' @param set Can be set to \code{"exposures"} or to \code{"phenotypes"}.
+#' @param x.max (default \code{100}) Fix the maxium value of the X-axis.
+#' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
+#' from the features with less missing data to the ones with more missing data.
+#' @examples
+#' data("exposome")
+#' # The included has no missing data
+#' plotMissings(exp, set = "exposures")
+#' plotMissings(exp, set = "phenotypes")
+#' @export plotMissings
+#' @seealso \link{plotFamily} to draw the profile of a family of exposures,
+#' \link{plotHistogram} to draw the shape of an exposure,
+#' \link{tableMissings} to get a table with the missing data of an ExposomeSet,
+#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
+    standardGeneric("plotMissings")
+)
+
+#' It draws a chart with the percentage of under-LOD values in an ExposomeSet
+#'
+#' This function can be used to draw the amount of under-LOD values in the
+#' exposures of an \link{ExposomeSet}.
+#'
+#' @name plotLOD
+#' @rdname plotLOD-methods
+#' @aliases plotLOD,ExposomeSet-methods
+#' @param object \link{ExposomeSet} which exposome will be plotted.
+#' @param set Can be set to \code{"exposures"} or to \code{"phenotypes"}.
+#' @param lod.col (default \code{"LOD"}) Name of the column in \code{fData}
+#' containing the LOD thresholds.
+#' @param x.max (default \code{100}) Fix the maxium value of the X-axis.
+#' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
+#' from the features with less missing data to the ones with more under-LOD
+#' values.
+#' @examples
+#' data("exposome")
+#' # The included has no missing data
+#' plotLOD(exp)
+#' @export plotLOD
+#' @seealso \link{plotFamily} to draw the profile of a family of exposures,
+#' \link{plotHistogram} to draw the shape of an exposure,
+#' \link{tableMissings} to get a table with the missing data of an ExposomeSet,
+#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE)
+    standardGeneric("plotLOD")
+)
+
+#' It draws the profile of the exposome in an ExposomeSet
+#'
+#' This function draw a profile of the full exposome into an \link{ExposomeSet}
+#' or the profile of the exposures in a specific family. For continuous
+#' families, box-plots are drawn; while  for categorical families accumulative
+#' bar-charts.
+#'
+#' @name plotFamily
+#' @rdname plotFamily-methods
+#' @aliases plotFamily,ExposomeSet-methods
+#' @param x \link{ExposomeSet} which exposome will be plotted.
+#' @param family Name of the familty that will be drawn. \code{'all'} is
+#' allowed to draw a grid with all the families.
+#' @param group If set it displays the family grouped
+#' by the given phenotype.
+#' @param group2 If set it displays the family grouped
+#' by the given phenotype.
+#' @param scatter (default \code{TRUE}) If the family to be plotted is
+#' continuous, the samples will be shown.
+#' @param na.omit (default \code{TRUE}) Do not show \code{NA} values.
+#' @examples
+#' data("exposome")
+#' plt <- plotFamily(exp, family = "Metals")
+#' plt <- plt + ggplot2::ggtitle("Metals")
+#' plt
+#' plt <- plotFamily(exp, family = "Indoor air")
+#' plt <- plt + ggplot2::ggtitle("Indoor air")
+#' plt
+#' @export plotFamily
+#' @seealso \link{plotHistogram} to draw the shape of an exposure,
+#' \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
+setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.omit=TRUE)
+    standardGeneric("plotFamily")
+)
+
+#' It draws a histogram for each exposure in an ExposomeSet
+#'
+#' It draws a grid with an histogram per exposure in an \link{ExposomeSet}.
+#'
+#' @name plotHistogram
+#' @rdname plotHistogram-methods
+#' @aliases plotHistogram,ExposomeSet-methods
+#' @param x \link{ExposomeSet} which exposome will be plotted.
+#' @param select Name fo the exposure to be plotted. If missing, all
+#' exposures will be used.
+#' @param density (default \code{TRUE}) If \code{TRUE} a density plot is
+#' drawn overlapping the histogram.
+#' @param show.trans (default \code{FALSE}) If set to \code{TRUE} it will draw
+#' a panel of auxiliar plots with the continuous exposure transformed with
+#' \code{log} and \code{sqrt}.
+#' @examples
+#' data("exposome")
+#' plotHistogram(exp[1:3, ])
+#' @export plotHistogram
+#' @seealso \link{plotFamily} to draw the profile of a family of exposures,
+#' \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
+setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE)
+    standardGeneric("plotHistogram")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Function to impute missing values from an ExposomeSet
+#'
+#' This function is a wrapper of the functions \code{mice} and \code{complete}
+#' from the package \link{mice}. The function is designed to use those functions
+#' to impute missing values on exposures (not in phenotypes).
+#'
+#' @name impute
+#' @rdname impute-methods
+#' @aliases impute,ExposomeSet-methods
+#' @param object \code{ExposomeSet} which exposures will be imputed.
+#' @param select Exposures to be imputed. If missing, all exposes will be
+#' imputed.
+#' @param ssystem (default \code{"mice"}) Argument to select the imputation
+#' package. Can take values \code{"mice"} or \code{"hmisc"}
+#' @param messages (default \code{FALSE}) If set to \code{TRUE} messages from
+#' \link{mice}'s function will be displayed.
+#' @param ... Argument given to function \code{mice} of pakcage \link{mice}
+#' (\code{printFlag} is set from \code{messages}).
+#' @return A new \code{ExposomeSet} with the imputed exposures.
+#' @examples
+#' \dontrun{
+#' #Being x an ExposomeSet
+#' x <- impute(x)
+#' }
+#' @export impute
+#' @seealso \link{plotMissings} to plot the missing data of an ExposomeSet,
+#' \link{tableMissings} to get a table with the missing data of an ExposomeSet
+setGeneric("impute", function(object, select, ssystem="mice", ..., messages=FALSE)
+    standardGeneric("impute")
+)
+
+#' Function to impute under-LOD values from an ExposomeSet
+#'
+#' This function is a wrapper of the functions \code{impute.MinProb}
+#' from the package \link{mputeLCMD}.
+#'
+#' @name ilod
+#' @rdname ilod-methods
+#' @aliases ilod,ExposomeSet-methods
+#' @param object \code{ExposomeSet} which exposures will be imputed.
+#' @param seed (default \code{1234}) Seed to make the imputation reproducible.
+#' @param lod.col (default \code{"LOD"}) Name of the column in \code{fData}
+#' with the threshold of the LOD.
+#' @param pNA (default \code{0.2}) Maximum percentage allowed of values under LOD
+#' @param tLog (default \code{FALSE}) If set to \code{TRUE} it transforms all
+#' the exposures to lod before the imputation.
+#' @param method (default \code{"QRILC"}) MEthod to be used to impute the
+#' under-LOD values. Two allowed: QRILC method (value \code{"QRILC"}) and
+#' stochastic minimal value approach (value \code{"MinProb"}).
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @param ... Arguments passed to \code{impute.QRILC} or \link{impute.MinProb}
+#' from \link{imputeLCMD}.
+#' @return A new \code{ExposomeSet} with the imputed exposures.
+#' @examples
+#' \dontrun{
+#' #Being x an ExposomeSet
+#' x <- ilod(x)
+#' }
+#' @export ilod
+#' @seealso \link{plotMissings} to plot the missing data of an ExposomeSet,
+#' \link{tableMissings} to get a table with the missing data of an ExposomeSet
+setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLog = FALSE, method = "QRILC", warnings = TRUE, ...)
+    standardGeneric("ilod")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Creation of an ExposomePCA from an ExposmeSet.
+#'
+#' Method to calculate a PCA based on the exposures of an \link{ExposomeSet}.
+#' Only numerical-exposures (non categorical) will be computed. The
+#' function resurns an \link{ExposomePCA} object. This PCA is performed
+#' by using \link{FactoMineR} package.
+#'
+#' @name pca
+#' @rdname pca-methods
+#' @aliases pca,ExposomeSet-methods
+#' @param object \code{ExposomeSet} which exposures will be used for the PCA
+#' @param npc (by default 10) number of dimensions kept in the results
+#' @return An \code{ExposomePCA} with the values of the PCA.
+#' @seealso \link{plotPCA} to plot the PCA values of an
+#' \link{ExposomePCA}, \link{clustering} to see how the exposures can
+#' cluster samples, \link{correlation} to compute the correlation between
+#' exposures
+#' @export pca
+setGeneric("pca", function(object, npc = 10)
+    standardGeneric("pca")
+)
+
+#' Number of principal components in an ExposomePCA.
+#'
+#' @name ndim
+#' @rdname ndim-methods
+#' @aliases ndim,ExposomePCA-methods
+#' @param object \code{ExposomePCA} to obtain the number of components.
+#' @return The number of components in the \code{ExposomePCA}.
+#' @seealso \link{plotPCA} to plot the PCA values of an
+#' \link{ExposomePCA}, \link{clustering} to see how the exposures can
+#' cluster samples, \link{correlation} to compute the correlation between
+#' exposures
+#' @export ndim
+setGeneric("ndim", function(object)
+    standardGeneric("ndim")
+)
+
+#' Plot association score between phentoypes and PCA
+#'
+#' Function used to plot the association between the phentoypes in an
+#' \link{ExposomePCA} and the values for each component of the PCA in the
+#' same \link{ExposomePCa}
+#'
+#' @param object An object oc class \link{ExposmePCA}
+#' @param phenotype (optional) to select a set of phenotypes to be ploted.
+#' If not given all are used.
+#' @param exp2fac (default, \code{5}) Threshold to considere a phentoype
+#' categorical (less or equal to) or continuous (more than).
+#' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotEXP}
+#' to plot the correlation between exposures ans PCA,
+#' \link{ExposmePCA} as main class
+#' @export plotPHE
+setGeneric("plotPHE", function(object, phenotype, exp2fac = 5)
+    standardGeneric("plotPHE")
+)
+
+#' Plot correlation between exposures and PCA
+#'
+#' Function used to plot the correlation between the exposures in an
+#' \link{ExposomePCA} and the values for each component of the PCA in the
+#' same \link{ExposomePCa}
+#'
+#' @param object An object oc class \link{ExposmePCA}
+#' @param exposure (optional) to select a set of exposures to be ploted.
+#' If not given all are used.
+#' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotPHE}
+#' to plot the P-Value of association between phenotypes ans PCA,
+#' \link{ExposmePCA} as main class
+#' @export plotEXP
+setGeneric("plotEXP", function(object, exposure)
+    standardGeneric("plotEXP")
+)
+
+#' Ploting PCA
+#'
+#' Methdo to draw a plot for PCA contained in an \link{ExposomePCA}
+#'
+#' @param object An onbject of class \link{ExposmePCA}
+#' @param set Group (\code{"all"}, \code{"samples"} or \code{"exposures"})
+#' taht will be ploted.
+#' @param cmpX (default: \code{1}) component to be placed at X axis
+#' @param cmpY (default: \code{2}) component to be placed at Y axis
+#' @param phentoype If \code{set} is set to \code{"samples"} can be used to
+#' color samples by phentoype
+#' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
+#' to plot the PCA, \link{ExposomePCA} as main class
+#' @export plotPCA
+setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
+    standardGeneric("plotPCA")
+)
+
+#' Ploting PCA in a 3D space
+#'
+#' Methdo to draw a plot for samples using three PC contained in an
+#' \link{ExposomePCA}
+#'
+#' @param object An onbject of class \link{ExposmePCA}
+#' @param cmpX Component to be placed at X axis
+#' @param cmpY Component to be placed at Y axis
+#' @param cmpZ Component to be placed at Z axis
+#' @param phentoype Used to color samples by phentoype
+#' @param main Title for the plot
+#' @param angle	(default \code{35}) angle between x and y axis.
+#' @param pch (default \code{16}) plotting "character", i.e. symbol to use.
+#' @param legend (default \code{TRUE}) If \code{TRUE} shows the legend.
+#' @param plines (default \code{TRUE}) If \code{TRUE} it draws the lines from
+#' each dot to the base plane.
+#' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
+#' to plot the PCA, \link{ExposomePCA} as main class
+#' @export plot3PCA
+setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle=35, pch=16, legend=TRUE, plines=TRUE)
+    standardGeneric("plot3PCA")
+)
+
+#' Creation of an ExposomeCorr from an ExposomeSet.
+#'
+#' Method to calculate the correlation between the exposures of an
+#' \link{ExposomeSet}. Only numerical-exposures (non categorical) will
+#' be computed. The function creates and returns an \link{ExposomCorr}
+#' object.
+#'
+#' @name correlation
+#' @rdname correlation-methods
+#' @aliases correlation,ExposomeSet-methods
+#' @param object \code{ExposomeSet} which exposures will be used to calculate
+#' their correlation
+# @param select Exposures used to compute correlation. If missing the
+# correlation between all exposures will be calculated.
+#' @param ... Other arguments passed to \link{cor}, \link{cramersV} or
+#' to \link{lm}.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return \code{ExposomeCorr} with the correlation between the selected
+#' exposures and their description
+#' @examples
+#' data("exposome")
+#' exp.c <- correlation(exp)
+#' expo.c
+#' @export correlation
+#' @seealso \link{plotCorrelation} to plot the correlations of an
+#' \link{ExposomeCorr}, \link{clustering} to see how the exposures can
+#' cluster samples, \link{pca} to compute PCA on exposures
+setGeneric("correlation", function(object, ..., warnings = TRUE)
+    standardGeneric("correlation")
+)
+
+
+#' It draws both circos or matrix plot for the correlation in ExposomeCorr
+#'
+#' While the circos plot can be used to see the general behaviours intra and
+#' extra families of exposures, the matrix plot allows for a detailed view of
+#' the correlations within an \code{ExposomeCorr} object.
+#'
+#' @name plotCorrelation
+#' @rdname plotCorrelation-methods
+#' @aliases plotCorrelation,ExposomeCorr-methods
+#' @param x \code{ExposomeCorr} which correlations will be plotted.
+#' @param type (default \code{"circos"}) Can take both \code{"circos"} or
+#' \code{"matrix"}.
+#' @param ... Argiments given to \code{corrplot} of package \link{corrplot}
+#' if a matrix is draw, otherwise not used.
+#' #' @examples
+#' data("exposome")
+#' exp.c <- correlation(exp)
+#' plotCorrelation(exp.c, type="circos")
+#' plotCorrelation(exp.c, type="matrix")
+#' @export plotCorrelation
+#' @seealso \link{correlation} as a constructor for \link{ExposomeCorr}
+#' objects, \link{pca} to compute PCA on exposures
+setGeneric("plotCorrelation", function(x, type = "circos", ...)
+    standardGeneric("plotCorrelation")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Method to perform clustering on the samples of an ExposomeSet
+#'
+#' This method allows to create an \link{ExposomeClust} object from an
+#' \link{ExposomeSet} object by clustering samples through the exposure
+#' levels. The method is flexible to accept any clustering method
+#' (\code{method}) that allows to obtain a classification (\code{cmethod})
+#' of the samples. The function assigned to argument \code{method} must have
+#' an argument called \code{data}, waiting for the matrix of exposures
+#' (samples as rows, exposures as columns). If the result object of the
+#' \code{method} has no accessor \code{$classification}, then a \code{cmethod}
+#' is required and will be applied on the result of \code{method} to obtain
+#' a labelled vector with the samples' classification.
+#'
+#' @name clustering
+#' @rdname clustering-methods
+#' @aliases clustering,ExposomeSet-methods
+#' @param object \code{ExposomeSet} containing the exposures used for the
+#' clustering process
+#' @param method Function applied to the exposures of \code{object}. This
+#' function must has an argument named as \code{data} that will receive the
+#' matrix of exposures.
+#' @param cmethod (optional) Function to obtain the classification from the object
+#' generated with \code{method}.
+#' @param ... Passed to content of \code{method}.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return \code{ExposomeClust} with the original exposures and the
+#' classification of each exposure.
+#' @note The function assigned to \code{cmethod} will be directy applied to
+#' the result of the \code{method} as: \code{cmethod(model)}; being
+#' \code{model} the result of \code{method}.
+#' @examples
+#' \dontrun{
+#' # Being x an ExposomeSet
+#' # EXAMPLE 1: Clustering with mclust
+#' library(mclust)
+#' c <- clustering(exp method = Mclust, G = 2)
+#' classification(c)  # This works since the result of Mclust has an accessor
+#'                    # $classification
+#' }
+#'
+#' # EXAMPLE 2: Cluseting with flexmix
+#' data("exposome")
+#' library(flexmix)
+#' # First we carete a function to apply flexmix to the ExposomeSet
+#' flexmix_clust <- function(data, ...) {
+#'   flexmix(formula = data~1, ...)
+#' }
+#'
+#' # Then we apply the method to the ExposomeSet
+#' c <- clustering(exp, method = flexmix_clust, k = 2, model = FLXMCmvnorm())
+#' # To try to obtain the classification for the result will fail since the
+#' # result of flexmix has not an accessor called $classiciation
+#' # classification(c)
+#'
+#' # We create a function to get the classification
+#' flexmix_clas <- function(model, ...) {
+#'   return(clusters(model))
+#' }
+#'
+#' # We put it to the ExposomeClust
+#'
+#' c <- clustering(exp, method = flexmix_clust, cmethod = flexmix_clas,
+#'     k = 2, model = FLXMCmvnorm())
+#' classification(c) # This works because the ExposomeClust has a way to get
+#'                   # the classification
+#' @export clustering
+#' @seealso \link{classification} to see how to obtain the classification of
+#' the samples from an \link{ExposomeClust}, \link{plotClassification} to
+#' plot the groups
+setGeneric("clustering", function(object, method, cmethod, ..., warnings = TRUE)
+    standardGeneric("clustering")
+)
+
+#' Method to get the classification of the samples from an ExposomeClust.
+#'
+#'
+#' @name classification
+#' @rdname classification-methods
+#' @aliases classification,ExposomeClust-method
+#' @param object An \link{ExposomeClust} to get the samples' classification.
+#' @return A labelled vector with the classification of each exposure.
+#' @export classification
+#' @seealso \link{clustering} as a constructor for \link{ExposomeClust},
+#' \link{plotClassification} to plot the groups
+setGeneric("classification", function(object)
+    standardGeneric("classification")
+)
+
+#' Draw the profile of the levels exposures after a classification with a
+#' clustering method
+#'
+#' @name plotClassification
+#' @rdname plotClassification-methods
+#' @aliases plotClassification,ExposomeClust-methods
+#' @param x Object of class \code{Exposomeclust}
+#' @param type Two types are available: \code{"heatmap"} or \code{"valuemap"}.
+#' @param ... NOT USED
+#' @examples
+#' \dontrun{
+#' #Being x an ExposomeClust
+#' plotClassification(x)
+#' }
+#' @export plotClassification
+#' @seealso \link{clustering} as a constructor for \link{ExposomeClust},
+#' \link{classification} to see how to obtain the classification of
+#' the samples from an \link{ExposomeClust}
+setGeneric("plotClassification", function(x, ...)
+    standardGeneric("plotClassification")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Testing the association between an exposure and a phenotype of an
+#' ExposomeSet using a non-lineal aproach.
+#'
+#' The \code{nl_exwas} method performs an "Non-lineal Exposome-Wide
+#' Association Study" (M-ExWAS) using the exposures in \link{ExposomeSet}
+#' and one of its phenotype. It uses the package \code{mboost} and its
+#' functions \code{bols}, \code{bbs} and \code{gamboost}.
+#'
+#' @name nl_exwas
+#' @rdname nl_exwas-methods
+#' @aliases nl_exwas,ExposomeSet-methods
+#' @param object \code{ExposomeSet} that will be used for the ExWAS.
+#' @param phenotype Target phenotype used for the study. If missing all the
+#' phenotypes in the \link{ExposomeSet} will be used.
+#' @param bbs.df Trace of the hat matrix for the base-learner defining the
+#' base-learner complexity. It is passed to \code{bbs} of \code{mboost}.
+#' @param ... Arguments passed to \code{gamboost}.
+#' @param verbose (default \code{FALSE}) Shows messages of the process.
+#' @param warning (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return Returns an object of class \link{mExWAS}
+#' @examples
+#' \dontrun{
+#' #Being x an ExposomeSet
+#' w1 <- nl_exwas(x, "sex")
+#' w2 <- nl_exwas(x, "asthma")
+#' }
+#' @export nl_exwas
+#' @seealso \link{extract} to obtain a table with the result of the ExWAS,
+#' \link{plotExwas} to plot the results of the ExWAS
+setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
+    verbose = FALSE, warnings = TRUE)
+        standardGeneric("nl_exwas")
+)
+
+#' Testing the association between an exposure and a phenotype of an
+#' ExposomeSet using a multivariate aproach.
+#'
+#' The \code{mexwas} method performs an "Multi Exposome-Wide
+#' Association Study" (m-ExWAS) using the exposures in \link{ExposomeSet}
+#' and one of its phenotype. It uses the packages \code{glmnet} and
+#' \code{partDSA}.
+#'
+#' @name mexwas
+#' @rdname mexwas-methods
+#' @aliases mexwas,ExposomeSet-methods
+#' @param object \code{ExposomeSet} that will be used for the ExWAS.
+#' @param phenotype Target phenotype used for the study. If missing all the
+#' phenotypes in the \link{ExposomeSet} will be used.
+#' @param method Selector of method to be used. Can takes values
+#' \code{"enet"} or \code{"dsa"} for using \code{glmnet} or
+#' \code{partDSA}.
+#' @param ... Arguments passed to inner functions.
+#' @param mc.cores (default \code{1}) Number of cores used to process
+#' the exposures.
+#' @param verbose (default \code{FALSE}) Shows messages of the process.
+#' @param warning (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return Returns an object of class \link{MExWAS}
+#' @examples
+#' \dontrun{
+#' #Being x an ExposomeSet
+#' w1 <- mexwas(x, "sex")
+#' w2 <- mexwas(x, "asthma")
+#' }
+#' @export mexwas
+#' @seealso \link{extract} to obtain a table with the result of the ExWAS,
+#' \link{plotExwas} to plot the results of the ExWAS
+setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
+    standardGeneric("mexwas")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Testing the association between an exposure and a phenotype of an
+#' ExposomeSet
+#'
+#' The \code{exwas} method performs an "Exposome-Wide Association Study" (ExWAS)
+#' using the exposures in \link{ExposomeSet} and one of its phenotype.
+#'
+#' @name exwas
+#' @rdname exwas-methods
+#' @aliases exwas,ExposomeSet-methods
+#' @param object \code{ExposomeSet} that will be used for the ExWAS.
+#' @param formula \code{formula} indicating the test to be done. If any
+#' exposure is included it will be used as covariate. \code{exwas} metho will
+#' perform the test for each exposure.
+#' @param filter \code{expression} to be used to filter the individuals
+#' included into the test.
+#' @param family Family of the distribution followed by the health outcome to
+#' be tested (gaussian, bionomal, ... check \link{glm}).
+#' @param verbose (default \code{FALSE}) If set o true messages along the
+#' tests are shown.
+#' @param warning (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return An code{ExWAS} object with the result of the association study
+#' @references An Environment-Wide Association Study (ExWAS) on Type 2 Diabetes
+#' Mellitus. Chirag J. Patel, Jayanta Bhattacharya, Atul J. Butte. May 20, 2010
+#' Plos One
+#' @references Evaluating the effective numbers of independent tests and
+#' significant p-value thresholds in commercial genotyping arrays and public
+#' imputation reference datasets. Miao-Xin Li, Juilian M. Y. Yeung,
+#' Stacey S. Cherny and Pak C. Sham. May 2012 Hum Genet.
+#' @examples
+#' data(exposome)
+#' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+#' w2 <- exwas(expo[1:5, ], asthma~sex+age, family = "binomial")
+#' w3 <- exwas(expo[1:5, ], asthma~age, family = "binomial", filter = sex=="boy")
+#' @export exwas
+#' @seealso \link{extract} to obtain a table with the result of the ExWAS,
+#' \link{plotExwas} to plot the results of the ExWAS
+setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FALSE, warnings = TRUE)
+    standardGeneric("exwas")
+)
+
+#' Function to extract the results of the association and integration
+#' studies.
+#'
+#' Method \code{extract} can be applied to \link{ExWAS} and \code{ResultSet}
+#' objects to obtain a table with the results of the association and
+#' integration studies implemented in \code{rexposome}.
+#'
+#' @name extract
+#' @rdname extract-methods
+#' @aliases extract,ExWAS-methods
+#' @aliases extract,ResultSet-methods
+#' @param object Object of class \link{ExWAS} or \link{ResultSet}.
+#' @param phenotype Name of the phenotype to be extracted from an
+#' \link{ExWAS}.
+#' @param rid Name or index of the exposure to be extracted from
+#' \link{ResultSet}.
+#' @param sort (default \code{TRUE}) If \code{TRUE} table is ordered by
+#' pvalue (only for \link{ResultSet} objects).
+#' @return A \code{data.frame} with the pvalues and other information from the
+#' association a integration studies of the exposures and phenotypes and
+#' exposures and omics data.
+#' @export extract
+#' @seealso \link{ExWAS}, \link{ResultSet}
+setGeneric("extract", function(object, ...)
+    standardGeneric("extract")
+)
+
+#' Function to draw a plot of the pvalues stored in an \code{ExWAS} object
+#'
+#' This function draws a sort of manhattan plots using the p-value of the
+#' association of the exposures with phenotypes of an \code{ExWAS} object.
+#'
+#' @param object An \code{ExWAS} object which p-values will be plotted.
+#' @param color (optional) A vector of colors. The vector must have length
+#' equal to the number of families. The vector must be names with the
+#' name of the families.
+#' @param show.effective (default TRUE) draws a brown line on the
+#' threshold given by the effective number of tests.
+#' @export plotExwas
+#' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
+#' \link{extract} to obtain a table with the result of the ExWAS
+setGeneric("plotExwas", function(object, ...)
+    standardGeneric("plotExwas")
+)
+
+#' Function to draw a plot of the pvalues stored in an \code{ExWAS} object
+#'
+#' This function draws a sort of manhattan plots using the p-value of the
+#' association of the exposures with phenotypes of an \code{ExWAS} object.
+#'
+#' @param x An \code{ExWAS} object which effect will be ploted.
+#' @param y (optional) Another \code{ExWAS} object. If provded its
+#' effects will be ploted in Y-axis.
+#' @export plotEffect
+#' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
+#' \link{extract} to obtain a table with the result of the ExWAS
+setGeneric("plotEffect", function(x, y, ...)
+    standardGeneric("plotEffect")
+)
+
+#' Function to get the Threshold for effective tests (TEF)
+#'
+#' @param object An \code{ExWAS} object
+#' @export tef
+#' @seealso \link{exwas} as a constructor for \link{ExWAS} objects
+#' @references Evaluating the effective numbers of independent tests and
+#' significant p-value thresholds in commercial genotyping arrays and public
+#' imputation reference datasets. Miao-Xin Li, Juilian M. Y. Yeung,
+#' Stacey S. Cherny and Pak C. Sham. May 2012 Hum Genet.
+setGeneric("tef", function(object)
+    standardGeneric("tef")
+)
+
+
+# -----------------------------------------------------------------------------
+
+#' Method to add an ExposomeSet to a MultiDataSet
+#'
+#' This method allows to insert an object of class \link{ExposomeSet} as an
+#' independent dataset into an object of class \link{MultiDataSet}.
+#'
+#' @param object An object of class \link{MultiDataSet}.
+#' @param expoSet An object of class \link{ExposomeSet}.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @param ... Arguments given to \link{add_eset} from \link{MultiDataSet}.
+#' @return A \link{MultiDataSet} with the \link{ExpressionSet} added as an
+#' independent dataset.
+#' @examples
+#' data("exposome")
+#' library(MultiDataSet)
+#' md <- new("MultiDataSet")
+#' names(md)
+#' md <- add_exp(md, exp)
+#' names(md)
+#' @export add_exp
+setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
+    standardGeneric("add_exp")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Method to perform an association study between transcriptome and exposom
+#'
+#' This function allows to perform an association study between gene
+#' expression from microarray and the exposome. An \link{ExpresionSet} is
+#' the object storing the gene expresion and an \link{ExposomeSet} the one
+#' storing the exposome. Both of them needs to be encapsulated in a
+#' \link{MultiDataSet}. The association study is perform through standard
+#' \link{limma} pipeline. The function allows to perform multiple tests using
+#' the argument \code{exposures}.
+#'
+#' @name assocGE
+#' @rdname assocGE-methods
+#' @aliases assocGE,MultiDataSet-rexposome
+#' @param object An object of class \link{MultiDataSet} containing an
+#' \code{ExposomeSet} and an \link{ExposomeSet}.
+#' @param formula Model (without exposure/s) to be tested.
+#' @param select One or multiple exposures existing into the
+#' \link{ExposomeSet} (encapsulated into the \link{MultiDataSet}).
+#' @param set (default \code{"exposures"}) Can take values \code{"exposures"}
+#' of \code{"phenotype"}.
+#' @param ... ...
+#' @param sva (default \code{FALSE}) If \code{TRUE} SVAnalysis is done.
+#' @param asFactor (default \code{5}) Maximum number of unique values to
+#' considere an exposure 'factor'. If missing the internal value of the
+#' \link{ExposomeSet} in the given \link{MultiDataSet} will be used as
+#' threshold.
+#' @param ncores (default \code{1}) Number of test performed at a time.
+#' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
+#' about the process is show.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return An object of class \code{ResultSet} containing the results of the
+#' test and the associated feature-data.
+#' @export assocGE
+#' @seealso \link{assocME} to test the association between epigenome and
+#' exposome, \link{assocSNP} to test the association between genome and
+#' exposome, \link{assocPRT} to test the association between proteome and
+#' exposome, package \link{limma} for more details, \link{plotAssociation} to
+#' plot the results
+setGeneric("assocGE", function(object, formula, select, set = "exposures", ..., sva = FALSE, asFactor = 5,
+                               ncores = 1, verbose = FALSE, warnings = TRUE)
+    standardGeneric("assocGE")
+)
+
+#' Method to perform an association study between proteome and exposom
+#'
+#' This function allows to perform an association study between protein
+#' expression from microarray and the exposome. An \link{ExpresionSet} is
+#' the object storing the protein expresion and an \link{ExposomeSet} the one
+#' storing the exposome. Both of them needs to be encapsulated in a
+#' \link{MultiDataSet}. The association study is perform through standard
+#' \link{limma} pipeline. The function allows to perform multiple tests using
+#' the argument \code{exposures}.
+#'
+#' @name assocPRT
+#' @rdname assocPRT-methods
+#' @aliases assocPRT,MultiDataSet-rexposome
+#' @param object An object of class \link{MultiDataSet} containing an
+#' \code{ExposomeSet} and an \link{ExposomeSet}.
+#' @param formula Model (without exposure/s) to be tested.
+#' @param select One or multiple exposures existing into the
+#' \link{ExposomeSet} (encapsulated into the \link{MultiDataSet}).
+#' @param set (default \code{"exposures"}) if set to \code{"phenotypes"} the
+#' variables used in the association test are the phenotypes instead of the
+#' exposures.
+#' @param ... ...
+#' @param sva (default \code{FALSE}) if set to \code{TRUE} SVa is applied on
+#' the model and the surrogate variables are incldue in the association test.
+#' @param asFactor (default \code{5}) Maximum number of unique values to
+#' considere an exposure 'factor'. If missing the internal value of the
+#' \link{ExposmeSet} in the given \link{MultiDataSet} will be used as
+#' threshold.
+#' @param ncores (default \code{1}) Number of test performed at a time.
+#' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
+#' about the process is show.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return An object of class \code{ResultSet} containing the results of the
+#' test and the associated feature-data.
+#' @export assocPRT
+#' @seealso \link{assocME} to test the association between epigenome and
+#' exposome, \link{assocSNP} to test the association between genome and
+#' exposone, \link{assocGE} to test the association between gene expression
+#' and exposome, package \link{limma} for more details,
+#' \link{plotAssociation} to plot the results
+setGeneric("assocPRT", function(object, formula, exposures, ..., asFactor = 5,
+                               ncores = 1, verbose = FALSE, warnings = TRUE)
+    standardGeneric("assocPRT")
+)
+
+#' Method to perform an association study between epigenome and exposome
+#'
+#' This function allows to perform epigenetic wide association studies
+#' between methylation and expsome. A \link{MethylationSet} is the object
+#' storing the CpGs and an \link{ExposomeSet} the one storing the exposures.
+#' The association study relies on package \link{MEAL}. The function allows to
+#' perform multiple tests using the argument \code{exposures}.
+#'
+#' @name assocME
+#' @rdname assocME-methods
+#' @aliases assocME,MultiDataSet-rexposome
+#' @param object An object of class \link{MultiDataSet} containing an
+#' \code{ExposomeSet} and a \link{MethylationSet}.
+#' #' @param formula Model (without exposure/s) to be tested.
+#' @param select One or multiple exposures existing into the
+#' \link{ExposomeSet} (encapsulated into the \link{MultiDataSet}).
+#' @param set (default \code{"exposures"}) Can take values \code{"exposures"}
+#' of \code{"phenotype"}.
+#' @param area.test (default \code{FALSE}) If set to \code{TRUE} it tests
+#' area instead of CpG.
+#' @param method (default \code{"ls"}) Can takes \code{"ls"} or \code{"robust"}
+#' and it will be the method used by \link{MEAL}/\code{limma} to test
+#' the association.
+#' @param betas (default \code{FALSE}) By default M-values are used. If set
+#' to \code{TRUE} beta-vaues are used instead.
+#' @param ... Other arguments passed to \link{DAProbe} or \link{DARegion}.
+#' @param sva (default \code{FALSE}) If set to \code{TRUE}, surrogate
+#' variable analysis is done before calling \link{DAProbe}, or \link{DARegion},
+#' and obtained surrogate variables are added.
+#' @param ncores (default \code{1}) nomber of analysis that will be done
+#' at the same time (see \link{mclapply}).
+#' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
+#' about the process is show.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return An object of class \code{ResultSet} containing the results of the
+#' test and the associated feature-data.
+#' @export assocME
+#' @importClassesFrom MultiDataSet MethylationSet
+#' @seealso \link{assocGE} to test the association between transcriptome
+#' and exposome, \link{assocSNP} to test the association between genome and
+#' exposome, package \link{MEAL} for more details, \link{plotAssociation} to
+#' plot the results
+setGeneric("assocME", function(object, formula, select, set="exposures",
+                               area.test=FALSE, method="ls", betas=FALSE,
+                               ..., sva=FALSE, ncores=1, verbose=FALSE,
+                               warnings=TRUE)
+    standardGeneric("assocME")
+)
+
+#' Method to perform an association study between genome and diseasome
+#' (exposome's phenotypes)
+#'
+#' This function allows to perform genome wide association studies between
+#' SNPs and phenotypes. A \link{SnpSet} is the object storing the genotypes and
+#' an \link{ExposomeSet} the phenotypes. The association study is performed
+#' through \link{snp.rhs.tests} from \link{snpStats}.
+#'
+#' @section Warning:
+#' A difference between \code{assocSNP} and both \code{assocGE}
+#' and \code{assocME}, is that \code{assocSNP} cannot perform multiple
+#' test in a single run.
+#'
+#' @name assocSNP
+#' @rdname assocSNP-methods
+#' @aliases assocSNP,MultiDataSet-rexposome
+#' @param object An object of class \link{MultiDataSet} containing an
+#' \code{ExposomeSet} and a \link{SnpSet}.
+#' @param design Formula to be tested at \link{snp.rhs.tests}.
+#' @param family (default \code{"binomial"}) A string defining the generalized
+#' linear model family. This can take \code{"binomial"}, \code{"Poisson"},
+#' \code{"Gaussian"} or \code{"gamma"}. It is given to \link{snp.rhs.tests}.
+#' @param filter.callrate (default \code{0.98}) Filter for SNPs call-rate. Ones
+#' under the threshold are removed.
+#' @param filter.maf (default \code{0.05}) Filter for minimum allele frequency
+#' (MAF). Ones under the threshold are removed.
+#' @param filter.pvalHEW (default \code{0.001}) Filter for Hardyâ€“Weinberg. Ones
+#' under the threshold are removed.
+#' @param ... Argument given to \link{snp.rhs.tests} from \link{snpStats}.
+#' @export assocSNP
+#' @seealso \link{assocGE} to test the association between transcriptome
+#' and exposome, \link{assocME} to test the association between epigenome
+#' and exposome, package \link{snpStats} for more details,
+#' \link{plotAssociation} to plot the results
+setGeneric("assocSNP", function(object, design, family = "binomial",
+                                 filter.callrate = 0.98, filter.maf = 0.05, filter.pvalHWE = 0.001, ...)
+    standardGeneric("assocSNP")
+)
+
+#' Method to perform a crossomics integration analysis.
+#'
+#' This functions performs a crossomics analysis using all the datasets stored
+#' into a \link{MultiDataSet} object. The process of integration performs a
+#' sparse multiple canonical correlation analysis with all the available
+#' tables. The genome (SNPs) data is transformed to a continuous variable.
+#'
+#' @section Warning:
+#' Current accepted datasets are: \link{ExposomeSer} for exposures data.
+#' \link{ExpressionSet} for micro/gene expression data, \link{MethylationSet}
+#' for methylome (CpGs) data, \link{SnpSet} for genome (SNPs) data. Proteome
+#' data is allowed as an \link{eSet} while tagged as \code{"proteome"} into the
+#' \link{MultiDataSet} object.
+#'
+#' @name crossomics
+#' @rdname crossomics-methods
+#' @aliases crossomics,MultiDataSet-rexposome
+#' @param object An object of class \link{MultiDataSet} containing the multiple
+#' sets to be integrated
+#' @param ncomponents (default \code{2})
+#' @param na.rm (default \code{FALSE})
+#' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
+#' about the process is show.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @references
+#' Witten, DM and Tibshirani, R and Hastie, T. A penalized matrix
+#' decomposition, with applications to sparse principal components and canonical
+#' correlation analysis. Biostatistics. 2009. 10.1093/biostatistics/kxp008
+#'
+#' Abraham, G and Inouye M. Fast Principal Component Analysis of Large-Scale
+#' Genome-Wide Data. PLOS ONE. http://dx.doi.org/10.1371/journal.pone.0093766
+#' @export crossomics
+#' @seealso the used functions \link{MultiCCA} and \link{MultiCCA.permut} or
+#' the package \link{PMA} for details, \link{plotIntegration} to plot the
+#' results
+setGeneric("crossomics", function(object, ncomponents = 2, ..., na.rm = FALSE,
+                                  verbose = FALSE, warnings = TRUE)
+    standardGeneric("crossomics")
+)
+
+# -----------------------------------------------------------------------------
+
+#' Function to draw de result of an association study
+#'
+#' This function draws two type of plots for the ResultSet from association
+#' functions
+#'
+#' @name plotAssociation
+#' @rdname plotAssociation-methods
+#' @aliases plotAssociation,ResultSet-methods
+#' @param object An object of class \link{ResultSet} obtained from assoc_*
+#' functions.
+#' @param rid (default \code{1}) Index or name of the test to be plotted. Not
+#' used it the \code{ResultSet} comes from \link{assocSNP}.
+#' @param type Can take \code{"manhattan"} or \code{"qq"}.
+#' @param ... Other arguments used in the different plots.
+#' @export plotAssociation
+#' @seealso \link{plotIntegration} for plotting integration results
+setGeneric("plotAssociation", function(object,  rid = 1,
+                                       type = c("manhattan", "qq"), ...)
+    standardGeneric("plotAssociation")
+)
+
+#' Function to draw de result of an integration study
+#'
+#' This function draws a plots for the ResultSet from integration function
+#'
+#' @name plotIntegration
+#' @rdname plotIntegration-methods
+#' @aliases plotIntegration,ResultSet-methods
+#' @param object An object of class \link{ResultSet} obtained from
+#' \link{crossomics}.
+#' @param cmpX (default \code{1}) Value of the X-axis when ploting rsults
+#' from \link{mcia}.
+#' @param cmpY (default \code{2}) Value of the Y-axis when ploting rsults
+#' from \link{mcia}.
+#' @param tcolors (optional) Names vector with the colors sued to draw
+#' each dataset. Used when ploting results from \link{MultiCCA}. If missing,
+#' random colores are chosen.
+#' @param lb.th (default \code{0.20}) Threshold to place labels on radar chart
+#' drawn when ploting results from \link{MultiCCA}.
+#' @param legend.show (default \code{TRUE}) If set to FALSE, right legend
+#' of radar plot is hidden when ploting results from \link{MultiCCA}.
+#' @param ... Optional arguments are given to \code{plot} from \link{omicade4}
+#' pacage (argument \code{axes} is filled with values from \code{cmpX} and
+#' \code{cmpY}).
+#' @export plotIntegration
+#' @seealso \link{plotAssociation} for plotting association results
+setGeneric("plotIntegration", function(object, cmpX=1, cmpY=2, tcolors,
+        lb.th=0.20, legend.show=TRUE, ...)
+    standardGeneric("plotIntegration")
+)
+
+# -----------------------------------------------------------------------------
+
+#' @export rid
+setGeneric("rid", function(object)
+    standardGeneric("rid")
+)
+
+#' @export add_prot
+setGeneric("add_prot", function(object, expoSet, ...)
+    standardGeneric("add_prot")
+)
+
+#' @export add_cls
+setGeneric("add_cls", function(object, clsSet, ...)
+    standardGeneric("add_cls")
+)
+
+
+#' @export tableLambda
+setGeneric("tableLambda", function(object)
+    standardGeneric("tableLambda")
+)
+
+
+#' @export plotLambda
+setGeneric("plotLambda", function(object, width=0.75)
+    standardGeneric("plotLambda")
+)
+
+
+#' @export tableHits
+setGeneric("tableHits", function(object, th=0.05)
+    standardGeneric("tableHits")
+)
+
+
+#' @export plotHits
+setGeneric("plotHits", function(object, th=0.05, width=0.75)
+    standardGeneric("plotHits")
+)
+
+#' @export raw
+setGeneric("raw", function(object)
+    standardGeneric("raw")
+)
