@@ -3,8 +3,7 @@ setMethod(
     signature = "ExposomeSet",
     definition = function(object, ..., warnings = TRUE) {
         cor.arg <- list()
-        #crm.arg <- list()
-        chis.arg <- list()
+        crm.arg <- list()
         lm.arg <- list()
         drop <- c("x", "y", "method")
         dots <- pryr::named_dots(...)
@@ -20,10 +19,10 @@ setMethod(
             } else if(name %in% c(formalArgs(cor), "method.cor")) {
                 if(name == "method.cor") { name <- "method" }
                     cor.arg[[name]] <- dots[[name]]
-            } else if(name %in% formalArgs(chisq.test)) {
-                chis.arg[[name]] <- dots[[name]]
-            # } else if(name %in% formalArgs(cramersV)) {
-            #     crm.arg[[name]] <- dots[[name]]
+            # } else if(name %in% formalArgs(chisq.test)) {
+            #     chis.arg[[name]] <- dots[[name]]
+            } else if(name %in% formalArgs(cramersV)) {
+             crm.arg[[name]] <- dots[[name]]
             } else {
                 stop("Argument '", name, "' do not corresponds to any argument ",
                 "of 'cor', 'cramersV' nor 'lm' functions.")
@@ -48,8 +47,8 @@ setMethod(
             }
         }
 
-        # cr <- .corr_exposures(mtrc[ , sel], object[sel, ], cor.arg, crm.arg, lm.arg)
-        cr <- .corr_exposures(mtrc, object, cor.arg, chis.arg, lm.arg, warnings)
+        cr <- .corr_exposures(mtrc, object, cor.arg, crm.arg, lm.arg, warnings)
+        #cr <- .corr_exposures(mtrc, object, cor.arg, chis.arg, lm.arg, warnings)
 
         new("ExposomeCorr",
             assayData = assayDataNew("environment", corr = t(cr)),
@@ -61,7 +60,7 @@ setMethod(
 
 
 
-.corr_exposures <- function(mtrc, object, cor.arg, chis.arg, lm.arg, warnings) {
+.corr_exposures <- function(mtrc, object, cor.arg, crm.arg, lm.arg, warnings) {
     # lm.beta <- function (x) {
     #     b <- coef(x)[-1]
     #     sx <- sd(x$model[,-1])
@@ -69,6 +68,7 @@ setMethod(
     #     beta <- b * sx/sy
     #     return(beta)
     # }
+
     mtrc <<- mtrc
     xx <- do.call(rbind, lapply(colnames(mtrc), function(ex_i) {
         ty_i <- fData(object)[ex_i, "_type"]
@@ -81,14 +81,11 @@ setMethod(
                 do.call("cor", c(list(x = mtrc[ , c(ex_i, ex_j)]), cor.arg))[1, 2]
             } else if(ty_i == "factor" & ty_j == "factor") {
                 # Both exposures are factor
-                #   If both exposures are dictomical we could use
-                #   5th caramer factor as estimator for correlation. When
-                #   the exposures are multicategorical we need to use
-                #   the pval from a Chi Square test as etimator of the correlation.
-                # do.call("cramersV", c(list(x = table(mtrc[ , c(ex_i, ex_j)])), crm.arg))
+                #   If both exposures are factorial we could use
+                #   5th caramer factor as estimator for correlation.
                 tryCatch({
-                    xx <- do.call("chisq.test", c(list(x = table(mtrc[ , c(ex_i, ex_j)])), chis.arg))
-                    xx$p.value
+                    do.call("cramersV", c(
+                        list(x = table(mtrc[ , c(ex_i, ex_j)])), crm.arg))
                 }, error=function(e) {
                     if(warnings) {
                         warning(ex_i, " - ", ex_j, ": ", e)
@@ -97,6 +94,11 @@ setMethod(
                 })
 
             } else { # if(ty_i == "numeric" & ty_j == "factor") {
+                # One of the exposures is numeric and the other is facor
+                #   If the factor exposures is multicategorical we can use the
+                #   interclass correlation coeficient.
+                irr::ICC(mtrc[ , c(ex_i, ex_j)], "twoway")
+
                 # One of the exposures is numeric and the other is facor
                 #   If the factor exposures is multicategorical we can use the
                 #   r from multiple regresion model as estimator for the
