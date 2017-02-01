@@ -69,7 +69,6 @@ setMethod(
     #     return(beta)
     # }
 
-    mtrc <<- mtrc
     xx <- do.call(rbind, lapply(colnames(mtrc), function(ex_i) {
         ty_i <- fData(object)[ex_i, "_type"]
         yy <- sapply(colnames(mtrc), function(ex_j) {

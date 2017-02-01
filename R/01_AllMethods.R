@@ -732,7 +732,7 @@ setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle
 #' exposures and their description
 #' @examples
 #' data("exposome")
-#' exp.c <- correlation(exp)
+#' exp.c <- correlation(expo)
 #' expo.c
 #' @export correlation
 #' @seealso \link{plotCorrelation} to plot the correlations of an
