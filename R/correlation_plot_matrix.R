@@ -1,6 +1,6 @@
 .correlation_matrix_plot <- function(corr, desc, cex.exposures = 0.50, cex.family = 0.55, ...) {
   # plot - matrix of correlation
-  corrplot::corrplot(as.matrix(corr),
+  corrplot::corrplot(as.matrix(corr)[rownames(desc), rownames(desc)],
                      method = "color",
                      mar = c(0.5,2,5,0),
                      tl.col = "black",

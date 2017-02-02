@@ -96,7 +96,7 @@ setMethod(
                 # One of the exposures is numeric and the other is facor
                 #   If the factor exposures is multicategorical we can use the
                 #   interclass correlation coeficient.
-                irr::ICC(mtrc[ , c(ex_i, ex_j)], "twoway")
+                ### irr::icc(mtrc[ , c(ex_i, ex_j)], "twoway")
 
                 # One of the exposures is numeric and the other is facor
                 #   If the factor exposures is multicategorical we can use the
