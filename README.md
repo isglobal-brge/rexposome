@@ -20,10 +20,10 @@ devel [![Travis-CI Build Status](https://travis-ci.org/carleshf/rexposome.svg?br
 ```r
 source( "http://bioconductor.org/biocLite.R" )
 
-packages = c('Biobase', 'mice', 'MultiDataSet', 'mvtnorm', 'lsr', 'FactoMineR',
-    'gridExtra', 'stringr', 'pryr', 'circlize', 'corrplot', 'ggplot2', 
+packages = c('Biobase', 'mice', 'MultiDataSet', 'mvtnorm', 'lsr', 'BiocInstaller', 
+    'FactoMineR', 'gridExtra', 'stringr', 'pryr', 'circlize', 'corrplot', 'ggplot2', 
     'reshape2', 'scales', 'pryr', 'mboost', 'imputeLCMD', 'snpStats', 'MEAL', 
-    'limma', 'qqman', 'scatterplot3d', 'partDSA', 'glmnet', 'omicade4'
+    'limma', 'scatterplot3d', 'glmnet', 'omicade4', 'sva', 'ggrepel', 'PMA'
 )
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
@@ -42,7 +42,7 @@ install.packages("devtools")
 Once `devtools` and the dependences are installed, the following code installs `rexposome`:
 
 ```r
-devtools::install_github("carleshf/rexposome")
+devtools::install_github("isglobal-brge/rexposome")
 ```
 
 ### Details
@@ -51,7 +51,10 @@ The installation of `rexposome` through `devtools` takes care of installing all 
 
   * R version >= 3.3.0
   * R packages dependencies: `Biobase`, `mice`, `MultiDataSet`, `mvtnorm`, `lsr`
-  * R packages imports: `FactoMineR`, `gridExtra`, `stringr`, `pryr`, `circlize`, `corrplot`, `ggplot2`, `reshape2`, `scales`, `pryr`, `mboost`, `imputeLCMD`, `snpStats`, `MEAL`, `limma`, `qqman`, `scatterplot3d`, `partDSA`, `glmnet`, `omicade4`
+  * R packages imports: `Biobase`, `mice`, `MultiDataSet`, `mvtnorm`, `lsr`, `BiocInstaller`, 
+    `FactoMineR`, `gridExtra`, `stringr`, `pryr`, `circlize`, `corrplot`, `ggplot2`, 
+    `reshape2`, `scales`, `pryr`, `mboost`, `imputeLCMD`, `snpStats`, `MEAL`, 
+    `limma`, `scatterplot3d`, `glmnet`, `omicade4`, `sva`, `ggrepel`, `PMA`
   * R packages suggestions: `flexmix`, `thestthat`
 
 ## Basic Guide

@@ -14,8 +14,7 @@ Depends:
     mice,
     MultiDataSet,
     mvtnorm,
-    lsr,
-    ggrepel
+    lsr
 Imports: BiocInstaller,
     FactoMineR,
     gridExtra,
@@ -32,7 +31,6 @@ Imports: BiocInstaller,
     snpStats,
     MEAL,
     limma,
-    qqman,
     scatterplot3d,
     glmnet,
     omicade4,
