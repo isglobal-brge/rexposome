@@ -1,31 +1,20 @@
-#' Creation of an ExposomeSet from files
+#' Creation of an ExposomeSet from \code{data.frames}
 #'
-#' Given the files that defines the exposome (measures of exposome, exposome
-#' description and individuals phentype) it loads them and creates an
-#' object of type \link{ExposomeSet}.
+#' Given three \code{data.frames} that defines the exposome (measures
+#' of exposome, exposome description and individuals phentype) it loads
+#' them and creates an object of type \link{ExposomeSet}.
 #'
-#' The rows of the exposure's file, that corresponds to samples' names, must
-#' be the same than the phenotype's file. In the same way, the columns in
-#' exposure's file must be the same found as rows in description file.
+#' The rows of the exposure's \code{data.frames}, that corresponds to samples'
+#' names, must be the same than the phenotype's \code{data.frames}. In the
+#' same way, the columns in exposure's \code{data.frames} must be the same
+#' in description \code{data.frame}.
 #'
-#' @param exposures String with the path to the file with the matrix of
-#' exposures.
-#' @param description String with the path to the file with the description of
-#' the exposures (relation between exposures and exposure-family).
-#' @param phenotype String with the path to the file with the phenotypes of
-#' interest.
-#' @param sep (default \code{","}) Separator used by \code{\link{read.table}} to
-#' load the files "exposures", "description" and "phenotype".
-#' @param na.strings (default \code{c("NA", "-", "?", " ", "")}) Character
-#' defining the \code{NA} values in expsome's files.
-#' @param exposures.samCol (default \code{1}) Index where the samples' name
-#' are found in file "exposures".
-#' @param description.expCol (default \code{1}) Index where the exposures'
-#' name are found in file "description".
-#' @param description.famCol (default \code{2}) Index where the family's
+#' @param exposures \code{data.frame} of exposures.
+#' @param description \code{data.frame} with the description of the exposures
+#' (relation between exposures and exposure-family).
+#' @param phenotype \code{data.frame} with the phenotypes of interest.
+#' @param description.famCol (default \code{1}) Index where the family's
 #' name (per exposures) if found in file "description".
-#' @param phenotype.samCol (default \code{1}) Index where the sample's name
-#' are found in file "phenotype".
 #' @param exposures.asFactor (default \code{5}) The exposures with more
 #' than this number of unique items will be considered as "continuous" while
 #' the exposures with less or equal number of items will be considered as
@@ -49,67 +38,47 @@
 #' to speficy how an exposure needs to be understood. If given, this column
 #' will be renamed to \code{_type}. If not given, it will be created using
 #' \code{exposures.asFactor} value.
-#' @examples
-#' path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-#' description <- paste0(path, .Platform$file.sep, "exposFam.txt")
-#' phenotype <- paste0(path, .Platform$file.sep, "phenoData.txt")
-#' exposures <- paste0(path, .Platform$file.sep, "exposome.txt")
-#' exp <- read_exposome(exposures, description, phenotype, sep = "\t")
-#' @export read_exposome
+#' @export load_exposome
 #' @seealso \link{ExposomeSet} for class description,
-#' \link{load_exposome} for constructor from loaded
-#' \code{data.frame}s
-read_exposome <- function(exposures, description, phenotype,
-    sep = ",", na.strings = c("NA", "-", "?", " ", ""),
-    exposures.samCol = 1, description.expCol = 1, description.famCol = 2,
-    phenotype.samCol = 1, exposures.asFactor = 5,
-    std.e = c("none", "normal", "robust"), trn.e = "none",
-    warnings = TRUE, ...) {
-
-    ## Load the three dataframes
-    exp <- read.table(exposures, header = TRUE, row.names = exposures.samCol,
-                    sep = sep, na.strings = na.strings)
-    phe <- read.table(phenotype, header = TRUE, row.names = phenotype.samCol,
-                    sep = sep, na.strings = na.strings, stringsAsFactors = TRUE)
-    desc <- read.table(description, header = TRUE, row.names = description.expCol,
-                     sep = sep, na.strings = na.strings)
-    if(description.famCol > description.expCol) {
-        description.famCol <- description.famCol - 1
-    }
-    ## ------------------------------------------------------------------------
+#' \link{read_exposome} for constructor from txt/csv
+#' files.
+load_exposome <- function(exposures, description, phenotype,
+                          description.famCol = 1, exposures.asFactor = 5,
+                          std.e = c("none", "normal", "robust"), trn.e = "none",
+                          warnings = TRUE, ...) {
 
     ## Order the colmuns on description
     ##   rownames <- exposures
     ##   column  1 must be the family
-    description.famCol <- colnames(desc)[description.famCol]
-    desc <- desc[ , c(description.famCol,
-                      colnames(desc)[colnames(desc) != description.famCol]), drop=FALSE]
-    colnames(desc)[1] <- "Family"
+    description.famCol <- colnames(description)[description.famCol]
+    description <- description[ , c(description.famCol,
+                      colnames(description)[colnames(description) != description.famCol]), drop=FALSE]
+    colnames(description)[1] <- "Family"
     ## ------------------------------------------------------------------------
 
     ## Check for inner names on description
     ##   description cannot contain _status nor _type
-    if("_std" %in% colnames(desc)) {
+    if("_std" %in% colnames(description)) {
         stop("Given descriptiion dat contains '_std' as name of a column. ",
              "Name '_std' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_trn" %in% colnames(desc)) {
+    if("_trn" %in% colnames(description)) {
         stop("Given descriptiion dat contains '_trn' as name of a column. ",
              "Name '_trn' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_fct" %in% colnames(desc)) {
+    if("_fct" %in% colnames(description)) {
         stop("Given descriptiion dat contains '_fct' as name of a column. ",
              "Name '_fct' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_imp" %in% colnames(desc)) {
+    if("_imp" %in% colnames(description)) {
         stop("Given descriptiion dat contains '_imp' as name of a column. ",
              "Name '_imp' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_type" %in% colnames(desc)) {
+    if("_type" %in% colnames(description)) {
         stop("Given descriptiion dat contains '_type' as name of a column. ",
              "Name '_type' cannot be used in 'ExposmeSet'.")
     }
@@ -117,23 +86,23 @@ read_exposome <- function(exposures, description, phenotype,
 
     ## Check that the exposures and the samples from the three dataframes
     ## are the same
-    exp.col <- colnames(exp)
+    exp.col <- colnames(exposures)
     exp.col <- exp.col[order(exp.col)]
-    exp.row <- rownames(exp)
+    exp.row <- rownames(exposures)
     exp.row <- exp.row[order(exp.row), drop=FALSE]
-    exp <- exp[exp.row, exp.col]
+    exposures <- exposures[exp.row, exp.col]
 
-    des.row <- rownames(desc)
+    des.row <- rownames(description)
     des.row <- des.row[order(des.row)]
-    desc <- desc[des.row, , drop=FALSE]
+    description <- description[des.row, , drop=FALSE]
 
-    phe.row <- rownames(phe)
+    phe.row <- rownames(phenotype)
     phe.row <- phe.row[order(phe.row)]
-    phe <- phe[phe.row, , drop=FALSE]
+    phenotype <- phenotype[phe.row, , drop=FALSE]
 
     if(!identical(exp.col, des.row)) {
         stop("Exposures's names in exposures and in description files ",
-            "don't match.")
+             "don't match.")
     }
     if(!identical(exp.row, phe.row)) {
         stop("Samples's names in exposures and in phenotype files don't match.")
@@ -142,42 +111,42 @@ read_exposome <- function(exposures, description, phenotype,
     ## ------------------------------------------------------------------------
 
     ## Need to create _status
-    desc$`_fct` <- ""
-    desc$`_trn` <- ""
-    desc$`_std` <- ""
-    desc$`_imp` <- ""
+    description$`_fct` <- ""
+    description$`_trn` <- ""
+    description$`_std` <- ""
+    description$`_imp` <- ""
     ## ------------------------------------------------------------------------
 
     ## Need to create and fill _type of description
-    if("type" %in% colnames(desc)) {
+    if("type" %in% colnames(description)) {
         if(warnings) {
             warning("Fund colnames 'type' in description file. It will be ",
                     "used to check for exposures' type. Then 'type' column ",
                     "will be droped.")
         }
-        desc$type <- as.character(desc$type)
-        if(sum(unique(desc$type) %in% c("numeric", "factor")) != 2) {
+        description$type <- as.character(description$type)
+        if(sum(unique(description$type) %in% c("numeric", "factor")) != 2) {
             stop("In 'type' column of description file only 'factor' or ",
                  "'numeric' calues can be used.")
         }
-        desc$`_type` <- desc$type
-        desc <- desc[ , -which(colnames(desc) == "type")]
+        description$`_type` <- description$type
+        description <- description[ , -which(colnames(description) == "type")]
     } else {
-        desc$`_type` <- sapply(rownames(desc), function(ex) {
-            ifelse(length(unique(exp[ , ex])) > exposures.asFactor, "numeric", "factor")
+        description$`_type` <- sapply(rownames(description), function(ex) {
+            ifelse(length(unique(exposures[ , ex])) > exposures.asFactor, "numeric", "factor")
         })
     }
     ## ------------------------------------------------------------------------
 
     ## Exposures must be saved as numeric-matrix
-    exp <- (as.matrix(exp))
+    exposures <- (as.matrix(exposures))
     ## ------------------------------------------------------------------------
 
     ## Create and validate ExposomeSet
     exposome <- new("ExposomeSet",
-        assayData = assayDataNew("environment", raw = t(exp), exp = t(exp)),
-        phenoData = AnnotatedDataFrame(phe),
-        featureData = AnnotatedDataFrame(desc)
+                    assayData = assayDataNew("environment", raw = t(exposures), exp = t(exposures)),
+                    phenoData = AnnotatedDataFrame(phenotype),
+                    featureData = AnnotatedDataFrame(description)
     )
 
     validObject(exposome)
@@ -194,5 +163,5 @@ read_exposome <- function(exposures, description, phenotype,
     }
     ## ------------------------------------------------------------------------
 
-  return(exposome)
+    return(exposome)
 }

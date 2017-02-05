@@ -530,7 +530,8 @@ setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE
 #' Function to impute missing values from an ExposomeSet
 #'
 #' This function is a wrapper of the functions \code{mice} and \code{complete}
-#' from the package \link{mice}. The function is designed to use those functions
+#' from the package \link{mice}. Also to the \code{impute} from the
+#' package \link{Hmisc}. The function is designed to use those functions
 #' to impute missing values on exposures (not in phenotypes).
 #'
 #' @name impute

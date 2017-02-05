@@ -23,8 +23,8 @@ setMethod(
 
         plot <- ggplot2::ggplot(data.frame(x) * 100,
             ggplot2::aes(seq_along(x), x, fill = x)) +
-            ggplot2::geom_bar(stat = "identity", ggplot2::aes(width = 1))
-        plot <- plot + ggplot2::xlim(names(x))
+            ggplot2::geom_bar(stat = "identity", width = 1)
+        plot <- plot + ggplot2::theme_bw() + ggplot2::xlim(names(x))
         plot <- plot + ggplot2::scale_fill_continuous(name = "%",
             breaks = seq(0, 100, 20),
             limits = c(0, 100), low="violet", high="violetred4")

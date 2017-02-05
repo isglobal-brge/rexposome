@@ -89,7 +89,7 @@ exp <- read_exposome(exposures, description, phenotype, sep = "\\t")
 }
 \seealso{
 \link{ExposomeSet} for class description,
-\link{create_exposome} for constructor from loaded
+\link{load_exposome} for constructor from loaded
 \code{data.frame}s
 }
 

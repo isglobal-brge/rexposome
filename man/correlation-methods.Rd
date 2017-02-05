@@ -29,7 +29,7 @@ object.
 }
 \examples{
 data("exposome")
-exp.c <- correlation(exp)
+exp.c <- correlation(expo)
 expo.c
 }
 \seealso{

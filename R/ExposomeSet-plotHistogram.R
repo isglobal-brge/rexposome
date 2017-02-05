@@ -59,9 +59,12 @@ setMethod(
             return(plt)
         } else { # factor
             plt <- ggplot2::ggplot(dta, ggplot2::aes(x = exposure)) +
-                ggplot2::geom_bar(ggplot2::aes(fill = factor(value), position = "fill")) +
+                ggplot2::geom_bar(ggplot2::aes(fill = factor(value)), width=1) +
+                ggplot2::coord_polar(theta = "y") + ggplot2::theme_void() +
+                ggplot2::scale_fill_discrete("") + ggplot2::theme(
+                    plot.title = element_text(hjust = 0.5))
                 #ggplot2::facet_wrap(~exposure, scales="free_y") +
-                ggplot2::theme_bw() + ggplot2::xlab("") + ggplot2::scale_fill_discrete("")
+                #ggplot2::theme_bw() + ggplot2::xlab("") + ggplot2::scale_fill_discrete("")
             return(plt)
         }
     }

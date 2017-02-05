@@ -18,7 +18,7 @@ setMethod(
 
         xlab <- paste0("PC", stringr::str_pad(cmpX, 2, pad = 0))
         ylab <- paste0("PC", stringr::str_pad(cmpY, 2, pad = 0))
-        zlab <- paste0("PC", stringr::str_pad(cmpX, 2, pad = 0))
+        zlab <- paste0("PC", stringr::str_pad(cmpZ, 2, pad = 0))
 
         if(missing(main)) {
             main <- paste0("3D space for PCA\n",
@@ -28,7 +28,7 @@ setMethod(
 
         xlab <- paste0(xlab, " (", round(object@pca$eig[cmpX, 2], 2), "%)")
         ylab <- paste0(ylab, " (", round(object@pca$eig[cmpY, 2], 2), "%)")
-        zlab <- paste0(zlab, " (", round(object@pca$eig[cmpX, 2], 2), "%)")
+        zlab <- paste0(zlab, " (", round(object@pca$eig[cmpZ, 2], 2), "%)")
 
         if(plines) {
             scatterplot3d::scatterplot3d(dta[ , cmpX], dta[ , cmpY], dta[ , cmpZ],
