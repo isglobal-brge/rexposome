@@ -255,7 +255,7 @@ setMethod(
 
                         # Test the model
                         if(area.test) {
-                            result <- MEAL::DARegion(set= methy, model=design.mm,
+                            result <<- MEAL::DARegion(set= methy, model=design.mm,
                                 methods=c("blockFinder", "bumphunter", "DMRcate"),
                                 ...)
                         } else {

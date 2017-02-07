@@ -165,6 +165,15 @@ setMethod(
             ## ------------------------------------------------------------- ##
             ## EXPOSOME SET ANALYSIS
             ## ------------------------------------------------------------- ##
+            if(missing(select)) {
+                if(set == "exposures") {
+                    warning("No given 'select'. association will be computed for all exposures")
+                    select <- exposureNames(object[[texp]])
+                } else { ## set == "phenotypes"
+                    warning("No given 'select'. association will be computed for all phenotypes")
+                    select <- phenotypeNames(object[[texp]])
+                }
+            }
             results <- parallel::mclapply(select, function(ex) {
                 design <- as.formula(paste0("~", ex, "+", formula[2]))
                 pheno <- .create_p(
