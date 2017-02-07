@@ -1,6 +1,7 @@
 .plot_assoc_methy <- function(object, rid, type, tFC=2, tPV=-log10(0.001), ...) {
     ## checking ---------------------------------------------------------------
-    if(class(rid) == "numeric") {
+    if(class(rid) %in% c("numeric", "integer")) {
+        rid <- as.numeric(rid)
         if(rid < 1 | rid > length(object@results)) {
             stop("Invalid 'rid'. It must be greather than 1 an lower than ",
                  length(object@results))
@@ -8,7 +9,6 @@
             rid <- names(object@results)[rid]
         }
     } else {
-        message(class(rid))
         if(!rid %in% names(object@results)) {
             stop("Given 'rid' (", rid, ") not in results.")
         }
