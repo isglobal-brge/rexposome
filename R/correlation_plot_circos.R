@@ -3,12 +3,16 @@
   list(d = '+', t = 0.3,  c = "#4169E1"),
   list(d = '-', t = -0.3, c = "#DC143C"),
   list(d = '-', t = -0.5, c = "#8B0000")), show.legend = TRUE,
-  cex.exposures = 0.50, cex.family = 0.55, ...){
+  cex.exposures = 0.50, cex.family = 0.55, colors, ...){
 
   families <- as.character(desc$Family)
-  col.f <- rainbow(length(unique(families)))
-  names(col.f) <- sample(unique(families), length(unique(families)))
-  col <- col.f[families]
+  if(missing(colors)) {
+    col.f <- rainbow(length(unique(families)))
+    names(col.f) <- sample(unique(families), length(unique(families)))
+    col <- col.f[families]
+  } else {
+    col <- colors
+  }
 
   factors <- rownames(desc)
   factors <- factor(factors, levels = factors)

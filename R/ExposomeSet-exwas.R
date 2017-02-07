@@ -17,11 +17,15 @@ setMethod(
             test <- "LRT"
         }
 
+        if(class(formula) == "character") {
+            formula <- formula(formula)
+        }
+
         #form <- match.call(exwas, sys.call(sys.parent()), expand.dots=FALSE)$...$formula
         #dta <- as.data.frame(object)
         form <- as.character(formula)
         ne <- c()
-        items <- lapply(exposureNames(object), function(ex) {
+        items <<- lapply(exposureNames(object), function(ex) {
             if(verbose) {
                 message("Processing '", ex, "'.")
             }
