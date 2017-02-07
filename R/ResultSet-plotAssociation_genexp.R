@@ -18,7 +18,8 @@
     ## ------------------------------------------------------------------------
 
     if(type == "qq") {
-        qqman::qq(object@results[[rid]]$result$P.Value, ...)
+        ##qqman::qq(object@results[[rid]]$result$P.Value, ...)
+        plot.qq(object@results[[rid]]$test$p.value)
     }
 
     if(type == "manhattan") {
@@ -74,6 +75,5 @@
             )
         return(plt)
     }
-
 }
 

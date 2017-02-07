@@ -11,7 +11,7 @@ setMethod(
                      "Given one from '", paste(object@class_origin,
                                                collapse="', '"), "'")
             }
-            .plot_assoc_genexp(object, rid, type, ...)
+            return(.plot_assoc_genexp(object, rid, type, ...))
         } else if(object@fun_origin == "assocME") {
             if(sum(object@class_origin %in%  c("ExposomeSet", "MethylationSet", "ExposomeClust")) != 2) {
                 stop("Invalid object 'ResultSet'. Expected an object ",

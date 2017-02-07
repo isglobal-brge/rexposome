@@ -36,7 +36,8 @@ Imports: BiocInstaller,
     omicade4,
     sva,
     ggrepel,
-    PMA
+    PMA,
+    qqman
 Suggests: flexmix,
     Hmisc,
     BiocStyle,
