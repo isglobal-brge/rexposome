@@ -207,9 +207,11 @@ setMethod(
                     message("Testing '", ex, "' (", design, ")")
                 }
 
-                if(sum(!sapply(sapply(apply(pheno, 2, table), length), ">", 1))) {
+                if(sum(!sapply(sapply(apply(pheno, 2, table), length), ">", 1)) != 0) {
                     warning("When testing for '", ex, "', at last one covariate ",
                             "is constant")
+                    message("yes: ", colnames(pheno)[sapply(sapply(apply(pheno, 2, table), length), ">", 1)])
+                    message("no:  ", colnames(pheno)[!sapply(sapply(apply(pheno, 2, table), length), ">", 1)]
                     return(list(
                         N=NA,
                         design=NA,
