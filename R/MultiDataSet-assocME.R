@@ -52,7 +52,7 @@ setMethod(
         }
         ## ----------------------------------------------------------------- ##
 
-        formula <- as.character(formula)
+        formula <- as.character(as.formula(formula))
         exp.dt <- as.data.frame(object[[texp]])
         if(tann == "cluster") {
             ## ------------------------------------------------------------- ##

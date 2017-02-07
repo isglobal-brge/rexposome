@@ -50,7 +50,7 @@ setMethod(
         }
         ## ----------------------------------------------------------------- ##
 
-        formula <- as.character(formula(formula))
+        formula <- as.character(as.formula(formula))
         exp.dt <- as.data.frame(object[[texp]])
 
         if(tann == "cluster") {
@@ -176,7 +176,7 @@ setMethod(
             }
             results <- parallel::mclapply(select, function(ex) {
                 design <- as.formula(paste0("~", ex, "+", formula[2]))
-                message(as.character(design))
+
                 if(verbose) {
                     message("Evalauting model '", as.character(design), "'.")
                 }
@@ -211,14 +211,6 @@ setMethod(
                 if(sum(!sapply(sapply(apply(pheno, 2, table), length), ">", 1)) != 0) {
                     warning("When testing for '", ex, "', at last one covariate ",
                             "is constant")
-
-                    save(pheno, file="pheno.RData")
-                    message("colnames: ", paste(colnames(pheno), ", "))
-                    message("length: ", length(colnames(pheno)))
-                    message("ncol: ", ncol(pheno))
-                    message("yes: ", paste(colnames(pheno)[sapply(sapply(apply(pheno, 2, table), length), ">", 1)], ", "))
-                    message("no:  ", paste(colnames(pheno)[!sapply(sapply(apply(pheno, 2, table), length), ">", 1)], ", "))
-
                     return(list(
                         N=NA,
                         design=NA,
