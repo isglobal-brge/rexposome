@@ -210,8 +210,12 @@ setMethod(
                 if(sum(!sapply(sapply(apply(pheno, 2, table), length), ">", 1)) != 0) {
                     warning("When testing for '", ex, "', at last one covariate ",
                             "is constant")
-                    message("yes: ", colnames(pheno)[sapply(sapply(apply(pheno, 2, table), length), ">", 1)])
-                    message("no:  ", colnames(pheno)[!sapply(sapply(apply(pheno, 2, table), length), ">", 1)])
+                    message("colnames: ", paste(colnames(pheno), ", "))
+                    message("length: ", length(colnames(pheno)))
+                    message("ncol: ", ncol(pheno))
+                    message("yes: ", paste(colnames(pheno)[sapply(sapply(apply(pheno, 2, table), length), ">", 1)], ", "))
+                    message("no:  ", paste(colnames(pheno)[!sapply(sapply(apply(pheno, 2, table), length), ">", 1)], ", "))
+
                     return(list(
                         N=NA,
                         design=NA,
