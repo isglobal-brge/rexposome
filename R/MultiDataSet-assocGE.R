@@ -210,6 +210,9 @@ setMethod(
                 if(sum(!sapply(sapply(apply(pheno, 2, table), length), ">", 1)) != 0) {
                     warning("When testing for '", ex, "', at last one covariate ",
                             "is constant")
+
+                    pheno2 <<- pheno
+                    pheno <<- pheno
                     message("colnames: ", paste(colnames(pheno), ", "))
                     message("length: ", length(colnames(pheno)))
                     message("ncol: ", ncol(pheno))
