@@ -37,7 +37,7 @@ setMethod(
             }
 
             z <- merge(x[exposures, ], y[exposures, ], by="exposure")
-            colnames(z)[c(4:5, 9:10)] <- c("minE.x", "maxE.x", "minE.y", "maxE.y")
+            colnames(z)[c(4:5, 8:9)] <- c("minE.x", "maxE.x", "minE.y", "maxE.y")
 
             if(missing(select)) {
                 select <- z$exposure
