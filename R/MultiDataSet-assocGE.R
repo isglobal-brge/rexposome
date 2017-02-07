@@ -204,6 +204,7 @@ setMethod(
                     message("Testing '", ex, "' (", design, ")")
                 }
 
+                pheno2 <<- pheno
                 if(sum(!sapply(sapply(apply(pheno, 2, table), length), ">", 1))) {
                     warning("When testing for '", ex, "', at last one covariate ",
                             "is constant")
