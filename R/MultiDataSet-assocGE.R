@@ -176,6 +176,9 @@ setMethod(
             }
             results <- parallel::mclapply(select, function(ex) {
                 design <- as.formula(paste0("~", ex, "+", formula[2]))
+                if(verbose) {
+                    message("Evalauting model '", as.character(design), "'.")
+                }
                 pheno <- .create_p(
                     expo.dt = exp.dt,
                     omic.p = pData(object[[tgen]]),
@@ -204,8 +207,6 @@ setMethod(
                     message("Testing '", ex, "' (", design, ")")
                 }
 
-                message("AAA")
-                pheno2 <<- pheno
                 if(sum(!sapply(sapply(apply(pheno, 2, table), length), ">", 1))) {
                     warning("When testing for '", ex, "', at last one covariate ",
                             "is constant")
