@@ -8,6 +8,7 @@
             rid <- names(object@results)[rid]
         }
     } else {
+        message(class(rid))
         if(!rid %in% names(object@results)) {
             stop("Given 'rid' (", rid, ") not in results.")
         }
