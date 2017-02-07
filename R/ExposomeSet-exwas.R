@@ -25,7 +25,7 @@ setMethod(
         #dta <- as.data.frame(object)
         form <- as.character(formula)
         ne <- c()
-        items <<- lapply(exposureNames(object), function(ex) {
+        items <- lapply(exposureNames(object), function(ex) {
             if(verbose) {
                 message("Processing '", ex, "'.")
             }

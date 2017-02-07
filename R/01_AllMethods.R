@@ -1053,10 +1053,13 @@ setGeneric("plotExwas", function(object, ...)
 #' @param x An \code{ExWAS} object which effect will be ploted.
 #' @param y (optional) Another \code{ExWAS} object. If provded its
 #' effects will be ploted in Y-axis.
+#' @param select (optional) Character with exposures to be shown.
+#' @param xlab (optional) Label for X-axis.
+#' @param ylab (optional) Label for Y-axis.
 #' @export plotEffect
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
 #' \link{extract} to obtain a table with the result of the ExWAS
-setGeneric("plotEffect", function(x, y, ...)
+setGeneric("plotEffect", function(x, y, select, xlab, ylab)
     standardGeneric("plotEffect")
 )
 

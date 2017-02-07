@@ -1,7 +1,7 @@
 setMethod(
     f = "plotEffect",
     signature = "ExWAS",
-    definition = function(x, y, select, x_lab, y_lab) {
+    definition = function(x, y, select, xlab, ylab) {
         xr <- x
         x <- extract(x)
         x$exposure <- rownames(x)
@@ -48,13 +48,13 @@ setMethod(
             }
 
             rownames(z) <- z$exposure
-            if(missing(x_lab)) {
-                x_lab <- as.character(xr@formula)
-                x_lab <- paste(x_lab[2], "~", paste(x_lab[3:length(x_lab)], collapse=" + "), collapse=" ")
+            if(missing(xlab)) {
+                xlab <- as.character(xr@formula)
+                xlab <- paste(xlab[2], "~", paste(xlab[3:length(xlab)], collapse=" + "), collapse=" ")
             }
-            if(missing(y_lab)) {
-                y_lab <- as.character(yr@formula)
-                y_lab <- paste(y_lab[2], "~", paste(y_lab[3:length(y_lab)], collapse=" + "), collapse=" ")
+            if(missing(ylab)) {
+                ylab <- as.character(yr@formula)
+                ylab <- paste(ylab[2], "~", paste(ylab[3:length(ylab)], collapse=" + "), collapse=" ")
             }
 
             ggplot2::ggplot(z[select, ], ggplot2::aes(x=effect.x, y=effect.y)) +
@@ -66,7 +66,7 @@ setMethod(
                 ggplot2::theme(
                     panel.grid.major = ggplot2::element_line(color = "gray20", size = 0.3, linetype = "dashed"),
                     panel.grid.minor = ggplot2::element_line(color = "gray40", size = 0.3, linetype = "dashed")
-                ) + ggplot2::xlab(x_lab) + ggplot2::ylab(y_lab)
+                ) + ggplot2::xlab(xlab) + ggplot2::ylab(ylab)
         }
 
     }

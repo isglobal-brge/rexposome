@@ -4,13 +4,19 @@
 \alias{plotEffect}
 \title{Function to draw a plot of the pvalues stored in an \code{ExWAS} object}
 \usage{
-plotEffect(x, y, ...)
+plotEffect(x, y, select, xlab, ylab)
 }
 \arguments{
 \item{x}{An \code{ExWAS} object which effect will be ploted.}
 
 \item{y}{(optional) Another \code{ExWAS} object. If provded its
 effects will be ploted in Y-axis.}
+
+\item{select}{(optional) Character with exposures to be shown.}
+
+\item{xlab}{(optional) Label for X-axis.}
+
+\item{ylab}{(optional) Label for Y-axis.}
 }
 \description{
 This function draws a sort of manhattan plots using the p-value of the
