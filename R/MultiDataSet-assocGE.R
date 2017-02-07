@@ -176,6 +176,7 @@ setMethod(
             }
             results <- parallel::mclapply(select, function(ex) {
                 design <- as.formula(paste0("~", ex, "+", formula[2]))
+                message(as.character(design))
                 if(verbose) {
                     message("Evalauting model '", as.character(design), "'.")
                 }
@@ -198,7 +199,7 @@ setMethod(
                 if(length(na.loc) != 0){
                     warning("There are missing values. ", length(na.loc),
                             " samples will be removed.")
-                    pheno <- pheno[-na.loc, ]
+                    pheno <- pheno[-na.loc, , drop=FALSE]
                 }
 
                 # -------------------------------------------------------------
