@@ -211,8 +211,7 @@ setMethod(
                     warning("When testing for '", ex, "', at last one covariate ",
                             "is constant")
 
-                    pheno2 <<- pheno
-                    pheno <<- pheno
+                    save(pheno, file="pheno.RData")
                     message("colnames: ", paste(colnames(pheno), ", "))
                     message("length: ", length(colnames(pheno)))
                     message("ncol: ", ncol(pheno))
