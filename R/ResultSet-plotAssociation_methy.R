@@ -18,9 +18,7 @@
     if(type == "qq") {
         #qqman::qq(object@results[[rid]]$result$P.Value, ...)
         plot.qq(object@results[[rid]]$test$p.value)
-    }
-
-    if(type == "manhattan") {
+    } else if(type == "manhattan") {
         dta <- object@results[[rid]]$result[ ,
             c("P.Value", "chromosome", "position")]
         dta$SNP <- rownames(object@results[[rid]]$result)
@@ -32,9 +30,7 @@
         dta$BP <- as.numeric(dta$BP)
 
         qqman::manhattan(dta, ylab="-log10(P.Value)", ...)
-    }
-
-    if(type == "volcano") {
+    } else if(type == "volcano") {
         title <- ifelse(class(rid) == "character", rid, names(object@results)[rid])
 
         dta <- object@results[[rid]]$result
@@ -74,6 +70,8 @@
                 color="black"
             )
         return(plt)
+    } else {
+        stop("Invalid type of plot ('", type, "').")
     }
 
 }
