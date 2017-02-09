@@ -1,9 +1,9 @@
 #' Function to draw a QQ Plot from a vector of numbers
 #'
 #' @param  values Numeric vector of P.Values
-#' @return An object obtained from \link{ggplot}
+#' @return An object obtained from \link{ggplot}.
 #' @export
-plot.qq <- function(values) {
+qq_plot <- function(values) {
     values <- as.numeric(values)
     o <- -log10(sort(values, decreasing=F))
     e <- -log10(1:length(o)/length(o))

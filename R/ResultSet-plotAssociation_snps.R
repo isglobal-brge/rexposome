@@ -1,7 +1,7 @@
 .plot_assoc_snps <- function(object, type, feature, ...) {
     if(type == "qq") {
         #qqman::qq(object@results[[1]]$test$p.value, ...)
-        plot.qq(object@results[[1]]$test$p.value)
+        qq_plot(object@results[[1]]$test$p.value)
     } else if(type == "manhattan") {
         if(nrow(object@fData[[1]]) == 0) {
             stop("Invalid call to 'GWAS' plot. No 'fData' given to original SnpSet.")

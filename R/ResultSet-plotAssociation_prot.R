@@ -18,14 +18,8 @@
     ## ------------------------------------------------------------------------
 
     if(type == "qq") {
-        if(missing(main)) {
-            qqman::qq(object@results[[rid]]$result$protein$P.Value, ...)
-        } else {
-            qqman::qq(object@results[[rid]]$result$protein$P.Value, main=main, ...)
-        }
-    }
-
-    if(type == "manhattan") {
+        qq_plot(object@results[[rid]]$result$protein$P.Value)
+    } else if(type == "manhattan") {
         title <- ifelse(class(rid) == "character", rid, names(object@results)[rid])
 
         dta <- extract(object, rid=rid)
@@ -50,10 +44,8 @@
             plt <- plt + ggplot2::ggtitle(main)
         }
         return(plt)
-    }
-
-    if(type == "feature") {
-        stop("Not implemented yet!")
+    } else {
+        stop("Invalid type of plot ('", type, "').")
     }
 
 }
