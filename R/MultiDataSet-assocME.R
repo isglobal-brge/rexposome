@@ -54,6 +54,7 @@ setMethod(
 
         formula <- as.character(as.formula(formula))
         exp.dt <- as.data.frame(object[[texp]])
+        fd <- object@featureData[[tmth]]@data
         if(tann == "cluster") {
             ## ------------------------------------------------------------- ##
             ## EXPOSOME CLUSTER ANALYSIS
@@ -145,6 +146,7 @@ setMethod(
                     # -----------------------------------------------------
                     suppressMessages(gc())
 
+                    result <- cbind(result, fd[rownames(result), ])
                     list(
                         N=nrow(pheno),
                         design=design,
@@ -266,6 +268,8 @@ setMethod(
                         # -----------------------------------------------------
                         suppressMessages(gc())
 
+
+                        result <- cbind(result, fd[rownames(result), ])
                         list(
                             N=nrow(pheno),
                             design=design,

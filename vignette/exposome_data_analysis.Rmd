@@ -154,7 +154,7 @@ These files follows the rules described in **Data Format** section. They are `cs
 args(read_exposome)
 ```
 
-`read_exposome` èxpects, by default, `csv` files. Changing the content of the argument `sep` will allow to load other files types. The missing values are set using the argument `na.strings`. This means that the character assigned to this argument will be interpreted as a missing value. By default, those characters are `"NA"`, `"-"`, `"?"`, `" "` and `""`. Then, the columns with the exposures' names and the individual's names need to be indicated. Arguments `exposures.samCol` and `phenotype.samCol` indicates the column with the individuals' names at _exposures file_ and _phenotypes file_. The arguments `description.expCol` and `description.famCol` indicates the column containing the exposures' names and the exposures' family in the _description file_.
+`read_exposome` expects, by default, `csv` files. Changing the content of the argument `sep` will allow to load other files types. The missing values are set using the argument `na.strings`. This means that the character assigned to this argument will be interpreted as a missing value. By default, those characters are `"NA"`, `"-"`, `"?"`, `" "` and `""`. Then, the columns with the exposures' names and the individual's names need to be indicated. Arguments `exposures.samCol` and `phenotype.samCol` indicates the column with the individuals' names at _exposures file_ and _phenotypes file_. The arguments `description.expCol` and `description.famCol` indicates the column containing the exposures' names and the exposures' family in the _description file_.
 
 ```{r read_exposome}
 exp <- read_exposome(
