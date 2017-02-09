@@ -1,6 +1,12 @@
+#' Function to draw a QQ Plot from a vector of numbers
+#'
+#' @param  values Numeric vector of P.Values
+#' @return An object obtained from \link{ggplot}
+#' @export
 plot.qq <- function(values) {
-    o = -log10(sort(values, decreasing=F))
-    e = -log10(1:length(o)/length(o))
+    values <- as.numeric(values)
+    o <- -log10(sort(values, decreasing=F))
+    e <- -log10(1:length(o)/length(o))
     c975 <- rep(0,length(o))
     c025 <- rep(0,length(o))
     for(i in 1:length(o)){
@@ -18,9 +24,8 @@ plot.qq <- function(values) {
             ), ggplot2::aes(x=e, y=o), alpha=0.3
     )
     p <- p + ggplot2::geom_point(ggplot2::aes(x=e,y=o, colour=o, fill=o), alpha=0.5)
-    p <- p + ggplot2::xlab(expression(Expected~~-log[10](italic( P ))))
-    p <- p + ggplot2::ylab(expression(Observed~~-log[10](italic( P ))))
-    p <- p + ggplot2::ggtitle("Q-Q plot")
+    p <- p + ggplot2::xlab(expression(Expected~~-log[10](italic( P.Value ))))
+    p <- p + ggplot2::ylab(expression(Observed~~-log[10](italic( P.Value ))))
     p <- p + ggplot2::theme(legend.position = "none")
-    p
+    return(p)
 }

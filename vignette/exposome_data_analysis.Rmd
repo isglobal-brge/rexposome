@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
 
 ## Installation
 
-`rexposome` is currently in development and not available from CRAN nor Bioconductor. Anyway, the package can be installed by using `devetools` R package and taking the source from Bioinformatic Research Group in Epidemiology's GitHub repository.
+`rexposome` is currently in development and not available from CRAN nor Bioconductor. Anyway, the package can be installed by using `devtools` R package and taking the source from Bioinformatic Research Group in Epidemiology's GitHub repository.
 
 This can be done by opening an R session and typing the following code:
 

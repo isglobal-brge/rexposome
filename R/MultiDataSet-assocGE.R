@@ -174,7 +174,8 @@ setMethod(
                     select <- phenotypeNames(object[[texp]])
                 }
             }
-            results <- parallel::mclapply(select, function(ex) {
+            #results <- parallel::mclapply(select, function(ex) {
+            results <- lapply(select, function(ex) {
                 design <- as.formula(paste0("~", ex, "+", formula[2]))
 
                 if(verbose) {
@@ -267,7 +268,8 @@ setMethod(
                         ))
                     })
                 }
-            }, mc.cores = ncores, mc.preschedule=FALSE)
+            })
+            #}, mc.cores = ncores, mc.preschedule=FALSE)
             names(results) <- select
 
             new("ResultSet",
