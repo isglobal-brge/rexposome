@@ -1,4 +1,6 @@
-.plot_assoc_genexp <- function(object, rid, type, tFC=1.5, tPV=-log10(0.001), ...) {
+.plot_assoc_genexp <- function(object, rid, type, tFC=1.5, tPV=-log10(0.001),
+                               id.col="probeset_id", pv.col="P.Value",
+                               chr.col="seqname", pos.col="start", ...) {
     ## checking ---------------------------------------------------------------
     # if(type == "feature" & missing(feature)) {
     #     stop("For feature plot, argument 'feature' must be given")
@@ -22,7 +24,7 @@
         qq_plot(object@results[[rid]]$result$P.Value)
     } else if(type == "manhattan") {
         dta <- object@results[[rid]]$result[ ,
-            c("probeset_id",  "P.Value", "chromosome", "start")]
+            c(id.col, pv.col, chr.col, pos.col)]
         colnames(dta) <- c("SNP", "P", "CHR", "BP")
         dta$CHR <- gsub("chr", "", sapply(strsplit(dta$CHR, "_"), "[[", 1))
         dta$CHR <- gsub("X", "23", gsub("Y", "24", dta$CHR))
