@@ -96,7 +96,7 @@ setMethod(
                     results = list("cluster"=list(
                             N=NA,
                             design=NA,
-                            result=NA,
+                            result=NULL,
                             error="covariate is constant"
                         )),
                     fData = fData(object)[c(texp, tmth)],
@@ -157,7 +157,7 @@ setMethod(
                     return(list(
                         N=NA,
                         design=NA,
-                        result=NA,
+                        result=NULL,
                         error=e
                     ))
                 })
@@ -221,7 +221,7 @@ setMethod(
                     return(list(
                         N=NA,
                         design=NA,
-                        result=NA,
+                        result=NULL,
                         error="cavariate is constant"
                     ))
                 } else {
@@ -280,7 +280,7 @@ setMethod(
                         return(list(
                             N=NA,
                             design=NA,
-                            result=NA,
+                            result=NULL,
                             error=e
                         ))
                     })

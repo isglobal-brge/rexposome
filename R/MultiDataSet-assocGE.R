@@ -145,7 +145,7 @@ setMethod(
                         N=NA,
                         error=e,
                         design=NA,
-                        result=NA
+                        result=NULL
                     )
                 })
 
@@ -264,7 +264,7 @@ setMethod(
                             N=NA,
                             error=e,
                             design=NA,
-                            result=NA
+                            result=NULL
                         ))
                     })
                 }
