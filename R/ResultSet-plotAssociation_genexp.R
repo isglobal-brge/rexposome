@@ -35,7 +35,7 @@
         qqman::manhattan(dta, ylab="-log10(P.Value)", ...)
     } else if(type == "volcano") {
         volcano_plot(
-            pval=object@results[[rid]]$result,
+            pval=object@results[[rid]]$result$P.Value,
             fc=object@results[[rid]]$result$logFC,
             tFC=tFC,
             tPV=tPV

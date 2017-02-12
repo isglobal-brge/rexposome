@@ -17,7 +17,7 @@
 
     if(type == "qq") {
         #qqman::qq(object@results[[rid]]$result$P.Value, ...)
-        qq_plot(object@results[[rid]]$test$p.value)
+        qq_plot(object@results[[rid]]$test$P.Value)
     } else if(type == "manhattan") {
         dta <- object@results[[rid]]$result[ ,
             c("P.Value", "chromosome", "position")]

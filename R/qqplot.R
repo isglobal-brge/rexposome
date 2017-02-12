@@ -24,8 +24,8 @@ qq_plot <- function(values) {
             ), ggplot2::aes(x=e, y=o), alpha=0.3
     )
     p <- p + ggplot2::geom_point(ggplot2::aes(x=e,y=o, colour=o, fill=o), alpha=0.5)
-    p <- p + ggplot2::xlab(expression(Expected~~-log[10](italic( P.Value ))))
-    p <- p + ggplot2::ylab(expression(Observed~~-log[10](italic( P.Value ))))
+    p <- p + ggplot2::xlab(expression(Expected~~-log[10](italic( P-Value ))))
+    p <- p + ggplot2::ylab(expression(Observed~~-log[10](italic( P-Value ))))
     p <- p + ggplot2::theme(legend.position = "none")
     return(p)
 }
