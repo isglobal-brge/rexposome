@@ -4,8 +4,9 @@
 #' and draws a volcano plot using \link{ggplot2}
 #'
 #' @param pval numeric vector of P.Values
-#' @param pc
+#' @param fc numeric vector of fold change
 #' @return A \code{ggplot} object
+#' @export
 volcano_plot <- function(pval, fc) {
     dta <- data.frame(P.Value=pval, FC=fc, cl="gray87", alp=0.2, stringsAsFactors=FALSE)
     dta$PV <- -log10(dta$P.Value)
