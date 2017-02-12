@@ -25,10 +25,7 @@ volcano_plot <- function(pval, fc) {
     plt <- ggplot2::ggplot(dta, ggplot2::aes(x=FC, y=PV, color=clr, fill=clr, alpha=alp)) +
         ggplot2::theme_bw() +
         ggplot2::geom_point() +
-        ggplot2::geom_hline(yintercept=tPV, linetype="dotdash", color="gray69", size=0.75) +
-        ggplot2::geom_vline(xintercept=c(-tFC, tFC), linetype="dotdash", color="gray69", size=0.75) +
         ggplot2::scale_colour_manual(values=clrvalues) +
-        ggplot2::ggtitle(paste0("Gene Expression - ", title, " Association\nVolcano Plot")) +
         ggplot2::xlab("Log Fold Change") +
         ggplot2::ylab("-log10(P.Value)") +
         ggplot2::theme(legend.position="none") +
@@ -40,4 +37,16 @@ volcano_plot <- function(pval, fc) {
             point.padding = ggplot2::unit(0.3, "lines"),
             color="black"
         )
+
+    if(sum(dta$PV >= tPV) > 0) {
+        plt <- plt + ggplot2::geom_hline(yintercept=tPV, linetype="dotdash", color="gray69", size=0.75)
+    }
+
+    if(sum(dta$FC <= -tFC) > 0) {
+        plt <- plt + ggplot2::geom_vline(xintercept=-tFC, linetype="dotdash", color="gray69", size=0.75)
+    }
+
+    if(sum(dta$FC >= tFC) > 0) {
+        plt <- plt + ggplot2::geom_vline(xintercept=tFC, linetype="dotdash", color="gray69", size=0.75)
+    }
 }
