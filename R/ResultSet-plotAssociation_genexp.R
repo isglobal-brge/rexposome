@@ -36,7 +36,9 @@
     } else if(type == "volcano") {
         volcano_plot(
             pval=object@results[[rid]]$result,
-            fc=object@results[[rid]]$result$logFC
+            fc=object@results[[rid]]$result$logFC,
+            tFC=tFC,
+            tPV=tPV
         )
     } else {
         stop("Invalid type of plot ('", type, "').")

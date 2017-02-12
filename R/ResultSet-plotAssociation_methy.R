@@ -33,7 +33,9 @@
     } else if(type == "volcano") {
         volcano_plot(
             pval=object@results[[rid]]$result$P.Value,
-            fc=object@results[[rid]]$result[ , 2]
+            fc=object@results[[rid]]$result[ , 2],
+            tFC=tFC,
+            tPV=tPV
         )
         # title <- ifelse(class(rid) == "character", rid, names(object@results)[rid])
         #

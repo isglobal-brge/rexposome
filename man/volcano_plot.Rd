@@ -4,18 +4,22 @@
 \alias{volcano_plot}
 \title{Function to draw a Volcano Plot}
 \usage{
-volcano_plot(pval, fc)
+volcano_plot(pval, fc, tFC = 2, tPV = -log10(0.001))
 }
 \arguments{
 \item{pval}{numeric vector of P.Values}
 
 \item{fc}{numeric vector of fold change}
+
+\item{tFC}{(default \code{2}) fold change threshold}
+
+\item{tPC}{(default \code{-log10(0.001)}) P-Value threshold}
 }
 \value{
 A \code{ggplot} object
 }
 \description{
-Function that takes two numeric vectors (P.Value and fold change)
+Function that takes two numeric vectors (P-Value and fold change)
 and draws a volcano plot using \link{ggplot2}
 }
 

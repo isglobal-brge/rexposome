@@ -1,13 +1,15 @@
 #' Function to draw a Volcano Plot
 #'
-#' Function that takes two numeric vectors (P.Value and fold change)
+#' Function that takes two numeric vectors (P-Value and fold change)
 #' and draws a volcano plot using \link{ggplot2}
 #'
 #' @param pval numeric vector of P.Values
 #' @param fc numeric vector of fold change
+#' @param tFC (default \code{2}) fold change threshold
+#' @param tPC (default \code{-log10(0.001)}) P-Value threshold
 #' @return A \code{ggplot} object
 #' @export
-volcano_plot <- function(pval, fc) {
+volcano_plot <- function(pval, fc, tFC=2, tPV=-log10(0.001)) {
     dta <- data.frame(P.Value=pval, FC=fc, cl="gray87", alp=0.2, stringsAsFactors=FALSE)
     dta$PV <- -log10(dta$P.Value)
     dta$feature <- rownames(dta)
