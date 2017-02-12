@@ -1397,7 +1397,7 @@ setGeneric("add_cls", function(object, clsSet, ...)
 
 
 #' @export tableLambda
-setGeneric("tableLambda", function(object)
+setGeneric("tableLambda", function(object, trim=0.5)
     standardGeneric("tableLambda")
 )
 

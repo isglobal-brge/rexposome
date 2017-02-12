@@ -31,7 +31,7 @@ setMethod(
 
     return(new("ExposomeClust",
        assayData = assayDataNew("environment", exp = t(data.clust)),
-       phenoData = AnnotatedDataFrame(cbind(pData(object)[rownames(data.clust), ], cluster=cl)),
+       phenoData = AnnotatedDataFrame(cbind(pData(object)[rownames(data.clust), , drop=FALSE], cluster=cl)),
        featureData = featureData(object)[colnames(data.clust), ],
        model = mod.l,
        call = call,
