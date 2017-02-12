@@ -52,4 +52,6 @@ volcano_plot <- function(pval, fc, tFC=2, tPV=-log10(0.001)) {
     if(sum(dta$FC >= tFC) > 0) {
         plt <- plt + ggplot2::geom_vline(xintercept=tFC, linetype="dotdash", color="gray69", size=0.75)
     }
+
+    plt
 }
