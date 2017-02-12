@@ -16,7 +16,7 @@ qq_plot <- function(values) {
 
     dta <- as.data.frame(cbind(e, o, c025, c975))
 
-    p <- ggplot2::ggplot(dta) + ggplot2::theme_bw() +
+    p <- ggplot2::ggplot(dta) + ggplot2::theme_bw()
     p <- p + ggplot2::geom_polygon(
             data=data.frame(
                 e=c(dta$e, dta$e[length(dta$e):1]),
