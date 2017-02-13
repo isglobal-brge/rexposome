@@ -2,7 +2,7 @@ setMethod(
     f = "assocPRT",
     signature = "MultiDataSet",
     definition = function(object, formula, select, set="exposures", ...,
-                          sva=FALSE, asFactor=5, ncores=1, verbose=FALSE,
+                          ebayes=TRUE, sva=FALSE, asFactor=5, ncores=1, verbose=FALSE,
                           warnings=TRUE) {
         ## ----------------------------------------------------------------- ##
         ## CHEKS
@@ -129,7 +129,9 @@ setMethod(
                         message("Fitting the model.")
                     }
                     fit <- limma::lmFit(prot, design.mm, ...)
-                    fit <- limma::eBayes(fit)
+                    if(ebayes) {
+                        fit <- limma::eBayes(fit)
+                    }
 
                     # -----------------------------------------------------
 
@@ -240,7 +242,9 @@ setMethod(
                             message("Fitting the model.")
                         }
                         fit <- limma::lmFit(prot, design.mm, ...)
-                        fit <- limma::eBayes(fit)
+                        if(ebayes) {
+                            fit <- limma::eBayes(fit)
+                        }
 
                         # -----------------------------------------------------
 

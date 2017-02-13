@@ -1,6 +1,6 @@
 Package: rexposome
 Title: Exposome exploration and omic data integration
-Version: 0.99.43
+Version: 0.99.44
 Authors@R: person("Carles", "Hernandez-Ferrer", email = "chernandez@creal.cat", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 License: BSD

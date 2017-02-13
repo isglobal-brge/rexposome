@@ -1171,6 +1171,8 @@ setGeneric("assocGE", function(object, formula, select, set = "exposures", ..., 
 #' variables used in the association test are the phenotypes instead of the
 #' exposures.
 #' @param ... ...
+#' @param ebayes (default \code{TRUE}) If \code{TRUE}, fitted limma modes is
+#' given to \link{eBayes} before extrating results.
 #' @param sva (default \code{FALSE}) if set to \code{TRUE} SVa is applied on
 #' the model and the surrogate variables are incldue in the association test.
 #' @param asFactor (default \code{5}) Maximum number of unique values to
