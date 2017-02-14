@@ -20,6 +20,7 @@
   }
   dt <- dt[, 2:ncol(dt), drop=FALSE]
   colnames(dt) <- select
+  rownames(dt) <- rownames(expo.dt)
   return(dt)
 }
 
