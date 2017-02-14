@@ -1128,7 +1128,7 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
 #' @param ... ...
 #' @param sva (default \code{FALSE}) If \code{TRUE} SVAnalysis is done.
 #' @param vfilter (default \code{NULL}) Numeric number of probes used
-#' in \link{sva} if argument \code{sva} is set to \code{TRUE}.
+#' in \link{sva} if argument \code{sva} is set to \code{TRUE}.de
 #' @param ncores (default \code{1}) Number of test performed at a time.
 #' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
 #' about the process is show.

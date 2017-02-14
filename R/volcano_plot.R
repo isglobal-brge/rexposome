@@ -10,7 +10,7 @@
 #' @return A \code{ggplot} object
 #' @export
 volcano_plot <- function(pval, fc, tFC=2, tPV=-log10(0.001)) {
-    dta <- data.frame(P.Value=pval, FC=fc, cl="gray87", alp=0.2, stringsAsFactors=FALSE)
+    dta <- data.frame(P.Value=pval, FC=fc, clr="gray87", alp=0.2, stringsAsFactors=FALSE)
     dta$PV <- -log10(dta$P.Value)
     dta$feature <- rownames(dta)
 

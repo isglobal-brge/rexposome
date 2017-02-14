@@ -182,7 +182,7 @@ setMethod(
                 if(verbose) {
                     message("Evalauting model '", as.character(design), "'.")
                 }
-                pheno <- .create_p(
+                pheno <<- .create_p(
                     expo.dt = exp.dt,
                     omic.p = pData(object[[tgen]]),
                     select = all.vars(design)
