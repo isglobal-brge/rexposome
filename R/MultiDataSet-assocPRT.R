@@ -77,7 +77,7 @@ setMethod(
             if(length(na.loc) != 0){
                 warning("There are missing values. ", length(na.loc),
                         " samples will be removed.")
-                pheno <- pheno[-na.loc, ]
+                pheno <- pheno[-na.loc, , drop=FALSE]
             }
 
             # -----------------------------------------------------------------
@@ -104,10 +104,12 @@ setMethod(
                     # Design model
                     design.mm <- model.matrix(formula(design), data = pheno)
                     if(length(na.loc) != 0) {
-                        prot <- object[[tpro]][ , -na.loc]
+                        prot <- object[[tpro]][ , -na.loc, drop=FALSE]
                     } else {
                         prot <- object[[tpro]]
                     }
+
+                    prot <- prot[ , rownames(pheno), drop=FALSE]
 
                     # If required, apply SVA
                     if(sva) {
@@ -117,7 +119,7 @@ setMethod(
                         n.sv <- sva::num.sv(prot, design.mm, vfilter=vfilter)
                         if (n.sv > 0){
                             svobj <- sva::sva(prot, design.mm,
-                                              design.mm[ , -2], n.sv=n.sv,
+                                              design.mm[ , -2, drop=FALSE], n.sv=n.sv,
                                               vfilter=vfilter)
                             design.mm <- cbind(design.mm, svobj$sv)
                         }
@@ -195,7 +197,7 @@ setMethod(
                 if(length(na.loc) != 0){
                     warning("There are missing values. ", length(na.loc),
                             " samples will be removed.")
-                    pheno <- pheno[-na.loc, ]
+                    pheno <- pheno[-na.loc, , drop=FALSE]
                 }
 
                 # -------------------------------------------------------------
@@ -218,10 +220,12 @@ setMethod(
                         # Design model
                         design.mm <- model.matrix(formula(design), data = pheno)
                         if(length(na.loc) != 0) {
-                            prot <- object[[tpro]][ , -na.loc]
+                            prot <- object[[tpro]][ , -na.loc, drop=FALSE]
                         } else {
                             prot <- object[[tpro]]
                         }
+
+                        prot <- prot[ , rownames(pheno), drop=FALSE]
 
                         # If required, apply SVA
                         if(sva) {

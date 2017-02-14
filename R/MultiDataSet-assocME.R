@@ -81,7 +81,7 @@ setMethod(
             if(length(na.loc) != 0){
                 warning("There are missing values. ", length(na.loc),
                         " samples will be removed.")
-                pheno <- pheno[-na.loc, ]
+                pheno <- pheno[-na.loc, , drop=FALSE]
             }
 
             # -----------------------------------------------------------------
@@ -109,14 +109,14 @@ setMethod(
 
                     # Extract betas or Ms
                     if(betas) {
-                        methy <- betas(object[[tmth]])
+                        methy <- betas(object[[tmth]][rownames(pheno), ])
                     } else {
-                        methy <- getMs(object[[tmth]])
+                        methy <- getMs(object[[tmth]][rownames(pheno), ])
                     }
 
                     # Filter missing outcome samples
                     if(length(na.loc) != 0) {
-                        methy <- methy[ , -na.loc]
+                        methy <- methy[ , -na.loc, drop=FALSE]
                     }
 
                     # If required, apply SVA
@@ -127,7 +127,7 @@ setMethod(
                         n.sv <- sva::num.sv(methy, design.mm, vfilter=vfilter)
                         if (n.sv > 0){
                             svobj <- sva::sva(methy, design.mm,
-                                              design.mm[ , -2], n.sv=n.sv,
+                                              design.mm[ , -2, drop=FALSE], n.sv=n.sv,
                                               vfilter=vfilter)
                             design.mm <- cbind(design.mm, svobj$sv)
                         }
@@ -137,7 +137,7 @@ setMethod(
 
                     # Test the model
                     if(area.test) {
-                        result <- MEAL::DARegion(set= methy, model=design.mm,
+                        result <- MEAL::DARegion(set=methy, model=design.mm,
                                                  methods=c("blockFinder", "bumphunter", "DMRcate"),
                                                  ...)
                     } else {
@@ -207,7 +207,7 @@ setMethod(
                 if(length(na.loc) != 0){
                     warning("There are missing values. ", length(na.loc),
                             " samples will be removed.")
-                    pheno <- pheno[-na.loc, ]
+                    pheno <- pheno[-na.loc, , drop=FALSE]
                 }
 
                 # -------------------------------------------------------------
@@ -241,6 +241,8 @@ setMethod(
                         if(length(na.loc) != 0) {
                             methy <- methy[ , -na.loc]
                         }
+
+                        methy <- methy[ , rownames(pheno)]
 
                         # If required, apply SVA
                         if(sva) {

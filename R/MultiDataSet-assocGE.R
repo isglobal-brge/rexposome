@@ -79,7 +79,7 @@ setMethod(
             if(length(na.loc) != 0){
                 warning("There are missing values. ", length(na.loc),
                         " samples will be removed.")
-                pheno <- pheno[-na.loc, ]
+                pheno <- pheno[-na.loc, , drop=FALSE]
             }
 
             # -----------------------------------------------------------------
@@ -105,10 +105,12 @@ setMethod(
                     # Design model
                     design.mm <- model.matrix(formula(design), data = pheno)
                     if(length(na.loc) != 0) {
-                        gexp <- object[[tgen]][ , -na.loc]
+                        gexp <- object[[tgen]][ , -na.loc, drop=FALSE]
                     } else {
                         gexp <- object[[tgen]]
                     }
+
+                    gexp <- gexp[ , rownames(pheno), drop=FALSE]
 
                     # If required, apply SVA
                     if(sva) {
@@ -118,7 +120,7 @@ setMethod(
                         n.sv <- sva::num.sv(gexp, design.mm, vfilter=vfilter)
                         if (n.sv > 0){
                             svobj <- sva::sva(gexp, design.mm,
-                                              design.mm[ , -2], n.sv=n.sv,
+                                              design.mm[ , -2, drop=FALSE], n.sv=n.sv,
                                               vfilter=vfilter)
                             design.mm <- cbind(design.mm, svobj$sv)
                         }
@@ -224,10 +226,11 @@ setMethod(
                         # Design model
                         design.mm <- model.matrix(formula(design), data = pheno)
                         if(length(na.loc) != 0) {
-                            gexp <- object[[tgen]][ , -na.loc]
+                            gexp <- object[[tgen]][ , -na.loc, drop=FALSE]
                         } else {
                             gexp <- object[[tgen]]
                         }
+                        gexp <- gexp[ , rownames(pheno), drop=FALSE]
 
                         # If required, apply SVA
                         if(sva) {
@@ -237,7 +240,7 @@ setMethod(
                             n.sv <- sva::num.sv(gexp, design.mm, vfilter=vfilter)
                             if (n.sv > 0){
                                 svobj <- sva::sva(gexp, design.mm,
-                                                  design.mm[ , -2], n.sv=n.sv,
+                                                  design.mm[ , -2, drop=FALSE], n.sv=n.sv,
                                                   vfilter=vfilter)
                                 design.mm <- cbind(design.mm, svobj$sv)
                             }
