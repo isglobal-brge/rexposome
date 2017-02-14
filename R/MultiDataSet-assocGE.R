@@ -177,7 +177,7 @@ setMethod(
                     select <- phenotypeNames(object[[texp]])
                 }
             }
-            #results <- parallel::mclapply(select, function(ex) {
+
             results <- lapply(select, function(ex) {
                 design <- as.formula(paste0("~", ex, "+", formula[2]))
 
@@ -253,6 +253,7 @@ setMethod(
                             message("Fitting the model.")
                         }
                         md <<- design.mm
+                        pp <<- pheno
                         fit <- limma::lmFit(gexp, design.mm, ...)
                         fit <- limma::eBayes(fit)
 
