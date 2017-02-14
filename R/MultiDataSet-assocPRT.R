@@ -2,7 +2,7 @@ setMethod(
     f = "assocPRT",
     signature = "MultiDataSet",
     definition = function(object, formula, select, set="exposures", ...,
-                          ebayes=TRUE, sva=FALSE, asFactor=5, ncores=1, verbose=FALSE,
+                          ebayes=TRUE, sva=FALSE, vfilter=NULL, ncores=1, verbose=FALSE,
                           warnings=TRUE) {
         ## ----------------------------------------------------------------- ##
         ## CHEKS
@@ -114,10 +114,11 @@ setMethod(
                         if (verbose | warnings){
                             message("Computing SVA. This step can be very time consuming.")
                         }
-                        n.sv <- sva::num.sv(prot, design.mm)
+                        n.sv <- sva::num.sv(prot, design.mm, vfilter=vfilter)
                         if (n.sv > 0){
                             svobj <- sva::sva(prot, design.mm,
-                                              design.mm[ , -2], n.sv=n.sv)
+                                              design.mm[ , -2], n.sv=n.sv,
+                                              vfilter=vfilter)
                             design.mm <- cbind(design.mm, svobj$sv)
                         }
                         rm(svobj, n.sv)
@@ -227,10 +228,11 @@ setMethod(
                             if (verbose | warnings){
                                 message("Computing SVA. This step can be very time consuming.")
                             }
-                            n.sv <- sva::num.sv(prot, design.mm)
+                            n.sv <- sva::num.sv(prot, design.mm, vfilter=vfilter)
                             if (n.sv > 0){
                                 svobj <- sva::sva(prot, design.mm,
-                                                  design.mm[ , -2], n.sv=n.sv)
+                                                  design.mm[ , -2], n.sv=n.sv,
+                                                  vfilter=vfilter)
                                 design.mm <- cbind(design.mm, svobj$sv)
                             }
                             rm(svobj, n.sv)

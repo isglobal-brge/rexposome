@@ -6,8 +6,8 @@
 \title{Method to perform an association study between epigenome and exposome}
 \usage{
 assocME(object, formula, select, set = "exposures", area.test = FALSE,
-  method = "ls", betas = FALSE, ..., sva = FALSE, ncores = 1,
-  verbose = FALSE, warnings = TRUE)
+  method = "ls", betas = FALSE, ..., sva = FALSE, vfilter = NULL,
+  ncores = 1, verbose = FALSE, warnings = TRUE)
 }
 \arguments{
 \item{object}{An object of class \link{MultiDataSet} containing an
@@ -35,6 +35,9 @@ to \code{TRUE} beta-vaues are used instead.}
 \item{sva}{(default \code{FALSE}) If set to \code{TRUE}, surrogate
 variable analysis is done before calling \link{DAProbe}, or \link{DARegion},
 and obtained surrogate variables are added.}
+
+\item{vfilter}{(default \code{NULL}) Numeric number of probes used
+in \link{sva} if argument \code{sva} is set to \code{TRUE}.}
 
 \item{ncores}{(default \code{1}) nomber of analysis that will be done
 at the same time (see \link{mclapply}).}

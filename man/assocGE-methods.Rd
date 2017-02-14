@@ -6,7 +6,7 @@
 \title{Method to perform an association study between transcriptome and exposom}
 \usage{
 assocGE(object, formula, select, set = "exposures", ..., sva = FALSE,
-  asFactor = 5, ncores = 1, verbose = FALSE, warnings = TRUE)
+  vfilter = NULL, ncores = 1, verbose = FALSE, warnings = TRUE)
 }
 \arguments{
 \item{object}{An object of class \link{MultiDataSet} containing an
@@ -24,10 +24,8 @@ of \code{"phenotype"}.}
 
 \item{sva}{(default \code{FALSE}) If \code{TRUE} SVAnalysis is done.}
 
-\item{asFactor}{(default \code{5}) Maximum number of unique values to
-considere an exposure 'factor'. If missing the internal value of the
-\link{ExposomeSet} in the given \link{MultiDataSet} will be used as
-threshold.}
+\item{vfilter}{(default \code{NULL}) Numeric number of probes used
+in \link{sva} if argument \code{sva} is set to \code{TRUE}.}
 
 \item{ncores}{(default \code{1}) Number of test performed at a time.}
 

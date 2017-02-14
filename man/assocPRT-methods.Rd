@@ -5,8 +5,8 @@
 \alias{assocPRT,MultiDataSet-rexposome}
 \title{Method to perform an association study between proteome and exposom}
 \usage{
-assocPRT(object, formula, exposures, ..., asFactor = 5, ncores = 1,
-  verbose = FALSE, warnings = TRUE)
+assocPRT(object, formula, exposures, ..., sva = TRUE, vfilter = NULL,
+  ncores = 1, verbose = FALSE, warnings = TRUE)
 }
 \arguments{
 \item{object}{An object of class \link{MultiDataSet} containing an
@@ -16,10 +16,11 @@ assocPRT(object, formula, exposures, ..., asFactor = 5, ncores = 1,
 
 \item{...}{...}
 
-\item{asFactor}{(default \code{5}) Maximum number of unique values to
-considere an exposure 'factor'. If missing the internal value of the
-\link{ExposmeSet} in the given \link{MultiDataSet} will be used as
-threshold.}
+\item{sva}{(default \code{FALSE}) if set to \code{TRUE} SVa is applied on
+the model and the surrogate variables are incldue in the association test.}
+
+\item{vfilter}{(default \code{NULL}) Numeric number of probes used
+in \link{sva} if argument \code{sva} is set to \code{TRUE}.}
 
 \item{ncores}{(default \code{1}) Number of test performed at a time.}
 
@@ -36,8 +37,8 @@ not be displayed.}
 variables used in the association test are the phenotypes instead of the
 exposures.}
 
-\item{sva}{(default \code{FALSE}) if set to \code{TRUE} SVa is applied on
-the model and the surrogate variables are incldue in the association test.}
+\item{ebayes}{(default \code{TRUE}) If \code{TRUE}, fitted limma modes is
+given to \link{eBayes} before extrating results.}
 }
 \value{
 An object of class \code{ResultSet} containing the results of the

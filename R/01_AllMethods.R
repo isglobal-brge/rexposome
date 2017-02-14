@@ -1127,10 +1127,8 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
 #' of \code{"phenotype"}.
 #' @param ... ...
 #' @param sva (default \code{FALSE}) If \code{TRUE} SVAnalysis is done.
-#' @param asFactor (default \code{5}) Maximum number of unique values to
-#' considere an exposure 'factor'. If missing the internal value of the
-#' \link{ExposomeSet} in the given \link{MultiDataSet} will be used as
-#' threshold.
+#' @param vfilter (default \code{NULL}) Numeric number of probes used
+#' in \link{sva} if argument \code{sva} is set to \code{TRUE}.
 #' @param ncores (default \code{1}) Number of test performed at a time.
 #' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
 #' about the process is show.
@@ -1144,8 +1142,9 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
 #' exposome, \link{assocPRT} to test the association between proteome and
 #' exposome, package \link{limma} for more details, \link{plotAssociation} to
 #' plot the results
-setGeneric("assocGE", function(object, formula, select, set = "exposures", ..., sva = FALSE, asFactor = 5,
-                               ncores = 1, verbose = FALSE, warnings = TRUE)
+setGeneric("assocGE", function(object, formula, select, set = "exposures", ..., sva = FALSE,
+                               vfilter = NULL, ncores = 1, verbose = FALSE,
+                               warnings = TRUE)
     standardGeneric("assocGE")
 )
 
@@ -1175,10 +1174,8 @@ setGeneric("assocGE", function(object, formula, select, set = "exposures", ..., 
 #' given to \link{eBayes} before extrating results.
 #' @param sva (default \code{FALSE}) if set to \code{TRUE} SVa is applied on
 #' the model and the surrogate variables are incldue in the association test.
-#' @param asFactor (default \code{5}) Maximum number of unique values to
-#' considere an exposure 'factor'. If missing the internal value of the
-#' \link{ExposmeSet} in the given \link{MultiDataSet} will be used as
-#' threshold.
+#' @param vfilter (default \code{NULL}) Numeric number of probes used
+#' in \link{sva} if argument \code{sva} is set to \code{TRUE}.
 #' @param ncores (default \code{1}) Number of test performed at a time.
 #' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
 #' about the process is show.
@@ -1192,8 +1189,9 @@ setGeneric("assocGE", function(object, formula, select, set = "exposures", ..., 
 #' exposone, \link{assocGE} to test the association between gene expression
 #' and exposome, package \link{limma} for more details,
 #' \link{plotAssociation} to plot the results
-setGeneric("assocPRT", function(object, formula, exposures, ..., asFactor = 5,
-                               ncores = 1, verbose = FALSE, warnings = TRUE)
+setGeneric("assocPRT", function(object, formula, exposures, ..., sva = TRUE,
+                                vfilter = NULL, ncores = 1,
+                                verbose = FALSE, warnings = TRUE)
     standardGeneric("assocPRT")
 )
 
@@ -1226,6 +1224,8 @@ setGeneric("assocPRT", function(object, formula, exposures, ..., asFactor = 5,
 #' @param sva (default \code{FALSE}) If set to \code{TRUE}, surrogate
 #' variable analysis is done before calling \link{DAProbe}, or \link{DARegion},
 #' and obtained surrogate variables are added.
+#' @param vfilter (default \code{NULL}) Numeric number of probes used
+#' in \link{sva} if argument \code{sva} is set to \code{TRUE}.
 #' @param ncores (default \code{1}) nomber of analysis that will be done
 #' at the same time (see \link{mclapply}).
 #' @param verbose (default \code{FALSE}) If set to \code{TRUE} information
@@ -1242,7 +1242,8 @@ setGeneric("assocPRT", function(object, formula, exposures, ..., asFactor = 5,
 #' plot the results
 setGeneric("assocME", function(object, formula, select, set="exposures",
                                area.test=FALSE, method="ls", betas=FALSE,
-                               ..., sva=FALSE, ncores=1, verbose=FALSE,
+                               ..., sva=FALSE, vfilter = NULL,
+                               ncores=1, verbose=FALSE,
                                warnings=TRUE)
     standardGeneric("assocME")
 )
