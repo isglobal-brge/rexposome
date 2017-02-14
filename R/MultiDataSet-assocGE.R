@@ -252,7 +252,7 @@ setMethod(
                         if (verbose){
                             message("Fitting the model.")
                         }
-
+                        md <<- design.mm
                         fit <- limma::lmFit(gexp, design.mm, ...)
                         fit <- limma::eBayes(fit)
 
