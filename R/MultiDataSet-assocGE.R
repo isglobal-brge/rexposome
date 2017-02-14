@@ -200,7 +200,7 @@ setMethod(
 
                 na.loc <- rowSums(apply(pheno, 2, is.na))
                 na.loc <- which(na.loc != 0)
-                if(length(na.loc) != 0){
+                if(length(na.loc) != 0) {
                     warning("There are missing values. ", length(na.loc),
                             " samples will be removed.")
                     pheno <- pheno[-na.loc, , drop=FALSE]
@@ -225,6 +225,8 @@ setMethod(
                     tryCatch({
                         # Design model
                         design.mm <- model.matrix(formula(design), data = pheno)
+                        design.mm.o <<- design.mm
+                        des <<- design
                         if(length(na.loc) != 0) {
                             gexp <- object[[tgen]][ , -na.loc, drop=FALSE]
                         } else {
