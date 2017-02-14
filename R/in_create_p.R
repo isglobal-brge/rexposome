@@ -1,16 +1,17 @@
 .create_p <- function(expo.dt, omic.p, select) {
   dt <- data.frame(n = 1:nrow(expo.dt))
+  rn <- rownames(expo.dt)
   for(pe in select) {
     found <- FALSE
     if(!found & ncol(expo.dt) > 1) {
       if(pe %in% colnames(expo.dt)) {
-        dt <- cbind(dt, expo.dt[ , pe])
+        dt <- cbind(dt, expo.dt[rn, pe])
         found <- TRUE
       }
     }
     if(!found & ncol(omic.p) > 1) {
       if(pe %in% colnames(omic.p)) {
-        dt <- cbind(dt, omic.p[ , pe])
+        dt <- cbind(dt, omic.p[rn, pe])
         found <- TRUE
       }
     }
