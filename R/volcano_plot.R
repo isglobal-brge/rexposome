@@ -29,8 +29,8 @@ volcano_plot <- function(pval, fc, tFC=2, tPV=-log10(0.001)) {
         ggplot2::theme_bw() +
         ggplot2::geom_point() +
         ggplot2::scale_colour_manual(values=clrvalues) +
-        ggplot2::xlab(expression(-log[10](italic(Fold~~Change))))
-        ggplot2::ylab(expression(-log[10](p)))
+        ggplot2::xlab(expression(-log[10](italic(Fold~~Change)))) +
+        ggplot2::ylab(expression(-log[10](p))) +
         ggplot2::theme(legend.position="none") +
         ggrepel::geom_text_repel(
             data = subset(dta, dta$PV >= tPV & abs(dta$FC) >= tFC),
