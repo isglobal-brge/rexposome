@@ -5,12 +5,16 @@
 #'
 #' @param pval numeric vector of P.Values
 #' @param fc numeric vector of fold change
+#' @param names character vector with the feature's names
 #' @param tFC (default \code{2}) fold change threshold
 #' @param tPC (default \code{-log10(0.001)}) P-Value threshold
 #' @return A \code{ggplot} object
 #' @export
-volcano_plot <- function(pval, fc, tFC=2, tPV=-log10(0.001)) {
-    dta <- data.frame(P.Value=pval, FC=fc, clr="gray87", alp=0.2, stringsAsFactors=FALSE)
+volcano_plot <- function(pval, fc, names, tFC=2, tPV=-log10(0.001)) {
+    if(missing(names)) {
+        names <- names(pval)
+    }
+    dta <- data.frame(P.Value=pval, FC=fc, names, clr="gray87", alp=0.2, stringsAsFactors=FALSE)
     dta$PV <- -log10(dta$P.Value)
     dta$feature <- rownames(dta)
 
@@ -34,7 +38,7 @@ volcano_plot <- function(pval, fc, tFC=2, tPV=-log10(0.001)) {
         ggplot2::theme(legend.position="none") +
         ggrepel::geom_text_repel(
             data = subset(dta, dta$PV >= tPV & abs(dta$FC) >= tFC),
-            ggplot2::aes(FC, PV, label=feature),
+            ggplot2::aes(FC, PV, label=names),
             size = 2,
             box.padding = ggplot2::unit(0.35, "lines"),
             point.padding = ggplot2::unit(0.3, "lines"),
