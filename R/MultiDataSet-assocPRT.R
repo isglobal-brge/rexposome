@@ -59,7 +59,7 @@ setMethod(
                 warning("Given 'MultiDataSet' contains an 'ExposomeClust'. Association test will be performed on clustering result.")
             }
             design <- as.formula(paste0("~cluster+", formula[2]))
-            pheno <- .create_p(
+            pheno <- rexposome:::.create_p(
                 expo.dt = exp.dt,
                 omic.p = pData(object[[tpro]]),
                 select = all.vars(design)
@@ -103,13 +103,7 @@ setMethod(
                 results <- tryCatch({
                     # Design model
                     design.mm <- model.matrix(formula(design), data = pheno)
-                    if(length(na.loc) != 0) {
-                        prot <- object[[tpro]][ , -na.loc, drop=FALSE]
-                    } else {
-                        prot <- object[[tpro]]
-                    }
-
-                    prot <- prot[ , rownames(pheno), drop=FALSE]
+                    prot <- object[[tpro]][ , rownames(pheno), drop=FALSE]
 
                     # If required, apply SVA
                     if(sva) {
@@ -219,13 +213,7 @@ setMethod(
                     tryCatch({
                         # Design model
                         design.mm <- model.matrix(formula(design), data = pheno)
-                        if(length(na.loc) != 0) {
-                            prot <- object[[tpro]][ , -na.loc, drop=FALSE]
-                        } else {
-                            prot <- object[[tpro]]
-                        }
-
-                        prot <- prot[ , rownames(pheno), drop=FALSE]
+                        prot <- object[[tpro]][ , rownames(pheno), drop=FALSE]
 
                         # If required, apply SVA
                         if(sva) {

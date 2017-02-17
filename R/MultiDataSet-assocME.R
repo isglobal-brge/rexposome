@@ -109,15 +109,15 @@ setMethod(
 
                     # Extract betas or Ms
                     if(betas) {
-                        methy <- betas(object[[tmth]][rownames(pheno), ])
+                        methy <- betas(object[[tmth]][ , rownames(pheno)])
                     } else {
-                        methy <- getMs(object[[tmth]][rownames(pheno), ])
+                        methy <- getMs(object[[tmth]][ , rownames(pheno)])
                     }
 
                     # Filter missing outcome samples
-                    if(length(na.loc) != 0) {
-                        methy <- methy[ , -na.loc, drop=FALSE]
-                    }
+                    #if(length(na.loc) != 0) {
+                    #    methy <- methy[ , -na.loc, drop=FALSE]
+                    #}
 
                     # If required, apply SVA
                     if(sva) {
@@ -232,15 +232,15 @@ setMethod(
 
                         # Extract betas or Ms
                         if(betas) {
-                            methy <- betas(object[[tmth]])
+                            methy <- betas(object[[tmth]][ , rownames(pheno)])
                         } else {
-                            methy <- getMs(object[[tmth]])
+                            methy <- getMs(object[[tmth]][ , rownames(pheno)])
                         }
 
                         # Filter missing outcome samples
-                        if(length(na.loc) != 0) {
-                            methy <- methy[ , -na.loc]
-                        }
+                        #if(length(na.loc) != 0) {
+                        #    methy <- methy[ , -na.loc]
+                        #}
 
                         methy <- methy[ , rownames(pheno)]
 

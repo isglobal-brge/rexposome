@@ -104,13 +104,7 @@ setMethod(
                 results <- tryCatch({
                     # Design model
                     design.mm <- model.matrix(formula(design), data = pheno)
-                    if(length(na.loc) != 0) {
-                        gexp <- object[[tgen]][ , -na.loc, drop=FALSE]
-                    } else {
-                        gexp <- object[[tgen]]
-                    }
-
-                    gexp <- gexp[ , rownames(pheno), drop=FALSE]
+                    gexp <- object[[tgen]][ , rownames(pheno), drop=FALSE]
 
                     # If required, apply SVA
                     if(sva) {
@@ -225,14 +219,7 @@ setMethod(
                     tryCatch({
                         # Design model
                         design.mm <- model.matrix(formula(design), data = pheno)
-                        design.mm.o <<- design.mm
-                        des <<- design
-                        if(length(na.loc) != 0) {
-                            gexp <- object[[tgen]][ , -na.loc, drop=FALSE]
-                        } else {
-                            gexp <- object[[tgen]]
-                        }
-                        gexp <- gexp[ , rownames(pheno), drop=FALSE]
+                        gexp <- object[[tgen]][ , rownames(pheno), drop=FALSE]
 
                         # If required, apply SVA
                         if(sva) {
@@ -254,8 +241,7 @@ setMethod(
                         if (verbose){
                             message("Fitting the model.")
                         }
-                        md <<- design.mm
-                        pp <<- pheno
+
                         fit <- limma::lmFit(gexp, design.mm, ...)
                         fit <- limma::eBayes(fit)
 
