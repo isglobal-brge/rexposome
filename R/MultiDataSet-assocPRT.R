@@ -250,6 +250,9 @@ setMethod(
                         fit <- limma::lmFit(prot, design.mm, ...)
                         if(ebayes) {
                             fit <- limma::eBayes(fit)
+                            tbl <- limma::topTable(fit, coef=2, n=Inf, p.value=1)
+                        } else {
+                            tbl <- limma::toptable(fit, coef=2, n=Inf, p.value=1)
                         }
 
                         # -----------------------------------------------------
@@ -258,7 +261,7 @@ setMethod(
                             N=nrow(pheno),
                             error=NA,
                             design=design,
-                            result=limma::topTable(fit, coef=2, n=Inf, p.value=1)
+                            result=tbl
                         )
                     }, error=function(e){
                         message(e)

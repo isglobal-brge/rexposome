@@ -2,7 +2,7 @@ setMethod(
     f = "assocME",
     signature = "MultiDataSet",
     definition = function(object, formula, select, set="exposures",
-                          area.test=FALSE, method="ls", betas=FALSE,
+                          area.test=FALSE, method="ls", betas=TRUE,
                           ..., sva=FALSE, vfilter=NULL, ncores=1, verbose=FALSE,
                           warnings=TRUE) {
         ## ----------------------------------------------------------------- ##
