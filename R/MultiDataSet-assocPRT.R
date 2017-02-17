@@ -2,7 +2,7 @@ setMethod(
     f = "assocPRT",
     signature = "MultiDataSet",
     definition = function(object, formula, select, set="exposures", ...,
-                          ebayes=TRUE, sva=FALSE, vfilter=NULL, ncores=1, verbose=FALSE,
+                          ebayes=FALSE, sva=FALSE, vfilter=NULL, ncores=1, verbose=FALSE,
                           warnings=TRUE) {
         ## ----------------------------------------------------------------- ##
         ## CHEKS
@@ -128,6 +128,9 @@ setMethod(
                     fit <- limma::lmFit(prot, design.mm, ...)
                     if(ebayes) {
                         fit <- limma::eBayes(fit)
+                        tbl <- limma::topTable(fit, coef=2, n=Inf, p.value=1)
+                    } else {
+                        tbl <- limma::toptable(fit, coef=2, n=Inf, p.value=1)
                     }
 
                     # -----------------------------------------------------
@@ -136,7 +139,7 @@ setMethod(
                         N=nrow(pheno),
                         error=NA,
                         design=design,
-                        result=limma::topTable(fit, coef=2, n=Inf, p.value=1)
+                        result=tbl
                     )
                 }, error=function(e) {
                     list(
@@ -235,18 +238,13 @@ setMethod(
                         if (verbose){
                             message("Fitting the model.")
                         }
-                        message("A")
                         fit <- limma::lmFit(prot, design.mm, ...)
                         if(ebayes) {
-                            message("B1")
                             fit <- limma::eBayes(fit)
                             tbl <- limma::topTable(fit, coef=2, n=Inf, p.value=1)
                         } else {
-                            message("B2")
                             tbl <- limma::toptable(fit, coef=2, n=Inf, p.value=1)
                         }
-
-                        message("C")
 
                         # -----------------------------------------------------
 
@@ -256,8 +254,6 @@ setMethod(
                             design=design,
                             result=tbl
                         )
-
-                        message("D")
                     }, error=function(e){
                         message(e)
                         return(list(
