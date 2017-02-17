@@ -227,21 +227,14 @@ setMethod(
                             if (verbose | warnings){
                                 message("Computing SVA. This step can be very time consuming.")
                             }
-                            message("A")
-                            gexp <<- gexp
-                            design.mm <<- design.mm
-                            vfilter <<- vfilter
+
                             n.sv <- sva::num.sv(Biobase::exprs(gexp),
                                                 design.mm, vfilter=vfilter)
-                            message("B", n.sv)
                             if (n.sv > 0){
-                                message("C")
                                 svobj <- sva::sva(Biobase::exprs(gexp), design.mm,
                                                   design.mm[ , -2, drop=FALSE],
                                                   n.sv=n.sv, vfilter=vfilter)
-                                message("B")
                                 design.mm <- cbind(design.mm, svobj$sv)
-                                message("D: ", ncol(design.mm), " - ", nrow(design.mm))
                             }
                             rm(svobj, n.sv)
                             suppressMessages(gc())
