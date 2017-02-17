@@ -179,7 +179,7 @@ setMethod(
             }
             results <- parallel::mclapply(select, function(ex) {
                 design <- as.formula(paste0("~", ex, "+", formula[2]))
-                pheno <- .create_p(
+                pheno <- rexposome:::.create_p(
                     expo.dt = exp.dt,
                     omic.p = pData(object[[tpro]]),
                     select = all.vars(design)
@@ -247,13 +247,18 @@ setMethod(
                         if (verbose){
                             message("Fitting the model.")
                         }
+                        message("A")
                         fit <- limma::lmFit(prot, design.mm, ...)
                         if(ebayes) {
+                            message("B1")
                             fit <- limma::eBayes(fit)
                             tbl <- limma::topTable(fit, coef=2, n=Inf, p.value=1)
                         } else {
+                            message("B2")
                             tbl <- limma::toptable(fit, coef=2, n=Inf, p.value=1)
                         }
+
+                        message("C")
 
                         # -----------------------------------------------------
 
@@ -263,6 +268,8 @@ setMethod(
                             design=design,
                             result=tbl
                         )
+
+                        message("D")
                     }, error=function(e){
                         message(e)
                         return(list(
