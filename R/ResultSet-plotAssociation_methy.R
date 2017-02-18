@@ -34,7 +34,7 @@
         volcano_plot(
             pval=object@results[[rid]]$result$P.Value,
             fc=object@results[[rid]]$result[ , 2],
-            names=rownames(object@results[[rid]]),
+            names=rownames(object@results[[rid]]$result),
             tFC=tFC,
             tPV=tPV
         )
