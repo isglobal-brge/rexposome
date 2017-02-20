@@ -19,7 +19,9 @@ setMethod(
         # ## --------------------------------------------------------------------
 
         if(object@fun_origin == "assocGE") {
+            message("A")
             if(missing(rid)) {
+                message("B")
                 res <- lapply(names(object@results), function(nme) {
                     tt <- object@results[[nme]]$result
                     tt$exposure <- nme
@@ -27,6 +29,7 @@ setMethod(
                 })
                 res <- do.call(rbind, res)
             } else {
+                message("C: ", rid)
                 res <- object@results[[rid]]$result
             }
         } else if(object@fun_origin == "assocME") {
