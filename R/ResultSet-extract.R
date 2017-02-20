@@ -27,7 +27,7 @@ setMethod(
                 })
                 res <- do.call(rbind, res)
             } else {
-                res <- object@results[[rid]]$result$result
+                res <- object@results[[rid]]$result
             }
         } else if(object@fun_origin == "assocME") {
             if(missing(rid)) {
