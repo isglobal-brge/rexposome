@@ -31,4 +31,3 @@ plotHistogram(exp[1:3, ])
 \link{plotFamily} to draw the profile of a family of exposures,
 \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
 }
-

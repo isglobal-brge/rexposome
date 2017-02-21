@@ -12,4 +12,3 @@ Implementation of Clayton's lambda score for a vector of P-Values
 \author{
 Juran R. González
 }
-

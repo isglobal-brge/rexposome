@@ -24,6 +24,7 @@ the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 \item{\code{desc.famCol}}{Name or index of the column containing the exposure's name
 (in description file).}
 }}
+
 \seealso{
 \link{correlation} for constructor using an
 \link{ExposomeSet},
@@ -31,4 +32,3 @@ the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 \link{ExposomeClust-class} for similar structure,
 \link{eSet} for main class container
 }
-

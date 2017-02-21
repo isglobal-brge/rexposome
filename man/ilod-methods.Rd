@@ -48,4 +48,3 @@ x <- ilod(x)
 \link{plotMissings} to plot the missing data of an ExposomeSet,
 \link{tableMissings} to get a table with the missing data of an ExposomeSet
 }
-

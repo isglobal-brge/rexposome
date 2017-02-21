@@ -65,4 +65,3 @@ dim(exp)
 \link{trans} to transform the exposures,
 \link{standardize} to standardize by normal or robust methods the exposures
 }
-

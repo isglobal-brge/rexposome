@@ -26,4 +26,3 @@ association of the exposures with phenotypes of an \code{ExWAS} object.
 \link{exwas} as a constructor for \link{ExWAS} objects,
 \link{extract} to obtain a table with the result of the ExWAS
 }
-

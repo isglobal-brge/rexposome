@@ -27,4 +27,3 @@ by using \link{FactoMineR} package.
 cluster samples, \link{correlation} to compute the correlation between
 exposures
 }
-

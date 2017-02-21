@@ -37,4 +37,3 @@ normalityTest(exposome)
 \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
 \link{impute} to impute missing data on the exposures of an ExposomeSet
 }
-

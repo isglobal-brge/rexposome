@@ -92,4 +92,3 @@ exp <- read_exposome(exposures, description, phenotype, sep = "\\t")
 \link{load_exposome} for constructor from loaded
 \code{data.frame}s
 }
-

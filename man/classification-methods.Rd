@@ -20,4 +20,3 @@ Method to get the classification of the samples from an ExposomeClust.
 \link{clustering} as a constructor for \link{ExposomeClust},
 \link{plotClassification} to plot the groups
 }
-

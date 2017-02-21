@@ -25,4 +25,3 @@ same \link{ExposomePCa}
 to plot the correlation between exposures ans PCA,
 \link{ExposmePCA} as main class
 }
-

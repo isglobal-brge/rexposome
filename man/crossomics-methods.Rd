@@ -36,6 +36,7 @@ for methylome (CpGs) data, \link{SnpSet} for genome (SNPs) data. Proteome
 data is allowed as an \link{eSet} while tagged as \code{"proteome"} into the
 \link{MultiDataSet} object.
 }
+
 \references{
 Witten, DM and Tibshirani, R and Hastie, T. A penalized matrix
 decomposition, with applications to sparse principal components and canonical
@@ -49,4 +50,3 @@ the used functions \link{MultiCCA} and \link{MultiCCA.permut} or
 the package \link{PMA} for details, \link{plotIntegration} to plot the
 results
 }
-

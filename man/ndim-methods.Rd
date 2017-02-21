@@ -22,4 +22,3 @@ Number of principal components in an ExposomePCA.
 cluster samples, \link{correlation} to compute the correlation between
 exposures
 }
-

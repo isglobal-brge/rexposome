@@ -25,9 +25,9 @@ description-file.}
 \item{\code{featureData}}{Contains the description of the exposures including
 the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 }}
+
 \seealso{
 \code{\link{read_exposome}} for constructor from files,
 \link{create_exposome} for constructor from loaded
 \code{data.frames}, \link{eSet} for main class container
 }
-

@@ -48,4 +48,3 @@ w2 <- mexwas(x, "asthma")
 \link{extract} to obtain a table with the result of the ExWAS,
 \link{plotExwas} to plot the results of the ExWAS
 }
-

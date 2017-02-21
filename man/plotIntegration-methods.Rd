@@ -38,4 +38,3 @@ This function draws a plots for the ResultSet from integration function
 \seealso{
 \link{plotAssociation} for plotting association results
 }
-

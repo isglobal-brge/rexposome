@@ -61,4 +61,3 @@ plotMissings(exp, set = "phenotypes")
 \link{tableMissings} to get a table with the missing data of an ExposomeSet,
 \link{impute} to impute missing data on the exposures of an ExposomeSet
 }
-

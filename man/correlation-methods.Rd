@@ -37,4 +37,3 @@ expo.c
 \link{ExposomeCorr}, \link{clustering} to see how the exposures can
 cluster samples, \link{pca} to compute PCA on exposures
 }
-

@@ -26,4 +26,3 @@ phenotypeNames(exp)
 \link{exposureNames} to get the name of the exposures,
 \link{familyNames} to get the families of exposures
 }
-

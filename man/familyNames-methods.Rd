@@ -38,4 +38,3 @@ familyNames(exp, by.exposure = TRUE)
 \link{exposureNames} to get the name of the exposures,
 \link{phenotypeNames} to get the phenotypes
 }
-

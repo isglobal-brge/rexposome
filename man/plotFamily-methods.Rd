@@ -43,4 +43,3 @@ plt
 \link{plotHistogram} to draw the shape of an exposure,
 \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
 }
-

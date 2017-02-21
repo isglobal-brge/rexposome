@@ -22,4 +22,3 @@ could have.
 data("exposome")
 restore(exp)
 }
-

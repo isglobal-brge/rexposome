@@ -35,4 +35,3 @@ inma.imp <- imputeLOD(x = raw, lod = lod, description = desc,
      pNA = pNA, pLOD = pLOD, log = log, seed = seed)
 }
 }
-

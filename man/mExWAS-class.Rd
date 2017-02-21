@@ -2,11 +2,12 @@
 % Please edit documentation in R/00_AllClasses.R, R/mExWAS-extract.R
 \docType{class}
 \name{mExWAS}
-\alias{extract,mExWAS-method}
 \alias{mExWAS}
 \alias{mExWAS-class}
+\alias{extract,mExWAS-method}
 \alias{mExWAS-methods}
 \alias{raw,mExWAS-method}
+\alias{mExWAS-methods}
 \title{Class mExWAS}
 \usage{
 \S4method{extract}{mExWAS}(object, sort = TRUE)
@@ -31,6 +32,7 @@ Study".
 
 \item \code{raw}: Method to obtain raw model
 }}
+
 \section{Slots}{
 
 \describe{
@@ -43,7 +45,7 @@ Study".
 
 \item{\code{arguments}}{Arguments passed to \code{glmnet} or to \code{partDSA}.}
 }}
+
 \seealso{
 \link{exwas} for constructor using an \link{ExWAS}
 }
-

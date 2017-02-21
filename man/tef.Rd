@@ -21,4 +21,3 @@ Stacey S. Cherny and Pak C. Sham. May 2012 Hum Genet.
 \seealso{
 \link{exwas} as a constructor for \link{ExWAS} objects
 }
-

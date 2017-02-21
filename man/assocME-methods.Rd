@@ -65,4 +65,3 @@ and exposome, \link{assocSNP} to test the association between genome and
 exposome, package \link{MEAL} for more details, \link{plotAssociation} to
 plot the results
 }
-

@@ -33,4 +33,3 @@ integration studies implemented in \code{rexposome}.
 \seealso{
 \link{ExWAS}, \link{ResultSet}
 }
-

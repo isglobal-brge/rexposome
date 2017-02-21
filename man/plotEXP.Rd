@@ -22,4 +22,3 @@ same \link{ExposomePCa}
 to plot the P-Value of association between phenotypes ans PCA,
 \link{ExposmePCA} as main class
 }
-

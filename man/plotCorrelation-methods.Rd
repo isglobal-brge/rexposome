@@ -30,4 +30,3 @@ the correlations within an \code{ExposomeCorr} object.
 \link{correlation} as a constructor for \link{ExposomeCorr}
 objects, \link{pca} to compute PCA on exposures
 }
-

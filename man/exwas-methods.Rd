@@ -55,4 +55,3 @@ Stacey S. Cherny and Pak C. Sham. May 2012 Hum Genet.
 \link{extract} to obtain a table with the result of the ExWAS,
 \link{plotExwas} to plot the results of the ExWAS
 }
-

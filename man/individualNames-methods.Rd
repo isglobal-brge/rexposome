@@ -3,6 +3,8 @@
 \name{individualNames}
 \alias{individualNames}
 \alias{individualNames,ExposomeSet-methods}
+\alias{individualNames}
+\alias{individualNames,ExposomeSet-methods}
 \title{Getter to obtain the individual names (sample names) of an ExposomeSet.}
 \usage{
 individualNames(object)
@@ -38,6 +40,7 @@ synonyms, this usage is discouraged and it is not assured.
 Although in \code{rexposome 1.0.0} both function can be used as
 synonyms, this usage is discouraged and it is not assured.
 }
+
 \examples{
 data("exposome")
 individualNames(exp)
@@ -53,4 +56,3 @@ individualNames(exp) <- paste0(individualNames(exp), "__")
 \link{phenotypeNames} to get the phenotypes,
 \link{familyNames} to get the families of exposures
 }
-

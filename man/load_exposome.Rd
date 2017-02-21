@@ -67,4 +67,3 @@ will be renamed to \code{_type}. If not given, it will be created using
 \link{read_exposome} for constructor from txt/csv
 files.
 }
-

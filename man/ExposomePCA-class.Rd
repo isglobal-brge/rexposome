@@ -15,6 +15,7 @@ multiple results of computing the PCA.
 \describe{
 \item{\code{pca}}{list containing all elements of the PCA}
 }}
+
 \seealso{
 \link{correlation} for constructor using an
 \link{ExposomeSet},
@@ -22,4 +23,3 @@ multiple results of computing the PCA.
 \link{ExposomeClust-class} for similar structure,
 \link{eSet} for main class container
 }
-

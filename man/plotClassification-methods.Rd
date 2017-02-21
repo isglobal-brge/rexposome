@@ -30,4 +30,3 @@ plotClassification(x)
 \link{classification} to see how to obtain the classification of
 the samples from an \link{ExposomeClust}
 }
-

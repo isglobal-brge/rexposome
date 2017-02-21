@@ -60,4 +60,3 @@ exposone, \link{assocGE} to test the association between gene expression
 and exposome, package \link{limma} for more details,
 \link{plotAssociation} to plot the results
 }
-

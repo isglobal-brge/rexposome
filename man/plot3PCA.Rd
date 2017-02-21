@@ -37,4 +37,3 @@ Methdo to draw a plot for samples using three PC contained in an
 \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 to plot the PCA, \link{ExposomePCA} as main class
 }
-

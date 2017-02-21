@@ -26,4 +26,3 @@ Methdo to draw a plot for PCA contained in an \link{ExposomePCA}
 \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 to plot the PCA, \link{ExposomePCA} as main class
 }
-

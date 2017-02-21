@@ -21,4 +21,3 @@ its phenotypes.
 data("exposome")
 Summary(exp, "exposures")
 }
-

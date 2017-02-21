@@ -16,4 +16,3 @@ A matrix of exposures
 Given an \link{ExposomeSet} it returns the inner matrix of exposures,
 having the exposures as columns and the samples as rows.
 }
-

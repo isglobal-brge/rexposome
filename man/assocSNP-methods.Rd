@@ -42,10 +42,10 @@ A difference between \code{assocSNP} and both \code{assocGE}
 and \code{assocME}, is that \code{assocSNP} cannot perform multiple
 test in a single run.
 }
+
 \seealso{
 \link{assocGE} to test the association between transcriptome
 and exposome, \link{assocME} to test the association between epigenome
 and exposome, package \link{snpStats} for more details,
 \link{plotAssociation} to plot the results
 }
-

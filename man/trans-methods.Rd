@@ -39,4 +39,3 @@ exp.t <- trans(exp, fun = log, select = "ldde_lip")
 \link{highAndLow} to transform the continuous exposures to levelled factors,
 \link{standardize} to standardize by normal or robust methods the exposures
 }
-

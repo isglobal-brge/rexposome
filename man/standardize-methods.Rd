@@ -36,4 +36,3 @@ exp.rs <- standardize(exp, method = "robust", select = "ldde_lip")
 \link{highAndLow} to transform the continuous exposures to levelled factors,
 \link{trans} to transform the exposures,
 }
-

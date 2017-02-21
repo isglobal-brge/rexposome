@@ -1103,6 +1103,43 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
     standardGeneric("add_exp")
 )
 
+#' Method to add an ExpressionSet to a MultiDataSet tagged as
+#' protein data container.
+#'
+#' This method allows to insert an object of class \link{ExpressionSet} as an
+#' independent dataset into an object of class \link{MultiDataSet}. The
+#' \link{ExpressionSet} will be tagged, in the \link{MultiDataSet} as
+#' \code{"protein"}.
+#'
+#' @param object An object of class \link{MultiDataSet}.
+#' @param expoSet An object of class \link{ExpressionSet} with protein data.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @param ... Arguments given to \link{add_eset} from \link{MultiDataSet}.
+#' @return A \link{MultiDataSet} with the \link{ExpressionSet} added as an
+#' independent dataset.
+#' @export add_prot
+setGeneric("add_prot", function(object, expoSet, ...)
+    standardGeneric("add_prot")
+)
+
+#' Method to add an ExposomeClust to a MultiDataSet
+#'
+#' This method allows to insert an object of class \link{ExposomeClust} as an
+#' independent dataset into an object of class \link{MultiDataSet}.
+#'
+#' @param object An object of class \link{MultiDataSet}.
+#' @param expoSet An object of class \link{ExposomeClust}.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @param ... Arguments given to \link{add_eset} from \link{MultiDataSet}.
+#' @return A \link{MultiDataSet} with the \link{ExpressionSet} added as an
+#' independent dataset.
+#' @export add_cls
+setGeneric("add_cls", function(object, clsSet, ...)
+    standardGeneric("add_cls")
+)
+
 # -----------------------------------------------------------------------------
 
 #' Method to perform an association study between transcriptome and exposom
@@ -1388,15 +1425,7 @@ setGeneric("rid", function(object)
     standardGeneric("rid")
 )
 
-#' @export add_prot
-setGeneric("add_prot", function(object, expoSet, ...)
-    standardGeneric("add_prot")
-)
 
-#' @export add_cls
-setGeneric("add_cls", function(object, clsSet, ...)
-    standardGeneric("add_cls")
-)
 
 
 #' @export tableLambda
@@ -1406,7 +1435,7 @@ setGeneric("tableLambda", function(object, trim=0.5)
 
 
 #' @export plotLambda
-setGeneric("plotLambda", function(object, width=0.75)
+setGeneric("plotLambda", function(object, trim=0.5, width=0.75)
     standardGeneric("plotLambda")
 )
 

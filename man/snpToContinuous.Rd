@@ -26,4 +26,3 @@ variable by normalizing each SNP as described in Abraham G. and Inouye M.
 \link{crossomics} use this function when a 
 \link{MultiDataSet} si given with a dataset of SNPs
 }
-

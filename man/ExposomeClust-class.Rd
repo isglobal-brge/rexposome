@@ -21,8 +21,8 @@ applying a clustering method on the \code{ExposomeSet}' exposures.
 
 \item{\code{samples}}{Name of the exposures after the clustering process.}
 }}
+
 \seealso{
 \code{\link{clustering}} for constructor using an
 \code{\link{ExposomeSet}}
 }
-

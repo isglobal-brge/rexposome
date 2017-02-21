@@ -25,4 +25,3 @@ functions
 \seealso{
 \link{plotIntegration} for plotting integration results
 }
-

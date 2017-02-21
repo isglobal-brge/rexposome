@@ -25,7 +25,7 @@ of \code{"phenotype"}.}
 \item{sva}{(default \code{FALSE}) If \code{TRUE} SVAnalysis is done.}
 
 \item{vfilter}{(default \code{NULL}) Numeric number of probes used
-in \link{sva} if argument \code{sva} is set to \code{TRUE}.}
+in \link{sva} if argument \code{sva} is set to \code{TRUE}.de}
 
 \item{ncores}{(default \code{1}) Number of test performed at a time.}
 
@@ -55,4 +55,3 @@ exposome, \link{assocPRT} to test the association between proteome and
 exposome, package \link{limma} for more details, \link{plotAssociation} to
 plot the results
 }
-

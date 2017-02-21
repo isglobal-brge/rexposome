@@ -23,6 +23,7 @@ Getter to obtain the exposures's names of an ExposomeSet.
 Although in \code{rexposome 1.0.0} both function can be used as
 synonyms, this usage is discouraged and it is not assured.
 }
+
 \examples{
 data("exposome")
 exposureNames(exp)
@@ -32,4 +33,3 @@ exposureNames(exp)
 \link{phenotypeNames} to get the phenotypes,
 \link{familyNames} to get the families of exposures
 }
-

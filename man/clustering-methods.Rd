@@ -85,4 +85,3 @@ classification(c) # This works because the ExposomeClust has a way to get
 the samples from an \link{ExposomeClust}, \link{plotClassification} to
 plot the groups
 }
-
