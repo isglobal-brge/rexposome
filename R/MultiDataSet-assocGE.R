@@ -109,7 +109,8 @@ setMethod(
                     # If required, apply SVA
                     if(sva) {
                         if (verbose | warnings){
-                            message("Computing SVA. This step can be very time consuming.")
+                            message("Computing SVA. This step can be very time consuming.",
+                                    "Try using argument 'vfilter'.")
                         }
                         n.sv <- sva::num.sv(Biobase::exprs(gexp),
                                             design.mm, vfilter=vfilter)
@@ -225,7 +226,8 @@ setMethod(
                         # If required, apply SVA
                         if(sva) {
                             if (verbose | warnings){
-                                message("Computing SVA. This step can be very time consuming.")
+                                message("Computing SVA. This step can be very time consuming.",
+                                        "Try using argument 'vfilter'.")
                             }
 
                             n.sv <- sva::num.sv(Biobase::exprs(gexp),
