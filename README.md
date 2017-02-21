@@ -23,7 +23,7 @@ source( "http://bioconductor.org/biocLite.R" )
 packages = c('Biobase', 'mice', 'MultiDataSet', 'mvtnorm', 'lsr', 'BiocInstaller', 
     'FactoMineR', 'gridExtra', 'stringr', 'pryr', 'circlize', 'corrplot', 'ggplot2', 
     'reshape2', 'scales', 'pryr', 'mboost', 'imputeLCMD', 'snpStats', 'MEAL', 
-    'limma', 'scatterplot3d', 'glmnet', 'omicade4', 'sva', 'ggrepel', 'PMA'
+    'limma', 'scatterplot3d', 'glmnet', 'omicade4', 'sva', 'ggrepel', 'PMA', 'sva'
 )
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
