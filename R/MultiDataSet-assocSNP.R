@@ -50,13 +50,21 @@ setMethod(
           omic.p = pData(object[[tsnp]]),
           select = select
       )
-
-      rownames(pheno) <- rownames(pData(object[[tsnp]]))
-      if(sum(is.na(pheno)) != 0 & (warnings | verbose)) {
-          warning("Given design ('", design, "') has ", sum(is.na(pheno)), " NA values")
-      }
       if(class(pheno) == "character") {
           stop("Invalid value '", pheno, "' in 'design'.")
+      }
+
+      ## rownames(pheno) <- rownames(pData(object[[tsnp]]))
+      if(sum(is.na(pheno)) != 0 & (warnings | verbose)) {
+          warning("Given design ('", design, "') has ",
+                  sum(is.na(pheno)), " NA values")
+      }
+      na.loc <- rowSums(apply(pheno, 2, is.na))
+      na.loc <- which(na.loc != 0)
+      if(length(na.loc) != 0){
+          warning("There are missing values. ", length(na.loc),
+                  " samples will be removed.")
+          pheno <- pheno[-na.loc, , drop=FALSE]
       }
       # -----------------------------------------------------------------
 
@@ -70,9 +78,10 @@ setMethod(
       if(sum(is.na(geno)) != 0 & (warnings | verbose)) {
           warning("Given SnpSet contains NA values")
       }
+      geo <- geno[ , rownames(pheno)]
 
       tests <- as(snpStats::snp.rhs.tests(design, family = family,
-          data = pheno, snp.data = geno, ...), "data.frame")
+          data = pheno, snp.data = geno[ , rownames(pheno)], ...), "data.frame")
 
       # 4. FILTER SNPs
       # --------------------------------------------------------------------------
