@@ -522,7 +522,7 @@ head(extract(fl_ew))
 
 A Manhattan-like plot with the p-values of the association between each exposure and asthma, coloured by families of exposures, is draw by method `plotExwas`.
 
-```{r exwas_plot, warning=FALSE, fig.width=10, fig.height=9}
+```{r exwas_plot, warning=FALSE, fig.width=10, fig.height=9, message=FALSE}
 library(gridExtra)
 clr <- rainbow(length(familyNames(exp)))
 names(clr) <- familyNames(exp)
