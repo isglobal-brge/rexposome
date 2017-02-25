@@ -8,7 +8,7 @@ setMethod(
 
         ggplot2::ggplot(data.frame(x),
                                 ggplot2::aes(seq_along(x), x, fill = x)) +
-            ggplot2::geom_bar(stat = "identity", ggplot2::aes(width = 1)) +
+            ggplot2::geom_bar(stat = "identity", width = 1) +
             ggplot2::coord_flip() +
             ggplot2::xlim(names(x)) +
             ggplot2::scale_fill_continuous(name = "%",

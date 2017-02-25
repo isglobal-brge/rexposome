@@ -1418,38 +1418,76 @@ setGeneric("plotIntegration", function(object, cmpX=1, cmpY=2, tcolors,
     standardGeneric("plotIntegration")
 )
 
-# -----------------------------------------------------------------------------
-
+#' Obtain the "rid"s from a ResultSet
+#'
+#' This method resunts as character with the \code{rid}
+#' in a given \link{ResultSet}.
+#'
+#' @param object An object of class \link{ResultSet}
+#' @return A character vector of \code{rid}s.
 #' @export rid
 setGeneric("rid", function(object)
     standardGeneric("rid")
 )
 
-
-
-
+#' Compute a lambda score on the results stored in a ResultSet
+#'
+#' Compute lambda score on each result in the given \link{ResultSet} by using
+#' \code{lambdaClayton}.
+#'
+#' @param object An object of class \link{ResultSet}
+#' @return Returns a \code{data.frame} having the exposures and the computed
+#' lambda score.
+#' @param trim (default \code{0.5}) percentage of right omited values for
+#' \link{lambdaClayton}.
+#' @return A labeled numeric vector with the lambda score for each exposure.
 #' @export tableLambda
 setGeneric("tableLambda", function(object, trim=0.5)
     standardGeneric("tableLambda")
 )
 
-
-#' @export plotLambda
-setGeneric("plotLambda", function(object, trim=0.5, width=0.75)
-    standardGeneric("plotLambda")
-)
-
-
+#' Counts the number of hits on the results stored in a ResultSet
+#'
+#' Given a threshold it counts the number of hits in each result in the
+#' given \link{ResultSet}.
+#'
+#' @param object An object of class \link{ResultSet}
+#' @param th (default \code{0.05}) Threshold (p-value) to considere a result
+#' as a hit.
+#' @return A labeled numeric vector with the exposures and the number of hits.
 #' @export tableHits
 setGeneric("tableHits", function(object, th=0.05)
     standardGeneric("tableHits")
 )
 
+#' Plot lambda score for all results in a ResultSet
+#'
+#' This method draws a baplor with the lambda score of each result in the
+#' given \link{ResultSet}.
+#'
+#' @param object An object of class \link{ResultSet}
+#' @param trim (default \code{0.5}) percentage of right omited values for
+#' \link{lambdaClayton}.
+#' @param width (default \code{0.70}) width of the bar
+setGeneric("plotLambda", function(object, trim=0.5, width=0.75)
+    standardGeneric("plotLambda")
+)
 
+#' Plot number of hits per result in ResultSet
+#'
+#' This method draws a barplot with the number of hits in each result
+#' stored in the given \link{ResultSet}.
+#'
+#' @param object An object of class \link{ResultSet}
+#' @param th (default \code{0.05}) Threshold (p-value) to considere a result
+#' as a hit.
+#' @param width (default \code{0.70}) width of the bar
 #' @export plotHits
 setGeneric("plotHits", function(object, th=0.05, width=0.75)
     standardGeneric("plotHits")
 )
+
+# -----------------------------------------------------------------------------
 
 #' @export raw
 setGeneric("raw", function(object)
