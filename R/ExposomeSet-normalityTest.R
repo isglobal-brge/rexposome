@@ -19,7 +19,7 @@ setMethod(
                 ex <- ex[!is.na(ex)]
                 if(sum(!is.na(ex)) >= min.val) {
                     pv <- shapiro.test(ex)
-                    list(pv$p.value <= th, pv$p.value)
+                    list(pv$p.value >= th, pv$p.value)
                 } else {
                     pv <- NA
                     list(NA, NA)
@@ -30,7 +30,7 @@ setMethod(
             colnames(tst) <- c("exposure", "normality", "p.value")
 
             tst$p.value <- as.numeric(tst$p.value)
-            tst$normality <- !unlist(tst$normality)
+            tst$normality <- unlist(tst$normality)
 
             tst <- tst[order(tst$p.value), ]
         }

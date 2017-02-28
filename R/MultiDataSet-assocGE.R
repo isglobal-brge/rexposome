@@ -137,7 +137,7 @@ setMethod(
                         N=nrow(pheno),
                         error=NA,
                         design=design,
-                        result=limma::topTable(fit, coef=2, n=Inf, p.value=1)
+                        result=fit #limma::topTable(fit, coef=2, n=Inf, p.value=1)
                     )
                 }, error=function(e){
                     list(
@@ -255,7 +255,7 @@ setMethod(
                             N=nrow(pheno),
                             error=NA,
                             design=design,
-                            result=limma::topTable(fit, coef=2, n=Inf, p.value=1)
+                            result=fit #limma::topTable(fit, coef=2, n=Inf, p.value=1)
                         )
                     }, error=function(e) {
                         message(e)
