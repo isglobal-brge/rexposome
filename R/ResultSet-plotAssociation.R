@@ -1,7 +1,7 @@
 setMethod(
     f = "plotAssociation",
     signature = "ResultSet",
-    definition = function(object, rid = 1, type, ...) {
+    definition = function(object, rid = 1, coef = 2, type, ...) {
         ## plot.new()
         ## type = c("manhattan", "qq", "feature")
         if(object@fun_origin == "assocGE") {
@@ -11,7 +11,7 @@ setMethod(
                      "Given one from '", paste(object@class_origin,
                                                collapse="', '"), "'")
             }
-            return(.plot_assoc_genexp(object, rid, type, ...))
+            return(.plot_assoc_genexp(object, rid, coef, type, ...))
         } else if(object@fun_origin == "assocME") {
             if(sum(object@class_origin %in%  c("ExposomeSet", "MethylationSet", "ExposomeClust")) != 2) {
                 stop("Invalid object 'ResultSet'. Expected an object ",
