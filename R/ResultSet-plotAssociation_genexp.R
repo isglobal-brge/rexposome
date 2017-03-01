@@ -19,7 +19,7 @@
     }
     ## ------------------------------------------------------------------------
 
-    dta <- limma:topTable(object@results[[rid]]$result, coef=coef, n=Inf)
+    dta <- limma::topTable(object@results[[rid]]$result, coef=coef, n=Inf)
     if(type == "qq") {
         ##qqman::qq(object@results[[rid]]$result$P.Value, ...)
         qq_plot(dta$P.Value)
