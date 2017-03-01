@@ -1,3 +1,4 @@
+#' @describeIn ExposomePCA-class Plot correlation between exposures and PCA
 setMethod(
     f = "plotEXP",
     signature = "ExposomePCA",

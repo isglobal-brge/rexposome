@@ -659,7 +659,7 @@ setGeneric("plotPHE", function(object, phenotype, exp2fac = 5)
 #' \link{ExposomePCA} and the values for each component of the PCA in the
 #' same \link{ExposomePCa}
 #'
-#' @param object An object oc class \link{ExposmePCA}
+#' @param object An object of class \link{ExposmePCA}
 #' @param exposure (optional) to select a set of exposures to be ploted.
 #' If not given all are used.
 #' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotPHE}
