@@ -1,7 +1,7 @@
 setMethod(
     f = "extract",
     signature = "ResultSet",
-    definition = function(object, rid, sort = TRUE) {
+    definition = function(object, rid, coef=2, sort = TRUE) {
         # ## checking -----------------------------------------------------------
         # if(missing(rid)) {
         #     rid <- 1:length(object@results)
@@ -21,13 +21,13 @@ setMethod(
         if(object@fun_origin == "assocGE") {
             if(missing(rid)) {
                 res <- lapply(names(object@results), function(nme) {
-                    tt <- object@results[[nme]]$result
+                    tt <- limma::topTable(object@results[[nme]]$result, coef=coef, n=Inf)
                     tt$exposure <- nme
                     return(tt)
                 })
                 res <- do.call(rbind, res)
             } else {
-                res <- object@results[[rid]]$result
+                res <- limma::topTable(object@results[[rid]]$result, coef=coef, n=Inf)
             }
         } else if(object@fun_origin == "assocME") {
             if(missing(rid)) {

@@ -37,7 +37,7 @@
     } else if(type == "volcano") {
         volcano_plot(
             pval=dta$result$P.Value,
-            fc=odta$result$logFC,
+            fc=dta$result$logFC,
             names=rownames(dta$result),
             tFC=tFC,
             tPV=tPV
