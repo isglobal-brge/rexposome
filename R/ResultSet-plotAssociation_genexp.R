@@ -24,7 +24,7 @@
         ##qqman::qq(object@results[[rid]]$result$P.Value, ...)
         qq_plot(dta$P.Value)
     } else if(type == "manhattan") {
-        dta <- dta$result[ ,
+        dta <- dta[ ,
             c(id.col, pv.col, chr.col, pos.col)]
         colnames(dta) <- c("SNP", "P", "CHR", "BP")
         dta$CHR <- gsub("chr", "", sapply(strsplit(dta$CHR, "_"), "[[", 1))
@@ -36,9 +36,9 @@
         qqman::manhattan(dta, ylab="-log10(P.Value)", ...)
     } else if(type == "volcano") {
         volcano_plot(
-            pval=dta$result$P.Value,
-            fc=dta$result$logFC,
-            names=rownames(dta$result),
+            pval=dta$P.Value,
+            fc=dta$logFC,
+            names=rownames(dta),
             tFC=tFC,
             tPV=tPV
         )
