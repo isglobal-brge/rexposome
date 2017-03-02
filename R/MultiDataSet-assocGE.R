@@ -133,6 +133,7 @@ setMethod(
             } else {
                 tryCatch({
                     # Design model
+pheno <<- pheno
                     design.mm <- model.matrix(formula(design), data = pheno)
                     gexp <- object[[tomic]][ , rownames(pheno), drop=FALSE]
                     # If required, apply SVA
