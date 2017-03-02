@@ -95,11 +95,12 @@ setMethod(
             if(verbose) {
                 message("Evaluating model '", as.character(design), "'.")
             }
-            pheno <<- .create_p(
+            pheno <- .create_p(
                 expo.dt = exp.dt,
                 omic.p = pData(object[[tomic]]),
                 select = all.vars(design)
             )
+            phenoA <<- pheno
 
             if(class(pheno) == "character") {
                 stop("Invalid value '", pheno, "' in 'exposures' or 'covariates'")
