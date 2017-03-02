@@ -135,7 +135,8 @@ setMethod(
                     # Design model
                     design.mm <- model.matrix(formula(design), data = pheno)
                     gexp <- object[[tomic]][ , rownames(pheno), drop=FALSE]
-
+d1 <<- design.mm
+d2 <<- gexp
                     # If required, apply SVA
                     n.sv <- NA
                     if(sva) {
