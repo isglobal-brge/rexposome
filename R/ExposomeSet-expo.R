@@ -12,5 +12,6 @@ setMethod(
                 expos[ , ii] <- as.factor(expos[ , ii])
             }
         }
+        expos
     }
 )
