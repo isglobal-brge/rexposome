@@ -2,17 +2,15 @@ setMethod(
     f = "expos",
     signature = "ExposomeSet",
     definition = function(object) {
-        expos <- data.frame(t(assayDataElement(object, "exp")))
-        type <- fData(object)[colnames(expos), "_type"]
+        ms <- data.frame(t(assayDataElement(object, "exp")))
+        type <- fData(object)[colnames(ms), "_type"]
         for(ii in 1:length(type)) {
-            message(ii, ": ", type[ii])
-            expos[expos[ , ii] == "NA" , ii] <- NA
             if(type[ii] == "numeric") {
-                expos[ , ii] <- as.numeric(expos[ , ii])
+                ms[ , ii] <- as.numeric(ms[ , ii])
             } else {
-                expos[ , ii] <- as.factor(expos[ , ii])
+                ms[ , ii] <- as.factor(ms[ , ii])
             }
         }
-        expos
+        ms
     }
 )
