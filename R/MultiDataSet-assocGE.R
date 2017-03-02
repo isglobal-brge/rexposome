@@ -56,7 +56,7 @@ setMethod(
         formula <- as.character(as.formula(formula))
         #exp.dt <- as.data.frame(object[[texp]])
         es <- object[[texp]]
-        exp.dt <- cbind(pData(es), expos(es))
+        exp.dt <<- cbind(pData(es), expos(es))
         rm(es)
 
         if(tann == "cluster") {
@@ -95,7 +95,7 @@ setMethod(
             if(verbose) {
                 message("Evaluating model '", as.character(design), "'.")
             }
-            pheno <- .create_p(
+            pheno <<- .create_p(
                 expo.dt = exp.dt,
                 omic.p = pData(object[[tomic]]),
                 select = all.vars(design)
@@ -105,7 +105,7 @@ setMethod(
                 stop("Invalid value '", pheno, "' in 'exposures' or 'covariates'")
             }
 
-            na.loc <- rowSums(apply(pheno, 2, is.na))
+            na.loc <<- rowSums(apply(pheno, 2, is.na))
             na.loc <- which(na.loc != 0)
             if(length(na.loc) != 0) {
                 if(warnings | verbose) {
