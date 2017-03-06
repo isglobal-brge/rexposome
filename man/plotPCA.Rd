@@ -19,6 +19,10 @@ taht will be ploted.}
 \item{phentoype}{If \code{set} is set to \code{"samples"} can be used to
 color samples by phentoype}
 }
+\value{
+An object of class \code{ggplot} or an object of class
+\code{gtable} if argument \code{set} was set to \code{"all"}.
+}
 \description{
 Methdo to draw a plot for PCA contained in an \link{ExposomePCA}
 }

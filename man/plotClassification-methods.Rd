@@ -15,13 +15,18 @@ plotClassification(x, ...)
 
 \item{type}{Two types are available: \code{"heatmap"} or \code{"valuemap"}.}
 }
+\value{
+A \code{list} with different graphics parameters.
+}
 \description{
 Draw the profile of the levels exposures after a classification with a
 clustering method
 }
 \examples{
+\dontrun{
 data("eclust")
 plotClassification(expo_c)
+}
 }
 \seealso{
 \link{clustering} as a constructor for \link{ExposomeClust},

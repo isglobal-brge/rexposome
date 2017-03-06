@@ -16,6 +16,9 @@ plotCorrelation(x, type = "circos", ...)
 \item{...}{Argiments given to \code{corrplot} of package \link{corrplot}
 if a matrix is draw, otherwise not used.}
 }
+\value{
+A \code{list} with different graphics parameters.
+}
 \description{
 While the circos plot can be used to see the general behaviours intra and
 extra families of exposures, the matrix plot allows for a detailed view of
@@ -23,7 +26,7 @@ the correlations within an \code{ExposomeCorr} object.
 }
 \examples{
 data("exposome")
-expo.c <- correlation(exp)
+expo.c <- correlation(expo)
 plotCorrelation(expo.c, type="circos")
 plotCorrelation(expo.c, type="matrix")
 }

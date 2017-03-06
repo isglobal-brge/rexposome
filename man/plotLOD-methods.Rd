@@ -21,6 +21,9 @@ values.}
 
 \item{set}{Can be set to \code{"exposures"} or to \code{"phenotypes"}.}
 }
+\value{
+A \code{ggplot} object.
+}
 \description{
 This function can be used to draw the amount of under-LOD values in the
 exposures of an \link{ExposomeSet}.

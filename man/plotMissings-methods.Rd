@@ -17,6 +17,9 @@ plotMissings(object, set, x.max = 100, sort = TRUE)
 \item{sort}{(default \code{TRUE}) If \code{TRUE} the chart will be ordered
 from the features with less missing data to the ones with more missing data.}
 }
+\value{
+A \code{ggplot} object.
+}
 \description{
 This function can be used to draw the number of missing data in exposures and
 in phenotypes of an \link{ExposomeSet}.

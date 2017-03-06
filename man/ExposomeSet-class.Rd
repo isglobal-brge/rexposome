@@ -107,6 +107,9 @@
 \S4method{add_exp}{MultiDataSet,ExposomeSet}(object, expoSet, warnings = TRUE,
   ...)
 }
+\value{
+An object of class \code{ExposomeSet}
+}
 \description{
 Class \code{ExposomeSet} contains the exposure levels, the exposure's
 description and the samples phenotype. It is the starting object for
@@ -190,7 +193,7 @@ the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 }}
 
 \seealso{
-\code{\link{read_exposome}} for constructor from files,
-\link{create_exposome} for constructor from loaded
-\code{data.frames}, \link{eSet} for main class container
+\code{\link{read_exposome}} to create an \code{ExposomeSet}
+from files, \code{\link{create_exposome}} to create an \cpde{ExposomeSet}
+from \code{data.frames}
 }

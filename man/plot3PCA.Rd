@@ -29,6 +29,9 @@ each dot to the base plane.}
 
 \item{phentoype}{Used to color samples by phentoype}
 }
+\value{
+A \code{list} with different graphics option from \code{scatterplot3d}.
+}
 \description{
 Methdo to draw a plot for samples using three PC contained in an
 \link{ExposomePCA}

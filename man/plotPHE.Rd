@@ -15,6 +15,9 @@ If not given all are used.}
 \item{exp2fac}{(default, \code{5}) Threshold to considere a phentoype
 categorical (less or equal to) or continuous (more than).}
 }
+\value{
+An object of class \code{ggplot}.
+}
 \description{
 Function used to plot the association between the phentoypes in an
 \link{ExposomePCA} and the values for each component of the PCA in the

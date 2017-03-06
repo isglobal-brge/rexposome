@@ -18,6 +18,9 @@
 \arguments{
 \item{sort}{If \code{TRUE}, the results are ordered by AIC}
 }
+\value{
+An object of class \code{nlExWAS}
+}
 \description{
 Class \code{nlExWAS} obtained from \link{nl_exwas} method of an
 \link{ExposomeSet} object, contains the result of testing the multiple
@@ -49,6 +52,3 @@ Study".
 \item{\code{xyformula}}{Formulas used in \code{mboost} package.}
 }}
 
-\seealso{
-\link{exwas} for constructor using an \link{ExWAS}
-}

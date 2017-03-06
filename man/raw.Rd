@@ -6,6 +6,9 @@
 \usage{
 raw(object)
 }
+\value{
+An object of class \code{\link{glmnet}}
+}
 \description{
 Getter for raw model gnerated with mexwas
 }

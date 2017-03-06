@@ -34,6 +34,9 @@
 
 \S4method{plotPHE}{ExposomePCA}(object, phenotype, exp2fac = 5)
 }
+\value{
+An object of class \code{ExposomePCA}
+}
 \description{
 Class \code{ExposomePCA} contains a matrix of exposures used to
 compute the PCA, also a table of phenotypes and a set congtaing the
@@ -71,9 +74,6 @@ the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 }}
 
 \seealso{
-\link{correlation} for constructor using an
-\link{ExposomeSet},
-\link{ExposomeSet-class} for origin data,
-\link{ExposomeClust-class} for similar structure,
-\link{eSet} for main class container
+\code{\link{correlation}} to study the correlation between
+exposures in a \code{\link{ExposomeSet}}
 }

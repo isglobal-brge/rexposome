@@ -24,6 +24,9 @@ quantifiable value, \code{3}}
 
 \item{seed}{(default: \code{NULL})}
 }
+\value{
+A new \code{data.frame} with the imputed exposures.
+}
 \description{
 Homologous function to the \link{ilod} method of \link{ExposomeSet} for a
 given \code{data.frame} of exposures and a \code{vector} of threshold.

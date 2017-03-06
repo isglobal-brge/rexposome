@@ -16,6 +16,9 @@ name of the families.}
 \item{show.effective}{(default TRUE) draws a brown line on the
 threshold given by the effective number of tests.}
 }
+\value{
+An object of class \code{ggplot}.
+}
 \description{
 This function draws a sort of manhattan plots using the p-value of the
 association of the exposures with phenotypes of an \code{ExWAS} object.

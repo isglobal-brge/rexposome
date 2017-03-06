@@ -16,6 +16,9 @@
 
 \S4method{plotCorrelation}{ExposomeCorr}(x, type = c("circos", "matrix"), ...)
 }
+\value{
+An object of class \code{ExposomeCorr}
+}
 \description{
 Class \code{ExposomeCorr} contains a matrix of correlations between
 continuos exposures calculated using \link{cor}. It also contains the
@@ -47,9 +50,6 @@ the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 }}
 
 \seealso{
-\link{correlation} for constructor using an
-\link{ExposomeSet},
-\link{ExposomeSet-class} for origin data,
-\link{ExposomeClust-class} for similar structure,
-\link{eSet} for main class container
+\code{\link{pca}} to study the behavioud between samples
+and exposures in an \code{\link{ExposomeSet}}
 }

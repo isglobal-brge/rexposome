@@ -20,6 +20,10 @@ containing the LOD thresholds.}
 from the features with less missing data to the ones with more under-LOD
 values.}
 }
+\value{
+A numeric vector with number of udner-LOD values per exposure. The
+vector is labeled with the exposure's names.
+}
 \description{
 This function can be used to obtain a table with the under-LOD data in
 exposures of an \link{ExposomeSet}.

@@ -22,6 +22,9 @@
 \arguments{
 \item{sort}{If \code{TRUE}, the results are ordered by pvalue.}
 }
+\value{
+An object of class \code{ExWAS}
+}
 \description{
 Class \code{ExWAS} obtained from \link{exwas} method of an
 \link{ExposomeSet} object, contains the result of testing the association
@@ -57,5 +60,8 @@ levels of exposures and phenotype.}
 }}
 
 \seealso{
-\link{m_exwas} for constructor using an  \link{nlExWAS}
+\code{\link{exwas}} to perform an Exposome-Wide  Association Study
+and to create an \code{\link{ExWAS}}, \code{\link{mexwas}} to perform a
+Multivariate Exposome-Wide Association Study and to create a
+\code{\link{mExWAS}}
 }

@@ -145,6 +145,7 @@ setGeneric("expos", function(object)
 #' @param object code{ExposomeSet} with 'set' will be summarized.
 #' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
 #' @param select Subseting of exposures of phenotypes.
+#' @return A basic description of the exposures in the \code{ExposomeSet}
 #' @examples
 #' data("exposome")
 #' Summary(expo, set = "exposures")
@@ -164,9 +165,10 @@ setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
 #' @name restore
 #' @rdname restore-methods
 #' @aliases restore
-#' @param object code{ExposomeSet} with 'set' will be summarized.
+#' @param object On object of class \code{ExposomeSet}.
 #' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
 #' @param select Subseting of exposures of phenotypes.
+#' @return An \code{ExposomeSet} with no transformations.
 #' @examples
 #' data("exposome")
 #' restore(expo)
@@ -295,7 +297,7 @@ setGeneric("highAndLow", function(object, ngroups = 3,
 #' It creates a \code{data.frame} of boolean indicating if the exposures follows
 #' a normal distribution or not.
 #'
-#' This functions uses \link{shapiro.test} to test the normality of the
+#' This functions uses \code{\link{shapiro.test}} to test the normality of the
 #' exposures and returns a \code{data.frame} with a boolean value and a
 #' p-value for each exposure.
 #'
@@ -311,6 +313,11 @@ setGeneric("highAndLow", function(object, ngroups = 3,
 #' to test the exposures.
 #' @param na.rm (by default \code{TRUE}) Removes the NA values to test the
 #' normality on the exposure.
+#' @return A \code{data.frame} with three columns: exposure, normality and
+#' p.value. "exposure" column contains the name of each exposure. "normalty"
+#' column contains a \code{logical} value indicating if the obtained p-value
+#' is under the given threshold. "p.value" column contains the obtained p-value
+#' from \code{\link{shapiro.test}}.
 #' @examples
 #' data("exposome")
 #' normalityTest(expo)
@@ -337,6 +344,8 @@ setGeneric("normalityTest", function(object, exposure, th = 0.05, min.val = 5,
 #' and \code{"p"} for percentage.
 #' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
 #' from the features with less missing data to the ones with more missing data.
+#' @return A numeric vector with number of missing values per exposure. The
+#' vector is labeled with the exposure's names.
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
@@ -367,6 +376,8 @@ setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
 #' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
 #' from the features with less missing data to the ones with more under-LOD
 #' values.
+#' @return A numeric vector with number of udner-LOD values per exposure. The
+#' vector is labeled with the exposure's names.
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
@@ -395,6 +406,7 @@ setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TR
 #' @param x.max (default \code{100}) Fix the maxium value of the X-axis.
 #' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
 #' from the features with less missing data to the ones with more missing data.
+#' @return A \code{ggplot} object.
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
@@ -425,6 +437,7 @@ setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
 #' @param sort (default \code{TRUE}) If \code{TRUE} the chart will be ordered
 #' from the features with less missing data to the ones with more under-LOD
 #' values.
+#' @return A \code{ggplot} object.
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
@@ -458,6 +471,8 @@ setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE
 #' @param scatter (default \code{TRUE}) If the family to be plotted is
 #' continuous, the samples will be shown.
 #' @param na.omit (default \code{TRUE}) Do not show \code{NA} values.
+#' @return A \code{ggplot} object if a family was selected. \code{invisible()}
+#' if argument \code{family} was set to \code{"all"}.
 #' @examples
 #' data("exposome")
 #' plt <- plotFamily(expo, family = "Metals")
@@ -489,6 +504,7 @@ setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.o
 #' @param show.trans (default \code{FALSE}) If set to \code{TRUE} it will draw
 #' a panel of auxiliar plots with the continuous exposure transformed with
 #' \code{log} and \code{sqrt}.
+#' @return A \code{ggplot} object.
 #' @examples
 #' data("exposome")
 #' plotHistogram(expo[1:3, ], select = "ldde_lip")
@@ -627,6 +643,7 @@ setGeneric("ndim", function(object)
 #' If not given all are used.
 #' @param exp2fac (default, \code{5}) Threshold to considere a phentoype
 #' categorical (less or equal to) or continuous (more than).
+#' @return An object of class \code{ggplot}.
 #' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotEXP}
 #' to plot the correlation between exposures ans PCA,
 #' \link{ExposmePCA} as main class
@@ -648,6 +665,7 @@ setGeneric("plotPHE", function(object, phenotype, exp2fac = 5)
 #' @param object An object of class \link{ExposmePCA}
 #' @param exposure (optional) to select a set of exposures to be ploted.
 #' If not given all are used.
+#' @return An object of class \code{ggplot}.
 #' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotPHE}
 #' to plot the P-Value of association between phenotypes ans PCA,
 #' \link{ExposmePCA} as main class
@@ -671,6 +689,8 @@ setGeneric("plotEXP", function(object, exposure)
 #' @param cmpY (default: \code{2}) component to be placed at Y axis
 #' @param phentoype If \code{set} is set to \code{"samples"} can be used to
 #' color samples by phentoype
+#' @return An object of class \code{ggplot} or an object of class
+#' \code{gtable} if argument \code{set} was set to \code{"all"}.
 #' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 #' to plot the PCA, \link{ExposomePCA} as main class
 #' @examples
@@ -706,6 +726,7 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
 #' @param legend (default \code{TRUE}) If \code{TRUE} shows the legend.
 #' @param plines (default \code{TRUE}) If \code{TRUE} it draws the lines from
 #' each dot to the base plane.
+#' @return A \code{list} with different graphics option from \code{scatterplot3d}.
 #' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 #' to plot the PCA, \link{ExposomePCA} as main class
 #' data("exposome")
@@ -765,9 +786,10 @@ setGeneric("correlation", function(object, ..., warnings = TRUE)
 #' \code{"matrix"}.
 #' @param ... Argiments given to \code{corrplot} of package \link{corrplot}
 #' if a matrix is draw, otherwise not used.
+#' @return A \code{list} with different graphics parameters.
 #' @examples
 #' data("exposome")
-#' expo.c <- correlation(exp)
+#' expo.c <- correlation(expo)
 #' plotCorrelation(expo.c, type="circos")
 #' plotCorrelation(expo.c, type="matrix")
 #' @export plotCorrelation
@@ -881,9 +903,12 @@ setGeneric("classification", function(object)
 #' @param x Object of class \code{Exposomeclust}
 #' @param type Two types are available: \code{"heatmap"} or \code{"valuemap"}.
 #' @param ... NOT USED
+#' @return A \code{list} with different graphics parameters.
 #' @examples
+#' \dontrun{
 #' data("eclust")
 #' plotClassification(expo_c)
+#' }
 #' @export plotClassification
 #' @seealso \link{clustering} as a constructor for \link{ExposomeClust},
 #' \link{classification} to see how to obtain the classification of
@@ -971,6 +996,7 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
 #' data("exposome")
 #' wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
 #' raw(wt)
+#' @return An object of class \code{\link{glmnet}}
 #' @export raw
 setGeneric("raw", function(object)
     standardGeneric("raw")
@@ -1056,6 +1082,7 @@ setGeneric("extract", function(object, ...)
 #' name of the families.
 #' @param show.effective (default TRUE) draws a brown line on the
 #' threshold given by the effective number of tests.
+#' @return An object of class \code{ggplot}.
 #' @examples
 #' data(exposome)
 #' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
@@ -1078,6 +1105,7 @@ setGeneric("plotExwas", function(object, ...)
 #' @param select (optional) Character with exposures to be shown.
 #' @param xlab (optional) Label for X-axis.
 #' @param ylab (optional) Label for Y-axis.
+#' @return An object of class \code{ggplot}.
 #' @examples
 #' data(exposome)
 #' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
@@ -1099,6 +1127,7 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 #' w2 <- exwas(expo[1:5, ], asthma~sex+age, family = "binomial")
 #' tef(w1)
 #' tef(w2)
+#' @return A number indicating the efective threshold.
 #' @export tef
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects
 #' @references Evaluating the effective numbers of independent tests and

@@ -9,6 +9,9 @@ tef(object)
 \arguments{
 \item{object}{An \code{ExWAS} object}
 }
+\value{
+A number indicating the efective threshold.
+}
 \description{
 Function to get the Threshold for effective tests (TEF)
 }

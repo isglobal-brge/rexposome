@@ -18,6 +18,10 @@ and \code{"p"} for percentage.}
 \item{sort}{(default \code{TRUE}) If \code{TRUE} the chart will be ordered
 from the features with less missing data to the ones with more missing data.}
 }
+\value{
+A numeric vector with number of missing values per exposure. The
+vector is labeled with the exposure's names.
+}
 \description{
 This function can be used to obtain a table with the missing data in
 exposures and in phenotypes of an \link{ExposomeSet}.

@@ -16,10 +16,11 @@
 #' (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
-#' @seealso \code{\link{read_exposome}} for constructor from files,
-#' \link{create_exposome} for constructor from loaded
-#' \code{data.frames}, \link{eSet} for main class container
+#' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}
+#' from files, \code{\link{create_exposome}} to create an \cpde{ExposomeSet}
+#' from \code{data.frames}
 #' @importClassesFrom Biobase eSet
+#' @return An object of class \code{ExposomeSet}
 setClass(
   Class = "ExposomeSet",
   contains = "eSet",
@@ -48,12 +49,10 @@ setClass(
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot desc.famCol Name or index of the column containing the exposure's name
 #' (in description file).
-#' @seealso \link{correlation} for constructor using an
-#' \link{ExposomeSet},
-#' \link{ExposomeSet-class} for origin data,
-#' \link{ExposomeClust-class} for similar structure,
-#' \link{eSet} for main class container
+#' @seealso \code{\link{pca}} to study the behavioud between samples
+#' and exposures in an \code{\link{ExposomeSet}}
 #' @importClassesFrom Biobase eSet
+#' @return An object of class \code{ExposomeCorr}
 setClass(
   Class = "ExposomeCorr",
   contains = "eSet"
@@ -74,12 +73,10 @@ setClass(
 #' (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
-#' @seealso \link{correlation} for constructor using an
-#' \link{ExposomeSet},
-#' \link{ExposomeSet-class} for origin data,
-#' \link{ExposomeClust-class} for similar structure,
-#' \link{eSet} for main class container
+#' @seealso \code{\link{correlation}} to study the correlation between
+#' exposures in a \code{\link{ExposomeSet}}
 #' @importClassesFrom Biobase eSet
+#' @return An object of class \code{ExposomePCA}
 setClass(
     Class = "ExposomePCA",
     contains = "eSet",
@@ -109,7 +106,11 @@ setClass(
 #' levels of exposures and phenotype.
 #' @slot description Description of the exposures used in the ExWAS.
 #' (in description file).
-#' @seealso \link{m_exwas} for constructor using an  \link{nlExWAS}
+#' @seealso \code{\link{exwas}} to perform an Exposome-Wide  Association Study
+#' and to create an \code{\link{ExWAS}}, \code{\link{mexwas}} to perform a
+#' Multivariate Exposome-Wide Association Study and to create a
+#' \code{\link{mExWAS}}
+#' @return An object of class \code{ExWAS}
 setClass(
   Class = "ExWAS",
   representation = representation(
@@ -139,7 +140,7 @@ setClass(
 #' @slot predictors Predictors obained from \code{mboost} package.
 #' @slot X \code{data.fame} with the phenotypes used in the models.
 #' @slot xyformula Formulas used in \code{mboost} package.
-#' @seealso \link{exwas} for constructor using an \link{ExWAS}
+#' @return An object of class \code{nlExWAS}
 setClass(
     Class = "nlExWAS",
     representation = representation(
@@ -169,7 +170,11 @@ setClass(
 #' @slot result klist with the fitted model and result.
 #' @slot phenotype Name of the phenotype used in the analysys.
 #' @slot description feature data from original ExposomeSet.
-#' @seealso \link{exwas} for constructor using an \link{ExWAS}
+#' @seealso \code{\link{mexwas}} to perform a Multivariate Exposome-Wide
+#' Association Study and to create a \code{\link{mExWAS}},
+#' \code{\link{exwas}} to perform an Exposome-Wide  Association Study
+#' and to create an \code{\link{ExWAS}}
+#' @return An object of class \code{mExWAS}
 setClass(
     Class = "mExWAS",
     representation = representation(
@@ -193,8 +198,9 @@ setClass(
 #' @slot method Function used to perform the clustering of the exposures.
 #' @slot call Call used to create this object.
 #' @slot samples Name of the exposures after the clustering process.
-#' @seealso \code{\link{clustering}} for constructor using an
-#' \code{\link{ExposomeSet}}
+#' @seealso \code{\link{clustering}} to apply a clustering on an
+#' \code{\link{ExposomeSet}} and create an \code{\link{ExposomeClust}}.
+#' @return An object of class \code{ExposomeClust}
 setClass(
   Class = "ExposomeClust",
   contains = "ExposomeSet",

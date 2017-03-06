@@ -13,6 +13,9 @@ Summary(object, set = c("exposures", "phenotypes"), select, ...)
 
 \item{select}{Subseting of exposures of phenotypes.}
 }
+\value{
+A basic description of the exposures in the \code{ExposomeSet}
+}
 \description{
 Given an \link{ExposomeSet} is shows a summary for its exposures or
 its phenotypes.

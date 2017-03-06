@@ -13,6 +13,9 @@
 
 \S4method{plotClassification}{ExposomeClust}(x, type = "heatmap", ...)
 }
+\value{
+An object of class \code{ExposomeClust}
+}
 \description{
 Class \code{ExposomeClust} obtained from \link{clustering} on an
 \link{ExposomeSet} object, represents the groups of samples created
@@ -38,6 +41,6 @@ applying a clustering method on the \code{ExposomeSet}' exposures.
 }}
 
 \seealso{
-\code{\link{clustering}} for constructor using an
-\code{\link{ExposomeSet}}
+\code{\link{clustering}} to apply a clustering on an
+\code{\link{ExposomeSet}} and create an \code{\link{ExposomeClust}}.
 }

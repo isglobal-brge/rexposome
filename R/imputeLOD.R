@@ -13,6 +13,7 @@
 #' @param pLOD (default: \code{0}) minimum percentave of values under LOD
 #' @param log (default: \code{NA}) log transformation to normalize data
 #' @param seed (default: \code{NULL})
+#' @return A new \code{data.frame} with the imputed exposures.
 #' @export imputeLOD
 #' @examples
 #' \dontrun{

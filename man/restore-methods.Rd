@@ -7,11 +7,14 @@
 restore(object)
 }
 \arguments{
-\item{object}{code{ExposomeSet} with 'set' will be summarized.}
+\item{object}{On object of class \code{ExposomeSet}.}
 
 \item{set}{Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).}
 
 \item{select}{Subseting of exposures of phenotypes.}
+}
+\value{
+An \code{ExposomeSet} with no transformations.
 }
 \description{
 Given an \link{ExposomeSet} is restores the original data and remove

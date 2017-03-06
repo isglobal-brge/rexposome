@@ -19,6 +19,9 @@
 \arguments{
 \item{sort}{NOT USED}
 }
+\value{
+An object of class \code{mExWAS}
+}
 \description{
 Class \code{mExWAS} obtained from \link{m_exwas} method of an
 \link{ExposomeSet} object, contains the result of testing the multiple
@@ -50,5 +53,8 @@ exposure
 }}
 
 \seealso{
-\link{exwas} for constructor using an \link{ExWAS}
+\code{\link{mexwas}} to perform a Multivariate Exposome-Wide
+Association Study and to create a \code{\link{mExWAS}},
+\code{\link{exwas}} to perform an Exposome-Wide  Association Study
+and to create an \code{\link{ExWAS}}
 }

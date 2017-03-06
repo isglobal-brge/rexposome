@@ -12,6 +12,9 @@ plotEXP(object, exposure)
 \item{exposure}{(optional) to select a set of exposures to be ploted.
 If not given all are used.}
 }
+\value{
+An object of class \code{ggplot}.
+}
 \description{
 Function used to plot the correlation between the exposures in an
 \link{ExposomePCA} and the values for each component of the PCA in the

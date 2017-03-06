@@ -23,8 +23,15 @@ to test the exposures.}
 \item{na.rm}{(by default \code{TRUE}) Removes the NA values to test the
 normality on the exposure.}
 }
+\value{
+A \code{data.frame} with three columns: exposure, normality and
+p.value. "exposure" column contains the name of each exposure. "normalty"
+column contains a \code{logical} value indicating if the obtained p-value
+is under the given threshold. "p.value" column contains the obtained p-value
+from \code{\link{shapiro.test}}.
+}
 \description{
-This functions uses \link{shapiro.test} to test the normality of the
+This functions uses \code{\link{shapiro.test}} to test the normality of the
 exposures and returns a \code{data.frame} with a boolean value and a
 p-value for each exposure.
 }

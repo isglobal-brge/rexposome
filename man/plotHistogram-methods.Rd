@@ -20,6 +20,9 @@ drawn overlapping the histogram.}
 a panel of auxiliar plots with the continuous exposure transformed with
 \code{log} and \code{sqrt}.}
 }
+\value{
+A \code{ggplot} object.
+}
 \description{
 It draws a grid with an histogram per exposure in an \link{ExposomeSet}.
 }

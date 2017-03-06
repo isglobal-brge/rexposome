@@ -24,6 +24,10 @@ continuous, the samples will be shown.}
 
 \item{na.omit}{(default \code{TRUE}) Do not show \code{NA} values.}
 }
+\value{
+A \code{ggplot} object if a family was selected. \code{invisible()}
+if argument \code{family} was set to \code{"all"}.
+}
 \description{
 This function draw a profile of the full exposome into an \link{ExposomeSet}
 or the profile of the exposures in a specific family. For continuous
