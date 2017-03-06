@@ -9,16 +9,10 @@ studies.}
 extract(object, ...)
 }
 \arguments{
-\item{object}{Object of class \link{ExWAS} or \link{ResultSet}.}
+\item{object}{Object of class \link{ExWAS}.}
 
 \item{phenotype}{Name of the phenotype to be extracted from an
 \link{ExWAS}.}
-
-\item{rid}{Name or index of the exposure to be extracted from
-\link{ResultSet}.}
-
-\item{sort}{(default \code{TRUE}) If \code{TRUE} table is ordered by
-pvalue (only for \link{ResultSet} objects).}
 }
 \value{
 A \code{data.frame} with the pvalues and other information from the
@@ -26,10 +20,9 @@ association a integration studies of the exposures and phenotypes and
 exposures and omics data.
 }
 \description{
-Method \code{extract} can be applied to \link{ExWAS} and \code{ResultSet}
-objects to obtain a table with the results of the association and
-integration studies implemented in \code{rexposome}.
+Method \code{extract} can be applied to \link{ExWAS} objects to obtain a 
+table with the results of the association studies.
 }
 \seealso{
-\link{ExWAS}, \link{ResultSet}
+\link{ExWAS}
 }

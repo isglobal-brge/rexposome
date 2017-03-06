@@ -957,6 +957,12 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
     standardGeneric("mexwas")
 )
 
+#' @export raw
+setGeneric("raw", function(object)
+    standardGeneric("raw")
+)
+
+
 # -----------------------------------------------------------------------------
 
 #' Testing the association between an exposure and a phenotype of an
@@ -1070,6 +1076,7 @@ setGeneric("tef", function(object)
     standardGeneric("tef")
 )
 
+
 # -----------------------------------------------------------------------------
 
 #' Method to add an ExposomeSet to a MultiDataSet
@@ -1112,3 +1119,4 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
 setGeneric("add_cls", function(object, clsSet, ...)
     standardGeneric("add_cls")
 )
+

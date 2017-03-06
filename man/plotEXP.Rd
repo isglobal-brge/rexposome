@@ -7,7 +7,7 @@
 plotEXP(object, exposure)
 }
 \arguments{
-\item{object}{An object oc class \link{ExposmePCA}}
+\item{object}{An object of class \link{ExposmePCA}}
 
 \item{exposure}{(optional) to select a set of exposures to be ploted.
 If not given all are used.}

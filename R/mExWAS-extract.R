@@ -10,7 +10,6 @@ setMethod(
 )
 
 #' @describeIn mExWAS Method to obtain raw model
-#' @param sort NOT USED
 #' @aliases mExWAS-methods
 setMethod(
     f = "raw",

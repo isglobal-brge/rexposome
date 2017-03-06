@@ -1,9 +1,9 @@
 Package: rexposome
 Title: Exposome exploration and omic data integration
-Version: 0.99.47
+Version: 0.99.48
 Authors@R: person("Carles", "Hernandez-Ferrer", email = "chernandez@creal.cat", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-License: BSD
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
@@ -28,18 +28,11 @@ Imports: BiocInstaller,
     pryr,
     mboost,
     imputeLCMD,
-    snpStats,
-    MEAL,
-    limma,
     scatterplot3d,
     glmnet,
-    omicade4,
-    sva,
     ggrepel,
-    PMA,
     qqman
-Suggests: flexmix,
-    Hmisc,
+Suggests: testthat,
     BiocStyle,
     knitr,
     rmarkdown

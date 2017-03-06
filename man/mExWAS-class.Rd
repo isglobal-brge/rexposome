@@ -16,8 +16,6 @@
 }
 \arguments{
 \item{sort}{NOT USED}
-
-\item{sort}{NOT USED}
 }
 \description{
 Class \code{mExWAS} obtained from \link{m_exwas} method of an

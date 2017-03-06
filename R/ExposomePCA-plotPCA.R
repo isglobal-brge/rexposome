@@ -1,3 +1,4 @@
+#' @describeIn ExposomePCA Plot association score between phentoypes and PCA
 setMethod(
     f = "plotPCA",
     signature = "ExposomePCA",
