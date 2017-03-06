@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Performs a Multiple-EXposure-Wide Association Study.
 setMethod(
     f = "mexwas",
     signature = "ExposomeSet",
@@ -6,9 +7,9 @@ setMethod(
             stop("Given phenotype (", phenotype, ") not in ExposomeSet.")
         }
 
-        dta <- as.data.frame(object, phe=FALSE)
+        dta <- expos(object)
         if(sum(is.na(dta)) != 0) {
-            stop("Exposures data has 'NA' values.")
+            stop("Exposure data has 'NA' values.")
         }
 
         phe <- pData(object)[ , phenotype, drop=FALSE]
@@ -37,7 +38,7 @@ setMethod(
 )
 
 
-function(object, verbose = FALSE, warnings = TRUE) {
+notused <- function(object, verbose = FALSE, warnings = TRUE) {
     object <- expo
 
     if(verbose) {

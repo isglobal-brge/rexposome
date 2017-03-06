@@ -23,6 +23,11 @@ exposures and omics data.
 Method \code{extract} can be applied to \link{ExWAS} objects to obtain a
 table with the results of the association studies.
 }
+\examples{
+data(exposome)
+w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+extract(w1)
+}
 \seealso{
 \link{ExWAS}
 }

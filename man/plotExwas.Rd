@@ -20,6 +20,11 @@ threshold given by the effective number of tests.}
 This function draws a sort of manhattan plots using the p-value of the
 association of the exposures with phenotypes of an \code{ExWAS} object.
 }
+\examples{
+data(exposome)
+w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+plotExwas(w1)
+}
 \seealso{
 \link{exwas} as a constructor for \link{ExWAS} objects,
 \link{extract} to obtain a table with the result of the ExWAS

@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Draws a boxplot or accumulated-bar plot for each
+#' exposure in a given family.
 setMethod(
     f = "plotFamily",
     signature = "ExposomeSet",

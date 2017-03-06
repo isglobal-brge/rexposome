@@ -3,35 +3,7 @@
 \name{plotMissings}
 \alias{plotMissings}
 \alias{plotMissings,ExposomeSet-methods}
-\title{#' Getter to obtain the "status" of an ExposomeSet
-#'
-#' It returns the \code{data.frame} that stores the status of each exposure in
-#' the \link{ExposomeSet}. The status show if the exposures were standardized,
-#' transformed and/or imputed.
-#'
-#' @name sData
-#' @rdname sData-methods
-#' @aliases sData,ExposomeSet-methods
-#' @param object \link{ExposomeSet} that will be queried for the status.
-#' @return A \code{data.frame} with the status of each exposure. The
-#' \code{data.frame} contains 4 columns: \code{fct}, \code{trs}, \code{std},
-#' \code{imp}. They corresponds to 1) was the exposure converted to factor with
-#' \link{highAndLow}? 2) was the exposure transformed with \link{trans}? 3) was
-#' the exposure standardize with \link{standardize} and 4) was the exposure
-#' imputed? Columns 1 and 3 will contain blanks or logical (blank means
-#' \code{FALSE}) while 2 and 4 will contain character indicating the function
-#' used to transform and/or impute the exposure.
-#' @examples
-#' data("exposome")
-#' sData(exp)
-#' @export sData
-#' @seealso \link{highAndLow} to transform the continuous exposures to levelled
-#' factors, \link{trans} to transform the exposures, \link{standardize} to
-#' standardize by normal or robust methods the exposures
-setGeneric("sData", function(object)
-    standardGeneric("sData")
-)
-It draws a chart with the percentage of missing in an ExposomeSet}
+\title{It draws a chart with the percentage of missing in an ExposomeSet}
 \usage{
 plotMissings(object, set, x.max = 100, sort = TRUE)
 }
@@ -52,8 +24,8 @@ in phenotypes of an \link{ExposomeSet}.
 \examples{
 data("exposome")
 # The included has no missing data
-plotMissings(exp, set = "exposures")
-plotMissings(exp, set = "phenotypes")
+plotMissings(expo, set = "exposures")
+plotMissings(expo, set = "phenotypes")
 }
 \seealso{
 \link{plotFamily} to draw the profile of a family of exposures,

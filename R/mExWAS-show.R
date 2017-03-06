@@ -3,7 +3,6 @@ setMethod(
     signature = "mExWAS",
     definition = function(object) {
         cat("An object of class 'mExWAS'\n\n")
-        cat(" . Method: ", object@method, "\n")
         cat(" . Phenotype: ", object@phenotype, "\n")
         if(object@method == "enet") {
             cat(" . #Exposures: ", object@mresult[[1]]$dim[1], "\n")

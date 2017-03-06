@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Standardization of exposures.
 setMethod(
     f = "standardize",
     signature = "ExposomeSet",

@@ -22,6 +22,19 @@ color samples by phentoype}
 \description{
 Methdo to draw a plot for PCA contained in an \link{ExposomePCA}
 }
+\examples{
+data("exposome")
+epca <- pca(expo[3:7, 1:100])
+# A grid with exposures space, samples space and explained variance
+plotPCA(epca, set = "all")
+# Only exposures space
+plotPCA(epca, set = "exposures") + ggplot2::theme(legend.position = "bottom")
+# Only samples space
+plotPCA(epca, set = "samples")
+# Only samples space but coloured by phenotype
+plotPCA(epca, set = "samples", phenotype = "sex") +
+ggplot2::theme(legend.position = "bottom")
+}
 \seealso{
 \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 to plot the PCA, \link{ExposomePCA} as main class

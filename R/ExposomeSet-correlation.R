@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Computes correlation on exposures.
 setMethod(
     f = "correlation",
     signature = "ExposomeSet",

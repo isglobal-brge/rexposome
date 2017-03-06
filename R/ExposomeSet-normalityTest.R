@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Test the normality of each exposure.
 setMethod(
     f = "normalityTest",
     signature = "ExposomeSet",

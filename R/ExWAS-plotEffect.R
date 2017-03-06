@@ -1,3 +1,5 @@
+#' @describeIn ExWAS Draws a plot with the confidence interval of each
+#' exposure. Alows to compare two ExWAS instances.
 setMethod(
     f = "plotEffect",
     signature = "ExWAS",

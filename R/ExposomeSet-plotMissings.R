@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Draws a bar-plot with the amount of missing values.
 setMethod(
     f = "plotMissings",
     signature = "ExposomeSet",

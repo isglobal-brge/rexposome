@@ -25,7 +25,7 @@ It draws a grid with an histogram per exposure in an \link{ExposomeSet}.
 }
 \examples{
 data("exposome")
-plotHistogram(exp[1:3, ])
+plotHistogram(expo[1:3, ], select = "ldde_lip")
 }
 \seealso{
 \link{plotFamily} to draw the profile of a family of exposures,

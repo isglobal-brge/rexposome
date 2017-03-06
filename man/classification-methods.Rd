@@ -16,6 +16,11 @@ A labelled vector with the classification of each exposure.
 \description{
 Method to get the classification of the samples from an ExposomeClust.
 }
+\examples{
+data("eclust")
+tt <- classification(expo_c)
+table(tt)
+}
 \seealso{
 \link{clustering} as a constructor for \link{ExposomeClust},
 \link{plotClassification} to plot the groups

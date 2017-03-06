@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Returns a vector with the number of under-LOD values
+#' per exposure.
 setMethod(
     f = "tableLOD",
     signature = "ExposomeSet",

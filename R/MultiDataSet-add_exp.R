@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Allows to add an \code{ExposomeSet} to a
+#' \code{MultiDataSet}.
 setMethod(
     f = "add_exp",
     signature = c("MultiDataSet", "ExposomeSet"),

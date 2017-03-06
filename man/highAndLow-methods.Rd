@@ -41,7 +41,7 @@ defined by \code{ngroups}. By default, all levels are kept but if
 \examples{
 data("exposome")
 # No drop
-exp.hl <- highAndLow(exp, intervals = "extreme",
+exp.hl <- highAndLow(expo, intervals = "extreme",
     select = c("ldde_lip", "logpb", "lcotinine"))
 dim(exp.hl)
 #[1]  107 1200    5
@@ -51,7 +51,7 @@ dim(exp)
 #         3 factored exposures
 
 # Drop
-exp.hl <- highAndLow(exp, intervals = "extreme",
+exp.hl <- highAndLow(expo, intervals = "extreme",
     select = c("ldde_lip", "logpb", "lcotinine"), drop=TRUE)
 dim(exp.hl)
 #[1]  104 1200    5

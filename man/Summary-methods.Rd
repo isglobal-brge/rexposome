@@ -19,5 +19,5 @@ its phenotypes.
 }
 \examples{
 data("exposome")
-Summary(exp, "exposures")
+Summary(expo, set = "exposures")
 }

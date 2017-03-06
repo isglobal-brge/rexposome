@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Draws an histogram of a given continuous exposure
+#' or a pie chart if a given categorycal exposure.
 setMethod(
     f = "plotHistogram",
     signature = "ExposomeSet",
@@ -7,7 +9,7 @@ setMethod(
             stop("Exposure '", select, "' not in ExposomeSet")
         }
 
-        dta <- as.data.frame(x)[ , select, drop=FALSE]
+        dta <- expos(x)[ , select, drop=FALSE]
         dta$rownames <- rownames(dta)
         dta <- reshape2::melt(dta, id.vars="rownames")
         colnames(dta) <- c("id", "exposure", "value")
@@ -62,7 +64,7 @@ setMethod(
                 ggplot2::geom_bar(ggplot2::aes(fill = factor(value)), width=1) +
                 ggplot2::coord_polar(theta = "y") + ggplot2::theme_void() +
                 ggplot2::scale_fill_discrete("") + ggplot2::theme(
-                    plot.title = element_text(hjust = 0.5))
+                    plot.title = ggplot2::element_text(hjust = 0.5))
                 #ggplot2::facet_wrap(~exposure, scales="free_y") +
                 #ggplot2::theme_bw() + ggplot2::xlab("") + ggplot2::scale_fill_discrete("")
             return(plt)

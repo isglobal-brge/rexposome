@@ -36,4 +36,7 @@ Methdo to draw a plot for samples using three PC contained in an
 \seealso{
 \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 to plot the PCA, \link{ExposomePCA} as main class
+data("exposome")
+epca <- pca(expo[3:7, 1:100])
+plot3PCA(epca, cmpX = 1, cmpY = 2, cmpZ = 3, phenotype = "sex")
 }

@@ -1,9 +1,10 @@
+#' @describeIn ExposomeSet Performs a PCA
 setMethod(
     f = "pca",
     signature = "ExposomeSet",
     definition = function(object, npc = 10) {
         select <- rownames(fData(object))[fData(object)$`_type` == "numeric"]
-        exposures <- as.data.frame(object, phe = FALSE)[ , select]
+        exposures <- expos(object)[ , select]
         # exposures <- do.call(cbind, lapply(exposuresNames(object), function(ex) {
         #     if(exposureType(object, ex) == "numeric") {
         #         rwn <<- c(rwn, ex)

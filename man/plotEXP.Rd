@@ -17,6 +17,11 @@ Function used to plot the correlation between the exposures in an
 \link{ExposomePCA} and the values for each component of the PCA in the
 same \link{ExposomePCa}
 }
+\examples{
+data("exposome")
+epca <- pca(expo[3:7, 1:100])
+plotEXP(epca)
+}
 \seealso{
 \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotPHE}
 to plot the P-Value of association between phenotypes ans PCA,

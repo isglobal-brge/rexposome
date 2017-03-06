@@ -1,11 +1,12 @@
+#' @describeIn ExposomeSet Performs an EXposome-Wide Association Study
 setMethod(
     f = "exwas",
     signature = "ExposomeSet",
     definition = function(object, formula, filter, family, ..., verbose = FALSE, warnings = TRUE) {
 
-        dta <- as.data.frame(object)
+        dta <- cbind(expos(object), pData(object))
         if(!missing(filter)) {
-            sel <- eval(substitute(filter), as.data.frame(object))
+            sel <- eval(substitute(filter), as.data.frame(dta))
             dta <- dta[sel, ]
         }
 

@@ -20,10 +20,8 @@ Draw the profile of the levels exposures after a classification with a
 clustering method
 }
 \examples{
-\dontrun{
-#Being x an ExposomeClust
-plotClassification(x)
-}
+data("eclust")
+plotClassification(expo_c)
 }
 \seealso{
 \link{clustering} as a constructor for \link{ExposomeClust},

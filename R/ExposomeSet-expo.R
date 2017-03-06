@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Returns a \code{data.frame} with exposures.
 setMethod(
     f = "expos",
     signature = "ExposomeSet",

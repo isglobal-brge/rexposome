@@ -46,7 +46,7 @@ test_that("Test 'trans' method.", {
     expect_equal(assayDataElement(x, "exp")[1, 1],
                  assayDataElement(x.e, "exp")[1, 1])
     expect_true(identical(round(assayDataElement(x, "exp")[1, 1:10], digits=4),
-                          round(ssayDataElement(x.e, "exp")[1, 1:10], digits=4)))
+                          round(assayDataElement(x.e, "exp")[1, 1:10], digits=4)))
 })
 
 ## ------------------------------------------------------------------------- ##

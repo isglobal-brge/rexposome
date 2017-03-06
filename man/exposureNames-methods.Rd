@@ -26,7 +26,7 @@ synonyms, this usage is discouraged and it is not assured.
 
 \examples{
 data("exposome")
-exposureNames(exp)
+exposureNames(expo)
 }
 \seealso{
 \link{individualNames} to get the name of the samples,

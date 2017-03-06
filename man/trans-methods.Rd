@@ -32,7 +32,7 @@ exposures.
 }
 \examples{
 data("exposome")
-exp.t <- trans(exp, fun = log, select = "ldde_lip")
+exp.t <- trans(expo, fun = log, select = "ldde_lip")
 }
 \seealso{
 \link{sData} to chek the status of the exposures,

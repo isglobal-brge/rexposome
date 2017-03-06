@@ -1,3 +1,4 @@
+#' @describeIn ExposomeCorr Draws both a matrix of circos plot of correlations
 setMethod(
   f = "plotCorrelation",
   signature = "ExposomeCorr",

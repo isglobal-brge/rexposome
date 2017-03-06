@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Imputation of under-LOD values of exposures.
 setMethod(
     f = "ilod",
     signature = "ExposomeSet",

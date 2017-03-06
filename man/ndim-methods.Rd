@@ -16,6 +16,11 @@ The number of components in the \code{ExposomePCA}.
 \description{
 Number of principal components in an ExposomePCA.
 }
+\examples{
+data("exposome")
+epca <- pca(expo[3:7, 1:100])
+ndim(epca)
+}
 \seealso{
 \link{plotPCA} to plot the PCA values of an
 \link{ExposomePCA}, \link{clustering} to see how the exposures can

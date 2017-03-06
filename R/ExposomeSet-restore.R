@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Returns the object at the same point is was
+#' when created.
 setMethod(
     f = "restore",
     signature = "ExposomeSet",

@@ -1,3 +1,4 @@
+#' @describeIn ExposomeClust Draws a heatmap for the samples' classification.
 setMethod(
   f = "plotClassification",
   signature = "ExposomeClust",

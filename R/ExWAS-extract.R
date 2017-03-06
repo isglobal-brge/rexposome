@@ -1,6 +1,5 @@
 #' @describeIn ExWAS Method to obtain the matrix of association scores
 #' @param sort If \code{TRUE}, the results are ordered by pvalue.
-#' @aliases EWAS-methods
 setMethod(
   f = "extract",
   signature = "ExWAS",

@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Returns a vector with the number of missing values
+#' per exposure.
 setMethod(
     f = "tableMissings",
     signature = "ExposomeSet",

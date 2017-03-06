@@ -1,6 +1,5 @@
 #' @describeIn mExWAS Method to obtain the generated model
 #' @param sort NOT USED
-#' @aliases mExWAS-methods
 setMethod(
     f = "extract",
     signature = "mExWAS",
@@ -10,7 +9,6 @@ setMethod(
 )
 
 #' @describeIn mExWAS Method to obtain raw model
-#' @aliases mExWAS-methods
 setMethod(
     f = "raw",
     signature = "mExWAS",

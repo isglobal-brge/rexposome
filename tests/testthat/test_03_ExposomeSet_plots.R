@@ -22,18 +22,16 @@ test_that("Test 'plotFamily' method.", {
     plotFamily(x, family="Indoor air", group="sex", group2="asthma")
     plotFamily(x, family="Organochlorines", group="sex", group2="asthma")
 
-    expect_warning({
-        plotFamily(x, family="all")
-    })
+    plotFamily(x, family="all")
 })
 
 ## ------------------------------------------------------------------------- ##
 test_that("Test 'plotHistogram' method.", {
     x <- create_exposome()
 
-    plotHistogram(x, exposure="ldde_lip")
-    plotHistogram(x, exposure="ldde_lip", show.trans=TRUE)
-    plotHistogram(x, exposure="ETS")
+    plotHistogram(x, select="ldde_lip")
+    plotHistogram(x, select="ldde_lip", show.trans=TRUE)
+    plotHistogram(x, select="ETS")
 })
 
 ## ------------------------------------------------------------------------- ##

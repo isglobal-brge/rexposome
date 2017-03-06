@@ -1,5 +1,4 @@
 #' @describeIn ExWAS Method to obtain the Threshold for effective tests (TEF)
-#' @aliases ExWAS-methods
 setMethod(
     f = "tef",
     signature = "ExWAS",

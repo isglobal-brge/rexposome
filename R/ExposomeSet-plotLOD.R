@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Draws a barchart with the amount of under-LOD values.
 setMethod(
     f = "plotLOD",
     signature = "ExposomeSet",

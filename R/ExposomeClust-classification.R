@@ -1,3 +1,4 @@
+#' @describeIn ExposomeClust Return classe asigned to each sample
 setMethod(
   f = "classification",
   signature = "ExposomeClust",

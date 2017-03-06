@@ -24,3 +24,11 @@ independent dataset.
 This method allows to insert an object of class \link{ExposomeClust} as an
 independent dataset into an object of class \link{MultiDataSet}.
 }
+\examples{
+data("eclust")
+library(MultiDataSet)
+md <- new("MultiDataSet")
+names(md)
+md <- add_cls(md, expo_c)
+names(md)
+}

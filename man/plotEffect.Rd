@@ -22,6 +22,12 @@ effects will be ploted in Y-axis.}
 This function draws a sort of manhattan plots using the p-value of the
 association of the exposures with phenotypes of an \code{ExWAS} object.
 }
+\examples{
+data(exposome)
+w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+w2 <- exwas(expo[1:5, ], asthma~sex+age, family = "binomial")
+plotEffect(w1, w2)
+}
 \seealso{
 \link{exwas} as a constructor for \link{ExWAS} objects,
 \link{extract} to obtain a table with the result of the ExWAS

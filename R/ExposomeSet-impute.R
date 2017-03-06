@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Imputation of missing values of exposures.
 setMethod(
     f = "impute",
     signature = "ExposomeSet",

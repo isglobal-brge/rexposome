@@ -29,6 +29,6 @@ data("exposome")
 library(MultiDataSet)
 md <- new("MultiDataSet")
 names(md)
-md <- add_exp(md, exp)
+md <- add_exp(md, expo)
 names(md)
 }

@@ -166,9 +166,9 @@ setClass(
 #' @exportClass mExWAS
 #' @slot ranking Results obtained from the \code{mboost} package as
 #' \code{data.frame}.
-#' @slot method Name of the method used to evaluate the data.
-#' @slot mresult Result obtained from evaluating the model.
-#' @slot arguments Arguments passed to \code{glmnet} or to \code{partDSA}.
+#' @slot result klist with the fitted model and result.
+#' @slot phenotype Name of the phenotype used in the analysys.
+#' @slot description feature data from original ExposomeSet.
 #' @seealso \link{exwas} for constructor using an \link{ExWAS}
 setClass(
     Class = "mExWAS",

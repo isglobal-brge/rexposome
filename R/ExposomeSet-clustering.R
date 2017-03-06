@@ -1,4 +1,4 @@
-
+#' @describeIn ExposomeSet Performs clustering on samples based on exposure levels.
 setMethod(
   f = "clustering",
   signature = "ExposomeSet",
@@ -13,7 +13,7 @@ setMethod(
 
     select <- rownames(fData(object))[fData(object)$`_type` == "numeric"]
 
-    data.clust <- as.data.frame(object, phe = FALSE)[ , select]
+    data.clust <- expos(object)[ , select, drop = FALSE]
 
     method <- match.fun(method)
 

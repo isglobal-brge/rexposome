@@ -28,10 +28,9 @@ it can return a vector, labeled with the exposures in the
 \examples{
 data("exposome")
 # Get families
-familyNames(exp)
-
+familyNames(expo)
 # Get the family of each exposure
-familyNames(exp, by.exposure = TRUE)
+familyNames(expo, by.exposure = TRUE)
 }
 \seealso{
 \link{individualNames} to get the name of the samples,

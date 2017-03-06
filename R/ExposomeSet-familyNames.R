@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Getter to obtain the families's names of the
+#' family of each exposure.
 setMethod(
   f = "familyNames",
   signature = "ExposomeSet",

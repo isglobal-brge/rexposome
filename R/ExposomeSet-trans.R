@@ -1,4 +1,4 @@
-
+#' @describeIn ExposomeSet Transformation of exposures.
 setMethod(
   f = "trans",
   signature = "ExposomeSet",
@@ -13,7 +13,7 @@ setMethod(
         stop("Slected exposures not in given ExposomeSet.")
     }
     select.no <- exposureNames(object)[!exposureNames(object) %in% select]
-    data.cnt <- as.data.frame(object, phe=FALSE)[ , select, drop=FALSE] # t(assayData(object)[["exp"]][select, , drop=FALSE])
+    data.cnt <- expos(object)[ , select, drop=FALSE] # t(assayData(object)[["exp"]][select, , drop=FALSE])
     if(by.exposure) {
         data.dst <- data.frame(lapply(colnames(data.cnt), function(exp) {
           fun(data.cnt[ , exp], ...)

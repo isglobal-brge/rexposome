@@ -2,7 +2,7 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{expos}
 \alias{expos}
-\title{Rsturns the exposures matrix of an ExposomeSet.}
+\title{Returns the exposures matrix of an ExposomeSet.}
 \usage{
 expos(object)
 }
@@ -15,4 +15,8 @@ A matrix of exposures
 \description{
 Given an \link{ExposomeSet} it returns the inner matrix of exposures,
 having the exposures as columns and the samples as rows.
+}
+\examples{
+data("exposome")
+expos(expo)[1:3, 1:3]
 }

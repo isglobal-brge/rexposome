@@ -27,7 +27,7 @@ exposures of an \link{ExposomeSet}.
 \examples{
 data("exposome")
 # The included has no missing data
-tableLOD(exp, output = "n")
+tableLOD(expo, output = "n")
 }
 \seealso{
 \link{plotFamily} to draw the profile of a family of exposures,

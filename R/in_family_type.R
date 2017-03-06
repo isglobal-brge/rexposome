@@ -24,7 +24,7 @@
       return("mix")
     }
   } else {
-    dd <- as.data.frame(object, phe = FALSE)[ , exposures, drop = FALSE]
+    dd <- expos(object)[ , exposures, drop = FALSE]
     colnames(dd) <- exposures
     rownames(dd) <- colnames(assayData(object)[["exp"]])
     type <- fData(object)[exposures, "_type"]

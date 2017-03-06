@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Performs a discretization of continuous exposures.
 setMethod(
   f = "highAndLow",
   signature = "ExposomeSet",

@@ -38,11 +38,8 @@ and one of its phenotype. It uses the packages \code{glmnet} and
 \code{partDSA}.
 }
 \examples{
-\dontrun{
-#Being x an ExposomeSet
-w1 <- mexwas(x, "sex")
-w2 <- mexwas(x, "asthma")
-}
+data("exposome")
+wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
 }
 \seealso{
 \link{extract} to obtain a table with the result of the ExWAS,

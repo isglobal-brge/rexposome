@@ -1,6 +1,5 @@
 #' @describeIn ExWAS Method to plot a manhatan plot for association between
 #' exposures and phenitypes
-#' @aliases ExWAS-methods
 setMethod(
     f = "plotExwas",
     signature = "ExWAS",

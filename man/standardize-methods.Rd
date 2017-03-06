@@ -28,8 +28,8 @@ if method is \code{"normal"} or by using median/mad if method is
 }
 \examples{
 data("exposome")
-exp.sn <- standardize(exp, method = "normal", select = "ldde_lip")
-exp.rs <- standardize(exp, method = "robust", select = "ldde_lip")
+exp.sn <- standardize(expo, method = "normal", select = "ldde_lip")
+exp.rs <- standardize(expo, method = "robust", select = "ldde_lip")
 }
 \seealso{
 \link{sData} to chek the status of the exposures,

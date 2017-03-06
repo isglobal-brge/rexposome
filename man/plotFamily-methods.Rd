@@ -32,10 +32,10 @@ bar-charts.
 }
 \examples{
 data("exposome")
-plt <- plotFamily(exp, family = "Metals")
+plt <- plotFamily(expo, family = "Metals")
 plt <- plt + ggplot2::ggtitle("Metals")
 plt
-plt <- plotFamily(exp, family = "Indoor air")
+plt <- plotFamily(expo, family = "Indoor air")
 plt <- plt + ggplot2::ggtitle("Indoor air")
 plt
 }

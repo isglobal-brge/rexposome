@@ -12,6 +12,13 @@ tef(object)
 \description{
 Function to get the Threshold for effective tests (TEF)
 }
+\examples{
+data(exposome)
+w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+w2 <- exwas(expo[1:5, ], asthma~sex+age, family = "binomial")
+tef(w1)
+tef(w2)
+}
 \references{
 Evaluating the effective numbers of independent tests and
 significant p-value thresholds in commercial genotyping arrays and public

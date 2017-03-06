@@ -1,3 +1,4 @@
+#' @describeIn ExposomeSet Returns the number of exsures, samples and phenotypes.
 setMethod(
   f = "dim",
   signature = "ExposomeSet",

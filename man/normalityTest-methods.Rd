@@ -30,7 +30,7 @@ p-value for each exposure.
 }
 \examples{
 data("exposome")
-normalityTest(exposome)
+normalityTest(expo)
 }
 \seealso{
 \link{plotHistogram} to draw the shape of an exposure,

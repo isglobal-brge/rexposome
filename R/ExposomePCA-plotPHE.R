@@ -42,7 +42,7 @@ setMethod(
         cbPalette <- c("#009E73",  "#56B4E9", "#E69F00", "#999999")#, "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
         ggplot2::ggplot(xx.m, ggplot2::aes(x = Dim, y = variable)) +
-            ggplot2::theme_gray() +
+            ggplot2::theme_bw() +
             #ggplot2::geom_tile(aes(fill=value2), color = "white") +
             ggplot2::geom_tile(ggplot2::aes(fill = -log10(value)), color = "white") +
             ggplot2::theme(

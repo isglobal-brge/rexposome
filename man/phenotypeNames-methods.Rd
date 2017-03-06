@@ -19,7 +19,7 @@ Getter to obtain the phenotype's names of an ExposomeSet or ExposomePCA.
 }
 \examples{
 data("exposome")
-phenotypeNames(exp)
+phenotypeNames(expo)
 }
 \seealso{
 \link{individualNames} to get the name of the samples,

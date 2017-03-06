@@ -25,8 +25,8 @@ exposures and in phenotypes of an \link{ExposomeSet}.
 \examples{
 data("exposome")
 # The included has no missing data
-tableMissings(exp, set = "exposures")
-tableMissings(exp, set = "phenotypes")
+tableMissings(expo, set = "exposures")
+tableMissings(expo, set = "phenotypes")
 }
 \seealso{
 \link{plotFamily} to draw the profile of a family of exposures,

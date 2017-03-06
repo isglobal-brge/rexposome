@@ -8,7 +8,7 @@
 #' @return The name of the exposures as a character vector.
 #' @examples
 #' data("exposome")
-#' exposureNames(exp)
+#' exposureNames(expo)
 #' @export exposureNames
 #' @seealso \link{individualNames} to get the name of the samples,
 #' \link{phenotypeNames} to get the phenotypes,
@@ -78,7 +78,7 @@ setGeneric("exposureNames", function(object)
 #' @return The name of the phenotypes as a a character vector.
 #' @examples
 #' data("exposome")
-#' phenotypeNames(exp)
+#' phenotypeNames(expo)
 #' @export phenotypeNames
 #' @seealso \link{individualNames} to get the name of the samples,
 #' \link{exposureNames} to get the name of the exposures,
@@ -107,10 +107,9 @@ setGeneric("phenotypeNames", function(object)
 #' @examples
 #' data("exposome")
 #' # Get families
-#' familyNames(exp)
-#'
+#' familyNames(expo)
 #' # Get the family of each exposure
-#' familyNames(exp, by.exposure = TRUE)
+#' familyNames(expo, by.exposure = TRUE)
 #' @export familyNames
 #' @seealso \link{individualNames} to get the name of the samples,
 #' \link{exposureNames} to get the name of the exposures,
@@ -119,13 +118,16 @@ setGeneric("familyNames", function(object, by.exposure = FALSE)
     standardGeneric("familyNames")
 )
 
-#' Rsturns the exposures matrix of an ExposomeSet.
+#' Returns the exposures matrix of an ExposomeSet.
 #'
 #' Given an \link{ExposomeSet} it returns the inner matrix of exposures,
 #' having the exposures as columns and the samples as rows.
 #'
 #' @param object An \link{ExposomeSet}.
 #' @return A matrix of exposures
+#' @examples
+#' data("exposome")
+#' expos(expo)[1:3, 1:3]
 #' @export expos
 setGeneric("expos", function(object)
     standardGeneric("expos")
@@ -145,7 +147,7 @@ setGeneric("expos", function(object)
 #' @param select Subseting of exposures of phenotypes.
 #' @examples
 #' data("exposome")
-#' Summary(exp, "exposures")
+#' Summary(expo, set = "exposures")
 #' @export Summary
 setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
                                select, ...)
@@ -167,7 +169,7 @@ setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
 #' @param select Subseting of exposures of phenotypes.
 #' @examples
 #' data("exposome")
-#' restore(exp)
+#' restore(expo)
 #' @export restore
 setGeneric("restore", function(object)
     standardGeneric("restore")
@@ -193,8 +195,8 @@ setGeneric("restore", function(object)
 #' keeping the others exposures as the original input object.
 #' @examples
 #' data("exposome")
-#' exp.sn <- standardize(exp, method = "normal", select = "ldde_lip")
-#' exp.rs <- standardize(exp, method = "robust", select = "ldde_lip")
+#' exp.sn <- standardize(expo, method = "normal", select = "ldde_lip")
+#' exp.rs <- standardize(expo, method = "robust", select = "ldde_lip")
 #' @export standardize
 #' @seealso \link{sData} to chek the status of the exposures,
 #' \link{highAndLow} to transform the continuous exposures to levelled factors,
@@ -224,7 +226,7 @@ setGeneric("standardize", function(object, select, method = "normal", na.rm = TR
 #' \code{fun}.
 #' @examples
 #' data("exposome")
-#' exp.t <- trans(exp, fun = log, select = "ldde_lip")
+#' exp.t <- trans(expo, fun = log, select = "ldde_lip")
 #' @export trans
 #' @seealso \link{sData} to chek the status of the exposures,
 #' \link{highAndLow} to transform the continuous exposures to levelled factors,
@@ -261,7 +263,7 @@ setGeneric("trans", function(object, fun, select, ...)
 #' @examples
 #' data("exposome")
 #' # No drop
-#' exp.hl <- highAndLow(exp, intervals = "extreme",
+#' exp.hl <- highAndLow(expo, intervals = "extreme",
 #'     select = c("ldde_lip", "logpb", "lcotinine"))
 #' dim(exp.hl)
 #' #[1]  107 1200    5
@@ -271,7 +273,7 @@ setGeneric("trans", function(object, fun, select, ...)
 #' #         3 factored exposures
 #'
 #' # Drop
-#' exp.hl <- highAndLow(exp, intervals = "extreme",
+#' exp.hl <- highAndLow(expo, intervals = "extreme",
 #'     select = c("ldde_lip", "logpb", "lcotinine"), drop=TRUE)
 #' dim(exp.hl)
 #' #[1]  104 1200    5
@@ -311,7 +313,7 @@ setGeneric("highAndLow", function(object, ngroups = 3,
 #' normality on the exposure.
 #' @examples
 #' data("exposome")
-#' normalityTest(exposome)
+#' normalityTest(expo)
 #' @export normalityTest
 #' @seealso \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
@@ -338,8 +340,8 @@ setGeneric("normalityTest", function(object, exposure, th = 0.05, min.val = 5,
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
-#' tableMissings(exp, set = "exposures")
-#' tableMissings(exp, set = "phenotypes")
+#' tableMissings(expo, set = "exposures")
+#' tableMissings(expo, set = "phenotypes")
 #' @export tableMissings
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
@@ -368,7 +370,7 @@ setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
-#' tableLOD(exp, output = "n")
+#' tableLOD(expo, output = "n")
 #' @export tableLOD
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
@@ -377,35 +379,6 @@ setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
 setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TRUE) {
     standardGeneric("tableLOD")
 })
-
-#' #' Getter to obtain the "status" of an ExposomeSet
-#' #'
-#' #' It returns the \code{data.frame} that stores the status of each exposure in
-#' #' the \link{ExposomeSet}. The status show if the exposures were standardized,
-#' #' transformed and/or imputed.
-#' #'
-#' #' @name sData
-#' #' @rdname sData-methods
-#' #' @aliases sData,ExposomeSet-methods
-#' #' @param object \link{ExposomeSet} that will be queried for the status.
-#' #' @return A \code{data.frame} with the status of each exposure. The
-#' #' \code{data.frame} contains 4 columns: \code{fct}, \code{trs}, \code{std},
-#' #' \code{imp}. They corresponds to 1) was the exposure converted to factor with
-#' #' \link{highAndLow}? 2) was the exposure transformed with \link{trans}? 3) was
-#' #' the exposure standardize with \link{standardize} and 4) was the exposure
-#' #' imputed? Columns 1 and 3 will contain blanks or logical (blank means
-#' #' \code{FALSE}) while 2 and 4 will contain character indicating the function
-#' #' used to transform and/or impute the exposure.
-#' #' @examples
-#' #' data("exposome")
-#' #' sData(exp)
-#' #' @export sData
-#' #' @seealso \link{highAndLow} to transform the continuous exposures to levelled
-#' #' factors, \link{trans} to transform the exposures, \link{standardize} to
-#' #' standardize by normal or robust methods the exposures
-#' setGeneric("sData", function(object)
-#'     standardGeneric("sData")
-#' )
 
 # -----------------------------------------------------------------------------
 
@@ -425,8 +398,8 @@ setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TR
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
-#' plotMissings(exp, set = "exposures")
-#' plotMissings(exp, set = "phenotypes")
+#' plotMissings(expo, set = "exposures")
+#' plotMissings(expo, set = "phenotypes")
 #' @export plotMissings
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
@@ -455,7 +428,7 @@ setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
 #' @examples
 #' data("exposome")
 #' # The included has no missing data
-#' plotLOD(exp)
+#' plotLOD(expo)
 #' @export plotLOD
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
@@ -487,10 +460,10 @@ setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE
 #' @param na.omit (default \code{TRUE}) Do not show \code{NA} values.
 #' @examples
 #' data("exposome")
-#' plt <- plotFamily(exp, family = "Metals")
+#' plt <- plotFamily(expo, family = "Metals")
 #' plt <- plt + ggplot2::ggtitle("Metals")
 #' plt
-#' plt <- plotFamily(exp, family = "Indoor air")
+#' plt <- plotFamily(expo, family = "Indoor air")
 #' plt <- plt + ggplot2::ggtitle("Indoor air")
 #' plt
 #' @export plotFamily
@@ -518,7 +491,7 @@ setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.o
 #' \code{log} and \code{sqrt}.
 #' @examples
 #' data("exposome")
-#' plotHistogram(exp[1:3, ])
+#' plotHistogram(expo[1:3, ], select = "ldde_lip")
 #' @export plotHistogram
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
@@ -614,6 +587,9 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLo
 #' \link{ExposomePCA}, \link{clustering} to see how the exposures can
 #' cluster samples, \link{correlation} to compute the correlation between
 #' exposures
+#' @examples
+#' data("exposome")
+#' epca <- pca(expo[1:10, 1:10])
 #' @export pca
 #' @import FactoMineR
 setGeneric("pca", function(object, npc = 10)
@@ -631,6 +607,10 @@ setGeneric("pca", function(object, npc = 10)
 #' \link{ExposomePCA}, \link{clustering} to see how the exposures can
 #' cluster samples, \link{correlation} to compute the correlation between
 #' exposures
+#' @examples
+#' data("exposome")
+#' epca <- pca(expo[3:7, 1:100])
+#' ndim(epca)
 #' @export ndim
 setGeneric("ndim", function(object)
     standardGeneric("ndim")
@@ -650,6 +630,10 @@ setGeneric("ndim", function(object)
 #' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotEXP}
 #' to plot the correlation between exposures ans PCA,
 #' \link{ExposmePCA} as main class
+#' @examples
+#' data("exposome")
+#' epca <- pca(expo[3:7, 1:100])
+#' plotPHE(epca)
 #' @export plotPHE
 setGeneric("plotPHE", function(object, phenotype, exp2fac = 5)
     standardGeneric("plotPHE")
@@ -667,6 +651,10 @@ setGeneric("plotPHE", function(object, phenotype, exp2fac = 5)
 #' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotPHE}
 #' to plot the P-Value of association between phenotypes ans PCA,
 #' \link{ExposmePCA} as main class
+#' @examples
+#' data("exposome")
+#' epca <- pca(expo[3:7, 1:100])
+#' plotEXP(epca)
 #' @export plotEXP
 setGeneric("plotEXP", function(object, exposure)
     standardGeneric("plotEXP")
@@ -685,6 +673,18 @@ setGeneric("plotEXP", function(object, exposure)
 #' color samples by phentoype
 #' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 #' to plot the PCA, \link{ExposomePCA} as main class
+#' @examples
+#' data("exposome")
+#' epca <- pca(expo[3:7, 1:100])
+#' # A grid with exposures space, samples space and explained variance
+#' plotPCA(epca, set = "all")
+#' # Only exposures space
+#' plotPCA(epca, set = "exposures") + ggplot2::theme(legend.position = "bottom")
+#' # Only samples space
+#' plotPCA(epca, set = "samples")
+#' # Only samples space but coloured by phenotype
+#' plotPCA(epca, set = "samples", phenotype = "sex") +
+#' ggplot2::theme(legend.position = "bottom")
 #' @export plotPCA
 setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
     standardGeneric("plotPCA")
@@ -708,6 +708,9 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
 #' each dot to the base plane.
 #' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 #' to plot the PCA, \link{ExposomePCA} as main class
+#' data("exposome")
+#' epca <- pca(expo[3:7, 1:100])
+#' plot3PCA(epca, cmpX = 1, cmpY = 2, cmpZ = 3, phenotype = "sex")
 #' @export plot3PCA
 #' @import scatterplot3d
 setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle=35, pch=16, legend=TRUE, plines=TRUE)
@@ -736,12 +739,13 @@ setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle
 #' exposures and their description
 #' @examples
 #' data("exposome")
-#' exp.c <- correlation(expo)
+#' expo.c <- correlation(expo)
 #' expo.c
 #' @export correlation
 #' @seealso \link{plotCorrelation} to plot the correlations of an
 #' \link{ExposomeCorr}, \link{clustering} to see how the exposures can
 #' cluster samples, \link{pca} to compute PCA on exposures
+#' @import pryr
 setGeneric("correlation", function(object, ..., warnings = TRUE)
     standardGeneric("correlation")
 )
@@ -761,11 +765,11 @@ setGeneric("correlation", function(object, ..., warnings = TRUE)
 #' \code{"matrix"}.
 #' @param ... Argiments given to \code{corrplot} of package \link{corrplot}
 #' if a matrix is draw, otherwise not used.
-#' #' @examples
+#' @examples
 #' data("exposome")
-#' exp.c <- correlation(exp)
-#' plotCorrelation(exp.c, type="circos")
-#' plotCorrelation(exp.c, type="matrix")
+#' expo.c <- correlation(exp)
+#' plotCorrelation(expo.c, type="circos")
+#' plotCorrelation(expo.c, type="matrix")
 #' @export plotCorrelation
 #' @seealso \link{correlation} as a constructor for \link{ExposomeCorr}
 #' objects, \link{pca} to compute PCA on exposures
@@ -857,6 +861,10 @@ setGeneric("clustering", function(object, method, cmethod, ..., warnings = TRUE)
 #' @aliases classification,ExposomeClust-method
 #' @param object An \link{ExposomeClust} to get the samples' classification.
 #' @return A labelled vector with the classification of each exposure.
+#' @examples
+#' data("eclust")
+#' tt <- classification(expo_c)
+#' table(tt)
 #' @export classification
 #' @seealso \link{clustering} as a constructor for \link{ExposomeClust},
 #' \link{plotClassification} to plot the groups
@@ -874,10 +882,8 @@ setGeneric("classification", function(object)
 #' @param type Two types are available: \code{"heatmap"} or \code{"valuemap"}.
 #' @param ... NOT USED
 #' @examples
-#' \dontrun{
-#' #Being x an ExposomeClust
-#' plotClassification(x)
-#' }
+#' data("eclust")
+#' plotClassification(expo_c)
 #' @export plotClassification
 #' @seealso \link{clustering} as a constructor for \link{ExposomeClust},
 #' \link{classification} to see how to obtain the classification of
@@ -949,11 +955,8 @@ setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
 #' not be displayed.
 #' @return Returns an object of class \link{MExWAS}
 #' @examples
-#' \dontrun{
-#' #Being x an ExposomeSet
-#' w1 <- mexwas(x, "sex")
-#' w2 <- mexwas(x, "asthma")
-#' }
+#' data("exposome")
+#' wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
 #' @export mexwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
@@ -962,6 +965,12 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
     standardGeneric("mexwas")
 )
 
+#' Getter for raw model gnerated with mexwas
+#'
+#' @examples
+#' data("exposome")
+#' wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
+#' raw(wt)
 #' @export raw
 setGeneric("raw", function(object)
     standardGeneric("raw")
@@ -1026,6 +1035,10 @@ setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FAL
 #' @return A \code{data.frame} with the pvalues and other information from the
 #' association a integration studies of the exposures and phenotypes and
 #' exposures and omics data.
+#' @examples
+#' data(exposome)
+#' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+#' extract(w1)
 #' @export extract
 #' @seealso \link{ExWAS}
 setGeneric("extract", function(object, ...)
@@ -1043,6 +1056,10 @@ setGeneric("extract", function(object, ...)
 #' name of the families.
 #' @param show.effective (default TRUE) draws a brown line on the
 #' threshold given by the effective number of tests.
+#' @examples
+#' data(exposome)
+#' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+#' plotExwas(w1)
 #' @export plotExwas
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
 #' \link{extract} to obtain a table with the result of the ExWAS
@@ -1061,6 +1078,11 @@ setGeneric("plotExwas", function(object, ...)
 #' @param select (optional) Character with exposures to be shown.
 #' @param xlab (optional) Label for X-axis.
 #' @param ylab (optional) Label for Y-axis.
+#' @examples
+#' data(exposome)
+#' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+#' w2 <- exwas(expo[1:5, ], asthma~sex+age, family = "binomial")
+#' plotEffect(w1, w2)
 #' @export plotEffect
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
 #' \link{extract} to obtain a table with the result of the ExWAS
@@ -1071,6 +1093,12 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 #' Function to get the Threshold for effective tests (TEF)
 #'
 #' @param object An \code{ExWAS} object
+#' @examples
+#' data(exposome)
+#' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
+#' w2 <- exwas(expo[1:5, ], asthma~sex+age, family = "binomial")
+#' tef(w1)
+#' tef(w2)
 #' @export tef
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects
 #' @references Evaluating the effective numbers of independent tests and
@@ -1101,7 +1129,7 @@ setGeneric("tef", function(object)
 #' library(MultiDataSet)
 #' md <- new("MultiDataSet")
 #' names(md)
-#' md <- add_exp(md, exp)
+#' md <- add_exp(md, expo)
 #' names(md)
 #' @export add_exp
 setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
@@ -1120,6 +1148,13 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
 #' @param ... Arguments given to \link{add_eset} from \link{MultiDataSet}.
 #' @return A \link{MultiDataSet} with the \link{ExpressionSet} added as an
 #' independent dataset.
+#' @examples
+#' data("eclust")
+#' library(MultiDataSet)
+#' md <- new("MultiDataSet")
+#' names(md)
+#' md <- add_cls(md, expo_c)
+#' names(md)
 #' @export add_cls
 setGeneric("add_cls", function(object, clsSet, ...)
     standardGeneric("add_cls")

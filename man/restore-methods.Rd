@@ -20,5 +20,5 @@ could have.
 }
 \examples{
 data("exposome")
-restore(exp)
+restore(expo)
 }
