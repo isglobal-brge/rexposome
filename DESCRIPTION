@@ -1,8 +1,11 @@
 Package: rexposome
-Title: Exposome exploration and omic data integration
-Version: 0.99.48
-Authors@R: person("Carles", "Hernandez-Ferrer", email = "chernandez@creal.cat", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Exposome exploration and outcome data analysis
+Version: 0.99.49
+Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
+    person("Juan R.", "González", ,"juanr.gonzalez@isglobal.org", role = "aut"))
+Maintainer: Carles Hernandez-Ferrer <carles.hernandez@isglobal.org>
+Description: Package that allows to explore the exposome and to perform 
+    association analyses between exposures and health outcomes.
 License: MIT
 Encoding: UTF-8
 LazyData: true
@@ -29,10 +32,16 @@ Imports: BiocInstaller,
     mboost,
     imputeLCMD,
     scatterplot3d,
-    glmnet,
-    ggrepel,
-    qqman
+    glmnet
 Suggests: testthat,
     BiocStyle,
     knitr,
     rmarkdown
+biocViews: Software,
+    BiologicalQuestion,
+    Infrastructure,
+    DataImport,
+    DataRepresentation,
+    BiomedicalInformatics,
+    ExperimentalDesign,
+    MultipleComparison

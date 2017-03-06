@@ -70,6 +70,10 @@ setClass(
 #' @rdname ExposomePCA-class
 #' @exportClass ExposomePCA
 #' @slot pca list containing all elements of the PCA
+#' @slot phenoData Contains the phenotypes or variables experimenter-supplied
+#' (see \link{eSet}, \link{AnnotatedDataFrame}).
+#' @slot featureData Contains the description of the exposures including
+#' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @seealso \link{correlation} for constructor using an
 #' \link{ExposomeSet},
 #' \link{ExposomeSet-class} for origin data,
@@ -99,7 +103,8 @@ setClass(
 #' @aliases ExWAS-class
 #' @rdname ExWAS-class
 #' @exportClass ExWAS
-#' @slot formula Tested formula
+#' @slot effective Number containing the effective number of tests.
+#' @slot formula Tested formula.
 #' @slot comparison Result of performing the test to find association between
 #' levels of exposures and phenotype.
 #' @slot description Description of the exposures used in the ExWAS.

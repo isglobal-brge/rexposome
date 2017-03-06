@@ -21,52 +21,52 @@ setGeneric("exposureNames", function(object)
     standardGeneric("exposureNames")
 )
 
-#' Getter to obtain the individual names (sample names) of an ExposomeSet.
-#'
-#' @name individualNames
-#' @rdname individualNames-methods
-#' @aliases individualNames,ExposomeSet-methods
-#' @param object \link{ExposomeSet} that will be queried for the individuals's
-#' names.
-#' @return The name of the individuals as a character vector.
-#' @examples
-#' data("exposome")
-#' individualNames(exp)
-#' @export individualNames
-#' @seealso \link{individualNames} to get the name of the samples,
-#' \link{phenotypeNames} to get the phenotypes,
-#' \link{familyNames} to get the families of exposures
-#' @section Warning:
-#' \link{individualNames} collides with \link{sampleNames} of \link{eSet}.
-#' Although in \code{rexposome 1.0.0} both function can be used as
-#' synonyms, this usage is discouraged and it is not assured.
-setGeneric("individualNames", function(object)
-    standardGeneric("individualNames")
-)
+# #' Getter to obtain the individual names (sample names) of an ExposomeSet.
+# #'
+# #' @name individualNames
+# #' @rdname individualNames-methods
+# #' @aliases individualNames,ExposomeSet-methods
+# #' @param object \link{ExposomeSet} that will be queried for the individuals's
+# #' names.
+# #' @return The name of the individuals as a character vector.
+# #' @examples
+# #' data("exposome")
+# #' individualNames(exp)
+# #' @export individualNames
+# #' @seealso \link{individualNames} to get the name of the samples,
+# #' \link{phenotypeNames} to get the phenotypes,
+# #' \link{familyNames} to get the families of exposures
+# #' @section Warning:
+# #' \link{individualNames} collides with \link{sampleNames} of \link{eSet}.
+# #' Although in \code{rexposome 1.0.0} both function can be used as
+# #' synonyms, this usage is discouraged and it is not assured.
+# setGeneric("individualNames", function(object)
+#     standardGeneric("individualNames")
+# )
 
-#' Setter to assign individual names (sample names) of an ExposomeSet.
-#'
-#' @name individualNames
-#' @rdname individualNames-methods
-#' @aliases individualNames,ExposomeSet-methods
-#' @param object \link{ExposomeSet} that will be queried for the individuals's
-#' names.
-#' @param value Vector of \code{character} to be assigned as individual's
-#' names.
-#' @examples
-#' data("exposome")
-#' individualNames(exp) <- paste0(individualNames(exp), "__")
-#' @export individualNames<-
-#' @seealso \link{individualNames} to get the name of the samples,
-#' \link{phenotypeNames} to get the phenotypes,
-#' \link{familyNames} to get the families of exposures
-#' @section Warning:
-#' \link{individualNames<-} collides with \link{sampleNames<-} of \link{eSet}.
-#' Although in \code{rexposome 1.0.0} both function can be used as
-#' synonyms, this usage is discouraged and it is not assured.
-setGeneric("individualNames<-", function(object, value)
-    standardGeneric("individualNames<-")
-)
+# #' Setter to assign individual names (sample names) of an ExposomeSet.
+# #'
+# #' @name individualNames
+# #' @rdname individualNames-methods
+# #' @aliases individualNames,ExposomeSet-methods
+# #' @param object \link{ExposomeSet} that will be queried for the individuals's
+# #' names.
+# #' @param value Vector of \code{character} to be assigned as individual's
+# #' names.
+# #' @examples
+# #' data("exposome")
+# #' individualNames(exp) <- paste0(individualNames(exp), "__")
+# #' @export individualNames<-
+# #' @seealso \link{individualNames} to get the name of the samples,
+# #' \link{phenotypeNames} to get the phenotypes,
+# #' \link{familyNames} to get the families of exposures
+# #' @section Warning:
+# #' \link{individualNames<-} collides with \link{sampleNames<-} of \link{eSet}.
+# #' Although in \code{rexposome 1.0.0} both function can be used as
+# #' synonyms, this usage is discouraged and it is not assured.
+# setGeneric("individualNames<-", function(object, value)
+#     standardGeneric("individualNames<-")
+# )
 
 #' Getter to obtain the phenotype's names of an ExposomeSet or ExposomePCA.
 #'
@@ -496,6 +496,7 @@ setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE
 #' @export plotFamily
 #' @seealso \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
+#' @import gridExtra
 setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.omit=TRUE)
     standardGeneric("plotFamily")
 )
@@ -614,6 +615,7 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLo
 #' cluster samples, \link{correlation} to compute the correlation between
 #' exposures
 #' @export pca
+#' @import FactoMineR
 setGeneric("pca", function(object, npc = 10)
     standardGeneric("pca")
 )
@@ -707,6 +709,7 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
 #' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
 #' to plot the PCA, \link{ExposomePCA} as main class
 #' @export plot3PCA
+#' @import scatterplot3d
 setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle=35, pch=16, legend=TRUE, plines=TRUE)
     standardGeneric("plot3PCA")
 )
@@ -915,6 +918,7 @@ setGeneric("plotClassification", function(x, ...)
 #' @export nl_exwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
+#' @import mboost
 setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
     verbose = FALSE, warnings = TRUE)
         standardGeneric("nl_exwas")
@@ -953,6 +957,7 @@ setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
 #' @export mexwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
+#' @import glmnet
 setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
     standardGeneric("mexwas")
 )
