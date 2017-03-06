@@ -1,3 +1,4 @@
+#' @describeIn ExposomePCA Getter to obtain the phenotype's names.
 setMethod(
     f = "phenotypeNames",
     signature = "ExposomePCA",

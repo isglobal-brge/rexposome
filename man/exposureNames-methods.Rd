@@ -3,7 +3,7 @@
 \name{exposureNames}
 \alias{exposureNames}
 \alias{exposureNames,ExposomeSet-methods}
-\title{Getter to obtain the exposures's names of an ExposomeSet.}
+\title{Getter to obtain the exposures's names of an ExposomeSet or ExposomePCA}
 \usage{
 exposureNames(object)
 }
@@ -15,7 +15,7 @@ names.}
 The name of the exposures as a character vector.
 }
 \description{
-Getter to obtain the exposures's names of an ExposomeSet.
+Getter to obtain the exposures's names of an ExposomeSet or ExposomePCA
 }
 \section{Warning}{
 

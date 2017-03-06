@@ -1,4 +1,4 @@
-#' Getter to obtain the exposures's names of an ExposomeSet.
+#' Getter to obtain the exposures's names of an ExposomeSet or ExposomePCA
 #'
 #' @name exposureNames
 #' @rdname exposureNames-methods
@@ -68,7 +68,7 @@ setGeneric("individualNames<-", function(object, value)
     standardGeneric("individualNames<-")
 )
 
-#' Getter to obtain the phenotype's names of an ExposomeSet.
+#' Getter to obtain the phenotype's names of an ExposomeSet or ExposomePCA.
 #'
 #' @name phenotypeNames
 #' @rdname phenotypeNames-methods
@@ -1009,7 +1009,7 @@ setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FAL
 #' Function to extract the results of the association and integration
 #' studies.
 #'
-#' Method \code{extract} can be applied to \link{ExWAS} objects to obtain a 
+#' Method \code{extract} can be applied to \link{ExWAS} objects to obtain a
 #' table with the results of the association studies.
 #'
 #' @name extract

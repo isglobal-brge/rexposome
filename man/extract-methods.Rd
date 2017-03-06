@@ -20,7 +20,7 @@ association a integration studies of the exposures and phenotypes and
 exposures and omics data.
 }
 \description{
-Method \code{extract} can be applied to \link{ExWAS} objects to obtain a 
+Method \code{extract} can be applied to \link{ExWAS} objects to obtain a
 table with the results of the association studies.
 }
 \seealso{

@@ -1,3 +1,4 @@
+#' @describeIn ExposomePCA Methdo to draw a 3D plot for PCA
 setMethod(
     f = "plot3PCA",
     signature = "ExposomePCA",

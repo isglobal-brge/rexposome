@@ -3,7 +3,7 @@
 \name{phenotypeNames}
 \alias{phenotypeNames}
 \alias{phenotypeNames,ExposomeSet-methods}
-\title{Getter to obtain the phenotype's names of an ExposomeSet.}
+\title{Getter to obtain the phenotype's names of an ExposomeSet or ExposomePCA.}
 \usage{
 phenotypeNames(object)
 }
@@ -15,7 +15,7 @@ names.}
 The name of the phenotypes as a a character vector.
 }
 \description{
-Getter to obtain the phenotype's names of an ExposomeSet.
+Getter to obtain the phenotype's names of an ExposomeSet or ExposomePCA.
 }
 \examples{
 data("exposome")

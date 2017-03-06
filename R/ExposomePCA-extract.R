@@ -1,3 +1,4 @@
+#' @describeIn ExposomePCA Method to extract the raw results of the PCA.
 setMethod(
     f = "extract",
     signature="ExposomePCA",

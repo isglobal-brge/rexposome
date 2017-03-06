@@ -1,4 +1,4 @@
-#' @describeIn ExposomePCA Plot association score between phentoypes and PCA
+#' @describeIn ExposomePCA Methdo to draw a 2D plot for PCA
 setMethod(
     f = "plotPCA",
     signature = "ExposomePCA",

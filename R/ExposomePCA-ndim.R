@@ -1,3 +1,4 @@
+#' @describeIn ExposomePCA Number of principal components in an ExposomePCA.
 setMethod(
     f = "ndim",
     signature="ExposomePCA",
