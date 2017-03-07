@@ -17,7 +17,7 @@
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}
-#' from files, \code{\link{create_exposome}} to create an \cpde{ExposomeSet}
+#' from files, \code{\link{create_exposome}} to create an \code{ExposomeSet}
 #' from \code{data.frames}
 #' @importClassesFrom Biobase eSet
 #' @return An object of class \code{ExposomeSet}
