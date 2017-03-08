@@ -8,10 +8,6 @@ restore(object)
 }
 \arguments{
 \item{object}{On object of class \code{ExposomeSet}.}
-
-\item{set}{Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).}
-
-\item{select}{Subseting of exposures of phenotypes.}
 }
 \value{
 An \code{ExposomeSet} with no transformations.

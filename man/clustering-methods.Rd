@@ -44,28 +44,26 @@ the result of the \code{method} as: \code{cmethod(model)}; being
 \code{model} the result of \code{method}.
 }
 \examples{
-\dontrun{
-# Being x an ExposomeSet
+data("exposome")
+
 # EXAMPLE 1: Clustering with mclust
 library(mclust)
-c <- clustering(exp method = Mclust, G = 2)
-classification(c)  # This works since the result of Mclust has an accessor
+c <- clustering(expo[12:32, ], method = Mclust, G = 2)
+table(classification(c))  # This works since the result of Mclust has an accessor
                    # $classification
-}
 
 # EXAMPLE 2: Cluseting with flexmix
-data("exposome")
 library(flexmix)
 # First we carete a function to apply flexmix to the ExposomeSet
 flexmix_clust <- function(data, ...) {
+  data <- as.matrix(data)
   flexmix(formula = data~1, ...)
 }
 
-# Then we apply the method to the ExposomeSet
-c <- clustering(exp, method = flexmix_clust, k = 2, model = FLXMCmvnorm())
-# To try to obtain the classification for the result will fail since the
-# result of flexmix has not an accessor called $classiciation
-# classification(c)
+# Then if we apply the method to the ExposomeSet it will crash:
+# c <- clustering(expo[12:32, ], method = flexmix_clust, k = 2, model = FLXMCmvnorm())
+# Because the method does not know how to obtain the classification for the result
+# since flexmix has not an accessor called $classiciation
 
 # We create a function to get the classification
 flexmix_clas <- function(model, ...) {
@@ -73,8 +71,7 @@ flexmix_clas <- function(model, ...) {
 }
 
 # We put it to the ExposomeClust
-
-c <- clustering(exp, method = flexmix_clust, cmethod = flexmix_clas,
+c <- clustering(expo[12:32, ], method = flexmix_clust, cmethod = flexmix_clas,
     k = 2, model = FLXMCmvnorm())
 classification(c) # This works because the ExposomeClust has a way to get
                   # the classification

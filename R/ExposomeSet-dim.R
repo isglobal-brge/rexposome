@@ -1,4 +1,5 @@
 #' @describeIn ExposomeSet Returns the number of exsures, samples and phenotypes.
+#' @param x An \code{\link{ExposomeSet}} object.
 setMethod(
   f = "dim",
   signature = "ExposomeSet",

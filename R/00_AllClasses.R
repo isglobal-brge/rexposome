@@ -14,6 +14,8 @@
 #' (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
+#' @slot experimentData NOT USED
+#' @slot annotation NOT USED
 #' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}
 #' from files, \code{\link{load_exposome}} to create an \code{ExposomeSet}
 #' from \code{data.frames}
@@ -147,7 +149,7 @@ setClass(
 
 #' Class mExWAS
 #'
-#' Class \code{mExWAS} obtained from \link{m_exwas} method of an
+#' Class \code{mExWAS} obtained from \link{mexwas} method of an
 #' \link{ExposomeSet} object, contains the result of testing the multiple
 #' models of exposures of an \code{ExposomeSet} to a set of given phenotypes.
 #' "mExWAS" is the #' acronym of "Multivariate Exposome-Wide Association

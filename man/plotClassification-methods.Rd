@@ -5,14 +5,14 @@
 \title{Draw the profile of the levels exposures after a classification with a
 clustering method}
 \usage{
-plotClassification(x, ...)
+plotClassification(object, type = "heatmap", ...)
 }
 \arguments{
-\item{x}{Object of class \code{Exposomeclust}}
-
-\item{...}{NOT USED}
+\item{object}{Object of class \code{Exposomeclust}}
 
 \item{type}{Two types are available: \code{"heatmap"} or \code{"valuemap"}.}
+
+\item{...}{NOT USED}
 }
 \value{
 A \code{list} with different graphics parameters.

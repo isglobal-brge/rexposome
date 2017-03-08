@@ -1,4 +1,5 @@
 #' @describeIn ExposomeSet Performs a PCA
+#' @param npc Number of PC to be kept
 setMethod(
     f = "pca",
     signature = "ExposomeSet",

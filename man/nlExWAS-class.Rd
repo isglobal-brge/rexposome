@@ -8,7 +8,6 @@
 \alias{extract,nlExWAS-method}
 \alias{nlExWAS-methods}
 \alias{plotExwas,nlExWAS-method}
-\alias{nlExWAS-methods}
 \title{Class nlExWAS}
 \usage{
 \S4method{extract}{nlExWAS}(object, sort = TRUE)
@@ -16,6 +15,8 @@
 \S4method{plotExwas}{nlExWAS}(object)
 }
 \arguments{
+\item{object}{A \code{\link{nlExWAS}} object.}
+
 \item{sort}{If \code{TRUE}, the results are ordered by AIC}
 }
 \value{

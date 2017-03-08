@@ -1,5 +1,7 @@
 #' @describeIn ExposomeSet Getter to obtain the families's names of the
 #' family of each exposure.
+#' @param by.exposure If set to \code{TRUE} ir returns the family which
+#' each exposure belongs
 setMethod(
   f = "familyNames",
   signature = "ExposomeSet",

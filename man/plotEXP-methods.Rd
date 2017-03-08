@@ -7,7 +7,7 @@
 plotEXP(object, exposure)
 }
 \arguments{
-\item{object}{An object of class \link{ExposmePCA}}
+\item{object}{An object of class \link{ExposomePCA}}
 
 \item{exposure}{(optional) to select a set of exposures to be ploted.
 If not given all are used.}
@@ -18,7 +18,7 @@ An object of class \code{ggplot}.
 \description{
 Function used to plot the correlation between the exposures in an
 \link{ExposomePCA} and the values for each component of the PCA in the
-same \link{ExposomePCa}
+same \link{ExposomePCA}
 }
 \examples{
 data("exposome")
@@ -28,5 +28,5 @@ plotEXP(epca)
 \seealso{
 \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotPHE}
 to plot the P-Value of association between phenotypes ans PCA,
-\link{ExposmePCA} as main class
+\link{ExposomePCA} as main class
 }

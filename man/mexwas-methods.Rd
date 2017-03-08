@@ -13,22 +13,15 @@ mexwas(object, phenotype, family, warnings = TRUE)
 \item{phenotype}{Target phenotype used for the study. If missing all the
 phenotypes in the \link{ExposomeSet} will be used.}
 
-\item{method}{Selector of method to be used. Can takes values
-\code{"enet"} or \code{"dsa"} for using \code{glmnet} or
-\code{partDSA}.}
+\item{family}{It must decrive the nature of the outcome. Can take values
+\code{"gaussian"}, \code{"binomial"}, \code{"poisson"}, \code{"multinomial"},
+\code{"cox"} or \code{"mgaussian"}.}
 
-\item{...}{Arguments passed to inner functions.}
-
-\item{mc.cores}{(default \code{1}) Number of cores used to process
-the exposures.}
-
-\item{verbose}{(default \code{FALSE}) Shows messages of the process.}
-
-\item{warning}{(default \code{TRUE}) If set to \code{FALSE} warnings will
+\item{warnings}{(default \code{TRUE}) If set to \code{FALSE} warnings will
 not be displayed.}
 }
 \value{
-Returns an object of class \link{MExWAS}
+Returns an object of class \link{mExWAS}
 }
 \description{
 The \code{mexwas} method performs an "Multi Exposome-Wide

@@ -1,4 +1,5 @@
 #' @describeIn ExposomeSet Performs a Multiple-EXposure-Wide Association Study.
+#' @param phenotype Health outcome to be used as dependent variable.
 setMethod(
     f = "mexwas",
     signature = "ExposomeSet",
@@ -26,7 +27,7 @@ setMethod(
         x <- as.matrix(dta)
         x <- apply(x, 2, as.numeric)
         if(family %in% c("binomial", "multinomial")) phe <- as.factor(phe)
-        cvfit <- glmnet::cv.glmnet(x, phe, family = family,type.measure="auc")
+        cvfit <- glmnet::cv.glmnet(x, phe, family = family, type.measure="auc")
         fit <- glmnet::glmnet(x, phe, family = family)
 
         new("mExWAS",

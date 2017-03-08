@@ -22,7 +22,7 @@ by using \link{FactoMineR} package.
 }
 \examples{
 data("exposome")
-epca <- pca(expo[1:10, 1:10])
+epca <- pca(expo[12:20, ])
 }
 \seealso{
 \link{plotPCA} to plot the PCA values of an

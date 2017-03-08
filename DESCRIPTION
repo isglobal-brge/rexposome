@@ -1,6 +1,6 @@
 Package: rexposome
 Title: Exposome exploration and outcome data analysis
-Version: 0.99.50
+Version: 0.99.51
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "González", ,"juanr.gonzalez@isglobal.org", role = "aut"))
 Maintainer: Carles Hernandez-Ferrer <carles.hernandez@isglobal.org>
@@ -14,24 +14,27 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.3.0),
     Biobase,
-    mice,
-    MultiDataSet
-Imports: lsr,
-    BiocInstaller,
+    mice
+Imports: 
+    MultiDataSet,
+    lsr,
     FactoMineR,
     stringr,
     circlize,
     corrplot,
     ggplot2,
     reshape2,
-    scales,
     pryr,
     mboost,
     imputeLCMD,
     scatterplot3d,
     glmnet,
     gridExtra,
-    grid
+    grid,
+    Hmisc,
+    gplots,
+    gtools,
+    scales
 Suggests: mclust,
     flexmix,
     testthat,

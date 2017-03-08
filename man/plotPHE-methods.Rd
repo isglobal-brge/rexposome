@@ -7,7 +7,7 @@
 plotPHE(object, phenotype, exp2fac = 5)
 }
 \arguments{
-\item{object}{An object oc class \link{ExposmePCA}}
+\item{object}{An object oc class \link{ExposomePCA}}
 
 \item{phenotype}{(optional) to select a set of phenotypes to be ploted.
 If not given all are used.}
@@ -21,7 +21,7 @@ An object of class \code{ggplot}.
 \description{
 Function used to plot the association between the phentoypes in an
 \link{ExposomePCA} and the values for each component of the PCA in the
-same \link{ExposomePCa}
+same \link{ExposomePCA}
 }
 \examples{
 data("exposome")
@@ -31,5 +31,5 @@ plotPHE(epca)
 \seealso{
 \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotEXP}
 to plot the correlation between exposures ans PCA,
-\link{ExposmePCA} as main class
+\link{ExposomePCA} as main class
 }

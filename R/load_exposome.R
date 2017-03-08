@@ -30,7 +30,7 @@
 #' @param ... Other arguments will be given to \link{transform} if \code{trn.e}
 #' is specified.
 #' @return An object of class \link{ExposomeSet}.
-#' @note \link{ExposmeSet}'s \code{fData} will contain two inner columns called
+#' @note \link{ExposomeSet}'s \code{fData} will contain two inner columns called
 #' \code{_std}, \code{_trn}, \code{_fct} and \code{_type} in order to trace the
 #' transformations an exposure suffers and to know, at eny moment, if an
 #' exposure is categorical or continuous. The "description" file can contains a

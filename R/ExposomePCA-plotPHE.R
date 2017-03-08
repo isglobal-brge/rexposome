@@ -1,4 +1,6 @@
 #' @describeIn ExposomePCA Plot association score between phentoypes and PCA
+#' @param exp2fac Number of different values to considere an exposures
+#' continuous
 setMethod(
     f = "plotPHE",
     signature = "ExposomePCA",

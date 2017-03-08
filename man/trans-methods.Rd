@@ -4,7 +4,7 @@
 \alias{trans}
 \title{Function to apply a transformation to the exposures of an ExposomeSet}
 \usage{
-trans(object, fun, select, ...)
+trans(object, fun, select, by.exposure = FALSE, ...)
 }
 \arguments{
 \item{object}{\code{ExposomeSet} which exposures will be transformed.}
@@ -14,11 +14,11 @@ trans(object, fun, select, ...)
 \item{select}{If not set, receive the name of all exposures. It can takes a
 character vector to select specific exposures.}
 
-\item{...}{Argument given to \code{fun}.}
-
 \item{by.exposure}{(default \code{FALSE}) If \code{TRUE} applies \code{fun}
 to each exposure (given as a vector ). If \code{FALSE} the matrix of
 exposures is fiven to \code{fun}.}
+
+\item{...}{Argument given to \code{fun}.}
 }
 \value{
 A new \code{ExposomeSet} with selected exposures transformed with

@@ -9,6 +9,7 @@ setMethod(
 )
 
 #' @describeIn mExWAS Method to obtain raw model
+#' @param object A \code{\link{mExWAS}} object.
 setMethod(
     f = "raw",
     signature = "mExWAS",

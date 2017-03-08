@@ -1,4 +1,11 @@
 #' @describeIn ExposomePCA Methdo to draw a 2D plot for PCA
+#' @param object An \code{\link{ExposomePCA}} object
+#' @param set Can take values \code{"exposures"}, \code{"samples"} or
+#' \code{"all"}
+#' @param cmpX PC to place in X-axis
+#' @param cmpY PC to place in Y-axis
+#' @param phenotype (when \code{set="samples"}) A phenotype can be selected
+#' so the samples are coloured by its value.
 setMethod(
     f = "plotPCA",
     signature = "ExposomePCA",

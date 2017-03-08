@@ -5,13 +5,12 @@
 \title{Function to extract the results of the association and integration
 studies.}
 \usage{
-extract(object, ...)
+extract(object, sort = TRUE, ...)
 }
 \arguments{
 \item{object}{Object of class \link{ExWAS}.}
 
-\item{phenotype}{Name of the phenotype to be extracted from an
-\link{ExWAS}.}
+\item{...}{NOT USED - ONLY FOR EXTENDED FUNCTIONALLITY}
 }
 \value{
 A \code{data.frame} with the pvalues and other information from the

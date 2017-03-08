@@ -98,7 +98,6 @@ setGeneric("expos", function(object)
 #' @param object code{ExposomeSet} with 'set' will be summarized.
 #' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
 #' @param select Subseting of exposures of phenotypes.
-#' @param ... NOT USED
 #' @return A basic description of the exposures in the \code{ExposomeSet}
 #' @examples
 #' data("exposome")
@@ -120,8 +119,6 @@ setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
 #' @rdname restore-methods
 #' @aliases restore
 #' @param object On object of class \code{ExposomeSet}.
-#' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
-#' @param select Subseting of exposures of phenotypes.
 #' @return An \code{ExposomeSet} with no transformations.
 #' @examples
 #' data("exposome")
@@ -143,16 +140,19 @@ setGeneric("restore", function(object)
 #' @rdname standardize-methods
 #' @aliases standardize
 #' @param object \code{ExposomeSet} with exposures to be standardized.
+#' @param select Subseting of exposures of phenotypes.
 #' @param method Character selecting the method to be applied (\code{'normal'}
 #' or \code{'robust'}).
 #' @param na.rm (by default \code{TRUE}) Removes NA data to perform
 #' standardization.
+#' @param warnings (defaulr \code{TRUE}) If set to \code{FALSE} warnings are
+#' not shown.
 #' @return An \code{ExposomeSet} with the selected exposures standardized and
 #' keeping the others exposures as the original input object.
 #' @examples
 #' data("exposome")
-#' exp.sn <- standardize(expo, method = "normal", select = "ldde_lip")
-#' exp.rs <- standardize(expo, method = "robust", select = "ldde_lip")
+#' exp.sn <- standardize(expo, method = "normal", select = "lbde100_lip")
+#' exp.rs <- standardize(expo, method = "robust", select = "lbde100_lip")
 #' @export standardize
 #' @seealso \link{highAndLow} to transform the continuous exposures to
 #' levelled factors, \link{trans} to transform the exposures
@@ -185,7 +185,7 @@ setGeneric("standardize", function(object, select, method = "normal", na.rm = TR
 #' @export trans
 #' @seealso \link{highAndLow} to transform the continuous exposures to levelled
 #' factors, \link{standardize} to standardize by normal or robust methods the exposures
-setGeneric("trans", function(object, fun, select, ...)
+setGeneric("trans", function(object, fun, select, by.exposure = FALSE, ...)
     standardGeneric("trans")
 )
 
@@ -380,7 +380,6 @@ setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
 #' @rdname plotLOD-methods
 #' @aliases plotLOD
 #' @param object \link{ExposomeSet} which exposome will be plotted.
-#' @param set Can be set to \code{"exposures"} or to \code{"phenotypes"}.
 #' @param lod.col (default \code{"LOD"}) Name of the column in \code{fData}
 #' containing the LOD thresholds.
 #' @param x.max (default \code{100}) Fix the maxium value of the X-axis.
@@ -470,7 +469,7 @@ setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE
 #'
 #' This function is a wrapper of the functions \code{mice} and \code{complete}
 #' from the package \link{mice}. Also to the \code{impute} from the
-#' package \link{Hmisc}. The function is designed to use those functions
+#' package \code{Hmisc}. The function is designed to use those functions
 #' to impute missing values on exposures (not in phenotypes).
 #'
 #' @name impute
@@ -501,7 +500,7 @@ setGeneric("impute", function(object, select, ssystem="mice", ..., messages=FALS
 #' Function to impute under-LOD values from an ExposomeSet
 #'
 #' This function is a wrapper of the functions \code{impute.MinProb}
-#' from the package \link{mputeLCMD}.
+#' from the package \code{imputeLCMD}.
 #'
 #' @name ilod
 #' @rdname ilod-methods
@@ -513,13 +512,13 @@ setGeneric("impute", function(object, select, ssystem="mice", ..., messages=FALS
 #' @param pNA (default \code{0.2}) Maximum percentage allowed of values under LOD
 #' @param tLog (default \code{FALSE}) If set to \code{TRUE} it transforms all
 #' the exposures to lod before the imputation.
-#' @param method (default \code{"QRILC"}) MEthod to be used to impute the
+#' @param method (default \code{"QRILC"}) Method to be used to impute the
 #' under-LOD values. Two allowed: QRILC method (value \code{"QRILC"}) and
 #' stochastic minimal value approach (value \code{"MinProb"}).
 #' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
 #' not be displayed.
 #' @param ... Arguments passed to \code{impute.QRILC} or \link{impute.MinProb}
-#' from \link{imputeLCMD}.
+#' from \code{imputeLCMD}.
 #' @return A new \code{ExposomeSet} with the imputed exposures.
 #' @examples
 #' \dontrun{
@@ -554,7 +553,7 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLo
 #' exposures
 #' @examples
 #' data("exposome")
-#' epca <- pca(expo[1:10, 1:10])
+#' epca <- pca(expo[12:20, ])
 #' @export pca
 setGeneric("pca", function(object, npc = 10)
     standardGeneric("pca")
@@ -584,12 +583,12 @@ setGeneric("ndim", function(object)
 #'
 #' Function used to plot the association between the phentoypes in an
 #' \link{ExposomePCA} and the values for each component of the PCA in the
-#' same \link{ExposomePCa}
+#' same \link{ExposomePCA}
 #'
 #' @name plotPHE
 #' @rdname plotPHE-methods
 #' @aliases plotPHE
-#' @param object An object oc class \link{ExposmePCA}
+#' @param object An object oc class \link{ExposomePCA}
 #' @param phenotype (optional) to select a set of phenotypes to be ploted.
 #' If not given all are used.
 #' @param exp2fac (default, \code{5}) Threshold to considere a phentoype
@@ -597,7 +596,7 @@ setGeneric("ndim", function(object)
 #' @return An object of class \code{ggplot}.
 #' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotEXP}
 #' to plot the correlation between exposures ans PCA,
-#' \link{ExposmePCA} as main class
+#' \link{ExposomePCA} as main class
 #' @examples
 #' data("exposome")
 #' epca <- pca(expo[3:7, 1:100])
@@ -611,18 +610,18 @@ setGeneric("plotPHE", function(object, phenotype, exp2fac = 5)
 #'
 #' Function used to plot the correlation between the exposures in an
 #' \link{ExposomePCA} and the values for each component of the PCA in the
-#' same \link{ExposomePCa}
+#' same \link{ExposomePCA}
 #'
 #' @name plotEXP
 #' @rdname plotEXP-methods
 #' @aliases plotEXP
-#' @param object An object of class \link{ExposmePCA}
+#' @param object An object of class \link{ExposomePCA}
 #' @param exposure (optional) to select a set of exposures to be ploted.
 #' If not given all are used.
 #' @return An object of class \code{ggplot}.
 #' @seealso \link{pca} to compute PCA on an \link{ExposomeSet}, \link{plotPHE}
 #' to plot the P-Value of association between phenotypes ans PCA,
-#' \link{ExposmePCA} as main class
+#' \link{ExposomePCA} as main class
 #' @examples
 #' data("exposome")
 #' epca <- pca(expo[3:7, 1:100])
@@ -640,7 +639,7 @@ setGeneric("plotEXP", function(object, exposure)
 #' @name plotPCA
 #' @rdname plotPCA-methods
 #' @aliases plotPCA
-#' @param object An onbject of class \link{ExposmePCA}
+#' @param object An onbject of class \link{ExposomePCA}
 #' @param set Group (\code{"all"}, \code{"samples"} or \code{"exposures"})
 #' taht will be ploted.
 #' @param cmpX (default: \code{1}) component to be placed at X axis
@@ -676,11 +675,11 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
 #' @name plot3PCA
 #' @rdname plot3PCA-methods
 #' @aliases plot3PCA
-#' @param object An onbject of class \link{ExposmePCA}
+#' @param object An onbject of class \link{ExposomePCA}
 #' @param cmpX Component to be placed at X axis
 #' @param cmpY Component to be placed at Y axis
 #' @param cmpZ Component to be placed at Z axis
-#' @param phentoype Used to color samples by phentoype
+#' @param phenotype Used to color samples by phentoype
 #' @param main Title for the plot
 #' @param angle	(default \code{35}) angle between x and y axis.
 #' @param pch (default \code{16}) plotting "character", i.e. symbol to use.
@@ -740,11 +739,38 @@ setGeneric("correlation", function(object, ..., warnings = TRUE)
 #' @name plotCorrelation
 #' @rdname plotCorrelation-methods
 #' @aliases plotCorrelation
-#' @param x \code{ExposomeCorr} which correlations will be plotted.
+#' @param object \code{ExposomeCorr} which correlations will be plotted.
 #' @param type (default \code{"circos"}) Can take both \code{"circos"} or
 #' \code{"matrix"}.
-#' @param ... Argiments given to \code{corrplot} of package \link{corrplot}
-#' if a matrix is draw, otherwise not used.
+#' @param ... Arguments given to \code{corrplot} of package \link{corrplot}
+#' if a matrix is draw. Moreover extra arguments are
+#' can be passed to inner functions to draw both the matrix and the
+#' circos of correlations.
+# @param cex.exposures (when \code{type = "matrix"}; default \code{0.50}) Size of
+# exposure' labels
+# @param cex.family (when \code{type = "matrix"}; default \code{0.50}) Size of
+# family's labels
+# @param correlation.limits (when \code{type = "circos"}) List of parameters to
+# control correation links. An example of each item in the list is:
+# \code{list(d = '+', t = 0.5,  c = "#191970")}. Each item in the
+# \code{correlation.limits} must be a list with e elements: direction (\code{d}),
+# threshold \code{t} and color \code{c}. The direction must be \code{"+"} or
+# \code{"-"} and sets the comparision (positive or negative). The threshold
+# indicates the value of the comparison. The color indicates the color of the
+# link that will be drawn. The example \code{list(d = '+', t = 0.5,  c = "#191970")}
+# is understood as: The correlations over (\code{d="+"}) the threshold \code{0.5}
+# will be coloured as \code{"#191970"}. The elements in the \code{correlation.limits}
+# must be ordered and the comparisions are nested, wihout drawing the center interval.
+# Default values for \code{correlation.limits} is:
+#     \code{list(list(d = '+', t = 0.5,  c = "#191970"),
+#        list(d = '+', t = 0.3,  c = "#4169E1"),
+#        list(d = '-', t = -0.3, c = "#DC143C"),
+#        list(d = '-', t = -0.5, c = "#8B0000"))}
+# So the correlation over \code{0.5} will be drawn with dark-red. The correlations
+# between \code{0.3} and 0.5 will be draws with bright-red. The correlations between
+# -0.3 and 0.3 will not be drawn. The correlations between \code{-0.3} and -0.5
+# will be draws with light-blue and the correlations under \code{-0.5} will
+# be draws in dark-blue.
 #' @return A \code{list} with different graphics parameters.
 #' @examples
 #' data("exposome")
@@ -754,7 +780,7 @@ setGeneric("correlation", function(object, ..., warnings = TRUE)
 #' @export plotCorrelation
 #' @seealso \link{correlation} as a constructor for \link{ExposomeCorr}
 #' objects, \link{pca} to compute PCA on exposures
-setGeneric("plotCorrelation", function(x, type = "circos", ...)
+setGeneric("plotCorrelation", function(object, type = "circos", ...)
     standardGeneric("plotCorrelation")
 )
 
@@ -804,14 +830,14 @@ setGeneric("plotCorrelation", function(x, type = "circos", ...)
 #' library(flexmix)
 #' # First we carete a function to apply flexmix to the ExposomeSet
 #' flexmix_clust <- function(data, ...) {
+#'   data <- as.matrix(data)
 #'   flexmix(formula = data~1, ...)
 #' }
 #'
-#' # Then we apply the method to the ExposomeSet
-#' c <- clustering(exp, method = flexmix_clust, k = 2, model = FLXMCmvnorm())
-#' # To try to obtain the classification for the result will fail since the
-#' # result of flexmix has not an accessor called $classiciation
-#' # classification(c)
+#' # Then if we apply the method to the ExposomeSet it will crash:
+#' # c <- clustering(expo[12:32, ], method = flexmix_clust, k = 2, model = FLXMCmvnorm())
+#' # Because the method does not know how to obtain the classification for the result
+#' # since flexmix has not an accessor called $classiciation
 #'
 #' # We create a function to get the classification
 #' flexmix_clas <- function(model, ...) {
@@ -819,8 +845,7 @@ setGeneric("plotCorrelation", function(x, type = "circos", ...)
 #' }
 #'
 #' # We put it to the ExposomeClust
-#'
-#' c <- clustering(exp, method = flexmix_clust, cmethod = flexmix_clas,
+#' c <- clustering(expo[12:32, ], method = flexmix_clust, cmethod = flexmix_clas,
 #'     k = 2, model = FLXMCmvnorm())
 #' classification(c) # This works because the ExposomeClust has a way to get
 #'                   # the classification
@@ -857,8 +882,16 @@ setGeneric("classification", function(object)
 #' @name plotClassification
 #' @rdname plotClassification-methods
 #' @aliases plotClassification
-#' @param x Object of class \code{Exposomeclust}
+#' @param object Object of class \code{Exposomeclust}
 #' @param type Two types are available: \code{"heatmap"} or \code{"valuemap"}.
+# @param scatter (if \code{type="valuemap"}; default \code{TRUE}) If set to
+# \code{TRUE} shows the datapoints on the boxplot.
+# @param cexRow (if \code{type="heatmap"}; default \code{0.5}) Size used
+# on labelling rows
+# @param cexCol (if \code{type="heatmap"}; default \code{1.1}) Size used
+# on labelling columns
+# @param adjCol (if \code{type="heatmap"}; default \code{c(0.5, 1)})
+# Adjustments used for column label placment.
 #' @param ... NOT USED
 #' @return A \code{list} with different graphics parameters.
 #' @examples
@@ -870,7 +903,7 @@ setGeneric("classification", function(object)
 #' @seealso \link{clustering} as a constructor for \link{ExposomeClust},
 #' \link{classification} to see how to obtain the classification of
 #' the samples from an \link{ExposomeClust}
-setGeneric("plotClassification", function(x, ...)
+setGeneric("plotClassification", function(object, type = "heatmap", ...)
     standardGeneric("plotClassification")
 )
 
@@ -893,8 +926,9 @@ setGeneric("plotClassification", function(x, ...)
 #' @param bbs.df Trace of the hat matrix for the base-learner defining the
 #' base-learner complexity. It is passed to \code{bbs} of \code{mboost}.
 #' @param ... Arguments passed to \code{gamboost}.
+#' @param mc.cores (default \code{1}) Number of cores to use in the analysis.
 #' @param verbose (default \code{FALSE}) Shows messages of the process.
-#' @param warning (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
 #' not be displayed.
 #' @return Returns an object of class \link{mExWAS}
 #' @examples
@@ -925,16 +959,12 @@ setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
 #' @param object \code{ExposomeSet} that will be used for the ExWAS.
 #' @param phenotype Target phenotype used for the study. If missing all the
 #' phenotypes in the \link{ExposomeSet} will be used.
-#' @param method Selector of method to be used. Can takes values
-#' \code{"enet"} or \code{"dsa"} for using \code{glmnet} or
-#' \code{partDSA}.
-#' @param ... Arguments passed to inner functions.
-#' @param mc.cores (default \code{1}) Number of cores used to process
-#' the exposures.
-#' @param verbose (default \code{FALSE}) Shows messages of the process.
-#' @param warning (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' @param family It must decrive the nature of the outcome. Can take values
+#' \code{"gaussian"}, \code{"binomial"}, \code{"poisson"}, \code{"multinomial"},
+#' \code{"cox"} or \code{"mgaussian"}.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
 #' not be displayed.
-#' @return Returns an object of class \link{MExWAS}
+#' @return Returns an object of class \link{mExWAS}
 #' @examples
 #' data("exposome")
 #' wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
@@ -1014,8 +1044,7 @@ setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FAL
 #' @rdname extract-methods
 #' @aliases extract
 #' @param object Object of class \link{ExWAS}.
-#' @param phenotype Name of the phenotype to be extracted from an
-#' \link{ExWAS}.
+#' @param ... NOT USED - ONLY FOR EXTENDED FUNCTIONALLITY
 #' @return A \code{data.frame} with the pvalues and other information from the
 #' association a integration studies of the exposures and phenotypes and
 #' exposures and omics data.
@@ -1025,7 +1054,7 @@ setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FAL
 #' extract(w1)
 #' @export extract
 #' @seealso \link{ExWAS}
-setGeneric("extract", function(object, ...)
+setGeneric("extract", function(object, sort = TRUE, ...)
     standardGeneric("extract")
 )
 
@@ -1038,11 +1067,7 @@ setGeneric("extract", function(object, ...)
 #' @rdname plotExwas-methods
 #' @aliases plotExwas
 #' @param object An \code{ExWAS} object which p-values will be plotted.
-#' @param color (optional) A vector of colors. The vector must have length
-#' equal to the number of families. The vector must be names with the
-#' name of the families.
-#' @param show.effective (default TRUE) draws a brown line on the
-#' threshold given by the effective number of tests.
+#' @param ... NOT USED
 #' @return An object of class \code{ggplot}.
 #' @examples
 #' data(exposome)
@@ -1144,9 +1169,7 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
 #' @rdname add_cls-methods
 #' @aliases add_cls
 #' @param object An object of class \link{MultiDataSet}.
-#' @param expoSet An object of class \link{ExposomeClust}.
-#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
-#' not be displayed.
+#' @param clsSet An object of class \link{ExposomeClust}.
 #' @param ... Arguments given to \link{add_eset} from \link{MultiDataSet}.
 #' @return A \link{MultiDataSet} with the \link{ExpressionSet} added as an
 #' independent dataset.

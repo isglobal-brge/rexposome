@@ -53,7 +53,7 @@ same way, the columns in exposure's \code{data.frames} must be the same
 in description \code{data.frame}.
 }
 \note{
-\link{ExposmeSet}'s \code{fData} will contain two inner columns called
+\link{ExposomeSet}'s \code{fData} will contain two inner columns called
 \code{_std}, \code{_trn}, \code{_fct} and \code{_type} in order to trace the
 transformations an exposure suffers and to know, at eny moment, if an
 exposure is categorical or continuous. The "description" file can contains a

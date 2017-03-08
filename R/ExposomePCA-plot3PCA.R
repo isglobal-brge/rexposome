@@ -1,4 +1,11 @@
 #' @describeIn ExposomePCA Methdo to draw a 3D plot for PCA
+#' @param cmpZ PC to place in Z-axis
+#' @param main Title
+#' @param angle Point of view
+#' @param pch Size of the dots
+#' @param legend Boolean to show or hide the legend
+#' @param plines Boolean to show of hide the dotted lines that helps to place
+#' the dots in the X/Y axes
 setMethod(
     f = "plot3PCA",
     signature = "ExposomePCA",

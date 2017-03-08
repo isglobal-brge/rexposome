@@ -4,7 +4,7 @@ setMethod(
     signature = "ExposomeSet",
     definition = function(object, select, method = c("normal", "robust"),
         na.rm = TRUE, warnings = TRUE) {
-        method <- match.arg(method)
+        method <- match.arg(method, choices = c("normal", "robust"))
         if(missing(select)) {
             select <- exposureNames(object)
         }
@@ -26,8 +26,7 @@ setMethod(
             warning("Categorical exposures will not be standardized.")
         }
 
-        select <<- select
-        dd <- t(assayData(object)[["exp"]][select, ])
+        dd <- expos(object)[ , select, drop=FALSE]
         if (method == "normal") {
             center <- apply(dd, 2, mean, na.rm = na.rm)
             vari   <- apply(dd, 2, sd, na.rm = na.rm)

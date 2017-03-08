@@ -1,5 +1,6 @@
 #' @describeIn ExposomeSet Returns a vector with the number of under-LOD values
 #' per exposure.
+#' @param output Can take values \code{"n"} (count) ot \code{"p"} (percentage)
 setMethod(
     f = "tableLOD",
     signature = "ExposomeSet",

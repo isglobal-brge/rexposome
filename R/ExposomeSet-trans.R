@@ -1,4 +1,5 @@
 #' @describeIn ExposomeSet Transformation of exposures.
+#' @param fun Function to bt used in the transformation process
 setMethod(
   f = "trans",
   signature = "ExposomeSet",

@@ -11,7 +11,7 @@
 \alias{tef,ExWAS-method}
 \title{Class ExWAS}
 \usage{
-\S4method{extract}{ExWAS}(object, sort = TRUE)
+\S4method{extract}{ExWAS}(object, sort = TRUE, ...)
 
 \S4method{plotEffect}{ExWAS}(x, y, select, xlab, ylab)
 
@@ -20,7 +20,28 @@
 \S4method{tef}{ExWAS}(object)
 }
 \arguments{
+\item{object}{An object of class \code{ExWAS}, \code{mExWAS} or \code{nlExWAS}.}
+
 \item{sort}{If \code{TRUE}, the results are ordered by pvalue.}
+
+\item{...}{NOT USED}
+
+\item{x}{An \code{\link{ExWAS}} object}
+
+\item{y}{An \code{\link{ExWAS}} object}
+
+\item{select}{(optional) Vector with the selected exposures}
+
+\item{xlab}{(optional) Label for x-axis}
+
+\item{ylab}{(optional) Label for y-axis}
+
+\item{color}{(optional) A vector of colors. The vector must have length
+equal to the number of families. The vector must be names with the
+name of the families.}
+
+\item{show.effective}{(default TRUE) draws a brown line on the
+threshold given by the effective number of tests.}
 }
 \value{
 An object of class \code{ExWAS}

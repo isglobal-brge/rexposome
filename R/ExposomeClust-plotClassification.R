@@ -1,8 +1,11 @@
 #' @describeIn ExposomeClust Draws a heatmap for the samples' classification.
+#' @param type (default \code{"heatmap"}) Type of plot.
+#' @param ... Argument given to \code{heatmap.2}
 setMethod(
   f = "plotClassification",
   signature = "ExposomeClust",
-  definition = function(x, type="heatmap", ...) {
+  definition = function(object, type="heatmap", ...) {
+    x <- object; rm(object)
     type <- match.arg(type, c("heatmap", "valuemap"))
     if(type == "heatmap") {
       .cluster_heatmap(x, ...)
@@ -48,7 +51,7 @@ setMethod(
   data <- .get_exposures(x, family, group = "cluster")
   data$group <- paste("Group", data$group)
 
-  plot <- ggplot2::ggplot(data, ggplot2::aes(x = group, y = value, color = group))
+  plot <- ggplot2::ggplot(data, ggplot2::aes_string(x="group", y="value", color="group"))
   if(scatter) {
     plot <- plot + ggplot2::geom_point(position = ggplot2::position_jitter(width=0.3), alpha=0.1)
     plot <- plot + ggplot2::geom_boxplot(alpha=0.1) + ggplot2::facet_wrap(~exposures)
@@ -75,7 +78,7 @@ setMethod(
 
   gplots::heatmap.2(agrted, col = gplots::bluered(100), dendrogram = "row",
                     cexRow = cexRow, srtCol = 0, cexCol = cexCol, adjCol = adjCol,
-                    density.info="none", tracecol = "darkgreen", lhei = c(2, 10), ...)
+                    density.info="none", tracecol = "darkgreen", lhei = c(2, 10))
 
 #   gplots::heatmap.2(agrted, col=gplots::redblue(100), key=FALSE, symkey=FALSE,
 #                     trace="none", cexRow=0.5, density.info="none",

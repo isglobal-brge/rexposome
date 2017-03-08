@@ -4,16 +4,18 @@
 \alias{plotCorrelation}
 \title{It draws both circos or matrix plot for the correlation in ExposomeCorr}
 \usage{
-plotCorrelation(x, type = "circos", ...)
+plotCorrelation(object, type = "circos", ...)
 }
 \arguments{
-\item{x}{\code{ExposomeCorr} which correlations will be plotted.}
+\item{object}{\code{ExposomeCorr} which correlations will be plotted.}
 
 \item{type}{(default \code{"circos"}) Can take both \code{"circos"} or
 \code{"matrix"}.}
 
-\item{...}{Argiments given to \code{corrplot} of package \link{corrplot}
-if a matrix is draw, otherwise not used.}
+\item{...}{Arguments given to \code{corrplot} of package \link{corrplot}
+if a matrix is draw. Moreover extra arguments are
+can be passed to inner functions to draw both the matrix and the
+circos of correlations.}
 }
 \value{
 A \code{list} with different graphics parameters.

@@ -1,5 +1,9 @@
 #' @describeIn ExposomeSet Draws an histogram of a given continuous exposure
 #' or a pie chart if a given categorycal exposure.
+#' @param density If set to \code{TRUE} a desntiry plot is draw on the
+#' histogram
+#' @param show.trans If set to \code{TRUE}, three extra plots are drawn
+#' with usual transformations
 setMethod(
     f = "plotHistogram",
     signature = "ExposomeSet",

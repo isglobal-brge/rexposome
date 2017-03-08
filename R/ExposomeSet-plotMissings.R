@@ -1,4 +1,5 @@
 #' @describeIn ExposomeSet Draws a bar-plot with the amount of missing values.
+#' @param set Cantake values \code{"exposures"} or \code{"phentoypes"}.
 setMethod(
     f = "plotMissings",
     signature = "ExposomeSet",

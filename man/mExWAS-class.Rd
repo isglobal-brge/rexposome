@@ -17,13 +17,17 @@
 \S4method{plotExwas}{mExWAS}(object)
 }
 \arguments{
+\item{object}{A \code{\link{mExWAS}} object.}
+
 \item{sort}{NOT USED}
+
+\item{object}{A \code{link{mExWAS}} object}
 }
 \value{
 An object of class \code{mExWAS}
 }
 \description{
-Class \code{mExWAS} obtained from \link{m_exwas} method of an
+Class \code{mExWAS} obtained from \link{mexwas} method of an
 \link{ExposomeSet} object, contains the result of testing the multiple
 models of exposures of an \code{ExposomeSet} to a set of given phenotypes.
 "mExWAS" is the #' acronym of "Multivariate Exposome-Wide Association

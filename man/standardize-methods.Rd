@@ -10,11 +10,16 @@ standardize(object, select, method = "normal", na.rm = TRUE,
 \arguments{
 \item{object}{\code{ExposomeSet} with exposures to be standardized.}
 
+\item{select}{Subseting of exposures of phenotypes.}
+
 \item{method}{Character selecting the method to be applied (\code{'normal'}
 or \code{'robust'}).}
 
 \item{na.rm}{(by default \code{TRUE}) Removes NA data to perform
 standardization.}
+
+\item{warnings}{(defaulr \code{TRUE}) If set to \code{FALSE} warnings are
+not shown.}
 }
 \value{
 An \code{ExposomeSet} with the selected exposures standardized and
@@ -27,8 +32,8 @@ if method is \code{"normal"} or by using median/mad if method is
 }
 \examples{
 data("exposome")
-exp.sn <- standardize(expo, method = "normal", select = "ldde_lip")
-exp.rs <- standardize(expo, method = "robust", select = "ldde_lip")
+exp.sn <- standardize(expo, method = "normal", select = "lbde100_lip")
+exp.rs <- standardize(expo, method = "robust", select = "lbde100_lip")
 }
 \seealso{
 \link{highAndLow} to transform the continuous exposures to

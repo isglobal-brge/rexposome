@@ -19,9 +19,11 @@ base-learner complexity. It is passed to \code{bbs} of \code{mboost}.}
 
 \item{...}{Arguments passed to \code{gamboost}.}
 
+\item{mc.cores}{(default \code{1}) Number of cores to use in the analysis.}
+
 \item{verbose}{(default \code{FALSE}) Shows messages of the process.}
 
-\item{warning}{(default \code{TRUE}) If set to \code{FALSE} warnings will
+\item{warnings}{(default \code{TRUE}) If set to \code{FALSE} warnings will
 not be displayed.}
 }
 \value{

@@ -1,5 +1,10 @@
 #' @describeIn ExWAS Draws a plot with the confidence interval of each
 #' exposure. Alows to compare two ExWAS instances.
+#' @param x An \code{\link{ExWAS}} object
+#' @param y An \code{\link{ExWAS}} object
+#' @param select (optional) Vector with the selected exposures
+#' @param xlab (optional) Label for x-axis
+#' @param ylab (optional) Label for y-axis
 setMethod(
     f = "plotEffect",
     signature = "ExWAS",

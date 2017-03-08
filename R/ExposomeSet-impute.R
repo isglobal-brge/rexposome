@@ -1,4 +1,8 @@
 #' @describeIn ExposomeSet Imputation of missing values of exposures.
+#' @param ssystem Method to be used to impute missing values (\code{"mice"} or
+#' \code{"hmisc"}).
+#' @param messages If set to \code{TRUE} messages from  \link{mice}'s function
+#' will be displayed.
 setMethod(
     f = "impute",
     signature = "ExposomeSet",

@@ -1,5 +1,9 @@
 #' @describeIn ExposomeSet Draws a boxplot or accumulated-bar plot for each
 #' exposure in a given family.
+#' @param group Phenotype to group exposures
+#' @param group2 Phenotype to group exposures
+#' @param scatter If set to true it shows the samples value in the plot
+#' @param na.omit If set to \code{TRUE}, \code{NA} values are discarded
 setMethod(
     f = "plotFamily",
     signature = "ExposomeSet",

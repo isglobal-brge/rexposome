@@ -2,7 +2,7 @@
 setMethod(
     f = "extract",
     signature = "ExposomeCorr",
-    definition = function(object) {
+    definition = function(object, ...) {
         assayDataElement(object, "corr")
     }
 )

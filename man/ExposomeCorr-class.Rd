@@ -12,9 +12,19 @@
 \usage{
 \S4method{dim}{ExposomeCorr}(x)
 
-\S4method{extract}{ExposomeCorr}(object)
+\S4method{extract}{ExposomeCorr}(object, sort = TRUE, ...)
 
-\S4method{plotCorrelation}{ExposomeCorr}(x, type = c("circos", "matrix"), ...)
+\S4method{plotCorrelation}{ExposomeCorr}(object, type = c("circos", "matrix"),
+  ...)
+}
+\arguments{
+\item{x}{Object of class \link{ExposomeCorr}}
+
+\item{object}{An \code{\link{ExposomeCorr}} object.}
+
+\item{...}{Arguments passed to \code{corrplot} when \code{type="matrix"}.}
+
+\item{type}{To choose between \code{"circos"} and \code{"matrix"}.}
 }
 \description{
 Class \code{ExposomeCorr} contains a matrix of correlations between

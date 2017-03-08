@@ -1,9 +1,12 @@
 #' @describeIn ExposomeSet Testing the association between an exposure and
 #' phenotype of an ExposomeSet using a non-lineal aproach.
+#' @param bbs.df TO BE INDICATED
+#' @param mc.cores TO BE INDICATED
 setMethod(
     f = "nl_exwas",
     signature = "ExposomeSet",
-    definition = function(object, phenotype, bbs.df, ..., mc.cores = 1, verbose = FALSE, warnings = TRUE) {
+    definition = function(object, phenotype, bbs.df, ..., mc.cores = 1,
+                          verbose = FALSE, warnings = TRUE) {
         # Fit gamboost to all outcomes of expressions of
         # an expressionSet (eSet class) or Y data.frame
         # using all covariates (exposions) of X data.frame
@@ -12,7 +15,7 @@ setMethod(
 
         if(verbose) {
             message("Loading package 'mboost'.")
-            suppressMessages(require(mboost))
+            suppressMessages(requireNamespace(mboost))
         }
 
         if(!missing(phenotype)) {

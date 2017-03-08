@@ -1,4 +1,8 @@
 #' @describeIn ExposomeSet Test the normality of each exposure.
+#' @param exposure Vecror of exposures to be used.
+#' @param th Threshold of P-Value used to considere normalit
+#' @param min.val Minimum number of observations to perform test
+#' @param na.rm If set to \code{TRUE} removes \code{NA} values
 setMethod(
     f = "normalityTest",
     signature = "ExposomeSet",

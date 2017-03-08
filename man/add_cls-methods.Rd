@@ -9,12 +9,9 @@ add_cls(object, clsSet, ...)
 \arguments{
 \item{object}{An object of class \link{MultiDataSet}.}
 
+\item{clsSet}{An object of class \link{ExposomeClust}.}
+
 \item{...}{Arguments given to \link{add_eset} from \link{MultiDataSet}.}
-
-\item{expoSet}{An object of class \link{ExposomeClust}.}
-
-\item{warnings}{(default \code{TRUE}) If set to \code{FALSE} warnings will
-not be displayed.}
 }
 \value{
 A \link{MultiDataSet} with the \link{ExpressionSet} added as an

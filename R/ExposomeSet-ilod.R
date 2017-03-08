@@ -1,4 +1,10 @@
 #' @describeIn ExposomeSet Imputation of under-LOD values of exposures.
+#' @param seed Numeric seed
+#' @param lod.col Indicator of the column where the LOD is located
+#' @param pNA Maximum percentage allowed of values under LOD
+#' @param tLog (If set to \code{TRUE} it transforms all the exposures to lod
+#' before the imputation.
+#' @param method Method to be used to impute the under-LOD values.
 setMethod(
     f = "ilod",
     signature = "ExposomeSet",

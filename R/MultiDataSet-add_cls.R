@@ -1,5 +1,6 @@
 #' @describeIn ExposomeSet Allows to add an \code{ExposomeClust} to a
 #' \code{MultiDataSet}.
+#' @param clsSet An \code{\link{ExposomeClust}} object.
 setMethod(
     f = "add_cls",
     signature = c("MultiDataSet", "ExposomeClust"),

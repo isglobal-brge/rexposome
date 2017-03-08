@@ -116,6 +116,103 @@
 \S4method{add_exp}{MultiDataSet,ExposomeSet}(object, expoSet, warnings = TRUE,
   ...)
 }
+\arguments{
+\item{object}{An \code{\link{ExposomeSet}} object.}
+
+\item{method}{Function implementing clustering method.}
+
+\item{cmethod}{Function implementing a systsme to retrieve classification
+from clustering output}
+
+\item{...}{Argument sent to \code{method}.}
+
+\item{warnings}{If set to \code{TRUE} shows intermediate warnings.}
+
+\item{x}{An \code{\link{ExposomeSet}} object.}
+
+\item{formula}{Formula, not including exposures, to be tested.}
+
+\item{filter}{Expression to be used to filter \code{\link{ExposomeSet}}}
+
+\item{family}{Family descriving the nature of the health outcome}
+
+\item{verbose}{If set to \code{TRUE} is shows messages on progression.}
+
+\item{by.exposure}{If set to \code{TRUE} ir returns the family which
+each exposure belongs}
+
+\item{ngroups}{Number of intervals to be used}
+
+\item{intervals}{If \code{"standard"} all levels are kept, if
+\code{"extreme"} intermetiate levels are set to \code{NA}.}
+
+\item{select}{Vector selecting thee xposures to be used.}
+
+\item{drop}{If set to \code{TRUE} exposures are replaced}
+
+\item{seed}{Numeric seed}
+
+\item{lod.col}{Indicator of the column where the LOD is located}
+
+\item{pNA}{Maximum percentage allowed of values under LOD}
+
+\item{tLog}{(If set to \code{TRUE} it transforms all the exposures to lod
+before the imputation.}
+
+\item{ssystem}{Method to be used to impute missing values (\code{"mice"} or
+\code{"hmisc"}).}
+
+\item{messages}{If set to \code{TRUE} messages from  \link{mice}'s function
+will be displayed.}
+
+\item{phenotype}{Health outcome to be used as dependent variable.}
+
+\item{bbs.df}{TO BE INDICATED}
+
+\item{mc.cores}{TO BE INDICATED}
+
+\item{exposure}{Vecror of exposures to be used.}
+
+\item{th}{Threshold of P-Value used to considere normalit}
+
+\item{min.val}{Minimum number of observations to perform test}
+
+\item{na.rm}{If set to \code{TRUE} removes \code{NA} values}
+
+\item{npc}{Number of PC to be kept}
+
+\item{group}{Phenotype to group exposures}
+
+\item{group2}{Phenotype to group exposures}
+
+\item{scatter}{If set to true it shows the samples value in the plot}
+
+\item{na.omit}{If set to \code{TRUE}, \code{NA} values are discarded}
+
+\item{density}{If set to \code{TRUE} a desntiry plot is draw on the
+histogram}
+
+\item{show.trans}{If set to \code{TRUE}, three extra plots are drawn
+with usual transformations}
+
+\item{x.max}{Threshold for x axis (in %)}
+
+\item{sort}{If set to \code{TRUE}, results are ordered}
+
+\item{set}{Cantake values \code{"exposures"} or \code{"phentoypes"}.}
+
+\item{output}{Can take values \code{"n"} (count) ot \code{"p"} (percentage)}
+
+\item{fun}{Function to bt used in the transformation process}
+
+\item{clsSet}{An \code{\link{ExposomeClust}} object.}
+
+\item{expoSet}{An \code{\link{ExposomeSet}} object}
+
+\item{...}{NOT USED}
+
+\item{method}{Method to be used to impute the under-LOD values.}
+}
 \value{
 An object of class \code{ExposomeSet}
 }
@@ -201,6 +298,10 @@ per exposure.
 
 \item{\code{featureData}}{Contains the description of the exposures including
 the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
+
+\item{\code{experimentData}}{NOT USED}
+
+\item{\code{annotation}}{NOT USED}
 }}
 
 \seealso{

@@ -19,7 +19,7 @@
 \usage{
 \S4method{exposureNames}{ExposomePCA}(object)
 
-\S4method{extract}{ExposomePCA}(object, table = "exposures")
+\S4method{extract}{ExposomePCA}(object, table = "exposures", ...)
 
 \S4method{ndim}{ExposomePCA}(object)
 
@@ -33,6 +33,39 @@
 \S4method{plotPCA}{ExposomePCA}(object, set, cmpX = 1, cmpY = 2, phenotype)
 
 \S4method{plotPHE}{ExposomePCA}(object, phenotype, exp2fac = 5)
+}
+\arguments{
+\item{object}{An \code{\link{ExposomePCA}} object}
+
+\item{table}{Can takes values \code{"exposures"} or \code{"individuals"}.}
+
+\item{cmpX}{PC to place in X-axis}
+
+\item{cmpY}{PC to place in Y-axis}
+
+\item{cmpZ}{PC to place in Z-axis}
+
+\item{phenotype}{(when \code{set="samples"}) A phenotype can be selected
+so the samples are coloured by its value.}
+
+\item{main}{Title}
+
+\item{angle}{Point of view}
+
+\item{pch}{Size of the dots}
+
+\item{legend}{Boolean to show or hide the legend}
+
+\item{plines}{Boolean to show of hide the dotted lines that helps to place
+the dots in the X/Y axes}
+
+\item{exposure}{Vector of exposures to be shown in the plot}
+
+\item{set}{Can take values \code{"exposures"}, \code{"samples"} or
+\code{"all"}}
+
+\item{exp2fac}{Number of different values to considere an exposures
+continuous}
 }
 \value{
 An object of class \code{ExposomePCA}

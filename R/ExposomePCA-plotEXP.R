@@ -1,4 +1,5 @@
 #' @describeIn ExposomePCA Plot correlation between exposures and PCA
+#' @param exposure Vector of exposures to be shown in the plot
 setMethod(
     f = "plotEXP",
     signature = "ExposomePCA",

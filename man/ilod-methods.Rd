@@ -20,7 +20,7 @@ with the threshold of the LOD.}
 \item{tLog}{(default \code{FALSE}) If set to \code{TRUE} it transforms all
 the exposures to lod before the imputation.}
 
-\item{method}{(default \code{"QRILC"}) MEthod to be used to impute the
+\item{method}{(default \code{"QRILC"}) Method to be used to impute the
 under-LOD values. Two allowed: QRILC method (value \code{"QRILC"}) and
 stochastic minimal value approach (value \code{"MinProb"}).}
 
@@ -28,14 +28,14 @@ stochastic minimal value approach (value \code{"MinProb"}).}
 not be displayed.}
 
 \item{...}{Arguments passed to \code{impute.QRILC} or \link{impute.MinProb}
-from \link{imputeLCMD}.}
+from \code{imputeLCMD}.}
 }
 \value{
 A new \code{ExposomeSet} with the imputed exposures.
 }
 \description{
 This function is a wrapper of the functions \code{impute.MinProb}
-from the package \link{mputeLCMD}.
+from the package \code{imputeLCMD}.
 }
 \examples{
 \dontrun{

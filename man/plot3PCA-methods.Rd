@@ -8,13 +8,15 @@ plot3PCA(object, cmpX, cmpY, cmpZ, phenotype, main, angle = 35, pch = 16,
   legend = TRUE, plines = TRUE)
 }
 \arguments{
-\item{object}{An onbject of class \link{ExposmePCA}}
+\item{object}{An onbject of class \link{ExposomePCA}}
 
 \item{cmpX}{Component to be placed at X axis}
 
 \item{cmpY}{Component to be placed at Y axis}
 
 \item{cmpZ}{Component to be placed at Z axis}
+
+\item{phenotype}{Used to color samples by phentoype}
 
 \item{main}{Title for the plot}
 
@@ -26,8 +28,6 @@ plot3PCA(object, cmpX, cmpY, cmpZ, phenotype, main, angle = 35, pch = 16,
 
 \item{plines}{(default \code{TRUE}) If \code{TRUE} it draws the lines from
 each dot to the base plane.}
-
-\item{phentoype}{Used to color samples by phentoype}
 }
 \value{
 A \code{list} with different graphics option from \code{scatterplot3d}.

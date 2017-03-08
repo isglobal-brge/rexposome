@@ -9,12 +9,7 @@ plotExwas(object, ...)
 \arguments{
 \item{object}{An \code{ExWAS} object which p-values will be plotted.}
 
-\item{color}{(optional) A vector of colors. The vector must have length
-equal to the number of families. The vector must be names with the
-name of the families.}
-
-\item{show.effective}{(default TRUE) draws a brown line on the
-threshold given by the effective number of tests.}
+\item{...}{NOT USED}
 }
 \value{
 An object of class \code{ggplot}.

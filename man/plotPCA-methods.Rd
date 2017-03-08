@@ -7,7 +7,7 @@
 plotPCA(object, set, cmpX = 1, cmpY = 2, phenotype)
 }
 \arguments{
-\item{object}{An onbject of class \link{ExposmePCA}}
+\item{object}{An onbject of class \link{ExposomePCA}}
 
 \item{set}{Group (\code{"all"}, \code{"samples"} or \code{"exposures"})
 taht will be ploted.}

@@ -17,8 +17,6 @@ containing the LOD thresholds.}
 \item{sort}{(default \code{TRUE}) If \code{TRUE} the chart will be ordered
 from the features with less missing data to the ones with more under-LOD
 values.}
-
-\item{set}{Can be set to \code{"exposures"} or to \code{"phenotypes"}.}
 }
 \value{
 A \code{ggplot} object.

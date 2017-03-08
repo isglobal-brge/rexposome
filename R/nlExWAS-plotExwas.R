@@ -1,5 +1,5 @@
 #' @describeIn nlExWAS Method to raw a bar-plot with the AIC of each model
-#' @aliases nlExWAS-methods
+#' @param object A \code{\link{nlExWAS}} object.
 setMethod(
     f = "plotExwas",
     signature = "nlExWAS",

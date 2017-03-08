@@ -12,8 +12,6 @@ Summary(object, set = c("exposures", "phenotypes"), select)
 \item{set}{Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).}
 
 \item{select}{Subseting of exposures of phenotypes.}
-
-\item{...}{NOT USED}
 }
 \value{
 A basic description of the exposures in the \code{ExposomeSet}
