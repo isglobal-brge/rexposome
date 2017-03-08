@@ -124,7 +124,7 @@ setMethod(
 }
 
 .plot_exposure_factor <- function(x, family, group = NA, group2 = NA, na.omit = TRUE) {
-    data <- rexposome:::.get_exposures(x, family, group, group2, na.omit)
+    data <- .get_exposures(x, family, group, group2, na.omit)
 
     plot <- ggplot2::ggplot(data, ggplot2::aes(x = exposures, fill=value))
     if (!is.na(group)) {
@@ -158,7 +158,7 @@ setMethod(
   } else {
     nr <- nc
   }
-
+de
   ff <- familyNames(obj)
   grid::grid.newpage()
   grid::pushViewport(grid::viewport(layout = grid::grid.layout(nr, nc)))

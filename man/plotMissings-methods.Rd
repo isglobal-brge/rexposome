@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{plotMissings}
 \alias{plotMissings}
-\alias{plotMissings,ExposomeSet-methods}
 \title{It draws a chart with the percentage of missing in an ExposomeSet}
 \usage{
 plotMissings(object, set, x.max = 100, sort = TRUE)

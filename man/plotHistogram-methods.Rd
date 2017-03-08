@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{plotHistogram}
 \alias{plotHistogram}
-\alias{plotHistogram,ExposomeSet-methods}
 \title{It draws a histogram for each exposure in an ExposomeSet}
 \usage{
 plotHistogram(x, select, density = TRUE, show.trans = FALSE)

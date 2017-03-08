@@ -36,57 +36,57 @@ setMethod(
         )
     }
 )
-
-
-notused <- function(object, verbose = FALSE, warnings = TRUE) {
-    object <- expo
-
-    if(verbose) {
-        message("Computing correlation between exposures.")
-    }
-    cr <- extract(correlation(object, use = "pairwise.complete.obs", method.cor = "pearson"))
-    cr <- abs(cr)
-
-    ## Select exposures with a correlation over 0.9
-    re <- list()
-    kk <- 1
-    for(ii in 1:(nrow(cr) - 1)) {
-        for(jj in (ii+1):ncol(cr)) {
-            if(cr[ii, jj] > 0.9) {
-                re[[kk]] <- c(rownames(cr)[ii], rownames(cr)[jj])
-                kk <- kk + 1
-            }
-        }
-    }
-    rm(kk)
-    re <- unique(unlist(re))
-
-    if(warnings & length(re) != 0) {
-        warning("There are ", length(re), " exposures with correlations over 0.9. Those exposures will be excluded from the analysis.")
-    }
-
-    sel <- colnames(cr)[!colnames(cr) %in% re]
-    rm(re)
-    ## /
-
-    ## Get exposures and remove those with high correlation
-    dta <- as.data.frame(object, phe = FALSE)
-    message(ncol(dta))
-    dta <- dta[ , sel]
-    message(ncol(dta))
-    ## /
-
-    ## Add phenotype and perfom DSA
-    dta <- cbind(dta, pData(object)[ , phenotype, drop=FALSE])
-    mod <- DSA::DSA(formula(paste0(phenotype, " ~ 1")),
-               data = dta,
-               maxsize = ncol(dta),
-               maxorderint = 1,
-               maxsumofpow = 1,
-               id = rownames(dta)
-    )
-    ## /
-
-    summary(mod)
-
-}
+#
+#
+# notused <- function(object, verbose = FALSE, warnings = TRUE) {
+#     object <- expo
+#
+#     if(verbose) {
+#         message("Computing correlation between exposures.")
+#     }
+#     cr <- extract(correlation(object, use = "pairwise.complete.obs", method.cor = "pearson"))
+#     cr <- abs(cr)
+#
+#     ## Select exposures with a correlation over 0.9
+#     re <- list()
+#     kk <- 1
+#     for(ii in 1:(nrow(cr) - 1)) {
+#         for(jj in (ii+1):ncol(cr)) {
+#             if(cr[ii, jj] > 0.9) {
+#                 re[[kk]] <- c(rownames(cr)[ii], rownames(cr)[jj])
+#                 kk <- kk + 1
+#             }
+#         }
+#     }
+#     rm(kk)
+#     re <- unique(unlist(re))
+#
+#     if(warnings & length(re) != 0) {
+#         warning("There are ", length(re), " exposures with correlations over 0.9. Those exposures will be excluded from the analysis.")
+#     }
+#
+#     sel <- colnames(cr)[!colnames(cr) %in% re]
+#     rm(re)
+#     ## /
+#
+#     ## Get exposures and remove those with high correlation
+#     dta <- as.data.frame(object, phe = FALSE)
+#     message(ncol(dta))
+#     dta <- dta[ , sel]
+#     message(ncol(dta))
+#     ## /
+#
+#     ## Add phenotype and perfom DSA
+#     dta <- cbind(dta, pData(object)[ , phenotype, drop=FALSE])
+#     mod <- DSA::DSA(formula(paste0(phenotype, " ~ 1")),
+#                data = dta,
+#                maxsize = ncol(dta),
+#                maxorderint = 1,
+#                maxsumofpow = 1,
+#                id = rownames(dta)
+#     )
+#     ## /
+#
+#     summary(mod)
+#
+# }

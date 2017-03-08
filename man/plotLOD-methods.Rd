@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{plotLOD}
 \alias{plotLOD}
-\alias{plotLOD,ExposomeSet-methods}
 \title{It draws a chart with the percentage of under-LOD values in an ExposomeSet}
 \usage{
 plotLOD(object, lod.col = "LOD", x.max = 100, sort = TRUE)

@@ -16,9 +16,6 @@
 
 \S4method{plotCorrelation}{ExposomeCorr}(x, type = c("circos", "matrix"), ...)
 }
-\value{
-An object of class \code{ExposomeCorr}
-}
 \description{
 Class \code{ExposomeCorr} contains a matrix of correlations between
 continuos exposures calculated using \link{cor}. It also contains the
@@ -44,9 +41,6 @@ correlation.
 
 \item{\code{featureData}}{Contains the description of the exposures including
 the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
-
-\item{\code{desc.famCol}}{Name or index of the column containing the exposure's name
-(in description file).}
 }}
 
 \seealso{

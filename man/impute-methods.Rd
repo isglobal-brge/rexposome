@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{impute}
 \alias{impute}
-\alias{impute,ExposomeSet-methods}
 \title{Function to impute missing values from an ExposomeSet}
 \usage{
 impute(object, select, ssystem = "mice", ..., messages = FALSE)

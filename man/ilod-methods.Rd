@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{ilod}
 \alias{ilod}
-\alias{ilod,ExposomeSet-methods}
 \title{Function to impute under-LOD values from an ExposomeSet}
 \usage{
 ilod(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLog = FALSE,

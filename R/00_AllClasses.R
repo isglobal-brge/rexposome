@@ -8,8 +8,6 @@
 #' @aliases ExposomeSet-class
 #' @rdname ExposomeSet-class
 #' @exportClass ExposomeSet
-#' @slot desc.famCol Name of the column containing exposures' family in
-#' description-file.
 #' @slot assayData Contains the exposures matrix with column number equal to
 #' \code{nrow(phenoData)} (see \link{eSet}, \link{AssayData}).
 #' @slot phenoData: Contains the phenotypes or variables experimenter-supplied
@@ -17,9 +15,8 @@
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}
-#' from files, \code{\link{create_exposome}} to create an \code{ExposomeSet}
+#' from files, \code{\link{load_exposome}} to create an \code{ExposomeSet}
 #' from \code{data.frames}
-#' @importClassesFrom Biobase eSet
 #' @return An object of class \code{ExposomeSet}
 setClass(
   Class = "ExposomeSet",
@@ -47,12 +44,8 @@ setClass(
 #' (see \link{eSet}, \link{AssayData}).
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
-#' @slot desc.famCol Name or index of the column containing the exposure's name
-#' (in description file).
 #' @seealso \code{\link{pca}} to study the behavioud between samples
 #' and exposures in an \code{\link{ExposomeSet}}
-#' @importClassesFrom Biobase eSet
-#' @return An object of class \code{ExposomeCorr}
 setClass(
   Class = "ExposomeCorr",
   contains = "eSet"
@@ -75,7 +68,6 @@ setClass(
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @seealso \code{\link{correlation}} to study the correlation between
 #' exposures in a \code{\link{ExposomeSet}}
-#' @importClassesFrom Biobase eSet
 #' @return An object of class \code{ExposomePCA}
 setClass(
     Class = "ExposomePCA",
@@ -165,8 +157,6 @@ setClass(
 #' @aliases mExWAS-class
 #' @rdname mExWAS-class
 #' @exportClass mExWAS
-#' @slot ranking Results obtained from the \code{mboost} package as
-#' \code{data.frame}.
 #' @slot result klist with the fitted model and result.
 #' @slot phenotype Name of the phenotype used in the analysys.
 #' @slot description feature data from original ExposomeSet.

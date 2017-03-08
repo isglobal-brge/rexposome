@@ -15,12 +15,10 @@ Depends:
     R (>= 3.3.0),
     Biobase,
     mice,
-    MultiDataSet,
-    mvtnorm,
-    lsr
-Imports: BiocInstaller,
+    MultiDataSet
+Imports: lsr,
+    BiocInstaller,
     FactoMineR,
-    gridExtra,
     stringr,
     circlize,
     corrplot,
@@ -31,8 +29,12 @@ Imports: BiocInstaller,
     mboost,
     imputeLCMD,
     scatterplot3d,
-    glmnet
-Suggests: testthat,
+    glmnet,
+    gridExtra,
+    grid
+Suggests: mclust,
+    flexmix,
+    testthat,
     BiocStyle,
     knitr,
     rmarkdown

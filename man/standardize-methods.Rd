@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{standardize}
 \alias{standardize}
-\alias{standardize,ExposomeSet-methods}
 \title{Standardize of an ExposomeSet.}
 \usage{
 standardize(object, select, method = "normal", na.rm = TRUE,
@@ -32,7 +31,6 @@ exp.sn <- standardize(expo, method = "normal", select = "ldde_lip")
 exp.rs <- standardize(expo, method = "robust", select = "ldde_lip")
 }
 \seealso{
-\link{sData} to chek the status of the exposures,
-\link{highAndLow} to transform the continuous exposures to levelled factors,
-\link{trans} to transform the exposures,
+\link{highAndLow} to transform the continuous exposures to
+levelled factors, \link{trans} to transform the exposures
 }

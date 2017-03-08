@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{mexwas}
 \alias{mexwas}
-\alias{mexwas,ExposomeSet-methods}
 \title{Testing the association between an exposure and a phenotype of an
 ExposomeSet using a multivariate aproach.}
 \usage{

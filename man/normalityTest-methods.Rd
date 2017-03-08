@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{normalityTest}
 \alias{normalityTest}
-\alias{normalityTest,ExposomeSet-methods}
 \title{It creates a \code{data.frame} of boolean indicating if the exposures follows
 a normal distribution or not.}
 \usage{

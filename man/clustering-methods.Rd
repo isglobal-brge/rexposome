@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{clustering}
 \alias{clustering}
-\alias{clustering,ExposomeSet-methods}
 \title{Method to perform clustering on the samples of an ExposomeSet}
 \usage{
 clustering(object, method, cmethod, ..., warnings = TRUE)

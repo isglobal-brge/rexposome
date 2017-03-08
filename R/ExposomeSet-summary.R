@@ -1,7 +1,8 @@
+#' @describeIn ExposomeSet  Summary of both continuous and categorical exposures
 setMethod(
     f = "Summary",
     signature = "ExposomeSet",
-    definition = function(object, set=c("exposures", "phenotypes"), select, ...) {
+    definition = function(object, set=c("exposures", "phenotypes"), select) {
         set <- match.arg(set)
         if(missing(select)) {
             select <- switch(set,
@@ -19,7 +20,7 @@ setMethod(
         }
         switch(set,
             exposures = .summary_exposures(object, select),
-            phenotypes = summary(pData(phenoData(object))[ , select])
+            phenotypes = summary(pData(phenoData(object))[ , select, drop=FALSE])
         )
     }
 )

@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{exwas}
 \alias{exwas}
-\alias{exwas,ExposomeSet-methods}
 \title{Testing the association between an exposure and a phenotype of an
 ExposomeSet}
 \usage{

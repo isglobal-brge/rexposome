@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{plotClassification}
 \alias{plotClassification}
-\alias{plotClassification,ExposomeClust-methods}
 \title{Draw the profile of the levels exposures after a classification with a
 clustering method}
 \usage{

@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{tableMissings}
 \alias{tableMissings}
-\alias{tableMissings,ExposomeSet-methods}
 \title{It creates a vector with the amount of missing in an ExposomeSet}
 \usage{
 tableMissings(object, set, output = "n", sort = TRUE)

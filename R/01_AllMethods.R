@@ -2,7 +2,7 @@
 #'
 #' @name exposureNames
 #' @rdname exposureNames-methods
-#' @aliases exposureNames,ExposomeSet-methods
+#' @aliases exposureNames
 #' @param object \link{ExposomeSet} that will be queried for the exposures's
 #' names.
 #' @return The name of the exposures as a character vector.
@@ -10,8 +10,7 @@
 #' data("exposome")
 #' exposureNames(expo)
 #' @export exposureNames
-#' @seealso \link{individualNames} to get the name of the samples,
-#' \link{phenotypeNames} to get the phenotypes,
+#' @seealso \link{phenotypeNames} to get the phenotypes,
 #' \link{familyNames} to get the families of exposures
 #' @section Warning:
 #' \link{exposureNames} collides with \link{featureNames} of \link{eSet}.
@@ -21,58 +20,11 @@ setGeneric("exposureNames", function(object)
     standardGeneric("exposureNames")
 )
 
-# #' Getter to obtain the individual names (sample names) of an ExposomeSet.
-# #'
-# #' @name individualNames
-# #' @rdname individualNames-methods
-# #' @aliases individualNames,ExposomeSet-methods
-# #' @param object \link{ExposomeSet} that will be queried for the individuals's
-# #' names.
-# #' @return The name of the individuals as a character vector.
-# #' @examples
-# #' data("exposome")
-# #' individualNames(exp)
-# #' @export individualNames
-# #' @seealso \link{individualNames} to get the name of the samples,
-# #' \link{phenotypeNames} to get the phenotypes,
-# #' \link{familyNames} to get the families of exposures
-# #' @section Warning:
-# #' \link{individualNames} collides with \link{sampleNames} of \link{eSet}.
-# #' Although in \code{rexposome 1.0.0} both function can be used as
-# #' synonyms, this usage is discouraged and it is not assured.
-# setGeneric("individualNames", function(object)
-#     standardGeneric("individualNames")
-# )
-
-# #' Setter to assign individual names (sample names) of an ExposomeSet.
-# #'
-# #' @name individualNames
-# #' @rdname individualNames-methods
-# #' @aliases individualNames,ExposomeSet-methods
-# #' @param object \link{ExposomeSet} that will be queried for the individuals's
-# #' names.
-# #' @param value Vector of \code{character} to be assigned as individual's
-# #' names.
-# #' @examples
-# #' data("exposome")
-# #' individualNames(exp) <- paste0(individualNames(exp), "__")
-# #' @export individualNames<-
-# #' @seealso \link{individualNames} to get the name of the samples,
-# #' \link{phenotypeNames} to get the phenotypes,
-# #' \link{familyNames} to get the families of exposures
-# #' @section Warning:
-# #' \link{individualNames<-} collides with \link{sampleNames<-} of \link{eSet}.
-# #' Although in \code{rexposome 1.0.0} both function can be used as
-# #' synonyms, this usage is discouraged and it is not assured.
-# setGeneric("individualNames<-", function(object, value)
-#     standardGeneric("individualNames<-")
-# )
-
 #' Getter to obtain the phenotype's names of an ExposomeSet or ExposomePCA.
 #'
 #' @name phenotypeNames
 #' @rdname phenotypeNames-methods
-#' @aliases phenotypeNames,ExposomeSet-methods
+#' @aliases phenotypeNames
 #' @param object \code{ExposomeSet} that will be queried for the phenotype's
 #' names.
 #' @return The name of the phenotypes as a a character vector.
@@ -80,8 +32,7 @@ setGeneric("exposureNames", function(object)
 #' data("exposome")
 #' phenotypeNames(expo)
 #' @export phenotypeNames
-#' @seealso \link{individualNames} to get the name of the samples,
-#' \link{exposureNames} to get the name of the exposures,
+#' @seealso \link{exposureNames} to get the name of the exposures,
 #' \link{familyNames} to get the families of exposures
 setGeneric("phenotypeNames", function(object)
     standardGeneric("phenotypeNames")
@@ -95,7 +46,7 @@ setGeneric("phenotypeNames", function(object)
 #'
 #' @name familyNames
 #' @rdname familyNames-methods
-#' @aliases familyNames,ExposomeSet-methods
+#' @aliases familyNames
 #' @param object \code{ExposomeSet} that will be queried for the exposures's
 #' family-names.
 #' @param by.exposure (default \code{FALSE}) If \code{TRUE} a vector
@@ -111,8 +62,7 @@ setGeneric("phenotypeNames", function(object)
 #' # Get the family of each exposure
 #' familyNames(expo, by.exposure = TRUE)
 #' @export familyNames
-#' @seealso \link{individualNames} to get the name of the samples,
-#' \link{exposureNames} to get the name of the exposures,
+#' @seealso \link{exposureNames} to get the name of the exposures,
 #' \link{phenotypeNames} to get the phenotypes
 setGeneric("familyNames", function(object, by.exposure = FALSE)
     standardGeneric("familyNames")
@@ -123,6 +73,9 @@ setGeneric("familyNames", function(object, by.exposure = FALSE)
 #' Given an \link{ExposomeSet} it returns the inner matrix of exposures,
 #' having the exposures as columns and the samples as rows.
 #'
+#' @name expos
+#' @rdname expos-methods
+#' @aliases expos
 #' @param object An \link{ExposomeSet}.
 #' @return A matrix of exposures
 #' @examples
@@ -145,13 +98,14 @@ setGeneric("expos", function(object)
 #' @param object code{ExposomeSet} with 'set' will be summarized.
 #' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
 #' @param select Subseting of exposures of phenotypes.
+#' @param ... NOT USED
 #' @return A basic description of the exposures in the \code{ExposomeSet}
 #' @examples
 #' data("exposome")
 #' Summary(expo, set = "exposures")
 #' @export Summary
 setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
-                               select, ...)
+                               select)
     standardGeneric("Summary")
 )
 
@@ -187,7 +141,7 @@ setGeneric("restore", function(object)
 #'
 #' @name standardize
 #' @rdname standardize-methods
-#' @aliases standardize,ExposomeSet-methods
+#' @aliases standardize
 #' @param object \code{ExposomeSet} with exposures to be standardized.
 #' @param method Character selecting the method to be applied (\code{'normal'}
 #' or \code{'robust'}).
@@ -200,9 +154,8 @@ setGeneric("restore", function(object)
 #' exp.sn <- standardize(expo, method = "normal", select = "ldde_lip")
 #' exp.rs <- standardize(expo, method = "robust", select = "ldde_lip")
 #' @export standardize
-#' @seealso \link{sData} to chek the status of the exposures,
-#' \link{highAndLow} to transform the continuous exposures to levelled factors,
-#' \link{trans} to transform the exposures,
+#' @seealso \link{highAndLow} to transform the continuous exposures to
+#' levelled factors, \link{trans} to transform the exposures
 setGeneric("standardize", function(object, select, method = "normal", na.rm = TRUE, warnings = TRUE)
     standardGeneric("standardize")
 )
@@ -215,7 +168,7 @@ setGeneric("standardize", function(object, select, method = "normal", na.rm = TR
 #'
 #' @name trans
 #' @rdname trans-methods
-#' @aliases trans,ExposomeSet-methods
+#' @aliases trans
 #' @param object \code{ExposomeSet} which exposures will be transformed.
 #' @param fun Function to be applied on the exposures.
 #' @param select If not set, receive the name of all exposures. It can takes a
@@ -230,65 +183,62 @@ setGeneric("standardize", function(object, select, method = "normal", na.rm = TR
 #' data("exposome")
 #' exp.t <- trans(expo, fun = log, select = "ldde_lip")
 #' @export trans
-#' @seealso \link{sData} to chek the status of the exposures,
-#' \link{highAndLow} to transform the continuous exposures to levelled factors,
-#' \link{standardize} to standardize by normal or robust methods the exposures
+#' @seealso \link{highAndLow} to transform the continuous exposures to levelled
+#' factors, \link{standardize} to standardize by normal or robust methods the exposures
 setGeneric("trans", function(object, fun, select, ...)
     standardGeneric("trans")
 )
 
-#' Function to convert all continuous exposures of an ExposomeSet
-#' to categorical exposures
+#' Function to convert continuous exposures to categorical exposures
 #'
-#' This function is able to convert the continuous exposures of an
-#' \link{ExposomeSet} to categorical exposures using the n-percentile groups
-#' defined by \code{ngroups}. By default, all levels are kept but if
-#' \code{intervals} is set to \code{"extreme"}, the levels between the extremes
-#' (lowest and highest) are discarded and their values are set to \code{NA}.
+#' This method allows to convert continuous exposures of an \code{ExposomeSet}
+#' to categorical exposures using the n-percentile groups, defined by
+#' \code{ngroups} argument. By default, all levels are kept but if
+#' \code{intervals} is set to \code{"extrem"}, the levels between the extrems
+#' (aka. lowes and highest) are discarted and their values set to \code{NA}.
 #'
 #' @name highAndLow
 #' @rdname highAndLow-methods
-#' @aliases highAndLow,ExposomeSet-methods
-#' @param object \code{ExposomeSet} which exposures will be factored.
+#' @aliases highAndLow
+#' @param object An object of class \code{ExposomeSet}.
 #' @param ngroups (default \code{3}) Number of intervals to be created.
-#' @param intervals (default \code{"standard"}) If \code{"standard"} all levels
-#' are keep. If \code{"extreme"} only the extreme levels are keep.
-#' @param select If not set, receive the name of all exposures. It can takes a
-#' character vector to select specific exposures.
-#' @param drop (default \code{FALSE}) By default the original exposures are
-#' kept, if it set to \code{TRUE} the original and continuous variables are
-#' drop and only the factored ones are returned.
-#' @param warnings (default \code{TRUE}) If \code{TRUE} warnings will be shown.
-#' @return A new \link{ExposomeSet} with the original and continuous exposures
-#' plus the new factored exposures if \code{drop} was \code{FALSE}, otherwise
-#' a new \link{ExposomeSet} with factored exposures.
+#' @param intervals (default \code{"standard"}) If set to \code{"sctandard"}
+#' all levels are set. If set to \code{"extreme"} obly lowes and highest levels
+#' are kept (others are set to \code{NA}).
+#' @param select (optional) Subset of exposures where the discretization is
+#' applied. If missing, all exposures are used.
+#' @param drop (default \code{FALSE}) If set to \code{FALSE} original exposures
+#' are kept and discretized exposures are add to \code{ExposomeSet}. If set to
+#' \code{TRUE}, original exposures are replaced by categorical exposures.
+#' @param warnings (defaulr \code{TRUE}) If set to \code{FALSE} warnings are
+#' not shown.
+#' @return A new \code{ExposomeSet} with categorical exposures.
 #' @examples
-#' data("exposome")
 #' # No drop
-#' exp.hl <- highAndLow(expo, intervals = "extreme",
-#'     select = c("ldde_lip", "logpb", "lcotinine"))
+#' data("exposome")
+#' exp.hl <- highAndLow(expo, intervals = "standard", select = "ldde_lip")
 #' dim(exp.hl)
-#' #[1]  107 1200    5
-#' dim(exp)
-#' #[1]  104 1200    5
+#' # exposures   samples phenotyes
+#' #       105      1200         4
+#' dim(expo)
+#' # exposures   samples phenotyes
+#' #       104      1200         4
 #' # exps.hl has 107 exposures: the original 104 plus the new
 #' #         3 factored exposures
 #'
 #' # Drop
-#' exp.hl <- highAndLow(expo, intervals = "extreme",
-#'     select = c("ldde_lip", "logpb", "lcotinine"), drop=TRUE)
+#' exp.hl <- highAndLow(expo, intervals = "standard", select = "ldde_lip", drop = TRUE)
 #' dim(exp.hl)
-#' #[1]  104 1200    5
-#' dim(exp)
-#' #[1]  104 1200    5
-#' # exps.hl has 104 exposures: the 3 factored exposures plus the
-#' #         other 101 (104 - 3) original exposures
+#' # exposures   samples phenotyes
+#' #       104      1200         4
+#' dim(expo)
+#' # exposures   samples phenotyes
+#' #       104      1200         4
 #' @export highAndLow
-#' @seealso \link{sData} to chek the status of the exposures,
-#' \link{trans} to transform the exposures,
-#' \link{standardize} to standardize by normal or robust methods the exposures
+#' @seealso \code{\link{trans}} to transform exposures,
+#' \code{\link{standardize}} to standardize exposures.
 setGeneric("highAndLow", function(object, ngroups = 3,
-                                  intervals = "standard", select, drop = FALSE, warnings = TRUE)
+        intervals = "standard", select, drop = FALSE, warnings = TRUE)
     standardGeneric("highAndLow")
 )
 
@@ -303,7 +253,7 @@ setGeneric("highAndLow", function(object, ngroups = 3,
 #'
 #' @name normalityTest
 #' @rdname normalityTest-methods
-#' @aliases normalityTest,ExposomeSet-methods
+#' @aliases normalityTest
 #' @param object \link{ExposomeSet} with the exposome to be tested.
 #' @param exposure Name of the exposure to be tested, if missing all the
 #' exposures will be tested.
@@ -337,7 +287,7 @@ setGeneric("normalityTest", function(object, exposure, th = 0.05, min.val = 5,
 #'
 #' @name tableMissings
 #' @rdname tableMissings-methods
-#' @aliases tableMissings,ExposomeSet-methods
+#' @aliases tableMissings
 #' @param object \link{ExposomeSet} which exposome will be plotted.
 #' @param set Can be set to \code{"exposures"} or to \code{"phenotypes"}.
 #' @param output (default \code{"n"}) Can be \code{"n"} for number of values,
@@ -367,7 +317,7 @@ setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
 #'
 #' @name tableLOD
 #' @rdname tableLOD-methods
-#' @aliases tableLOD,ExposomeSet-methods
+#' @aliases tableLOD
 #' @param object \link{ExposomeSet} which exposome will be plotted.
 #' @param output (default \code{"n"}) Can be \code{"n"} for number of values,
 #' and \code{"p"} for percentage.
@@ -400,7 +350,7 @@ setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TR
 #'
 #' @name plotMissings
 #' @rdname plotMissings-methods
-#' @aliases plotMissings,ExposomeSet-methods
+#' @aliases plotMissings
 #' @param object \link{ExposomeSet} which exposome will be plotted.
 #' @param set Can be set to \code{"exposures"} or to \code{"phenotypes"}.
 #' @param x.max (default \code{100}) Fix the maxium value of the X-axis.
@@ -428,7 +378,7 @@ setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
 #'
 #' @name plotLOD
 #' @rdname plotLOD-methods
-#' @aliases plotLOD,ExposomeSet-methods
+#' @aliases plotLOD
 #' @param object \link{ExposomeSet} which exposome will be plotted.
 #' @param set Can be set to \code{"exposures"} or to \code{"phenotypes"}.
 #' @param lod.col (default \code{"LOD"}) Name of the column in \code{fData}
@@ -460,7 +410,7 @@ setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE
 #'
 #' @name plotFamily
 #' @rdname plotFamily-methods
-#' @aliases plotFamily,ExposomeSet-methods
+#' @aliases plotFamily
 #' @param x \link{ExposomeSet} which exposome will be plotted.
 #' @param family Name of the familty that will be drawn. \code{'all'} is
 #' allowed to draw a grid with all the families.
@@ -484,7 +434,6 @@ setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE
 #' @export plotFamily
 #' @seealso \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
-#' @import gridExtra
 setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.omit=TRUE)
     standardGeneric("plotFamily")
 )
@@ -495,7 +444,7 @@ setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.o
 #'
 #' @name plotHistogram
 #' @rdname plotHistogram-methods
-#' @aliases plotHistogram,ExposomeSet-methods
+#' @aliases plotHistogram
 #' @param x \link{ExposomeSet} which exposome will be plotted.
 #' @param select Name fo the exposure to be plotted. If missing, all
 #' exposures will be used.
@@ -526,7 +475,7 @@ setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE
 #'
 #' @name impute
 #' @rdname impute-methods
-#' @aliases impute,ExposomeSet-methods
+#' @aliases impute
 #' @param object \code{ExposomeSet} which exposures will be imputed.
 #' @param select Exposures to be imputed. If missing, all exposes will be
 #' imputed.
@@ -556,7 +505,7 @@ setGeneric("impute", function(object, select, ssystem="mice", ..., messages=FALS
 #'
 #' @name ilod
 #' @rdname ilod-methods
-#' @aliases ilod,ExposomeSet-methods
+#' @aliases ilod
 #' @param object \code{ExposomeSet} which exposures will be imputed.
 #' @param seed (default \code{1234}) Seed to make the imputation reproducible.
 #' @param lod.col (default \code{"LOD"}) Name of the column in \code{fData}
@@ -586,7 +535,7 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLo
 
 # -----------------------------------------------------------------------------
 
-#' Creation of an ExposomePCA from an ExposmeSet.
+#' Creation of an ExposomePCA from an ExposomeSet.
 #'
 #' Method to calculate a PCA based on the exposures of an \link{ExposomeSet}.
 #' Only numerical-exposures (non categorical) will be computed. The
@@ -595,7 +544,7 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLo
 #'
 #' @name pca
 #' @rdname pca-methods
-#' @aliases pca,ExposomeSet-methods
+#' @aliases pca
 #' @param object \code{ExposomeSet} which exposures will be used for the PCA
 #' @param npc (by default 10) number of dimensions kept in the results
 #' @return An \code{ExposomePCA} with the values of the PCA.
@@ -607,7 +556,6 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLo
 #' data("exposome")
 #' epca <- pca(expo[1:10, 1:10])
 #' @export pca
-#' @import FactoMineR
 setGeneric("pca", function(object, npc = 10)
     standardGeneric("pca")
 )
@@ -616,7 +564,7 @@ setGeneric("pca", function(object, npc = 10)
 #'
 #' @name ndim
 #' @rdname ndim-methods
-#' @aliases ndim,ExposomePCA-methods
+#' @aliases ndim
 #' @param object \code{ExposomePCA} to obtain the number of components.
 #' @return The number of components in the \code{ExposomePCA}.
 #' @seealso \link{plotPCA} to plot the PCA values of an
@@ -638,6 +586,9 @@ setGeneric("ndim", function(object)
 #' \link{ExposomePCA} and the values for each component of the PCA in the
 #' same \link{ExposomePCa}
 #'
+#' @name plotPHE
+#' @rdname plotPHE-methods
+#' @aliases plotPHE
 #' @param object An object oc class \link{ExposmePCA}
 #' @param phenotype (optional) to select a set of phenotypes to be ploted.
 #' If not given all are used.
@@ -662,6 +613,9 @@ setGeneric("plotPHE", function(object, phenotype, exp2fac = 5)
 #' \link{ExposomePCA} and the values for each component of the PCA in the
 #' same \link{ExposomePCa}
 #'
+#' @name plotEXP
+#' @rdname plotEXP-methods
+#' @aliases plotEXP
 #' @param object An object of class \link{ExposmePCA}
 #' @param exposure (optional) to select a set of exposures to be ploted.
 #' If not given all are used.
@@ -682,6 +636,10 @@ setGeneric("plotEXP", function(object, exposure)
 #'
 #' Methdo to draw a plot for PCA contained in an \link{ExposomePCA}
 #'
+#'
+#' @name plotPCA
+#' @rdname plotPCA-methods
+#' @aliases plotPCA
 #' @param object An onbject of class \link{ExposmePCA}
 #' @param set Group (\code{"all"}, \code{"samples"} or \code{"exposures"})
 #' taht will be ploted.
@@ -715,6 +673,9 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
 #' Methdo to draw a plot for samples using three PC contained in an
 #' \link{ExposomePCA}
 #'
+#' @name plot3PCA
+#' @rdname plot3PCA-methods
+#' @aliases plot3PCA
 #' @param object An onbject of class \link{ExposmePCA}
 #' @param cmpX Component to be placed at X axis
 #' @param cmpY Component to be placed at Y axis
@@ -733,7 +694,6 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, phenotype)
 #' epca <- pca(expo[3:7, 1:100])
 #' plot3PCA(epca, cmpX = 1, cmpY = 2, cmpZ = 3, phenotype = "sex")
 #' @export plot3PCA
-#' @import scatterplot3d
 setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle=35, pch=16, legend=TRUE, plines=TRUE)
     standardGeneric("plot3PCA")
 )
@@ -742,12 +702,12 @@ setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle
 #'
 #' Method to calculate the correlation between the exposures of an
 #' \link{ExposomeSet}. Only numerical-exposures (non categorical) will
-#' be computed. The function creates and returns an \link{ExposomCorr}
+#' be computed. The function creates and returns an \link{ExposomeCorr}
 #' object.
 #'
 #' @name correlation
 #' @rdname correlation-methods
-#' @aliases correlation,ExposomeSet-methods
+#' @aliases correlation
 #' @param object \code{ExposomeSet} which exposures will be used to calculate
 #' their correlation
 # @param select Exposures used to compute correlation. If missing the
@@ -766,7 +726,6 @@ setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle
 #' @seealso \link{plotCorrelation} to plot the correlations of an
 #' \link{ExposomeCorr}, \link{clustering} to see how the exposures can
 #' cluster samples, \link{pca} to compute PCA on exposures
-#' @import pryr
 setGeneric("correlation", function(object, ..., warnings = TRUE)
     standardGeneric("correlation")
 )
@@ -780,7 +739,7 @@ setGeneric("correlation", function(object, ..., warnings = TRUE)
 #'
 #' @name plotCorrelation
 #' @rdname plotCorrelation-methods
-#' @aliases plotCorrelation,ExposomeCorr-methods
+#' @aliases plotCorrelation
 #' @param x \code{ExposomeCorr} which correlations will be plotted.
 #' @param type (default \code{"circos"}) Can take both \code{"circos"} or
 #' \code{"matrix"}.
@@ -816,7 +775,7 @@ setGeneric("plotCorrelation", function(x, type = "circos", ...)
 #'
 #' @name clustering
 #' @rdname clustering-methods
-#' @aliases clustering,ExposomeSet-methods
+#' @aliases clustering
 #' @param object \code{ExposomeSet} containing the exposures used for the
 #' clustering process
 #' @param method Function applied to the exposures of \code{object}. This
@@ -833,17 +792,15 @@ setGeneric("plotCorrelation", function(x, type = "circos", ...)
 #' the result of the \code{method} as: \code{cmethod(model)}; being
 #' \code{model} the result of \code{method}.
 #' @examples
-#' \dontrun{
-#' # Being x an ExposomeSet
+#' data("exposome")
+#'
 #' # EXAMPLE 1: Clustering with mclust
 #' library(mclust)
-#' c <- clustering(exp method = Mclust, G = 2)
-#' classification(c)  # This works since the result of Mclust has an accessor
+#' c <- clustering(expo[12:32, ], method = Mclust, G = 2)
+#' table(classification(c))  # This works since the result of Mclust has an accessor
 #'                    # $classification
-#' }
 #'
 #' # EXAMPLE 2: Cluseting with flexmix
-#' data("exposome")
 #' library(flexmix)
 #' # First we carete a function to apply flexmix to the ExposomeSet
 #' flexmix_clust <- function(data, ...) {
@@ -880,7 +837,7 @@ setGeneric("clustering", function(object, method, cmethod, ..., warnings = TRUE)
 #'
 #' @name classification
 #' @rdname classification-methods
-#' @aliases classification,ExposomeClust-method
+#' @aliases classification
 #' @param object An \link{ExposomeClust} to get the samples' classification.
 #' @return A labelled vector with the classification of each exposure.
 #' @examples
@@ -899,7 +856,7 @@ setGeneric("classification", function(object)
 #'
 #' @name plotClassification
 #' @rdname plotClassification-methods
-#' @aliases plotClassification,ExposomeClust-methods
+#' @aliases plotClassification
 #' @param x Object of class \code{Exposomeclust}
 #' @param type Two types are available: \code{"heatmap"} or \code{"valuemap"}.
 #' @param ... NOT USED
@@ -929,7 +886,7 @@ setGeneric("plotClassification", function(x, ...)
 #'
 #' @name nl_exwas
 #' @rdname nl_exwas-methods
-#' @aliases nl_exwas,ExposomeSet-methods
+#' @aliases nl_exwas
 #' @param object \code{ExposomeSet} that will be used for the ExWAS.
 #' @param phenotype Target phenotype used for the study. If missing all the
 #' phenotypes in the \link{ExposomeSet} will be used.
@@ -949,7 +906,6 @@ setGeneric("plotClassification", function(x, ...)
 #' @export nl_exwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
-#' @import mboost
 setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
     verbose = FALSE, warnings = TRUE)
         standardGeneric("nl_exwas")
@@ -965,7 +921,7 @@ setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
 #'
 #' @name mexwas
 #' @rdname mexwas-methods
-#' @aliases mexwas,ExposomeSet-methods
+#' @aliases mexwas
 #' @param object \code{ExposomeSet} that will be used for the ExWAS.
 #' @param phenotype Target phenotype used for the study. If missing all the
 #' phenotypes in the \link{ExposomeSet} will be used.
@@ -985,13 +941,15 @@ setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
 #' @export mexwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
-#' @import glmnet
 setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
     standardGeneric("mexwas")
 )
 
 #' Getter for raw model gnerated with mexwas
 #'
+#' @name raw
+#' @rdname raw-methods
+#' @aliases raw
 #' @examples
 #' data("exposome")
 #' wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
@@ -1013,7 +971,7 @@ setGeneric("raw", function(object)
 #'
 #' @name exwas
 #' @rdname exwas-methods
-#' @aliases exwas,ExposomeSet-methods
+#' @aliases exwas
 #' @param object \code{ExposomeSet} that will be used for the ExWAS.
 #' @param formula \code{formula} indicating the test to be done. If any
 #' exposure is included it will be used as covariate. \code{exwas} metho will
@@ -1054,7 +1012,7 @@ setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FAL
 #'
 #' @name extract
 #' @rdname extract-methods
-#' @aliases extract,ExWAS-methods
+#' @aliases extract
 #' @param object Object of class \link{ExWAS}.
 #' @param phenotype Name of the phenotype to be extracted from an
 #' \link{ExWAS}.
@@ -1076,6 +1034,9 @@ setGeneric("extract", function(object, ...)
 #' This function draws a sort of manhattan plots using the p-value of the
 #' association of the exposures with phenotypes of an \code{ExWAS} object.
 #'
+#' @name plotExwas
+#' @rdname plotExwas-methods
+#' @aliases plotExwas
 #' @param object An \code{ExWAS} object which p-values will be plotted.
 #' @param color (optional) A vector of colors. The vector must have length
 #' equal to the number of families. The vector must be names with the
@@ -1099,6 +1060,9 @@ setGeneric("plotExwas", function(object, ...)
 #' This function draws a sort of manhattan plots using the p-value of the
 #' association of the exposures with phenotypes of an \code{ExWAS} object.
 #'
+#' @name plotEffect
+#' @rdname plotEffect-methods
+#' @aliases plotEffect
 #' @param x An \code{ExWAS} object which effect will be ploted.
 #' @param y (optional) Another \code{ExWAS} object. If provded its
 #' effects will be ploted in Y-axis.
@@ -1120,6 +1084,9 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 
 #' Function to get the Threshold for effective tests (TEF)
 #'
+#' @name tef
+#' @rdname tef-methods
+#' @aliases tef
 #' @param object An \code{ExWAS} object
 #' @examples
 #' data(exposome)
@@ -1146,6 +1113,9 @@ setGeneric("tef", function(object)
 #' This method allows to insert an object of class \link{ExposomeSet} as an
 #' independent dataset into an object of class \link{MultiDataSet}.
 #'
+#' @name add_exp
+#' @rdname add_exp-methods
+#' @aliases add_exp
 #' @param object An object of class \link{MultiDataSet}.
 #' @param expoSet An object of class \link{ExposomeSet}.
 #' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
@@ -1170,6 +1140,9 @@ setGeneric("add_exp", function(object, expoSet, warnings = TRUE, ...)
 #' This method allows to insert an object of class \link{ExposomeClust} as an
 #' independent dataset into an object of class \link{MultiDataSet}.
 #'
+#' @name add_cls
+#' @rdname add_cls-methods
+#' @aliases add_cls
 #' @param object An object of class \link{MultiDataSet}.
 #' @param expoSet An object of class \link{ExposomeClust}.
 #' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will

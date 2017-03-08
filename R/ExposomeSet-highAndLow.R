@@ -28,7 +28,7 @@ setMethod(
     ## /
 
     ## COVNERT FROM CNT TO DST
-    data.cnt <- t(assayDataElement(object, "exp")[select, ])
+    data.cnt <- expos(object)[, select, drop=FALSE]
     data.dst <- data.frame(lapply(colnames(data.cnt), function(exp) {
       gtools::quantcut(data.cnt[ , exp], seq(0, 1, length = ngroups + 1), right = FALSE)
     }))

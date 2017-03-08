@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{plotCorrelation}
 \alias{plotCorrelation}
-\alias{plotCorrelation,ExposomeCorr-methods}
 \title{It draws both circos or matrix plot for the correlation in ExposomeCorr}
 \usage{
 plotCorrelation(x, type = "circos", ...)

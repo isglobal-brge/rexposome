@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{extract}
 \alias{extract}
-\alias{extract,ExWAS-methods}
 \title{Function to extract the results of the association and integration
 studies.}
 \usage{

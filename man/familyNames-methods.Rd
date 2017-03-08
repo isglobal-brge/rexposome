@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{familyNames}
 \alias{familyNames}
-\alias{familyNames,ExposomeSet-methods}
 \title{Getter to obtain the exposures's names of an ExposomeSet.}
 \usage{
 familyNames(object, by.exposure = FALSE)
@@ -33,7 +32,6 @@ familyNames(expo)
 familyNames(expo, by.exposure = TRUE)
 }
 \seealso{
-\link{individualNames} to get the name of the samples,
 \link{exposureNames} to get the name of the exposures,
 \link{phenotypeNames} to get the phenotypes
 }

@@ -41,7 +41,7 @@
 #' @param ... Other arguments will be given to \link{transform} if \code{trn.e}
 #' is specified.
 #' @return An object of class \link{ExposomeSet}.
-#' @note \link{ExposmeSet}'s \code{fData} will contain two inner columns called
+#' @note \link{ExposomeSet}'s \code{fData} will contain two inner columns called
 #' \code{_std}, \code{_trn}, \code{_fct} and \code{_type} in order to trace the
 #' transformations an exposure suffers and to know, at eny moment, if an
 #' exposure is categorical or continuous. The "description" file can contains a
@@ -59,7 +59,6 @@
 #' @seealso \link{ExposomeSet} for class description,
 #' \link{load_exposome} for constructor from loaded
 #' \code{data.frame}s
-#' @import Biobase BiocInstaller
 read_exposome <- function(exposures, description, phenotype,
     sep = ",", na.strings = c("NA", "-", "?", " ", ""),
     exposures.samCol = 1, description.expCol = 1, description.famCol = 2,

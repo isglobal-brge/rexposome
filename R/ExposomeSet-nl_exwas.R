@@ -1,3 +1,5 @@
+#' @describeIn ExposomeSet Testing the association between an exposure and
+#' phenotype of an ExposomeSet using a non-lineal aproach.
 setMethod(
     f = "nl_exwas",
     signature = "ExposomeSet",
@@ -51,7 +53,7 @@ setMethod(
             colnames(data)[1] <- Y.names[ii]
             #model <- try(gamboost(xyformula, data = data, ...), TRUE)
 
-            model <- try(gamboost(xyformula, data = data), TRUE)
+            model <- try(mboost::gamboost(xyformula, data = data), TRUE)
 
             if(class(model)[1] != "try-error") {
                 aic <- AIC(model, df = "trace")

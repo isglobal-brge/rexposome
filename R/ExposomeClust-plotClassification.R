@@ -20,7 +20,7 @@ setMethod(
     stop("'valuemap' for 'ExposomeClust' request argument 'family'.")
   }
   if(tolower(family) == "all") {
-    return(.plot_exposome(x, ...))
+    return(.plot_exposome(x))
   }
   # /
 

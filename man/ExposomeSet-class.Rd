@@ -4,11 +4,12 @@
 %   R/ExposomeSet-exposureNames.R, R/ExposomeSet-exwas.R,
 %   R/ExposomeSet-familyNames.R, R/ExposomeSet-highAndLow.R,
 %   R/ExposomeSet-ilod.R, R/ExposomeSet-impute.R, R/ExposomeSet-mexwas.R,
-%   R/ExposomeSet-normalityTest.R, R/ExposomeSet-pca.R,
-%   R/ExposomeSet-phenotypeNames.R, R/ExposomeSet-plotFamily.R,
-%   R/ExposomeSet-plotHistogram.R, R/ExposomeSet-plotLOD.R,
-%   R/ExposomeSet-plotMissings.R, R/ExposomeSet-restore.R,
-%   R/ExposomeSet-standardize.R, R/ExposomeSet-tableLOD.R,
+%   R/ExposomeSet-nl_exwas.R, R/ExposomeSet-normalityTest.R,
+%   R/ExposomeSet-pca.R, R/ExposomeSet-phenotypeNames.R,
+%   R/ExposomeSet-plotFamily.R, R/ExposomeSet-plotHistogram.R,
+%   R/ExposomeSet-plotLOD.R, R/ExposomeSet-plotMissings.R,
+%   R/ExposomeSet-restore.R, R/ExposomeSet-standardize.R,
+%   R/ExposomeSet-summary.R, R/ExposomeSet-tableLOD.R,
 %   R/ExposomeSet-tableMissings.R, R/ExposomeSet-trans.R,
 %   R/MultiDataSet-add_cls.R, R/MultiDataSet-add_exp.R
 \docType{class}
@@ -26,6 +27,7 @@
 \alias{ilod,ExposomeSet-method}
 \alias{impute,ExposomeSet-method}
 \alias{mexwas,ExposomeSet-method}
+\alias{nl_exwas,ExposomeSet-method}
 \alias{normalityTest,ExposomeSet-method}
 \alias{pca,ExposomeSet-method}
 \alias{phenotypeNames,ExposomeSet-method}
@@ -35,6 +37,7 @@
 \alias{plotMissings,ExposomeSet-method}
 \alias{restore,ExposomeSet-method}
 \alias{standardize,ExposomeSet-method}
+\alias{Summary,ExposomeSet-method}
 \alias{tableLOD,ExposomeSet-method}
 \alias{tableMissings,ExposomeSet-method}
 \alias{trans,ExposomeSet-method}
@@ -70,6 +73,9 @@
 
 \S4method{mexwas}{ExposomeSet}(object, phenotype, family, warnings = TRUE)
 
+\S4method{nl_exwas}{ExposomeSet}(object, phenotype, bbs.df, ..., mc.cores = 1,
+  verbose = FALSE, warnings = TRUE)
+
 \S4method{normalityTest}{ExposomeSet}(object, exposure, th = 0.05,
   min.val = 5, na.rm = TRUE)
 
@@ -93,6 +99,9 @@
 
 \S4method{standardize}{ExposomeSet}(object, select, method = c("normal",
   "robust"), na.rm = TRUE, warnings = TRUE)
+
+\S4method{Summary}{ExposomeSet}(object, set = c("exposures", "phenotypes"),
+  select)
 
 \S4method{tableLOD}{ExposomeSet}(object, output = "n", lod.col = "LOD",
   sort = TRUE)
@@ -140,6 +149,9 @@ family of each exposure.
 
 \item \code{mexwas}: Performs a Multiple-EXposure-Wide Association Study.
 
+\item \code{nl_exwas}: Testing the association between an exposure and
+phenotype of an ExposomeSet using a non-lineal aproach.
+
 \item \code{normalityTest}: Test the normality of each exposure.
 
 \item \code{pca}: Performs a PCA
@@ -161,6 +173,8 @@ when created.
 
 \item \code{standardize}: Standardization of exposures.
 
+\item \code{Summary}: Summary of both continuous and categorical exposures
+
 \item \code{tableLOD}: Returns a vector with the number of under-LOD values
 per exposure.
 
@@ -179,9 +193,6 @@ per exposure.
 \section{Slots}{
 
 \describe{
-\item{\code{desc.famCol}}{Name of the column containing exposures' family in
-description-file.}
-
 \item{\code{assayData}}{Contains the exposures matrix with column number equal to
 \code{nrow(phenoData)} (see \link{eSet}, \link{AssayData}).}
 
@@ -194,6 +205,6 @@ the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 
 \seealso{
 \code{\link{read_exposome}} to create an \code{ExposomeSet}
-from files, \code{\link{create_exposome}} to create an \cpde{ExposomeSet}
+from files, \code{\link{load_exposome}} to create an \code{ExposomeSet}
 from \code{data.frames}
 }

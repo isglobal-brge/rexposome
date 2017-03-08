@@ -2,8 +2,7 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{pca}
 \alias{pca}
-\alias{pca,ExposomeSet-methods}
-\title{Creation of an ExposomePCA from an ExposmeSet.}
+\title{Creation of an ExposomePCA from an ExposomeSet.}
 \usage{
 pca(object, npc = 10)
 }

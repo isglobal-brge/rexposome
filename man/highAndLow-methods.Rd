@@ -2,66 +2,63 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{highAndLow}
 \alias{highAndLow}
-\alias{highAndLow,ExposomeSet-methods}
-\title{Function to convert all continuous exposures of an ExposomeSet
-to categorical exposures}
+\title{Function to convert continuous exposures to categorical exposures}
 \usage{
 highAndLow(object, ngroups = 3, intervals = "standard", select,
   drop = FALSE, warnings = TRUE)
 }
 \arguments{
-\item{object}{\code{ExposomeSet} which exposures will be factored.}
+\item{object}{An object of class \code{ExposomeSet}.}
 
 \item{ngroups}{(default \code{3}) Number of intervals to be created.}
 
-\item{intervals}{(default \code{"standard"}) If \code{"standard"} all levels
-are keep. If \code{"extreme"} only the extreme levels are keep.}
+\item{intervals}{(default \code{"standard"}) If set to \code{"sctandard"}
+all levels are set. If set to \code{"extreme"} obly lowes and highest levels
+are kept (others are set to \code{NA}).}
 
-\item{select}{If not set, receive the name of all exposures. It can takes a
-character vector to select specific exposures.}
+\item{select}{(optional) Subset of exposures where the discretization is
+applied. If missing, all exposures are used.}
 
-\item{drop}{(default \code{FALSE}) By default the original exposures are
-kept, if it set to \code{TRUE} the original and continuous variables are
-drop and only the factored ones are returned.}
+\item{drop}{(default \code{FALSE}) If set to \code{FALSE} original exposures
+are kept and discretized exposures are add to \code{ExposomeSet}. If set to
+\code{TRUE}, original exposures are replaced by categorical exposures.}
 
-\item{warnings}{(default \code{TRUE}) If \code{TRUE} warnings will be shown.}
+\item{warnings}{(defaulr \code{TRUE}) If set to \code{FALSE} warnings are
+not shown.}
 }
 \value{
-A new \link{ExposomeSet} with the original and continuous exposures
-plus the new factored exposures if \code{drop} was \code{FALSE}, otherwise
-a new \link{ExposomeSet} with factored exposures.
+A new \code{ExposomeSet} with categorical exposures.
 }
 \description{
-This function is able to convert the continuous exposures of an
-\link{ExposomeSet} to categorical exposures using the n-percentile groups
-defined by \code{ngroups}. By default, all levels are kept but if
-\code{intervals} is set to \code{"extreme"}, the levels between the extremes
-(lowest and highest) are discarded and their values are set to \code{NA}.
+This method allows to convert continuous exposures of an \code{ExposomeSet}
+to categorical exposures using the n-percentile groups, defined by
+\code{ngroups} argument. By default, all levels are kept but if
+\code{intervals} is set to \code{"extrem"}, the levels between the extrems
+(aka. lowes and highest) are discarted and their values set to \code{NA}.
 }
 \examples{
-data("exposome")
 # No drop
-exp.hl <- highAndLow(expo, intervals = "extreme",
-    select = c("ldde_lip", "logpb", "lcotinine"))
+data("exposome")
+exp.hl <- highAndLow(expo, intervals = "standard", select = "ldde_lip")
 dim(exp.hl)
-#[1]  107 1200    5
-dim(exp)
-#[1]  104 1200    5
+# exposures   samples phenotyes
+#       105      1200         4
+dim(expo)
+# exposures   samples phenotyes
+#       104      1200         4
 # exps.hl has 107 exposures: the original 104 plus the new
 #         3 factored exposures
 
 # Drop
-exp.hl <- highAndLow(expo, intervals = "extreme",
-    select = c("ldde_lip", "logpb", "lcotinine"), drop=TRUE)
+exp.hl <- highAndLow(expo, intervals = "standard", select = "ldde_lip", drop = TRUE)
 dim(exp.hl)
-#[1]  104 1200    5
-dim(exp)
-#[1]  104 1200    5
-# exps.hl has 104 exposures: the 3 factored exposures plus the
-#         other 101 (104 - 3) original exposures
+# exposures   samples phenotyes
+#       104      1200         4
+dim(expo)
+# exposures   samples phenotyes
+#       104      1200         4
 }
 \seealso{
-\link{sData} to chek the status of the exposures,
-\link{trans} to transform the exposures,
-\link{standardize} to standardize by normal or robust methods the exposures
+\code{\link{trans}} to transform exposures,
+\code{\link{standardize}} to standardize exposures.
 }

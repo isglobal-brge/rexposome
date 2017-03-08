@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{tableLOD}
 \alias{tableLOD}
-\alias{tableLOD,ExposomeSet-methods}
 \title{It creates a vector with the amount of under-LOD exposures in an ExposomeSet}
 \usage{
 tableLOD(object, output = "n", lod.col = "LOD", sort = TRUE)

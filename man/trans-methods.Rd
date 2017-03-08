@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{trans}
 \alias{trans}
-\alias{trans,ExposomeSet-methods}
 \title{Function to apply a transformation to the exposures of an ExposomeSet}
 \usage{
 trans(object, fun, select, ...)
@@ -35,7 +34,6 @@ data("exposome")
 exp.t <- trans(expo, fun = log, select = "ldde_lip")
 }
 \seealso{
-\link{sData} to chek the status of the exposures,
-\link{highAndLow} to transform the continuous exposures to levelled factors,
-\link{standardize} to standardize by normal or robust methods the exposures
+\link{highAndLow} to transform the continuous exposures to levelled
+factors, \link{standardize} to standardize by normal or robust methods the exposures
 }

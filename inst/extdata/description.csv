@@ -1,89 +1,89 @@
-"Family","Exposure","Name","Units"
-"PFOAs","PFHxS","Perfluorohexane sulfonic acid","µg/l"
-"PFOAs","PFOA","Perfluorooctanoic acid","µg/l"
-"PFOAs","PFOS","Perfluorooctane sulfonic acid","µg/l"
-"PFOAs","PFNA","Perfluorononanoic acid","µg/l"
-"Organochlorines","DDE","Dichlorodiphenyldichloroethylene","ng/g lipid"
-"Organochlorines","DDT","Dichlorodiphenyltrichloroethane","ng/g lipid"
-"Organochlorines","HCB","Hexachlorobenzene","ng/g lipid"
-"Organochlorines","bHCH","β-hexachlorocyclohexane","ng/g lipid"
-"Organochlorines","PCB118","Polychlorinated biphenyl -118","ng/g lipid"
-"Organochlorines","PCB153","Polychlorinated biphenyl -153","ng/g lipid"
-"Organochlorines","PCB180","Polychlorinated biphenyl -180","ng/g lipid"
-"Organochlorines","PCB138","Polychlorinated biphenyl -138","ng/g lipid"
-"PBDEs","BDE17","Polybrominated diphenyl ether -17","ng/g lipid"
-"PBDEs","BDE28","Polybrominated diphenyl ether -28","ng/g lipid"
-"PBDEs","BDE71","Polybrominated diphenyl ether -71","ng/g lipid"
-"PBDEs","BDE47","Polybrominated diphenyl ether -47","ng/g lipid"
-"PBDEs","BDE66","Polybrominated diphenyl ether -66","ng/g lipid"
-"PBDEs","BDE100","Polybrominated diphenyl ether -100","ng/g lipid"
-"PBDEs","BDE99","Polybrominated diphenyl ether -99","ng/g lipid"
-"PBDEs","BDE85","Polybrominated diphenyl ether -85","ng/g lipid"
-"PBDEs","BDE154","Polybrominated diphenyl ether -154","ng/g lipid"
-"PBDEs","BDE153","Polybrominated diphenyl ether -153","ng/g lipid"
-"PBDEs","BDE138","Polybrominated diphenyl ether -138","ng/g lipid"
-"PBDEs","BDE183","Polybrominated diphenyl ether -183","ng/g lipid"
-"PBDEs","BDE190","Polybrominated diphenyl ether -190","ng/g lipid"
-"PBDEs","BDE209","Polybrominated diphenyl ether -209","ng/g lipid"
-"Metals","Hg","Mercury","µg/l"
-"Metals","Co","Cobalt","ng/g creatinine"
-"Metals","Ni","Nickel","ng/g creatinine"
-"Metals","As","Asenic","ng/g creatinine"
-"Metals","Cu","Copper","ng/g creatinine"
-"Metals","Zn","Zinc","ng/g creatinine"
-"Metals","Se","Selenium","ng/g creatinine"
-"Metals","Mo","Molybdenum","ng/g creatinine"
-"Metals","Cd","Cadmium","ng/g creatinine"
-"Metals","Sb","Antimony","ng/g creatinine"
-"Metals","Cs","Cesium","ng/g creatinine"
-"Metals","Tl","Thallium","ng/g creatinine"
-"Metals","Pb","Lead","ng/g creatinine"
-"Phthalates","MEHP","Mono-(2-ethylhexyl) phthalate","µg/g creatine"
-"Phthalates","MEHHP","Mono-(2-ethyl-5-hydroxyhexyl) phthalate","µg/g creatine"
-"Phthalates","X5cxMEPP","Mono(2-ethyl-5-carboxypentyl) phthalate","µg/g creatine"
-"Phthalates","X2cxMMHP","Mono[2-(carboxymethyl)hexyl]phthalate","µg/g creatine"
-"Phthalates","MEP","Monoethyl phthalate","µg/g creatine"
-"Phthalates","MiBP","Monoisobutyl phthalate","µg/g creatine"
-"Phthalates","MnBP","Mono-n-butyl phthalate","µg/g creatine"
-"Phthalates","X7OHMMeOP","Mono(4-methyl-7-hydroxyoctyl) phthalate","µg/g creatine"
-"Phthalates","MBzP","Monobenzyl phthalate","µg/g creatine"
-"Phthalates","MEOHP","Mono-(2-ethyl-5-oxohexyl) phthalate","µg/g creatine"
-"Bisphenol A","BPA","Bisphenol A","µg/g creatine"
-"Water Pollutants","THM","Trihalomethanes","µg /day"
-"Water Pollutants","CHCl3","Chloroform","µg /day"
-"Water Pollutants","BTHM","Brominated THM","µg/day"
-"Cotinine","Cotinine","Cotinine","ng/mL"
-"Home Environment","Gas","Gas cooking","Exposed / unexposed"
-"Home Environment","ETS","Environmental tobacco smoke","Exposed / unexposed"
-"Home Environment","H_pesticides","Pesticides used in the home","Exposed / unexposed"
-"Home Environment","G_pesticides","Pesticides used in the garden","Exposed / unexposed"
-"Air Pollutants","Benzene","Benzene","µg/m3"
-"Air Pollutants","PM25CU","Copper levels in PM2.5","ng/m3"
-"Air Pollutants","PM25FE","Iron levels in PM2.5","ng/m3"
-"Air Pollutants","PM25K","Potassium levels in PM2.5","ng/m3"
-"Air Pollutants","PM25Ni","Nickel levels in PM2.5","ng/m3"
-"Air Pollutants","PM25S","Sulfur levels in PM2.5","ng/m3"
-"Air Pollutants","PM25Sl","Silicon levels in PM2.5","ng/m3"
-"Air Pollutants","PM25V","Vanadium levels PM2.5","ng/m3"
-"Air Pollutants","PM25Zn","Zn levels in PM2.5","ng/m3"
-"Air Pollutants","PM10Cu","Copper levels in PM10","ng/m3"
-"Air Pollutants","PM10Fe","Iron levels in PM10","ng/m3"
-"Air Pollutants","PM10K","Potassium levels in PM10","ng/m3"
-"Air Pollutants","PM10Ni","Nickel levels in PM10","ng/m3"
-"Air Pollutants","PM10S","Sulfur levels in PM10","ng/m3"
-"Air Pollutants","PM10SI","Silicon levels in PM10","ng/m3"
-"Air Pollutants","PM10V","Vanadium levels PM10","ng/m3"
-"Air Pollutants","PM10Zn","Zn levels in PM10","ng/m3"
-"Air Pollutants","NO2","Nitrogen dioxide","μg/m3"
-"Air Pollutants","NO","Nitrogen oxide","μg/m3"
-"Air Pollutants","NOx","Mono-nitrogen oxides","μg/m3"
-"Air Pollutants","PM25","Particles ≤ 2.5 μm in size","μg/m3"
-"Air Pollutants","PM10","Particles ≤ 10 μm in size","μg/m3"
-"Air Pollutants","PMcoarse","Particles between 2.5 and 10 μm in size","μg/m3"
-"Air Pollutants","AbsPM25","Measurement of the blackness of PM2.5 filters","μg/m3"
-"Built Environment","Dens","Building density (within 100 m radius of home address)","m2"
-"Built Environment","Conn","Street connectivity  (within 100 m radius of home address)","number of steet intersections "
-"Built Environment","Green","Green spaces  (within 250 m radius of home address)","Index from -1 to +1, with +1 the most green"
-"Noise","Noise_d","Average of noise in the day","dB(A)"
-"Noise","Noise_n","Average of noise in the night","dB(A)"
-"Temperature","Temp","Average surface temperature (within 50 m radius of home address)","⁰C"
+Family,Exposure,Name
+PFOAs,PFHxS,Perfluorohexane sulfonic acid
+PFOAs,PFOA,Perfluorooctanoic acid
+PFOAs,PFOS,Perfluorooctane sulfonic acid
+PFOAs,PFNA,Perfluorononanoic acid
+Organochlorines,DDE,Dichlorodiphenyldichloroethylene
+Organochlorines,DDT,Dichlorodiphenyltrichloroethane
+Organochlorines,HCB,Hexachlorobenzene
+Organochlorines,bHCH,β-hexachlorocyclohexane
+Organochlorines,PCB118,Polychlorinated biphenyl -118
+Organochlorines,PCB153,Polychlorinated biphenyl -153
+Organochlorines,PCB180,Polychlorinated biphenyl -180
+Organochlorines,PCB138,Polychlorinated biphenyl -138
+PBDEs,BDE17,Polybrominated diphenyl ether -17
+PBDEs,BDE28,Polybrominated diphenyl ether -28
+PBDEs,BDE71,Polybrominated diphenyl ether -71
+PBDEs,BDE47,Polybrominated diphenyl ether -47
+PBDEs,BDE66,Polybrominated diphenyl ether -66
+PBDEs,BDE100,Polybrominated diphenyl ether -100
+PBDEs,BDE99,Polybrominated diphenyl ether -99
+PBDEs,BDE85,Polybrominated diphenyl ether -85
+PBDEs,BDE154,Polybrominated diphenyl ether -154
+PBDEs,BDE153,Polybrominated diphenyl ether -153
+PBDEs,BDE138,Polybrominated diphenyl ether -138
+PBDEs,BDE183,Polybrominated diphenyl ether -183
+PBDEs,BDE190,Polybrominated diphenyl ether -190
+PBDEs,BDE209,Polybrominated diphenyl ether -209
+Metals,Hg,Mercury
+Metals,Co,Cobalt
+Metals,Ni,Nickel
+Metals,As,Asenic
+Metals,Cu,Copper
+Metals,Zn,Zinc
+Metals,Se,Selenium
+Metals,Mo,Molybdenum
+Metals,Cd,Cadmium
+Metals,Sb,Antimony
+Metals,Cs,Cesium
+Metals,Tl,Thallium
+Metals,Pb,Lead
+Phthalates,MEHP,Mono-(2-ethylhexyl) phthalate
+Phthalates,MEHHP,Mono-(2-ethyl-5-hydroxyhexyl) phthalate
+Phthalates,X5cxMEPP,Mono(2-ethyl-5-carboxypentyl) phthalate
+Phthalates,X2cxMMHP,Mono[2-(carboxymethyl)hexyl]phthalate
+Phthalates,MEP,Monoethyl phthalate
+Phthalates,MiBP,Monoisobutyl phthalate
+Phthalates,MnBP,Mono-n-butyl phthalate
+Phthalates,X7OHMMeOP,Mono(4-methyl-7-hydroxyoctyl) phthalate
+Phthalates,MBzP,Monobenzyl phthalate
+Phthalates,MEOHP,Mono-(2-ethyl-5-oxohexyl) phthalate
+Bisphenol A,BPA,Bisphenol A
+Water Pollutants,THM,Trihalomethanes
+Water Pollutants,CHCl3,Chloroform
+Water Pollutants,BTHM,Brominated THM
+Cotinine,Cotinine,Cotinine
+Home Environment,Gas,Gas cooking
+Home Environment,ETS,Environmental tobacco smoke
+Home Environment,H_pesticides,Pesticides used in the home
+Home Environment,G_pesticides,Pesticides used in the garden
+Air Pollutants,Benzene,Benzene
+Air Pollutants,PM25CU,Copper levels in PM2.5
+Air Pollutants,PM25FE,Iron levels in PM2.5
+Air Pollutants,PM25K,Potassium levels in PM2.5
+Air Pollutants,PM25Ni,Nickel levels in PM2.5
+Air Pollutants,PM25S,Sulfur levels in PM2.5
+Air Pollutants,PM25Sl,Silicon levels in PM2.5
+Air Pollutants,PM25V,Vanadium levels PM2.5
+Air Pollutants,PM25Zn,Zn levels in PM2.5
+Air Pollutants,PM10Cu,Copper levels in PM10
+Air Pollutants,PM10Fe,Iron levels in PM10
+Air Pollutants,PM10K,Potassium levels in PM10
+Air Pollutants,PM10Ni,Nickel levels in PM10
+Air Pollutants,PM10S,Sulfur levels in PM10
+Air Pollutants,PM10SI,Silicon levels in PM10
+Air Pollutants,PM10V,Vanadium levels PM10
+Air Pollutants,PM10Zn,Zn levels in PM10
+Air Pollutants,NO2,Nitrogen dioxide
+Air Pollutants,NO,Nitrogen oxide
+Air Pollutants,NOx,Mono-nitrogen oxides
+Air Pollutants,PM25,Particles <= 2.5
+Air Pollutants,PM10,Particles <= 10
+Air Pollutants,PMcoarse,Particles between 2.5 and 10 μm in size
+Air Pollutants,AbsPM25,Measurement of the blackness of PM2.5 filters
+Built Environment,Dens,Building density (within 100 m radius of home address)
+Built Environment,Conn,Street connectivity  (within 100 m radius of home address)
+Built Environment,Green,Green spaces  (within 250 m radius of home address)
+Noise,Noise_d,Average of noise in the day
+Noise,Noise_n,Average of noise in the night
+Temperature,Temp,Average surface temperature (within 50 m radius of home address)

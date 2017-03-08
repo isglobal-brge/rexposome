@@ -71,7 +71,7 @@ be the same than the phenotype's file. In the same way, the columns in
 exposure's file must be the same found as rows in description file.
 }
 \note{
-\link{ExposmeSet}'s \code{fData} will contain two inner columns called
+\link{ExposomeSet}'s \code{fData} will contain two inner columns called
 \code{_std}, \code{_trn}, \code{_fct} and \code{_type} in order to trace the
 transformations an exposure suffers and to know, at eny moment, if an
 exposure is categorical or continuous. The "description" file can contains a

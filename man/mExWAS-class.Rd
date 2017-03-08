@@ -42,9 +42,6 @@ exposure
 \section{Slots}{
 
 \describe{
-\item{\code{ranking}}{Results obtained from the \code{mboost} package as
-\code{data.frame}.}
-
 \item{\code{result}}{klist with the fitted model and result.}
 
 \item{\code{phenotype}}{Name of the phenotype used in the analysys.}

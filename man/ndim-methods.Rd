@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{ndim}
 \alias{ndim}
-\alias{ndim,ExposomePCA-methods}
 \title{Number of principal components in an ExposomePCA.}
 \usage{
 ndim(object)

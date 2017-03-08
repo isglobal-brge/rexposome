@@ -4,7 +4,7 @@
 \alias{Summary}
 \title{Summary of an ExposomeSet.}
 \usage{
-Summary(object, set = c("exposures", "phenotypes"), select, ...)
+Summary(object, set = c("exposures", "phenotypes"), select)
 }
 \arguments{
 \item{object}{code{ExposomeSet} with 'set' will be summarized.}
@@ -12,6 +12,8 @@ Summary(object, set = c("exposures", "phenotypes"), select, ...)
 \item{set}{Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).}
 
 \item{select}{Subseting of exposures of phenotypes.}
+
+\item{...}{NOT USED}
 }
 \value{
 A basic description of the exposures in the \code{ExposomeSet}

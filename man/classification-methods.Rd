@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{classification}
 \alias{classification}
-\alias{classification,ExposomeClust-method}
 \title{Method to get the classification of the samples from an ExposomeClust.}
 \usage{
 classification(object)

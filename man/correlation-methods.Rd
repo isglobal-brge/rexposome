@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{correlation}
 \alias{correlation}
-\alias{correlation,ExposomeSet-methods}
 \title{Creation of an ExposomeCorr from an ExposomeSet.}
 \usage{
 correlation(object, ..., warnings = TRUE)
@@ -24,7 +23,7 @@ exposures and their description
 \description{
 Method to calculate the correlation between the exposures of an
 \link{ExposomeSet}. Only numerical-exposures (non categorical) will
-be computed. The function creates and returns an \link{ExposomCorr}
+be computed. The function creates and returns an \link{ExposomeCorr}
 object.
 }
 \examples{

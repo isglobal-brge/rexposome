@@ -2,7 +2,6 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{plotFamily}
 \alias{plotFamily}
-\alias{plotFamily,ExposomeSet-methods}
 \title{It draws the profile of the exposome in an ExposomeSet}
 \usage{
 plotFamily(x, family, group, group2, scatter = TRUE, na.omit = TRUE)
