@@ -6,6 +6,9 @@
 \usage{
 raw(object)
 }
+\arguments{
+\item{object}{An object of class \code{\link{mExWAS}}.}
+}
 \value{
 An object of class \code{\link{glmnet}}
 }

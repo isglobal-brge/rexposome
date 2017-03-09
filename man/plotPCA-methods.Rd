@@ -16,8 +16,8 @@ taht will be ploted.}
 
 \item{cmpY}{(default: \code{2}) component to be placed at Y axis}
 
-\item{phentoype}{If \code{set} is set to \code{"samples"} can be used to
-color samples by phentoype}
+\item{phenotype}{If \code{set} is set to \code{"samples"} can be used to
+color samples by phenotype}
 }
 \value{
 An object of class \code{ggplot} or an object of class

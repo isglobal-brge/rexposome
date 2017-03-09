@@ -21,10 +21,12 @@ included into the test.}
 \item{family}{Family of the distribution followed by the health outcome to
 be tested (gaussian, bionomal, ... check \link{glm}).}
 
+\item{...}{NOT USED}
+
 \item{verbose}{(default \code{FALSE}) If set o true messages along the
 tests are shown.}
 
-\item{warning}{(default \code{TRUE}) If set to \code{FALSE} warnings will
+\item{warnings}{(default \code{TRUE}) If set to \code{FALSE} warnings will
 not be displayed.}
 }
 \value{

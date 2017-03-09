@@ -1,6 +1,5 @@
 #' @describeIn mExWAS Method to plot a heap-map with the coeficient of each
 #' exposure
-#' @param object A \code{link{mExWAS}} object
 setMethod(
     f = "plotExwas",
     signature = "mExWAS",

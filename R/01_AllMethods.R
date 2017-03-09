@@ -644,8 +644,8 @@ setGeneric("plotEXP", function(object, exposure)
 #' taht will be ploted.
 #' @param cmpX (default: \code{1}) component to be placed at X axis
 #' @param cmpY (default: \code{2}) component to be placed at Y axis
-#' @param phentoype If \code{set} is set to \code{"samples"} can be used to
-#' color samples by phentoype
+#' @param phenotype If \code{set} is set to \code{"samples"} can be used to
+#' color samples by phenotype
 #' @return An object of class \code{ggplot} or an object of class
 #' \code{gtable} if argument \code{set} was set to \code{"all"}.
 #' @seealso \link{pca} to compite PCA on an \link{ExposomeSet}, \link{plotPCA}
@@ -980,6 +980,7 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
 #' @name raw
 #' @rdname raw-methods
 #' @aliases raw
+#' @param object An object of class \code{\link{mExWAS}}.
 #' @examples
 #' data("exposome")
 #' wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
@@ -1010,9 +1011,10 @@ setGeneric("raw", function(object)
 #' included into the test.
 #' @param family Family of the distribution followed by the health outcome to
 #' be tested (gaussian, bionomal, ... check \link{glm}).
+#' @param ... NOT USED
 #' @param verbose (default \code{FALSE}) If set o true messages along the
 #' tests are shown.
-#' @param warning (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
 #' not be displayed.
 #' @return An code{ExWAS} object with the result of the association study
 #' @references An Environment-Wide Association Study (ExWAS) on Type 2 Diabetes
@@ -1044,6 +1046,7 @@ setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FAL
 #' @rdname extract-methods
 #' @aliases extract
 #' @param object Object of class \link{ExWAS}.
+#' @param sort If set to \code{TRUE}, and available, results are sorted.
 #' @param ... NOT USED - ONLY FOR EXTENDED FUNCTIONALLITY
 #' @return A \code{data.frame} with the pvalues and other information from the
 #' association a integration studies of the exposures and phenotypes and

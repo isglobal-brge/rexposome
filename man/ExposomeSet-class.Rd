@@ -119,12 +119,12 @@
 \arguments{
 \item{object}{An \code{\link{ExposomeSet}} object.}
 
-\item{method}{Function implementing clustering method.}
+\item{method}{Method to be used.}
 
 \item{cmethod}{Function implementing a systsme to retrieve classification
 from clustering output}
 
-\item{...}{Argument sent to \code{method}.}
+\item{...}{Argument sent given method.}
 
 \item{warnings}{If set to \code{TRUE} shows intermediate warnings.}
 
@@ -156,7 +156,7 @@ each exposure belongs}
 
 \item{pNA}{Maximum percentage allowed of values under LOD}
 
-\item{tLog}{(If set to \code{TRUE} it transforms all the exposures to lod
+\item{tLog}{If set to \code{TRUE} it transforms all the exposures to lod
 before the imputation.}
 
 \item{ssystem}{Method to be used to impute missing values (\code{"mice"} or
@@ -195,7 +195,7 @@ histogram}
 \item{show.trans}{If set to \code{TRUE}, three extra plots are drawn
 with usual transformations}
 
-\item{x.max}{Threshold for x axis (in %)}
+\item{x.max}{Threshold for x axis (in \%)}
 
 \item{sort}{If set to \code{TRUE}, results are ordered}
 
@@ -208,10 +208,6 @@ with usual transformations}
 \item{clsSet}{An \code{\link{ExposomeClust}} object.}
 
 \item{expoSet}{An \code{\link{ExposomeSet}} object}
-
-\item{...}{NOT USED}
-
-\item{method}{Method to be used to impute the under-LOD values.}
 }
 \value{
 An object of class \code{ExposomeSet}
@@ -293,11 +289,11 @@ per exposure.
 \item{\code{assayData}}{Contains the exposures matrix with column number equal to
 \code{nrow(phenoData)} (see \link{eSet}, \link{AssayData}).}
 
-\item{\code{phenoData:}}{Contains the phenotypes or variables experimenter-supplied
-(see \link{eSet}, \link{AnnotatedDataFrame}).}
-
 \item{\code{featureData}}{Contains the description of the exposures including
 the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
+
+\item{\code{phenoData:}}{Contains the phenotypes or variables experimenter-supplied
+(see \link{eSet}, \link{AnnotatedDataFrame}).}
 
 \item{\code{experimentData}}{NOT USED}
 

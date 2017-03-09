@@ -20,8 +20,6 @@
 \item{object}{A \code{\link{mExWAS}} object.}
 
 \item{sort}{NOT USED}
-
-\item{object}{A \code{link{mExWAS}} object}
 }
 \value{
 An object of class \code{mExWAS}

@@ -1,5 +1,6 @@
 #' @describeIn ExposomePCA Method to extract the raw results of the PCA.
 #' @param table Can takes values \code{"exposures"} or \code{"individuals"}.
+#' @param ... NOT USED
 setMethod(
     f = "extract",
     signature="ExposomePCA",

@@ -39,6 +39,8 @@
 
 \item{table}{Can takes values \code{"exposures"} or \code{"individuals"}.}
 
+\item{...}{NOT USED}
+
 \item{cmpX}{PC to place in X-axis}
 
 \item{cmpY}{PC to place in Y-axis}

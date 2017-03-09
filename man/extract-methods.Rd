@@ -10,6 +10,8 @@ extract(object, sort = TRUE, ...)
 \arguments{
 \item{object}{Object of class \link{ExWAS}.}
 
+\item{sort}{If set to \code{TRUE}, and available, results are sorted.}
+
 \item{...}{NOT USED - ONLY FOR EXTENDED FUNCTIONALLITY}
 }
 \value{

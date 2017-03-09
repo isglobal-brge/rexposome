@@ -10,10 +10,10 @@
 #' @exportClass ExposomeSet
 #' @slot assayData Contains the exposures matrix with column number equal to
 #' \code{nrow(phenoData)} (see \link{eSet}, \link{AssayData}).
-#' @slot phenoData: Contains the phenotypes or variables experimenter-supplied
-#' (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
+#' @slot phenoData: Contains the phenotypes or variables experimenter-supplied
+#' (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot experimentData NOT USED
 #' @slot annotation NOT USED
 #' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}

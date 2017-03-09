@@ -22,6 +22,8 @@
 
 \item{object}{An \code{\link{ExposomeCorr}} object.}
 
+\item{sort}{NOT USED}
+
 \item{...}{Arguments passed to \code{corrplot} when \code{type="matrix"}.}
 
 \item{type}{To choose between \code{"circos"} and \code{"matrix"}.}

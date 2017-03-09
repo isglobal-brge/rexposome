@@ -1,9 +1,9 @@
 #' @describeIn ExposomeSet Performs clustering on samples based on exposure levels.
 #' @param object An \code{\link{ExposomeSet}} object.
-#' @param method Function implementing clustering method.
+#' @param method Method to be used.
 #' @param cmethod Function implementing a systsme to retrieve classification
 #' from clustering output
-#' @param ... Argument sent to \code{method}.
+#' @param ... Argument sent given method.
 #' @param warnings If set to \code{TRUE} shows intermediate warnings.
 setMethod(
   f = "clustering",

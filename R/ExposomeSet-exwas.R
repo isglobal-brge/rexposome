@@ -2,7 +2,6 @@
 #' @param formula Formula, not including exposures, to be tested.
 #' @param filter Expression to be used to filter \code{\link{ExposomeSet}}
 #' @param family Family descriving the nature of the health outcome
-#' @param ... NOT USED
 #' @param verbose If set to \code{TRUE} is shows messages on progression.
 setMethod(
     f = "exwas",

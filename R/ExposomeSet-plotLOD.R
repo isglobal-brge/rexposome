@@ -1,5 +1,5 @@
 #' @describeIn ExposomeSet Draws a barchart with the amount of under-LOD values.
-#' @param x.max Threshold for x axis (in %)
+#' @param x.max Threshold for x axis (in \%)
 #' @param sort If set to \code{TRUE}, results are ordered
 setMethod(
     f = "plotLOD",
