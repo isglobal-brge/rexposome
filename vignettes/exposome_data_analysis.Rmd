@@ -5,12 +5,12 @@ date: "`r doc_date()`"
 package: "`r pkg_ver('rexposome')`"
 abstract: >
     An introductory guide to analysing exposome data with R package `rexposome`. The areas covered in this document are: loading exposome data from files and matrices, exploration the exposome data including missing data quantification and individual clustering, and testing association between exposures and health outcomes.
-vignette: >
-  %\VignetteIndexEntry{Bioconductor style for HTML documents}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 output: 
   BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8} 
 ---
 
 
