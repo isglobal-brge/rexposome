@@ -67,11 +67,11 @@ read_exposome <- function(exposures, description, phenotype,
     warnings = TRUE, ...) {
 
     ## Load the three dataframes
-    exp <- read.table(exposures, header = TRUE, row.names = exposures.samCol,
+    exp <- utils::read.table(exposures, header = TRUE, row.names = exposures.samCol,
                     sep = sep, na.strings = na.strings)
-    phe <- read.table(phenotype, header = TRUE, row.names = phenotype.samCol,
+    phe <- utils::read.table(phenotype, header = TRUE, row.names = phenotype.samCol,
                     sep = sep, na.strings = na.strings, stringsAsFactors = TRUE)
-    desc <- read.table(description, header = TRUE, row.names = description.expCol,
+    desc <- utils::read.table(description, header = TRUE, row.names = description.expCol,
                      sep = sep, na.strings = na.strings)
     if(description.famCol > description.expCol) {
         description.famCol <- description.famCol - 1

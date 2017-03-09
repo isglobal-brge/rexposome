@@ -28,6 +28,9 @@
 
 \item{type}{To choose between \code{"circos"} and \code{"matrix"}.}
 }
+\value{
+An object of class \code{ExposomeCorr}
+}
 \description{
 Class \code{ExposomeCorr} contains a matrix of correlations between
 continuos exposures calculated using \link{cor}. It also contains the

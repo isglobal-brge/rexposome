@@ -292,12 +292,8 @@ per exposure.
 \item{\code{featureData}}{Contains the description of the exposures including
 the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 
-\item{\code{phenoData:}}{Contains the phenotypes or variables experimenter-supplied
+\item{\code{phenoData}}{Contains the phenotypes or variables experimenter-supplied
 (see \link{eSet}, \link{AnnotatedDataFrame}).}
-
-\item{\code{experimentData}}{NOT USED}
-
-\item{\code{annotation}}{NOT USED}
 }}
 
 \seealso{

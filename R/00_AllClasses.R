@@ -12,10 +12,8 @@
 #' \code{nrow(phenoData)} (see \link{eSet}, \link{AssayData}).
 #' @slot featureData Contains the description of the exposures including
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
-#' @slot phenoData: Contains the phenotypes or variables experimenter-supplied
+#' @slot phenoData Contains the phenotypes or variables experimenter-supplied
 #' (see \link{eSet}, \link{AnnotatedDataFrame}).
-#' @slot experimentData NOT USED
-#' @slot annotation NOT USED
 #' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}
 #' from files, \code{\link{load_exposome}} to create an \code{ExposomeSet}
 #' from \code{data.frames}
@@ -48,6 +46,7 @@ setClass(
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @seealso \code{\link{pca}} to study the behavioud between samples
 #' and exposures in an \code{\link{ExposomeSet}}
+#' @return An object of class \code{ExposomeCorr}
 setClass(
   Class = "ExposomeCorr",
   contains = "eSet"

@@ -33,6 +33,7 @@
 #'
 #' @import Biobase
 #' @import utils
+#' @import mboost
 #'
 #' @importClassesFrom Biobase eSet
 #' @importClassesFrom MultiDataSet MultiDataSet
@@ -52,7 +53,7 @@
 #' @importFrom ggplot2 scale_y_continuous scale_fill_brewer
 #' @importFrom reshape2 melt
 #' @importFrom pryr named_dots
-#' @importFrom mboost gamboost extract
+# @importFrom mboost gamboost extract
 #' @importFrom imputeLCMD impute.QRILC impute.MinProb
 #' @importFrom scatterplot3d scatterplot3d
 #' @importFrom glmnet cv.glmnet glmnet
