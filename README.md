@@ -1,18 +1,13 @@
 # rexposome
 
-master [![Travis-CI Build Status](https://travis-ci.org/carleshf/rexposome.svg?branch=master)](https://travis-ci.org/carleshf/rexposome) 
-devel [![Travis-CI Build Status](https://travis-ci.org/carleshf/rexposome.svg?branch=devel)](https://travis-ci.org/carleshf/rexposome)
-
 ## Summary
 
-`rexposome` is an R package for exposome characterization and exposome-omic data analysis. It depends in a series of third party R packages to provide:
+`rexposome` is an R package for exposome characterization and exopsome-outcome test association. It depends in a series of third party R packages to provide:
 
   1. A basic pipeline for missing-data imputation in exposome, include the imputation of values under limit of detection.
   2. A series of functions to describe and characterize the exposome, including PCA in exposures and samples space, correlation between exposures and clustering of samples through exposure levels.
   3. Two different approaches to test the association exposome-diseasom in terms of Exposome-Wide Association Studies (ExWAS and mExWAS).
-  4. A series of pipelines to test exposome-omic and diseasome-omic associations.
-  5. [UNDER DEVELOPMENT] Two different approaches to integrate exposome with omic data.
-
+  
 ## Installation
 
 `rexposome` requires R version equal or newer than 3.3.0. The following script allows to install `rexposome` dependencies:
@@ -20,10 +15,10 @@ devel [![Travis-CI Build Status](https://travis-ci.org/carleshf/rexposome.svg?br
 ```r
 source( "http://bioconductor.org/biocLite.R" )
 
-packages = c('Biobase', 'mice', 'MultiDataSet', 'mvtnorm', 'lsr', 'BiocInstaller', 
-    'FactoMineR', 'gridExtra', 'stringr', 'pryr', 'circlize', 'corrplot', 'ggplot2', 
-    'reshape2', 'scales', 'pryr', 'mboost', 'imputeLCMD', 'snpStats', 'MEAL', 
-    'limma', 'scatterplot3d', 'glmnet', 'omicade4', 'sva', 'ggrepel', 'PMA', 'sva'
+packages = c('Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR',
+	'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
+	'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
+	'grid', 'Hmisc', 'gplots',	'gtools', 'scales'
 )
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
@@ -47,17 +42,10 @@ devtools::install_github("isglobal-brge/rexposome")
 
 ### Details
 
-The installation of `rexposome` through `devtools` takes care of installing all the dependencies. The following bullets informs about the different dependencies of `rexposome`:
+### Authors
 
-  * R version >= 3.3.0
-  * R packages dependencies: `Biobase`, `mice`, `MultiDataSet`, `mvtnorm`, `lsr`
-  * R packages imports: `Biobase`, `mice`, `MultiDataSet`, `mvtnorm`, `lsr`, `BiocInstaller`, 
-    `FactoMineR`, `gridExtra`, `stringr`, `pryr`, `circlize`, `corrplot`, `ggplot2`, 
-    `reshape2`, `scales`, `pryr`, `mboost`, `imputeLCMD`, `snpStats`, `MEAL`, 
-    `limma`, `scatterplot3d`, `glmnet`, `omicade4`, `sva`, `ggrepel`, `PMA`
-  * R packages suggestions: `flexmix`, `thestthat`
-
-## Basic Guide
+  * Carles Hernandez-Ferrer | `carles.hernandez < at > isglobal < dot > org`
+  * Juan R. Gonzalez | `juanr.gonzalez < at > isglobal < dot > org`
 
 ### Loading Exposome
 
@@ -67,7 +55,7 @@ In `rexposome` the _exposome_ is understood as a set of three files:
   2. The phenotype file (diseasome file): A matrix with the phenotypes or diseases description, having the individuals as rows and the phenotypes as columns.
   3. The description file: A table describing the exposures. It must have, at last, two columns: one with the exposures and one with the family/group of exposures. The order of the exposures must be the same as in exposure-file.
 
-The _exposome_ is loaded from files using the function `read_exposome`.
+The _exposome_ is loaded from files using the function `read_exposome`. If the information is stored in standard R `data.frame`s, those can be converted to an `ExposomeSet` using the function `load_exposome`.
 
 ### Exposome Characterization
 
@@ -89,15 +77,4 @@ The characterization of the exposome is done with a bunch of functions that foll
   * The function `exwas` allows to perform an Exposome-Wide Association Study by testing the association of each exposure with a given phenotype.
   * `m_exwas` allows to perform a MultiVariate Exposome-Wide Association Study by using DSA or ElasticNet methods.
   * `plotExwas` allows to plot a Manhattan plot of the result of an ExWAS (for both `exwas` and `m_exwas`).
-
-### Exposome-Omic Association
-
-  * Function `assocSNP` allows to perform a basic GWAS.
-  * Function `assocGE` allows to perform a DE analysis in base of the exposures.
-  * Function `assocME` allows to perform an EWAS for each exposure.
-  * Function `assocPRT` allows to test the association of the protein quantification with the exposures levels.
-  * `plotAssociation` allows to plot the result of all _assoc*_ functions.
-
-### Exposome-Omic Integration
-
-  * Function `crossomics` allows to perform a multi-omic integration join exposome by selecting one of the available methods (`"mcia"` or `"mcca"`).
+  * `plotEffect` allows to plot the effects of each exposure. It can also be used to compare two models.
