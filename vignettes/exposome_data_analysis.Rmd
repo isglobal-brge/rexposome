@@ -8,17 +8,15 @@ abstract: >
 output: 
   BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Exposome Data Analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8} 
 ---
-
 
 ```{r setup, include=FALSE}
 BiocStyle::markdown()
 knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
 ```
-
 
 # Introduction
 

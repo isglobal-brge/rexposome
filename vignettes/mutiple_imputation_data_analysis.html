@@ -1,0 +1,205 @@
+---
+title: "Bioconductor style for HTML documents"
+author: "Carles Hernandez-Ferer and Juan R. Gonzalez"
+date: "`r doc_date()`"
+package: "`r pkg_ver('BiocStyle')`"
+abstract: >
+      An introductory guide to analysing multiple imputed exposome data with R package `rexposome`. The areas covered in this document are: loading the multiple imputations of both exposures and phenotypes from common `data.frame`s, exploration the exposome data, and testing association between exposures and health outcomes.
+vignette: >
+  %\VignetteIndexEntry{Bioconductor style for HTML documents}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+output: 
+  BiocStyle::html_document
+---
+
+# Prerequisites
+
+In order to build .Rmd documents the `r CRANpkg("rmarkdown")` package is necessary, which relies on [pandoc](http://johnmacfarlane.net/pandoc/) to compile the final output document. If you are working within a recent version of RStudio then both rmarkdown and pandoc should be already installed.
+
+If you are missing the `r CRANpkg("rmarkdown")` package then you can install it from CRAN using
+
+```{r rmarkdown, eval=FALSE}
+install.packages("rmarkdown")
+```
+
+In this case a recent version of [pandoc](http://johnmacfarlane.net/pandoc/) (>= 1.12.3) is also required. See the [pandoc installation instructions](https://github.com/rstudio/rmarkdown/blob/master/PANDOC.md) for details on installing pandoc for your platform.
+
+
+# Authoring R markdown HTML package vignettes
+
+To enable the _Bioconductor_ style in your markdown (`.Rmd`) vignettes you need to:
+
+- Edit to the `DESCRIPTION` file by adding
+
+        VignetteBuilder: knitr
+        Suggests: BiocStyle, knitr, rmarkdown
+
+- Specify `BiocStyle::html_document` as the output format and add vignette metadata in the document header:
+
+        ---
+        title: "Vignette Title"
+        author: "Vignette Author"
+        output: 
+          BiocStyle::html_document
+        vignette: >
+          %\VignetteIndexEntry{Vignette Title}
+          %\VignetteEngine{knitr::rmarkdown}
+          %\VignetteEncoding{UTF-8}  
+        ---
+
+The `vignette` section is required in order to instruct R how to build the vignette. Note that the `\VignetteIndexEntry` should match the `title` of your vignette.
+  
+It is also possible to specify additional details such as:
+
+- document compilation `date` inserted using the helper function `doc_date`
+- `package` version specification added by `pkg_ver`
+- vignette `abstract`
+    
+as in the following example. Note the inclusion of an additional style sheet `custom.css` by specifying it in the document header.
+
+```{r code, echo = FALSE}
+## The following redefinitions are only for printing the verbatim header below
+doc_date = function() "`r doc_date()`"
+pkg_ver = function(name) sprintf("`r pkg_ver('%s')`", name)
+```
+
+    ---
+    title: "Vignette Title"
+    author: "Vignette Author"
+    date: "`r doc_date()`"
+    package: "`r pkg_ver('BiocStyle')`"
+    abstract: >
+      Vignette Abstract
+    vignette: >
+      %\VignetteIndexEntry{Vignette Title}
+      %\VignetteEngine{knitr::rmarkdown}
+      %\VignetteEncoding{UTF-8}
+    output: 
+      BiocStyle::html_document:
+        css: custom.css
+    ---
+
+
+## Use with R markdown v1
+
+Apart from the default markdown engine implemented in the `r CRANpkg('rmarkdown')` package,
+it is also possible to compile Bioconductor documents using the older markdown v1 engine 
+from the package `r CRANpkg('markdown')`. There are some
+differences in setup and the resulting output between these two
+engines. 
+
+To use the `r CRANpkg('markdown')` vignette builder engine:
+
+- Add the following to the `DESCRIPTION` file
+
+        VignetteBuilder: knitr
+        Suggests: BiocStyle, knitr
+        
+- Specify the vignette engine in the `.Rmd` files (inside HTML
+  comments)
+
+        <!--
+        %% \VignetteEngine{knitr::knitr}
+        -->
+
+- Add the following code chunk at the beginning of your `.Rmd`
+  vignettes
+
+        ```{r style, echo = FALSE, results = 'asis'}`r ''`
+        BiocStyle::markdown()
+        ```
+
+The way of attaching CSS files when using
+`r CRANpkg('markdown')` differs from how this done with `r CRANpkg('rmarkdown')`.
+In the former case additional style sheets can be
+used by providing them to the `BiocStyle::markdown` function.
+To include `custom.css` file use
+
+    ```{r style, echo = FALSE, results = 'asis'}`r ''`
+    BiocStyle::markdown(css.files = c('custom.css'))
+    ```
+
+
+# Style macros
+
+```{r macro, echo=FALSE}
+macro <- function(name, pkg, description)
+    sprintf('`` `r %s("%s")` `` %s %s', name, pkg,
+            description, do.call(name, list(pkg)))
+```
+
+`r Biocpkg("BiocStyle")` introduces the following macros useful when
+referring to _R_ packages:
+
+* `r macro("Biocpkg", "IRanges", "for _Bioconductor_ software, annotation and experiment data packages,
+  including a link to the release landing page or if the package is only in devel, to the devel landing page,")`.
+
+* `r macro("CRANpkg", "data.table", "for _R_ packages available on
+  CRAN, including a link to the FHCRC CRAN mirror landing page,")`.
+
+* `r macro("Githubpkg", "rstudio/rmarkdown", "for _R_ packages
+  available on GitHub, including a link to the package repository,")`.
+
+* `r macro("Rpackage", "MyPkg", "for _R_ packages that are _not_
+  available on _Bioconductor_, CRAN or GitHub;")`.
+
+
+# Additional formatting features
+
+Compared to the default markdown appearance the formatting differences
+include:
+
+* Images and tables appear centered, e.g.
+
+    ```{r figure, fig.width=4.0, fig.height=4.4}
+    v = seq(0, 60i, length = 1000)
+    plot(abs(v)*exp(v), type = "l", col = "Royalblue")
+    ``` 
+                
+* Tables are displayed with striped rows:
+    
+    ```markdown
+    Fruit   | Price
+    ------- | -----
+    bananas | 1.2
+    apples  | 1.0
+    oranges | 2.5
+    ```
+        
+    produces
+
+    Fruit   | Price
+    ------- | -----
+    bananas | 1.2
+    apples  | 1.0
+    oranges | 2.5
+
+* Paragraph text is justified
+
+* External links open in new browser tab/window
+
+Math symbols can be included in markdown documents. You can write math
+expressions the same way you would in `Latex`, except some differences
+in escaping them.
+
+- Inline: For inline formulas use `$P(x) = \frac{1}{2}$` or
+  `\(P(x) = \frac{1}{2}\)`, which both render as $P(x) = \frac{1}{2}$.
+
+- Standalone: Math can be displayed in a separate line by writing
+  `$$P(x) = \frac{1}{2}$$` or `\[P(x) = \frac{1}{2}.\]`, which both
+  result in $$P(x) = \frac{1}{2}.$$
+
+
+# Session info
+
+Here is the output of `sessionInfo()` on the system on which this
+document was compiled:
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
+
+
+[R]: http://r-project.org
+[RStudio]: http://www.rstudio.com/

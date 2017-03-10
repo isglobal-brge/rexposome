@@ -161,7 +161,7 @@ read_exposome <- function(exposures, description, phenotype,
                  "'numeric' calues can be used.")
         }
         desc$`_type` <- desc$type
-        desc <- desc[ , -which(colnames(desc) == "type")]
+        desc <- desc[ , -which(colnames(desc) == "type"), drop=FALSE]
     } else {
         desc$`_type` <- sapply(rownames(desc), function(ex) {
             ifelse(length(unique(exp[ , ex])) > exposures.asFactor, "numeric", "factor")

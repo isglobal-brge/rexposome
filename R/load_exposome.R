@@ -130,7 +130,7 @@ load_exposome <- function(exposures, description, phenotype,
                  "'numeric' calues can be used.")
         }
         description$`_type` <- description$type
-        description <- description[ , -which(colnames(description) == "type")]
+        description <- description[ , -which(colnames(description) == "type"), drop=FALSE]
     } else {
         description$`_type` <- sapply(rownames(description), function(ex) {
             ifelse(length(unique(exposures[ , ex])) > exposures.asFactor, "numeric", "factor")

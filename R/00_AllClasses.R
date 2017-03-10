@@ -202,3 +202,37 @@ setClass(
     samples = "character"
   )
 )
+
+
+#' Class imExposomeSet
+#'
+#' Class \code{imExposomeSet} was designed to store the exposures obtained
+#' after a multiple imputation process done using \code{mice}. The
+#' \code{data.frame} obtained from \code{mice} has the particulatiry
+#' to contain the columns \code{.imp} and \code{.id} joint
+#' to phenotypes and exposures. The slots \code{assayData}, \code{featureData},
+#' and \code{phenoData} are coordinated.
+#'
+#' @name imExposomeSet
+#' @aliases imExposomeSet-class
+#' @rdname imExposomeSet-class
+#' @exportClass imExposomeSet
+#' @slot nimputation Number of imputations done with \code{mice}.
+#' @slot assayData \code{data.frame} containing \code{.imp}, \code{.id} and
+#' the exposures.
+#' @slot featureData \code{data.frame} containing the description of
+#' the exposures.
+#' @slot phenoData \code{data.frame} containing \code{.imp}, \code{.id} and
+#' the phenotypes.
+#' @seealso \code{\link{load_imputed}} to create an \code{imExposomeSet}
+#' from \code{data.frames}
+#' @return An object of class \code{imExposomeSet}
+setClass(
+    Class = "imExposomeSet",
+    representation = representation(
+        nimputation = "numeric",
+        assayData = "data.frame",
+        featureData = "data.frame",
+        phenoData = "data.frame"
+    )
+)
