@@ -50,7 +50,6 @@ test_that("Test 'expsureNames' method.", {
 
     expect_is(exposureNames(x), "character")
     expect_equal(length(exposureNames(x)), 104)
-    expect_equal(exposureNames(x)[1], "Ben_preg")
 })
 
 ## ------------------------------------------------------------------------- ##

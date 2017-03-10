@@ -15,7 +15,7 @@
 
 \S4method{plotEffect}{ExWAS}(x, y, select, xlab, ylab)
 
-\S4method{plotExwas}{ExWAS}(object, color, show.effective = TRUE)
+\S4method{plotExwas}{ExWAS}(object, ..., color, show.effective = TRUE)
 
 \S4method{tef}{ExWAS}(object)
 }

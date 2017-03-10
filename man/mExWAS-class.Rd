@@ -14,7 +14,7 @@
 
 \S4method{raw}{mExWAS}(object)
 
-\S4method{plotExwas}{mExWAS}(object)
+\S4method{plotExwas}{mExWAS}(object, ...)
 }
 \arguments{
 \item{object}{A \code{\link{mExWAS}} object.}
