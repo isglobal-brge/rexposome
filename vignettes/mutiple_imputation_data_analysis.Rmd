@@ -20,9 +20,9 @@ knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
 
 # Introduction
 
-## Dummy Imputation with `mcia`
+## Dummy Imputation with `mice`
 
-To illustrate how to perform a multiple imputation using `mcia` we start loading both `rexposome` and `mice` and calling the data-set *exposome*:
+To illustrate how to perform a multiple imputation using `mice` we start loading both `rexposome` and `mice` and calling the data-set *exposome*:
 
 ```{r, message=FALSE}
 library(rexposome)
@@ -35,7 +35,7 @@ The data-set *exposome* has some missing data. This can be seen using `plotMissi
 ```{r ggplot2, message=FALSE}
 library(ggplot2)
 ```
-```{r plot_missing_exposome}
+```{r plot_missing_exposome, fig.height=8}
 plotMissings(expo, set = "exposures") + 
     ggtitle("Missing Values in Exposome Data")
 ```
@@ -187,4 +187,10 @@ The interesting point on working with mutikple imputations is to test the associ
 ```{r exwas, warning=FALSE, message=FALSE}
 as_iew <- exwas(ex_imp, formula = asthma~sex+age, family = "binomial")
 as_iew
+```
+
+As usuall, the \texttt{ExWAS} object obtained from `exwas` method can be ploted using `plotExwas`:
+
+```{r plot_exwas, fig.height=9}
+plotExwas(as_iew)
 ```
