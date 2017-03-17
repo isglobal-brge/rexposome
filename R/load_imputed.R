@@ -2,11 +2,11 @@
 #'
 #' Given a \code{data.frame} from \code{code} with the multiple
 #' imputations of both exposures and phenotypes, join with a \code{data.frame}
-#' with exposures' description, and object of class \code{\linl{imExposomeSet}}
+#' with exposures' description, and object of class \code{\link{imExposomeSet}}
 #' is created.
 #'
 #' The coordination of the information is based in the columns \code{.imp} and
-#' \ccide{.id} from the \code{data.frame} obtained from \code{mice}. The
+#' \code{.id} from the \code{data.frame} obtained from \code{mice}. The
 #' division of exposures and phenotypes is based in description
 #' \code{data.frame}, that are the exposures. Hence, the elements in the
 #' main \code{data.frame} that are not in the description, are the

@@ -1188,3 +1188,20 @@ setGeneric("add_cls", function(object, clsSet, ...)
     standardGeneric("add_cls")
 )
 
+# -----------------------------------------------------------------------------
+
+#' Method to convert an imExposomeSet to an ExposomeSet
+#'
+#' This methods allows to select an imputed-set and use it to create an
+#' \code{\link{ExposomeSet}} from an \code{\link{imExposomeSet}}.
+#'
+#' @name toES
+#' @rdname toES
+#' @aliases toES
+#' @param object An object of class \code{imExposomeSet}
+#' @param rid (default \code{1}) Number of the imputation to be extracted
+#' @return An object of class \code{\link{ExposomeSet}}-
+#' @export toES
+setGeneric("toES", function(object, rid = 1)
+    standardGeneric("toES")
+)

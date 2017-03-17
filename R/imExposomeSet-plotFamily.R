@@ -15,7 +15,7 @@ setMethod(
         if(!family %in% unique(x@featureData$Family)) {
             stop("Given family '", family, "' not in the imExposomeSet.")
         }
-        exposures <- x@featureData$Exposure[x@featureData$Family == family]
+        exposures <- as.character(x@featureData$Exposure[x@featureData$Family == family])
         type <- unique(x@featureData$`_type`[x@featureData$Family == family])
         exposures <- x@assayData[ , c(".imp", exposures), drop=FALSE]
         exposures <- reshape2::melt(exposures, id.var=".imp")

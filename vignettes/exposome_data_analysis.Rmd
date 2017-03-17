@@ -1,6 +1,6 @@
 ---
 title: "Exposome Data Analysis"
-author: "Carles Hernandez-Ferer and Juan R. Gonzalez"
+author: "Carles Hernandez-Ferrer and Juan R. Gonzalez"
 date: "`r doc_date()`"
 package: "`r pkg_ver('rexposome')`"
 abstract: >
@@ -501,7 +501,7 @@ Method `exwas` performs univariate test of the association between exposures and
 The following line performs an ExWAS on flu and wheezing adjusted by sex and age. Since the content of `flu` and others in the `ExposomeSet` is dichotomous, the `family` is set to binomial (for more information see `?glm`).
 
 ```{r exwas_flu, warning=FALSE, message=FALSE}
-fl_ew <- exwas(exp, formula = flu~sex+age, family = "binomial")
+fl_ew <- exwas(exp, formula = blood_pre~sex+age, family = "gaussian")
 fl_ew
 ```
 
@@ -520,11 +520,10 @@ head(extract(fl_ew))
 
 A Manhattan-like plot with the p-values of the association between each exposure and asthma, coloured by families of exposures, is draw by method `plotExwas`.
 
-```{r exwas_plot, warning=FALSE, fig.width=10, fig.height=9, message=FALSE}
-library(gridExtra)
+```{r exwas_plot, warning=FALSE, fig.width=10, fig.height=12, message=FALSE}
 clr <- rainbow(length(familyNames(exp)))
 names(clr) <- familyNames(exp)
-plotExwas(fl_ew, we_ew, color = clr, show.effective=FALSE) + 
+plotExwas(fl_ew, we_ew, color = clr) + 
       ggtitle("Exposome Association Study - Univariate Approach")
 
 ```
@@ -534,13 +533,13 @@ plotExwas(fl_ew, we_ew, color = clr, show.effective=FALSE) +
 The last approach is a multivariate analysis in order to find the group of exposures related to the health outcome. This can be done using methods like Elastic Net. The method `mexwas` applies elastic net to the exposures given a health outcome of interest.
 
 ```{r enet, warning=FALSE}
-ri_mew <- mexwas(exp, phenotype = "rhinitis", family = "binomial")
-we_mew <- mexwas(exp, phenotype = "wheezing", family = "binomial")
+ri_mew <- mexwas(exp, phenotype = "blood_pre", family = "gaussian")
+we_mew <- mexwas(exp, phenotype = "rhinitis", family = "binomial")
 ```
 
 The coefficient of each exposure is plotted with `plotExwas`. The method draws a heat map with two columns and the exposures as rows. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (`Min`) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (`1SE`). 
 
-```{r plot_enet_heatmap, fig.width=10, fig.height=9}
+```{r plot_enet_heatmap, fig.width=10, fig.height=12}
 plotExwas(ri_mew, we_mew) + ylab("") +
         ggtitle("Exposome Association Study - Multivariate Approach")
 ```
