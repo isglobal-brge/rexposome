@@ -34,7 +34,8 @@ Imports: utils,
     Hmisc,
     gplots,
     gtools,
-    scales
+    scales,
+    lme4
 Suggests: mclust,
     flexmix,
     testthat,
