@@ -4,7 +4,8 @@
 #' @param filter Expression to be used to filter \code{\link{ExposomeSet}}
 #' @param family Family descriving the nature of the health outcome
 #' @param ... Other used arguments
-#' @param verbose If set to \code{TRUE} is shows messages on progression.
+#' @param verbose If set to \code{TRUE} it shows messages on progression.
+#' @param warnings I set to \code{TRUE} it shows warnings on progession.
 setMethod(
     f = "exwas",
     signature = "imExposomeSet",

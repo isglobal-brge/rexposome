@@ -1,6 +1,5 @@
 #' @describeIn imExposomeSet Draws a boxplot or accumulated-bar plot for each
 #' exposure in the all imputed sets.
-#' @param family Family of exposures to be ploted
 #' @param group Phenotype to group exposures
 #' @param group2 NOT USED
 #' @param scatter If set to true it shows the samples value in the plot

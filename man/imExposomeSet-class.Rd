@@ -58,7 +58,9 @@
 
 \item{family}{Family descriving the nature of the health outcome}
 
-\item{verbose}{If set to \code{TRUE} is shows messages on progression.}
+\item{verbose}{If set to \code{TRUE} it shows messages on progression.}
+
+\item{warnings}{I set to \code{TRUE} it shows warnings on progession.}
 
 \item{by.exposure}{If set to \code{TRUE} ir returns the family which
 each exposure belongs}
@@ -70,8 +72,6 @@ each exposure belongs}
 \item{scatter}{If set to true it shows the samples value in the plot}
 
 \item{na.omit}{NOT USED}
-
-\item{family}{Family of exposures to be ploted}
 }
 \value{
 An object of class \code{imExposomeSet}

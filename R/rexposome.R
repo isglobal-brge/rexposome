@@ -64,5 +64,6 @@
 #' @importFrom gplots heatmap.2
 #' @importFrom gtools quantcut
 #' @importFrom scales percent_format
+#' @importFrom lme4 fixef
 NULL
 
