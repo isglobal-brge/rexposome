@@ -1202,6 +1202,9 @@ setGeneric("add_cls", function(object, clsSet, ...)
 #' @param rid (default \code{1}) Number of the imputation to be extracted
 #' @return An object of class \code{\link{ExposomeSet}}-
 #' @export toES
+#' @examples
+#' data("ex_imp")
+#' toES(ex_imp, rid = 1)
 setGeneric("toES", function(object, rid = 1)
     standardGeneric("toES")
 )

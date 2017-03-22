@@ -18,3 +18,7 @@ An object of class \code{\link{ExposomeSet}}-
 This methods allows to select an imputed-set and use it to create an
 \code{\link{ExposomeSet}} from an \code{\link{imExposomeSet}}.
 }
+\examples{
+data("ex_imp")
+toES(ex_imp, rid = 1)
+}

@@ -42,6 +42,25 @@
 #' @seealso \link{ExposomeSet} for class description,
 #' \link{read_exposome} for constructor from txt/csv
 #' files.
+#' @examples
+#' path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
+#' description <- paste0(path, .Platform$file.sep, "description.csv")
+#' phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
+#' exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+#' dd <- read.csv(description, header=TRUE)
+#' ee <- read.csv(exposures, header=TRUE)
+#' pp <- read.csv(phenotype, header=TRUE)
+#' rownames(dd) <- dd[, 2]
+#' dd <- dd[ , -2]
+#' rownames(ee) <- ee[ , 1]
+#' ee <- ee[ , -1]
+#' rownames(pp) <- pp[ , 1]
+#' pp <- pp[ , -1]
+#' exp <- load_exposome(
+#' exposures = ee,
+#' description = dd,
+#' phenotype = pp
+#' )
 load_exposome <- function(exposures, description, phenotype,
                           description.famCol = 1, exposures.asFactor = 5,
                           std.e = c("none", "normal", "robust"), trn.e = "none",

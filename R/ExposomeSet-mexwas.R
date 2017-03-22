@@ -19,20 +19,24 @@ setMethod(
                     sum(is.na(phe)), " samples will be discarded.")
             phe <- phe[!is.na(phe), , drop=FALSE]
         }
-        dta <- dta[rownames(phe), ]
+        dta <- dta[rownames(phe), , drop=FALSE]
         phe <- phe[ , 1]
 
         ## --------------------------------------------------------------------
+        if(warnings) {
+            warning("Categorical exposures will be droped and not used in the analysis.")
+        }
 
-        x <- as.matrix(dta)
-        x <- apply(x, 2, as.numeric)
+        x <- dta[ , exposureNames(object)[fData(object)$`_type` == "numeric"]]
+        x <- as.matrix(x)
         if(family %in% c("binomial", "multinomial")) phe <- as.factor(phe)
-        cvfit <- glmnet::cv.glmnet(x, phe, family = family, type.measure="auc")
+        ms <- ifelse(family %in% c("gaussian", "poisson"), "mse", "auc")
+        cvfit <- glmnet::cv.glmnet(x, phe, family = family, type.measure=ms)
         fit <- glmnet::glmnet(x, phe, family = family)
 
         new("mExWAS",
             result = list(cvfit, fit),
-            description = fData(object),
+            description = fData(object)[colnames(x), ],
             phenotype = phenotype
         )
     }

@@ -66,4 +66,3 @@
 #' @importFrom scales percent_format
 #' @importFrom lme4 fixef
 NULL
-

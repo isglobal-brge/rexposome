@@ -27,6 +27,15 @@
 #' @return An object of class \link{imExposomeSet}.
 #' @export load_imputed
 #' @seealso \link{imExposomeSet} for class description
+#' @examples
+#' data("me") # me is an imputed matrix of exposure and phenotyes
+#' path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
+#' description <- paste0(path, .Platform$file.sep, "exposFam.txt")
+#' dd <- read.csv(description, header=TRUE, stringsAsFactors=FALSE)
+#' dd <- dd[dd$Exposure %in% colnames(me), ]
+#' ex_imp <- load_imputed(data = me, description = dd,
+#' description.famCol = 1,
+#' description.expCol = 2)
 load_imputed <- function(data, description, description.famCol = 1,
                          description.expCol = 2, exposures.asFactor = 5) {
 
