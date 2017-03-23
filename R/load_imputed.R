@@ -30,7 +30,7 @@
 #' @examples
 #' data("me") # me is an imputed matrix of exposure and phenotyes
 #' path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-#' description <- paste0(path, .Platform$file.sep, "exposFam.txt")
+#' description <- paste0(path, .Platform$file.sep, "description.csv")
 #' dd <- read.csv(description, header=TRUE, stringsAsFactors=FALSE)
 #' dd <- dd[dd$Exposure %in% colnames(me), ]
 #' ex_imp <- load_imputed(data = me, description = dd,

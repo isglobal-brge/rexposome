@@ -82,10 +82,18 @@ will be renamed to \code{_type}. If not given, it will be created using
 }
 \examples{
 path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-description <- paste0(path, .Platform$file.sep, "exposFam.txt")
-phenotype <- paste0(path, .Platform$file.sep, "phenoData.txt")
-exposures <- paste0(path, .Platform$file.sep, "exposome.txt")
-exp <- read_exposome(exposures, description, phenotype, sep = "\\t")
+description <- paste0(path, .Platform$file.sep, "description.csv")
+phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
+exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+exp <- read_exposome(
+exposures = exposures,
+description = description,
+phenotype = phenotype,
+exposures.samCol = 1,
+description.expCol = 2,
+description.famCol = 1,
+phenotype.samCol = 1
+)
 }
 \seealso{
 \link{ExposomeSet} for class description,
