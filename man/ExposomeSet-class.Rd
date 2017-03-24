@@ -10,8 +10,7 @@
 %   R/ExposomeSet-plotLOD.R, R/ExposomeSet-plotMissings.R,
 %   R/ExposomeSet-restore.R, R/ExposomeSet-standardize.R,
 %   R/ExposomeSet-summary.R, R/ExposomeSet-tableLOD.R,
-%   R/ExposomeSet-tableMissings.R, R/ExposomeSet-trans.R,
-%   R/MultiDataSet-add_cls.R, R/MultiDataSet-add_exp.R
+%   R/ExposomeSet-tableMissings.R, R/ExposomeSet-trans.R
 \docType{class}
 \name{ExposomeSet}
 \alias{ExposomeSet}
@@ -41,8 +40,6 @@
 \alias{tableLOD,ExposomeSet-method}
 \alias{tableMissings,ExposomeSet-method}
 \alias{trans,ExposomeSet-method}
-\alias{add_cls,MultiDataSet,ExposomeClust-method}
-\alias{add_exp,MultiDataSet,ExposomeSet-method}
 \title{Class ExposomeSet}
 \usage{
 \S4method{clustering}{ExposomeSet}(object, method, cmethod, ...,
@@ -110,11 +107,6 @@
   "phenotypes"), output = "n", sort = TRUE)
 
 \S4method{trans}{ExposomeSet}(object, fun, select, by.exposure = FALSE, ...)
-
-\S4method{add_cls}{MultiDataSet,ExposomeClust}(object, clsSet, ...)
-
-\S4method{add_exp}{MultiDataSet,ExposomeSet}(object, expoSet, warnings = TRUE,
-  ...)
 }
 \arguments{
 \item{object}{An \code{\link{ExposomeSet}} object.}
@@ -204,10 +196,6 @@ with usual transformations}
 \item{output}{Can take values \code{"n"} (count) ot \code{"p"} (percentage)}
 
 \item{fun}{Function to bt used in the transformation process}
-
-\item{clsSet}{An \code{\link{ExposomeClust}} object.}
-
-\item{expoSet}{An \code{\link{ExposomeSet}} object}
 }
 \value{
 An object of class \code{ExposomeSet}
@@ -275,12 +263,6 @@ per exposure.
 per exposure.
 
 \item \code{trans}: Transformation of exposures.
-
-\item \code{add_cls}: Allows to add an \code{ExposomeClust} to a
-\code{MultiDataSet}.
-
-\item \code{add_exp}: Allows to add an \code{ExposomeSet} to a
-\code{MultiDataSet}.
 }}
 
 \section{Slots}{

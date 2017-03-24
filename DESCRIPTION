@@ -16,7 +16,6 @@ Depends:
     Biobase,
     mice
 Imports: utils,
-    MultiDataSet,
     lsr,
     FactoMineR,
     stringr,
