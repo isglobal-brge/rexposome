@@ -10,7 +10,9 @@ setMethod(
 
         dta <- expos(object)
         if(sum(is.na(dta)) != 0) {
-            stop("Exposure data has 'NA' values.")
+            #stop("Exposure data has 'NA' values.")
+            warnings("Exposure data has missing values. The cases having ",
+                     "missing values will be droped.")
         }
 
         phe <- pData(object)[ , phenotype, drop=FALSE]
@@ -26,8 +28,8 @@ setMethod(
         if(warnings) {
             warning("Categorical exposures will be droped and not used in the analysis.")
         }
-
-        x <- dta[ , exposureNames(object)[fData(object)$`_type` == "numeric"]]
+        message("A")
+        x <<- dta[ , exposureNames(object)[fData(object)$`_type` == "numeric"]]
         x <- as.matrix(x)
         if(family %in% c("binomial", "multinomial")) phe <- as.factor(phe)
         ms <- ifelse(family %in% c("gaussian", "poisson"), "mse", "auc")

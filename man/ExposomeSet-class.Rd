@@ -65,8 +65,7 @@
 \S4method{ilod}{ExposomeSet}(object, seed = 1234, lod.col = "LOD",
   pNA = 0.2, tLog = FALSE, method = "QRILC", warnings = TRUE, ...)
 
-\S4method{impute}{ExposomeSet}(object, select, ssystem = "mice", ...,
-  messages = FALSE)
+\S4method{impute}{ExposomeSet}(object, select, ..., messages = FALSE)
 
 \S4method{mexwas}{ExposomeSet}(object, phenotype, family, warnings = TRUE)
 
@@ -151,9 +150,6 @@ each exposure belongs}
 \item{tLog}{If set to \code{TRUE} it transforms all the exposures to lod
 before the imputation.}
 
-\item{ssystem}{Method to be used to impute missing values (\code{"mice"} or
-\code{"hmisc"}).}
-
 \item{messages}{If set to \code{TRUE} messages from  \link{mice}'s function
 will be displayed.}
 
@@ -196,6 +192,9 @@ with usual transformations}
 \item{output}{Can take values \code{"n"} (count) ot \code{"p"} (percentage)}
 
 \item{fun}{Function to bt used in the transformation process}
+
+\item{ssystem}{Method to be used to impute missing values (\code{"mice"} or
+\code{"hmisc"}).}
 }
 \value{
 An object of class \code{ExposomeSet}

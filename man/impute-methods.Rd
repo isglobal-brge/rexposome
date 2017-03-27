@@ -4,16 +4,13 @@
 \alias{impute}
 \title{Function to impute missing values from an ExposomeSet}
 \usage{
-impute(object, select, ssystem = "mice", ..., messages = FALSE)
+impute(object, select, ..., messages = FALSE)
 }
 \arguments{
 \item{object}{\code{ExposomeSet} which exposures will be imputed.}
 
 \item{select}{Exposures to be imputed. If missing, all exposes will be
 imputed.}
-
-\item{ssystem}{(default \code{"mice"}) Argument to select the imputation
-package. Can take values \code{"mice"} or \code{"hmisc"}}
 
 \item{...}{Argument given to function \code{mice} of pakcage \link{mice}
 (\code{printFlag} is set from \code{messages}).}

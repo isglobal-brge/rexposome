@@ -6,8 +6,9 @@
 setMethod(
     f = "impute",
     signature = "ExposomeSet",
-    definition = function(object, select, ssystem="mice", ..., messages = FALSE) {
-        ssystem <- match.arg(ssystem, c("mice", "hmisc"))
+    definition = function(object, select, ..., messages = FALSE) {
+        #ssystem <- match.arg(ssystem, c("mice", "hmisc"))
+        ssystem <- "hmisc"
 
         if(missing(select)) {
             select <- exposureNames(object)

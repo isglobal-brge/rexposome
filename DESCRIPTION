@@ -13,8 +13,7 @@ RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 Depends:
     R (>= 3.0),
-    Biobase,
-    mice
+    Biobase
 Imports: utils,
     lsr,
     FactoMineR,

@@ -59,7 +59,7 @@
 #' @importFrom glmnet cv.glmnet glmnet
 #' @importFrom grid viewport grid.newpage pushViewport grid.layout
 #' @importFrom gridExtra grid.arrange
-#' @importFrom mice mice complete
+# @importFrom mice mice complete
 #' @importFrom Hmisc impute
 #' @importFrom gplots heatmap.2
 #' @importFrom gtools quantcut

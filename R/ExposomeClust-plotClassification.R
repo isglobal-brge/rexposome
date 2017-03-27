@@ -27,7 +27,7 @@ setMethod(
   }
   # /
 
-  if (!family %in% familiesNames(x)) {
+  if (!family %in% familyNames(x)) {
     stop("Given family '", family, "' not in ExposomeClust.")
   }
 #   if (!is.na(group)) {
@@ -64,13 +64,13 @@ setMethod(
   #plot <- plot + ggplot2::ylab("Measure")
   #plot <- plot + ggplot2::xlab("Exposure")
   plot <- plot + ggplot2::theme(legend.title = ggplot2::element_blank())
-  plot
+  plot + ggplot2::theme_bw()
 }
 
 .cluster_heatmap <- function(x, cexRow = 0.5, cexCol = 1.1, adjCol = c(0.5, 1),
                              ...) {
   ff <- function(x, y) {
-    aggregate(x, list(y), FUN=mean)$x
+    aggregate(x, list(y), FUN=mean, na.rm=TRUE)$x
   }
   scaled <- scale(t(assayData(x)[["exp"]]))
   agrted <- t(apply(scaled, 2, ff, y=classification(x)))

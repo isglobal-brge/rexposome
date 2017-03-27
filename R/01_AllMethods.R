@@ -478,8 +478,8 @@ setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE
 #' @param object \code{ExposomeSet} which exposures will be imputed.
 #' @param select Exposures to be imputed. If missing, all exposes will be
 #' imputed.
-#' @param ssystem (default \code{"mice"}) Argument to select the imputation
-#' package. Can take values \code{"mice"} or \code{"hmisc"}
+# @param ssystem (default \code{"mice"}) Argument to select the imputation
+# package. Can take values \code{"mice"} or \code{"hmisc"}
 #' @param messages (default \code{FALSE}) If set to \code{TRUE} messages from
 #' \link{mice}'s function will be displayed.
 #' @param ... Argument given to function \code{mice} of pakcage \link{mice}
@@ -493,7 +493,7 @@ setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE
 #' @export impute
 #' @seealso \link{plotMissings} to plot the missing data of an ExposomeSet,
 #' \link{tableMissings} to get a table with the missing data of an ExposomeSet
-setGeneric("impute", function(object, select, ssystem="mice", ..., messages=FALSE)
+setGeneric("impute", function(object, select, ..., messages=FALSE)
     standardGeneric("impute")
 )
 
