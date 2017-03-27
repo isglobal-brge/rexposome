@@ -1,7 +1,7 @@
 #' @describeIn ExposomeSet Imputation of missing values of exposures.
-#' @param ssystem Method to be used to impute missing values (\code{"mice"} or
-#' \code{"hmisc"}).
-#' @param messages If set to \code{TRUE} messages from  \link{mice}'s function
+# @param ssystem Method to be used to impute missing values (\code{"mice"} or
+# \code{"hmisc"}).
+#' @param messages If set to \code{TRUE} messages from  \code{mice}'s function
 #' will be displayed.
 setMethod(
     f = "impute",
@@ -21,9 +21,9 @@ setMethod(
         dta <- as.data.frame(t(assayData(object)[["exp"]][select, ]))
 
         if(ssystem == "mice") {
-            imp <- mice::mice(dta, printFlag = messages, ...)
-            fData(object)$`_imp` <- imp$method
-            imp <- mice::complete(imp)
+            # imp <- mice::mice(dta, printFlag = messages, ...)
+            # fData(object)$`_imp` <- imp$method
+            # imp <- mice::complete(imp)
 
         } else { #hmisc
             imp <- apply(dta, 2, function(row) { Hmisc::impute(row, ...)})

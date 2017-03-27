@@ -12,18 +12,18 @@ impute(object, select, ..., messages = FALSE)
 \item{select}{Exposures to be imputed. If missing, all exposes will be
 imputed.}
 
-\item{...}{Argument given to function \code{mice} of pakcage \link{mice}
+\item{...}{Argument given to function \code{mice} of pakcage \code{mice}
 (\code{printFlag} is set from \code{messages}).}
 
 \item{messages}{(default \code{FALSE}) If set to \code{TRUE} messages from
-\link{mice}'s function will be displayed.}
+\code{mice}'s function will be displayed.}
 }
 \value{
 A new \code{ExposomeSet} with the imputed exposures.
 }
 \description{
 This function is a wrapper of the functions \code{mice} and \code{complete}
-from the package \link{mice}. Also to the \code{impute} from the
+from the package \code{mice}. Also to the \code{impute} from the
 package \code{Hmisc}. The function is designed to use those functions
 to impute missing values on exposures (not in phenotypes).
 }

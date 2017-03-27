@@ -150,7 +150,7 @@ each exposure belongs}
 \item{tLog}{If set to \code{TRUE} it transforms all the exposures to lod
 before the imputation.}
 
-\item{messages}{If set to \code{TRUE} messages from  \link{mice}'s function
+\item{messages}{If set to \code{TRUE} messages from  \code{mice}'s function
 will be displayed.}
 
 \item{phenotype}{Health outcome to be used as dependent variable.}
@@ -192,9 +192,6 @@ with usual transformations}
 \item{output}{Can take values \code{"n"} (count) ot \code{"p"} (percentage)}
 
 \item{fun}{Function to bt used in the transformation process}
-
-\item{ssystem}{Method to be used to impute missing values (\code{"mice"} or
-\code{"hmisc"}).}
 }
 \value{
 An object of class \code{ExposomeSet}

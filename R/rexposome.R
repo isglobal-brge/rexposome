@@ -36,7 +36,7 @@
 #' @import mboost
 #'
 #' @importClassesFrom Biobase eSet
-#' @importClassesFrom MultiDataSet MultiDataSet
+# @importClassesFrom MultiDataSet MultiDataSet
 #'
 #' @importFrom lsr cramersV
 #' @importFrom FactoMineR PCA
