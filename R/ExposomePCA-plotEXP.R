@@ -23,9 +23,9 @@ setMethod(
         xx.m$Dim <- gsub("Dim.", "", xx.m$Dim)
         xx.m$Dim <- paste("PC", stringr::str_pad(xx.m$Dim, width = 2, pad = "0"))
 
-        ggplot2::ggplot(xx.m, ggplot2::aes(x = Dim, y = Exposures)) +
+        ggplot2::ggplot(xx.m, ggplot2::aes_string(x = "Dim", y = "Exposures")) +
             ggplot2::theme_bw() +
-            ggplot2::geom_tile(ggplot2::aes(fill = value), color = "white") +
+            ggplot2::geom_tile(ggplot2::aes_string(fill = "value"), color = "white") +
             ggplot2::theme(
                 axis.text.x = ggplot2::element_text(angle = 90)
             ) +

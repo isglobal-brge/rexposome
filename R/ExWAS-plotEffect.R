@@ -21,9 +21,9 @@ setMethod(
                     stop("Selected exposures are not in given ExWAS")
                 }
             }
-            ggplot2::ggplot(x[select, ], ggplot2::aes(x=effect, y=exposure)) +
+            ggplot2::ggplot(x[select, ], ggplot2::aes_string(x = "effect", y = "exposure")) +
                 ggplot2::geom_point(shape=18, size=5, color="gray60") +
-                ggplot2::geom_errorbarh(ggplot2::aes(xmin=minE, xmax=maxE)) +
+                ggplot2::geom_errorbarh(ggplot2::aes_string(xmin = "minE", xmax = "maxE")) +
                 ggplot2::theme_bw(base_size = 17) +
                 ggplot2::theme(
                     panel.grid.major = ggplot2::element_line(color = "WhiteSmoke", size = 0.3, linetype = "dashed"),
@@ -64,11 +64,11 @@ setMethod(
                 ylab <- paste(ylab[2], "~", paste(ylab[3:length(ylab)], collapse=" + "), collapse=" ")
             }
 
-            ggplot2::ggplot(z[select, ], ggplot2::aes(x=effect.x, y=effect.y)) +
+            ggplot2::ggplot(z[select, ], ggplot2::aes_string(x = "effect.x", y = "effect.y")) +
                 ggplot2::geom_point(shape=18, size=5, color="gray60") +
                 ggplot2::theme_bw(base_size = 17) +
-                ggplot2::geom_errorbar(ggplot2::aes(ymin=minE.y, ymax=maxE.y)) +
-                ggplot2::geom_errorbarh(ggplot2::aes(xmin=minE.x, xmax=maxE.x)) +
+                ggplot2::geom_errorbar(ggplot2::aes_string(ymin = "minE.y", ymax = "maxE.y")) +
+                ggplot2::geom_errorbarh(ggplot2::aes_string(xmin = "minE.x", xmax = "maxE.x")) +
                 ggplot2::geom_abline(colour = "blue") +
                 ggplot2::theme(
                     panel.grid.major = ggplot2::element_line(color = "gray20", size = 0.3, linetype = "dashed"),

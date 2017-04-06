@@ -1,12 +1,12 @@
 Package: rexposome
 Title: Exposome exploration and outcome data analysis
-Version: 0.99.58
+Version: 0.99.59
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "González", ,"juanr.gonzalez@isglobal.org", role = "aut"))
 Maintainer: Carles Hernandez-Ferrer <carles.hernandez@isglobal.org>
 Description: Package that allows to explore the exposome and to perform 
     association analyses between exposures and health outcomes.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
@@ -14,7 +14,8 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.4),
     Biobase
-Imports: utils,
+Imports: methods,
+    utils,
     lsr,
     FactoMineR,
     stringr,
@@ -39,7 +40,8 @@ Suggests: mclust,
     testthat,
     BiocStyle,
     knitr,
-    rmarkdown
+    rmarkdown,
+    mice
 biocViews: Software,
     BiologicalQuestion,
     Infrastructure,

@@ -65,4 +65,9 @@
 #' @importFrom gtools quantcut
 #' @importFrom scales percent_format
 #' @importFrom lme4 fixef
+#' @importFrom grDevices rainbow
+#' @importFrom graphics layout legend lines par plot plot.new text
+#' @importFrom methods formalArgs new validObject
+#' @importFrom stats AIC aggregate anova as.formula coef confint.default cor fitted
+#' @importFrom stats glm lm mad median predict sd shapiro.test update vcov
 NULL

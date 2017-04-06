@@ -41,18 +41,14 @@ setMethod(
                 dta.r <- reshape2::melt(dta, id.vars=c("exposure", "id"))
                 levels(dta.r$variable) <- paste(c("raw", "exp", "log", "sqrt"), pv)
 
-                plt <- ggplot2::ggplot(dta.r, ggplot2::aes(x = value)) +
+                plt <- ggplot2::ggplot(dta.r, ggplot2::aes_string(x = "value")) +
                     ggplot2::geom_histogram(ggplot2::aes(y = ..density.., fill = I("Gainsboro"))) +
                     ggplot2::facet_wrap(~variable, scales="free") +
-                    ggplot2::theme_bw() #+
-                    #ggplot2::geom_text(ggplot2::aes(x, y, label=lab),
-                    #          data=data.frame(x=pv.p+4, y=Inf, lab=pv,
-                    #                          variable=levels(dta.r$variable)), vjust=1)
+                    ggplot2::theme_bw()
 
             } else {
-                plt <- ggplot2::ggplot(dta, ggplot2::aes(x = value)) +
+                plt <- ggplot2::ggplot(dta, ggplot2::aes_string(x = "value")) +
                     ggplot2::geom_histogram(ggplot2::aes(y = ..density.., fill = I("Gainsboro"))) +
-                    #ggplot2::facet_wrap(~exposure, scales="free_y") +
                     ggplot2::theme_bw()
             }
 
@@ -64,13 +60,12 @@ setMethod(
 
             return(plt)
         } else { # factor
-            plt <- ggplot2::ggplot(dta, ggplot2::aes(x = exposure)) +
-                ggplot2::geom_bar(ggplot2::aes(fill = factor(value)), width=1) +
+            dta$value <- factor(dta$value)
+            plt <- ggplot2::ggplot(dta, ggplot2::aes_string(x = "exposure")) +
+                ggplot2::geom_bar(ggplot2::aes_string(fill = "value"), width = 1) +
                 ggplot2::coord_polar(theta = "y") + ggplot2::theme_void() +
                 ggplot2::scale_fill_discrete("") + ggplot2::theme(
                     plot.title = ggplot2::element_text(hjust = 0.5))
-                #ggplot2::facet_wrap(~exposure, scales="free_y") +
-                #ggplot2::theme_bw() + ggplot2::xlab("") + ggplot2::scale_fill_discrete("")
             return(plt)
         }
     }

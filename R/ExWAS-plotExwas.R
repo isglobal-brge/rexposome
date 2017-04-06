@@ -32,7 +32,7 @@ setMethod(
 
         nm <- unique(as.character(tbl$family))
         if(missing(color)) {
-            colorPlte <- sample(rainbow(length(nm)))
+            colorPlte <- sample(grDevices::rainbow(length(nm)))
             names(colorPlte) <- nm
         } else {
             colorPlte <- color
@@ -42,7 +42,7 @@ setMethod(
         tbl$exposure <- factor(tbl$exposure, levels = unique(tbl$exposure))
 
         if(!multiple) {
-            plt <- ggplot2::ggplot(tbl, ggplot2::aes(x = lpv, y = exposure, color = family)) +
+            plt <- ggplot2::ggplot(tbl, ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
                 ggplot2::geom_point() +
                 ggplot2::theme_minimal() +
                 ggplot2::theme(panel.spacing = ggplot2::unit(0.5, 'lines'),
@@ -53,7 +53,7 @@ setMethod(
                 ggplot2::scale_color_manual(breaks = names(colorPlte),
                     values = colorPlte)
         } else {
-            plt <- ggplot2::ggplot(tbl, ggplot2::aes(x = lpv, y = exposure, color = family)) +
+            plt <- ggplot2::ggplot(tbl, ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
                 ggplot2::geom_point() +
                 ggplot2::theme_minimal() +
                 ggplot2::theme(panel.spacing = ggplot2::unit(0.5, 'lines'),

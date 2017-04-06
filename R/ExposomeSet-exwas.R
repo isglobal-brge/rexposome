@@ -51,7 +51,7 @@ setMethod(
                 stop("Obtanied 0 samples for test '", paste0(form[2], "~", ex, "+", form[3]), "'")
             }
             tryCatch({
-                mod <- glm(..., family=family, formula = frm, data = dta)
+                mod <- stats::glm(..., family=family, formula = frm, data = dta)
                 mod0 <- update(mod, as.formula(paste0(". ~ . - ", all.vars(frm)[2])))
                 effect <- c(mod$coef[2], suppressMessages(confint.default(mod)[2,]))
                 p <- anova(mod, mod0, test = test)
@@ -95,81 +95,3 @@ setMethod(
         )
     }
 )
-
-# a <- function(object, phenotype, covariates, verbose = FALSE,
-#                         warnings = TRUE) {
-#     if(missing(phenotype)) {
-#       warning("No given 'phenotype'. EWAS will be computed for all phenotypes.")
-#       phenotype <- phenotypesNames(object)
-#     }
-#     if(!missing(covariates)) {
-#       if(sum(c(phenotype, covariates) %in% phenotypesNames(object)) != length(c(phenotype, covariates))) {
-#         stop("Not all phenotypes in ExposomeSet.")
-#       }
-#     } else {
-#       covariates <- c()
-#     }
-#
-#     cvnames <- paste(covariates, collapse="+")
-#     if(nchar(cvnames) != 0) {
-#       fr <- paste0("~exp+", cvnames)
-#     } else {
-#       fr <- paste0("~exp")
-#     }
-#
-#     items <- lapply(phenotype, function(phe) {
-#       type <- .pheno_type(object, phe)
-#       lapply(exposureNames(object), function(exp) {
-#         form <- paste0(phe, fr)
-#         data <- .create_p(t(assayDataElement(object, "exp")), pData(object),
-#                           data.frame(), c(exp, covariates, phe))
-#         colnames(data) <- c("exp", covariates, phe)
-#         nr <- nrow(data)
-#
-#         data <- data[!is.na(data[ , phe]), ]
-#         data <- data[!is.na(data[ , "exp"]), ]
-#
-#         if(verbose) {
-#             message("Data from '", phe, "~", exp, "' was reduced from ", nr,
-#                     " to ", nrow(data), " (type: ", type, ")")
-#         }
-#
-#         if(type == "numeric") {
-#           data[, phe] <- as.numeric(as.character(data[, phe]))
-#           mod <- glm(form, family = "gaussian", data = data)
-#           mod0 <- update(mod, . ~ . - exp )
-#           effect <- c(mod$coef[2], suppressMessages(confint(mod)[2,]))
-#           p <- anova(mod, mod0, test = "F")
-#           p2 <- p$`Pr(>F)`[2]
-#         } else if(type == "factor") {
-#           data[, phe] <- as.factor(as.character(data[, phe]))
-#           mod <- glm(form, family = "binomial", data = data)
-#           mod0 <- update(mod, . ~ . - exp)
-#           effect <- exp(c(mod$coef[2], suppressMessages(confint(mod)[2,])))
-#           p <- anova(mod, mod0, test = "Chi")
-#           p2 <- p$`Pr(>Chi)`[2]
-#         } else if(type == "multi.factor") { # más de dos
-#           stop("Invalid type of factor (multifactor)")
-#         } else { #(tyoe == "lod)
-#           stop("Invalid type of factor (LoD).")
-#         }
-#
-#         ans <- c(effect, p2)
-#         return(ans)
-#       })
-#     })
-#     items <- lapply(items, function(xx) {
-#       ans <- t(data.frame(xx))
-#       colnames(ans) <- c("exp", "2.5","97.5", "pvalue")
-#       rownames(ans) <- exposureNames(object)
-#       ans
-#     })
-#     names(items) <- phenotype
-#
-#     new("EWAS",
-#         comparison = items,
-#         description = pData(featureData(object)),
-#         phenotype = phenotype,
-#         desc.famCol = object@desc.famCol
-#     )
-#   }

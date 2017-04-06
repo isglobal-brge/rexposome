@@ -342,7 +342,7 @@ plotFamily(exp, family = "Phthalates", group = "rhinitis", group2 = "rhinitis")
 
 ### Exposures PCA
 
-To properly perform a PCA analysis the exposures needs to be standardised. The standardisation is done using function `standardize` that allows using a *normal* and a *robust* approaches. The *normal aproache* scales the exposures using the mean as a centre and the standard variation used as dispersion. In *robust aproach* the median and the median absolute deviation are used. This transformation are only applied to continuous exposures.
+To properly perform a PCA analysis the exposures needs to be standardised. The standardisation is done using function `standardize` that allows using a *normal* and a *robust* approaches or use the *interquartile range*. The *normal aproache* scales the exposures using the mean as a centre and the standard variation used as dispersion. In *robust aproach* the median and the median absolute deviation are used. This transformation are only applied to continuous exposures. When *interquartile range* is used, the median is used as a center and the coeficient between the interquartile range of the exposure and the normal range between the percentile 75 and 25 as variance.
 
 ```{r standardize, warning=FALSE}
 exp_std <- standardize(exp, method = "normal")

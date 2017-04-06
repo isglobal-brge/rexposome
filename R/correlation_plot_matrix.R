@@ -11,12 +11,12 @@
 
   # y axis labels (exposures)
   desc$Exposure <- rownames(desc)
-  par(xpd = TRUE)
+  graphics::par(xpd = TRUE)
   for(ii in 1:nrow(desc)) {
     text(y = ii, x = 0, labels = desc$Exposure[nrow(desc) - ii + 1], adj = 1,  cex = cex.exposures)
   }
   rm(ii)
-  par(xpd = FALSE)
+  graphics::par(xpd = FALSE)
   # /
 
   # x axis lables (families)
@@ -31,19 +31,19 @@
   cnt <- rbind(c(0,0), data.frame(cnt, cnt2))
   rm(cnt2, ii)
 
-  par(xpd = TRUE)
+  graphics::par(xpd = TRUE)
   for(rr in 2:nrow(cnt)) {
     x = cnt[(rr-1):rr, "cnt2"]
     x[1] <- x[1] + 0.75
     x[2] <- x[2] + 0.25
-    lines(x = x, y = c(row.line, row.line))
+    graphics::lines(x = x, y = c(row.line, row.line))
     if(x[2] - x[1] == 1 ) {
       x = x[2] - 1
     } else {
       x = floor(x[1] + (x[2] - x[1] - 1) / 2)
     }
-    text(x = x, y = row.fam, cex = cex.family, labels = rownames(cnt)[rr], pos = 4, srt = 90)
+    graphics::text(x = x, y = row.fam, cex = cex.family, labels = rownames(cnt)[rr], pos = 4, srt = 90)
   }
-  par(xpd = FALSE)
+  graphics::par(xpd = FALSE)
   # /
 }

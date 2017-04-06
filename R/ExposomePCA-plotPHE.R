@@ -20,10 +20,10 @@ setMethod(
             dta <- dta[!is.na(dta[ , ph]), ]
             sapply(dim, function(nc) {
                 if(typ == "factor") {
-                    summary(glm(as.formula(paste0(ph, "~", nc)),
+                    summary(stats::glm(as.formula(paste0(ph, "~", nc)),
                         data = dta, family = "binomial"))$coefficients[2, 4]
                 } else if(typ == "numeric") {
-                    summary(glm(as.formula(paste0(ph, "~", nc)),
+                    summary(stats::glm(as.formula(paste0(ph, "~", nc)),
                         data = dta, family = "gaussian"))$coefficients[2, 4]
                 }
             })
@@ -43,16 +43,15 @@ setMethod(
 
         cbPalette <- c("#009E73",  "#56B4E9", "#E69F00", "#999999")#, "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
-        ggplot2::ggplot(xx.m, ggplot2::aes(x = Dim, y = variable)) +
+        xx.m$PV <- -log10(xx.m$value)
+        ggplot2::ggplot(xx.m, ggplot2::aes_string(x = "Dim", y = "variable")) +
             ggplot2::theme_bw() +
-            #ggplot2::geom_tile(aes(fill=value2), color = "white") +
-            ggplot2::geom_tile(ggplot2::aes(fill = -log10(value)), color = "white") +
+            ggplot2::geom_tile(ggplot2::aes_string(fill = "PV"), color = "white") +
             ggplot2::theme(
                  axis.text.x = ggplot2::element_text(angle = 90)
             ) +
-            ggplot2::labs(fill="-log10(pvalue)\n", colour="") +
+            ggplot2::labs(fill="-log10(P-Value)\n", colour="") +
             ggplot2::xlab("") + ggplot2::ylab("phenotype") +
-            #scale_fill_manual(values=cbPalette)
             ggplot2::scale_fill_continuous(limits = c(0, max(-log10(xx.m$value))), low="White", high="Navy")
     }
 )

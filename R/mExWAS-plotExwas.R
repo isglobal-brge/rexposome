@@ -27,16 +27,16 @@ setMethod(
         dta <- reshape2::melt(dta, id.vars=c("exposure", "phenotype"))
 
         if(!multiple) {
-            plt <- ggplot2::ggplot(dta, ggplot2::aes(x = variable, y = exposure)) +
-                ggplot2::geom_tile(ggplot2::aes(fill = value), color = "white") +
+            plt <- ggplot2::ggplot(dta, ggplot2::aes_string(x = "variable", y = "exposure")) +
+                ggplot2::geom_tile(ggplot2::aes_string(fill = "value"), color = "white") +
                 ggplot2::theme_minimal() +
                 ggplot2::labs(fill="Coefficients", colour="") +
                 ggplot2::xlab("") + ggplot2::ylab("exposures") +
                 ggplot2::scale_fill_gradient2(midpoint=0, low="blue", mid="white",
                                           high="red", space ="Lab")
         } else {
-            plt <- ggplot2::ggplot(dta, ggplot2::aes(x = variable, y = exposure)) +
-                ggplot2::geom_tile(ggplot2::aes(fill = value), color = "white") +
+            plt <- ggplot2::ggplot(dta, ggplot2::aes_string(x = "variable", y = "exposure")) +
+                ggplot2::geom_tile(ggplot2::aes_string(fill = "value"), color = "white") +
                 ggplot2::theme_minimal() +
                 ggplot2::labs(fill="Coefficients", colour="") +
                 ggplot2::xlab("") + ggplot2::ylab("exposures") +

@@ -21,7 +21,7 @@ setMethod(
         }
         dta$phenotype <- pData(object@phenoData)[, phenotype]
 
-        clr <- rainbow(length(unique(dta$phenotype)))
+        clr <- grDevices::rainbow(length(unique(dta$phenotype)))
         names(clr) <- unique(dta$phenotype)
 
         xlab <- paste0("PC", stringr::str_pad(cmpX, 2, pad = 0))

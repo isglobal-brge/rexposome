@@ -7,8 +7,8 @@ pool_glm <- function (analyses, m, method = "smallsample") {
         df <- object$df.residual
         if (!is.null(df))
             return(df)
-        mk <- try(c <- coef(object), silent = TRUE)
-        mn <- try(f <- fitted(object), silent = TRUE)
+        mk <- try(c <- stats::coef(object), silent = TRUE)
+        mn <- try(f <- stats::fitted(object), silent = TRUE)
         if (inherits(mk, "try-error") | inherits(mn, "try-error"))
             return(NULL)
         n <- ifelse(is.data.frame(f) | is.matrix(f), nrow(f), length(f))

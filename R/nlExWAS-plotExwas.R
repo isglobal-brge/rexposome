@@ -9,8 +9,8 @@ setMethod(
         tbl$color <- ifelse(tbl$AIC > 0, "over", "under")
         tbl$color[is.na(tbl$AIC)] <- NA
 
-        ggplot2::ggplot(tbl, ggplot2::aes(x = exposure, y = AIC)) +
-            ggplot2::geom_bar(stat="identity", ggplot2::aes(fill = color)) +
+        ggplot2::ggplot(tbl, ggplot2::aes_string(x = "exposure", y = "AIC")) +
+            ggplot2::geom_bar(stat="identity", ggplot2::aes_string(fill = "color")) +
             ggplot2::theme_bw() +
             ggplot2::scale_fill_manual(values = c("CornflowerBlue", "IndianRed"),
                                        labels = c("over", "under")) +

@@ -36,7 +36,7 @@ setMethod(
                 ## TEST
                 fit_glm <- lapply(1:object@nimputation, function(ii) {
                     dtai <- dta[dta[, 1] == ii, -1]
-                    glm(family=family, formula = frm, data = dtai)
+                    stats::glm(family=family, formula = frm, data = dtai)
                 })
                 tst <- pool_glm(fit_glm, m = object@nimputation)
 

@@ -101,16 +101,16 @@ setMethod(
     # Design the plot
     if (!is.na(group)) {
         if(!is.na(group2)) {
-            plot <- ggplot2::ggplot(data, ggplot2::aes(x = exposures, y = value, fill=group1))
+            plot <- ggplot2::ggplot(data, ggplot2::aes_string(x = "exposures", y = "value", fill = "group1"))
             plot <- plot + ggplot2::geom_boxplot()
             plot <- plot + ggplot2::facet_wrap(~group2)
         } else {
-            plot <- ggplot2::ggplot(data, ggplot2::aes(x = exposures, y = value, fill=group))
+            plot <- ggplot2::ggplot(data, ggplot2::aes_string(x = "exposures", y = "value", fill = "group"))
             plot <- plot + ggplot2::geom_boxplot()
 
         }
     } else {
-        plot <- ggplot2::ggplot(data, ggplot2::aes(x = exposures, y = value))
+        plot <- ggplot2::ggplot(data, ggplot2::aes_string(x = "exposures", y = "value"))
         if(scatter) {
             plot <- plot + ggplot2::geom_point(position = ggplot2::position_jitter(width=0.3), alpha=0.1)
             plot <- plot + ggplot2::geom_boxplot(alpha=0.1)
@@ -130,7 +130,7 @@ setMethod(
 .plot_exposure_factor <- function(x, family, group = NA, group2 = NA, na.omit = TRUE) {
     data <- .get_exposures(x, family, group, group2, na.omit)
 
-    plot <- ggplot2::ggplot(data, ggplot2::aes(x = exposures, fill=value))
+    plot <- ggplot2::ggplot(data, ggplot2::aes_string(x = "exposures", fill = "value"))
     if (!is.na(group)) {
         if(is.na(group2)) {
             plot <- plot + ggplot2::facet_wrap(~group)

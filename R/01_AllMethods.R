@@ -141,8 +141,8 @@ setGeneric("restore", function(object)
 #' @aliases standardize
 #' @param object \code{ExposomeSet} with exposures to be standardized.
 #' @param select Subseting of exposures of phenotypes.
-#' @param method Character selecting the method to be applied (\code{'normal'}
-#' or \code{'robust'}).
+#' @param method (default \code{"normal"}) Character selecting the method to be applied (\code{"normal"}
+#' \code{"iqr"} or \code{"robust"}).
 #' @param na.rm (by default \code{TRUE}) Removes NA data to perform
 #' standardization.
 #' @param warnings (defaulr \code{TRUE}) If set to \code{FALSE} warnings are
@@ -152,6 +152,7 @@ setGeneric("restore", function(object)
 #' @examples
 #' data("exposome")
 #' exp.sn <- standardize(expo, method = "normal", select = "lbde100_lip")
+#' exp.rs <- standardize(expo, method = "iqr", select = "lbde100_lip")
 #' exp.rs <- standardize(expo, method = "robust", select = "lbde100_lip")
 #' @export standardize
 #' @seealso \link{highAndLow} to transform the continuous exposures to
