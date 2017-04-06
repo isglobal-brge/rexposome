@@ -12,8 +12,8 @@ standardize(object, select, method = "normal", na.rm = TRUE,
 
 \item{select}{Subseting of exposures of phenotypes.}
 
-\item{method}{Character selecting the method to be applied (\code{'normal'}
-or \code{'robust'}).}
+\item{method}{(default \code{"normal"}) Character selecting the method to be applied (\code{"normal"}
+\code{"iqr"} or \code{"robust"}).}
 
 \item{na.rm}{(by default \code{TRUE}) Removes NA data to perform
 standardization.}
@@ -33,6 +33,7 @@ if method is \code{"normal"} or by using median/mad if method is
 \examples{
 data("exposome")
 exp.sn <- standardize(expo, method = "normal", select = "lbde100_lip")
+exp.rs <- standardize(expo, method = "iqr", select = "lbde100_lip")
 exp.rs <- standardize(expo, method = "robust", select = "lbde100_lip")
 }
 \seealso{

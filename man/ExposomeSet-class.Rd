@@ -93,8 +93,8 @@
 
 \S4method{restore}{ExposomeSet}(object)
 
-\S4method{standardize}{ExposomeSet}(object, select, method = c("normal",
-  "robust"), na.rm = TRUE, warnings = TRUE)
+\S4method{standardize}{ExposomeSet}(object, select, method = "normal",
+  na.rm = TRUE, warnings = TRUE)
 
 \S4method{Summary}{ExposomeSet}(object, set = c("exposures", "phenotypes"),
   select)
