@@ -30,7 +30,8 @@
 
 \S4method{plotEXP}{ExposomePCA}(object, exposure)
 
-\S4method{plotPCA}{ExposomePCA}(object, set, cmpX = 1, cmpY = 2, phenotype)
+\S4method{plotPCA}{ExposomePCA}(object, set, cmpX = 1, cmpY = 2,
+  show.exposures = FALSE, phenotype)
 
 \S4method{plotPHE}{ExposomePCA}(object, phenotype, exp2fac = 5)
 }

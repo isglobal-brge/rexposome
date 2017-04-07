@@ -9,7 +9,7 @@
 setMethod(
     f = "plotPCA",
     signature = "ExposomePCA",
-    definition = function(object, set, cmpX = 1, cmpY = 2, phenotype) {
+    definition = function(object, set, cmpX = 1, cmpY = 2, show.exposures=FALSE, phenotype) {
 
         if (set == "exposures") {
             .plot_exposures(object, cmpX, cmpY)
@@ -19,7 +19,7 @@ setMethod(
             }
             .plot_phenotype(object, cmpX, cmpY, phenotype)
         } else if (set == "all") {
-            plt1 <- .plot_exposures(object, cmpX, cmpY) +
+            plt1 <- .plot_exposures(object, cmpX, cmpY, show.exposures) +
                 ggplot2::theme(legend.position = "none") +
                 ggplot2::ggtitle("Exposures Space")
             plt2 <- .plot_phenotype(object, cmpX, cmpY, NA) +
@@ -38,16 +38,17 @@ setMethod(
 
 
 
-.plot_exposures <- function(object, cmpX, cmpY) {
+.plot_exposures <- function(object, cmpX, cmpY, show.exposures) {
     dta <- data.frame(object@pca$var$coord)
     dta$Family <- pData(object@featureData)[rownames(dta), 1]
+    dta$Label <- rownames(dta)
 
     if(cmpX >= ncol(dta) | cmpY >= ncol(dta)) {
         stop("Given value for 'cmpX' or 'cmpY' larger than computed ",
             "components (ncp=", ncol(dta)-1, ").")
     }
 
-    ggplot2::ggplot(dta, ggplot2::aes_string(paste0("Dim.", cmpX), paste0("Dim.", cmpY))) +
+    plt <- ggplot2::ggplot(dta, ggplot2::aes_string(paste0("Dim.", cmpX), paste0("Dim.", cmpY))) +
         ggplot2::theme_bw() +
         ggplot2::theme(
             panel.grid.major = ggplot2::element_blank(),
@@ -59,6 +60,20 @@ setMethod(
         ggplot2::geom_point(ggplot2::aes_string(color = "Family")) +
         ggplot2::xlab(paste0("PC", cmpX, " (", round(object@pca$eig[cmpX, 2], 2), "%)")) +
         ggplot2::ylab(paste0("PC", cmpY, " (", round(object@pca$eig[cmpY, 2], 2), "%)"))
+    if(show.exposures) {
+        ## Add labels for features
+        plt <- plt + ggrepel::geom_text_repel(
+            data = dta,
+            ggplot2::aes_string(paste0("Dim.", cmpX), paste0("Dim.", cmpY), label="Label"),
+            size = 2,
+            box.padding = ggplot2::unit(0.35, "lines"),
+            point.padding = ggplot2::unit(0.3, "lines"),
+            color="#222222",
+            segment.color="#BBBBBB"
+        ) + ggplot2::theme_bw() + ggplot2::theme(legend.position="none")
+        ## /
+    }
+    plt
 }
 
 .plot_phenotype <- function(object, cmpX, cmpY, phenotype) {

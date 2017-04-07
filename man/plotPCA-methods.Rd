@@ -4,7 +4,8 @@
 \alias{plotPCA}
 \title{Ploting PCA}
 \usage{
-plotPCA(object, set, cmpX = 1, cmpY = 2, phenotype)
+plotPCA(object, set, cmpX = 1, cmpY = 2, show.exposures = FALSE,
+  phenotype)
 }
 \arguments{
 \item{object}{An onbject of class \link{ExposomePCA}}
@@ -15,6 +16,9 @@ taht will be ploted.}
 \item{cmpX}{(default: \code{1}) component to be placed at X axis}
 
 \item{cmpY}{(default: \code{2}) component to be placed at Y axis}
+
+\item{show.exposures}{(default: \code{FALSE}) If set to true, labels indicating
+the exposures are shown.}
 
 \item{phenotype}{If \code{set} is set to \code{"samples"} can be used to
 color samples by phenotype}
