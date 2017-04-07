@@ -12,7 +12,7 @@ setMethod(
     definition = function(object, set, cmpX = 1, cmpY = 2, show.exposures=FALSE, phenotype) {
 
         if (set == "exposures") {
-            .plot_exposures(object, cmpX, cmpY)
+            .plot_exposures(object, cmpX, cmpY, show.exposures)
         } else if (set == "samples") {
             if(missing(phenotype)) {
                 phenotype <- NA
