@@ -4,6 +4,8 @@
 #' \code{"all"}
 #' @param cmpX PC to place in X-axis
 #' @param cmpY PC to place in Y-axis
+#' @param show.exposures When set to \code{TRUE}, labels for exposures are shown
+#' @param show.samples When set to \code{TRUE}, labels for samples are shown
 #' @param phenotype (when \code{set="samples"}) A phenotype can be selected
 #' so the samples are coloured by its value.
 setMethod(

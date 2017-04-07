@@ -67,6 +67,10 @@ the dots in the X/Y axes}
 \item{set}{Can take values \code{"exposures"}, \code{"samples"} or
 \code{"all"}}
 
+\item{show.exposures}{When set to \code{TRUE}, labels for exposures are shown}
+
+\item{show.samples}{When set to \code{TRUE}, labels for samples are shown}
+
 \item{exp2fac}{Number of different values to considere an exposures
 continuous}
 }
