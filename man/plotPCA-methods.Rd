@@ -5,7 +5,7 @@
 \title{Ploting PCA}
 \usage{
 plotPCA(object, set, cmpX = 1, cmpY = 2, show.exposures = FALSE,
-  phenotype)
+  show.samples = FALSE, phenotype)
 }
 \arguments{
 \item{object}{An onbject of class \link{ExposomePCA}}
@@ -19,6 +19,9 @@ taht will be ploted.}
 
 \item{show.exposures}{(default: \code{FALSE}) If set to true, labels indicating
 the exposures are shown.}
+
+\item{show.samples}{(default: \code{FALSE}) If set to true, labels indicating
+the samples are shown.}
 
 \item{phenotype}{If \code{set} is set to \code{"samples"} can be used to
 color samples by phenotype}

@@ -9,7 +9,7 @@
 setMethod(
     f = "plotPCA",
     signature = "ExposomePCA",
-    definition = function(object, set, cmpX = 1, cmpY = 2, show.exposures=FALSE, phenotype) {
+    definition = function(object, set, cmpX = 1, cmpY = 2, show.exposures=FALSE, show.samples=FALSE, phenotype) {
 
         if (set == "exposures") {
             .plot_exposures(object, cmpX, cmpY, show.exposures)
@@ -17,12 +17,12 @@ setMethod(
             if(missing(phenotype)) {
                 phenotype <- NA
             }
-            .plot_phenotype(object, cmpX, cmpY, phenotype)
+            .plot_phenotype(object, cmpX, cmpY, show.samples, phenotype)
         } else if (set == "all") {
             plt1 <- .plot_exposures(object, cmpX, cmpY, show.exposures) +
                 ggplot2::theme(legend.position = "none") +
                 ggplot2::ggtitle("Exposures Space")
-            plt2 <- .plot_phenotype(object, cmpX, cmpY, NA) +
+            plt2 <- .plot_phenotype(object, cmpX, cmpY, show.samples, NA) +
                 ggplot2::ggtitle("Samples Space")
             plt3 <- .plot_explained(object, cmpX, cmpY) +
                 ggplot2::ggtitle("Explained Variance")
@@ -76,7 +76,7 @@ setMethod(
     plt
 }
 
-.plot_phenotype <- function(object, cmpX, cmpY, phenotype) {
+.plot_phenotype <- function(object, cmpX, cmpY, show.samples, phenotype) {
     dta <- data.frame(object@pca$ind$coord)
     if(!is.na(phenotype)){
         if(!phenotype %in% colnames(pData(object@phenoData))) {
@@ -84,6 +84,7 @@ setMethod(
         }
         dta$phenotype <- factor(pData(object@phenoData)[, phenotype])
     }
+    dta$Label <- rownames(dta)
 
     plt <- ggplot2::ggplot(dta, ggplot2::aes_string(paste0("Dim.", cmpX), paste0("Dim.", cmpY))) +
         ggplot2::theme_bw() +
@@ -101,6 +102,20 @@ setMethod(
         plt <- plt + ggplot2::geom_point()
     } else {
         plt <- plt + ggplot2::geom_point(ggplot2::aes_string(color = "phenotype"))
+    }
+
+    if(show.samples) {
+        ## Add labels for features
+        plt <- plt + ggrepel::geom_text_repel(
+            data = dta,
+            ggplot2::aes_string(paste0("Dim.", cmpX), paste0("Dim.", cmpY), label="Label"),
+            size = 2,
+            box.padding = ggplot2::unit(0.35, "lines"),
+            point.padding = ggplot2::unit(0.3, "lines"),
+            color="#222222",
+            segment.color="#BBBBBB"
+        ) + ggplot2::theme_bw() + ggplot2::theme(legend.position="none")
+        ## /
     }
 
     plt

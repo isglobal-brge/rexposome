@@ -647,6 +647,8 @@ setGeneric("plotEXP", function(object, exposure)
 #' @param cmpY (default: \code{2}) component to be placed at Y axis
 #' @param show.exposures (default: \code{FALSE}) If set to true, labels indicating
 #' the exposures are shown.
+#' @param show.samples (default: \code{FALSE}) If set to true, labels indicating
+#' the samples are shown.
 #' @param phenotype If \code{set} is set to \code{"samples"} can be used to
 #' color samples by phenotype
 #' @return An object of class \code{ggplot} or an object of class
@@ -666,7 +668,7 @@ setGeneric("plotEXP", function(object, exposure)
 #' plotPCA(epca, set = "samples", phenotype = "sex") +
 #' ggplot2::theme(legend.position = "bottom")
 #' @export plotPCA
-setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, show.exposures=FALSE, phenotype)
+setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, show.exposures=FALSE, show.samples=FALSE, phenotype)
     standardGeneric("plotPCA")
 )
 
