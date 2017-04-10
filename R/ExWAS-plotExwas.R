@@ -11,13 +11,18 @@ setMethod(
     signature = "ExWAS",
     definition = function(object, ..., color, show.effective = TRUE) {
 
+
         multiple <- FALSE
         if(missing(...)) {
+            message("A")
             items <- list(object)
         } else {
+            message("B ", length(list(...)))
             multiple <- TRUE
-            items <- mapply(c, list(object), list(...), SIMPLIFY=FALSE)[[1]]
+            items <- c(list(object), list(...))
+            message("C ", length(items))
         }
+
         tbl <- do.call(rbind, lapply(items, function(it) {
             tbl <- extract(it)
             ff <- as.character(it@formula)
