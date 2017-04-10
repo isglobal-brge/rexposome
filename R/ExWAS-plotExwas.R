@@ -14,13 +14,10 @@ setMethod(
 
         multiple <- FALSE
         if(missing(...)) {
-            message("A")
             items <- list(object)
         } else {
-            message("B ", length(list(...)))
             multiple <- TRUE
             items <- c(list(object), list(...))
-            message("C ", length(items))
         }
 
         tbl <- do.call(rbind, lapply(items, function(it) {
