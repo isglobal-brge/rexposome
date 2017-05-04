@@ -10,15 +10,15 @@
   
 ## Installation
 
-`rexposome` requires R version equal or newer than 3.3.0. The following script allows to install `rexposome` dependencies:
+`rexposome` requires R version equal or newer than 3.0. The following script allows to install `rexposome` dependencies:
 
 ```r
 source( "http://bioconductor.org/biocLite.R" )
 
 packages = c('Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR',
-	'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
-	'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
-	'grid', 'Hmisc', 'gplots',	'gtools', 'scales'
+  'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
+  'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
+  'grid', 'Hmisc', 'gplots', 'gtools', 'scales'
 )
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
@@ -34,12 +34,18 @@ The package can be installed using the R package `devtools`. `devtools` can be i
 install.packages("devtools")
 ```
 
-Once `devtools` and the dependences are installed, the following code installs `rexposome`:
+
+Due to the publication process of `rexposome` at Biocondcuto, the requirment is set to R-3.4. For those using R-3.4, the following code installs `rexposome`:
 
 ```r
 devtools::install_github("isglobal-brge/rexposome")
 ```
 
+For those using an older version of R (but newer than R-3.o) the following code installs `rexposome`:
+
+```r
+devtools::install_github("isglobal-brge/rexposome", ref="R-3.0")
+```
 ### Details
 
 ### Authors
