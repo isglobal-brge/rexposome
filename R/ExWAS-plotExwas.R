@@ -33,7 +33,7 @@ setMethod(
                          fm="", lpv=0.01, exposures="", family="" )
 
         for(ii in length(items)) {
-            it <- items[ii]
+            it <- items[[ii]]
             tbli <- extract(it)
             colnames(tbli) <- c("pvalue", "effect", "x2.5", "x97.5")
             if(missing(subtitles)) {
@@ -47,7 +47,6 @@ setMethod(
             tbli$exposure <- rownames(tbli)
             tbli$family <- object@description[rownames(tbli), 1]
             tbl <- rbind(tbl, tbli)
-
         }
         tbl <- tbl[-1, ]
         rownames(tbl) <- 1:nrow(tbl)
