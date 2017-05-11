@@ -29,7 +29,7 @@ setMethod(
             }
         }
 
-        tbl <- data.fame(pvalue=0.0, effect=0.0, x2.5=0.0, x97.5=0.0,
+        tbl <- data.frame(pvalue=0.0, effect=0.0, x2.5=0.0, x97.5=0.0,
                          fm="", lpv=0.01, exposures="", family="" )
 
         for(ii in length(items)) {
