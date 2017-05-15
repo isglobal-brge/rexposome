@@ -30,7 +30,11 @@ setMethod(
     assayData(object) <- assayDataNew("environment",
                                       raw = assayDataElement(object, "raw"),
                                       exp = t(data.dst)[rownames(assayDataElement(object, "raw")), ])
-    fData(object)[select, "_trn"] <- as.character(substitute(fun))
+    tryCatch({
+        fData(object)[select, "_trn"] <- as.character(substitute(fun))
+    }, error=function(e) {
+        fData(object)[select, "_trn"] <- "unknown"
+    })
 
     return(object)
   }

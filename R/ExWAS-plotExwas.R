@@ -9,31 +9,48 @@
 setMethod(
     f = "plotExwas",
     signature = "ExWAS",
-    definition = function(object, ..., color, show.effective = TRUE) {
+    definition = function(object, ..., subtitles, color, show.effective = TRUE) {
 
 
         multiple <- FALSE
         if(missing(...)) {
-            message("A")
             items <- list(object)
         } else {
-            message("B ", length(list(...)))
             multiple <- TRUE
             items <- c(list(object), list(...))
-            message("C ", length(items))
         }
 
-        tbl <- do.call(rbind, lapply(items, function(it) {
-            tbl <- extract(it)
-            ff <- as.character(it@formula)
-            ff <- paste0(ff[2], ff[1], gsub(" ", "", ff[3]))
-            tbl$fm <- ff
-            tbl$lpv <- -log10(tbl$pvalue)
-            tbl$exposure <- rownames(tbl)
-            tbl$family <- object@description[rownames(tbl), 1]
-            tbl
-        }))
+        if(!missing(subtitles)) {
+            if(length(items) == 1) {
+                warning("Given 'subtitles' when single 'ExWAS' present.",
+                    "'subtitles' will not be used.")
+            } else if(length(subtitles) != length(items)) {
+                stop("Diffrent lenghts beween given objects and 'subtitles'.")
+            }
+        }
+
+        tbl <- data.frame(pvalue=0.0, effect=0.0, x2.5=0.0, x97.5=0.0,
+                         fm="", lpv=0.01, exposures="", family="" )
+
+        for(ii in length(items)) {
+            it <- items[[ii]]
+            tbli <- extract(it)
+            colnames(tbli) <- c("pvalue", "effect", "x2.5", "x97.5")
+            if(missing(subtitles)) {
+                ff <- as.character(it@formula)
+                ff <- paste0(ff[2], ff[1], gsub(" ", "", ff[3]))
+                tbli$fm <- ff
+            } else {
+                tbli$fm <- subtitles[ii]
+            }
+            tbli$lpv <- -log10(tbli$pvalue)
+            tbli$exposure <- rownames(tbli)
+            tbli$family <- object@description[rownames(tbli), 1]
+            tbl <- rbind(tbl, tbli)
+        }
+        tbl <- tbl[-1, ]
         rownames(tbl) <- 1:nrow(tbl)
+        colnames(tbli)[1:4] <- c("pvalue", "effect", "2.5", "97.5")
 
         nm <- unique(as.character(tbl$family))
         if(missing(color)) {
@@ -41,6 +58,7 @@ setMethod(
             names(colorPlte) <- nm
         } else {
             colorPlte <- color
+            names(colorPlte) <- names(color)
         }
 
         tbl <- tbl[order(tbl$family, tbl$exposure), ]
@@ -56,7 +74,8 @@ setMethod(
                 ggplot2::xlab(expression(-log10(pvalue))) +
                 ggplot2::labs(colour="Exposure's Families") +
                 ggplot2::scale_color_manual(breaks = names(colorPlte),
-                    values = colorPlte)
+                    values = colorPlte) +
+                ggplot2::theme(legend.position = "right")
         } else {
             plt <- ggplot2::ggplot(tbl, ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
                 ggplot2::geom_point() +

@@ -16,9 +16,9 @@
 source( "http://bioconductor.org/biocLite.R" )
 
 packages = c('Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR',
-  'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
-  'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
-  'grid', 'Hmisc', 'gplots', 'gtools', 'scales'
+	'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
+	'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
+	'grid', 'Hmisc', 'gplots', 'gtools', 'scales'
 )
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
@@ -46,6 +46,7 @@ For those using an older version of R (but newer than R-3.o) the following code 
 ```r
 devtools::install_github("isglobal-brge/rexposome", ref="R-3.0")
 ```
+
 ### Details
 
 ### Authors
