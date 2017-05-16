@@ -75,7 +75,7 @@ setMethod(
             if(sum(exp.order %in% tbl$exposure) != length(exp.order)) {
                 stop("Not all exposures in 'exp.order' are present in given 'ExWAS' objects.")
             }
-            tbl <- c_order(tbl, "fm", "exposures", exp.order)
+            tbl <- c_order(tbl, "fm", "exposure", exp.order)
         }
 
         if(!multiple) {

@@ -2,7 +2,7 @@
 title: "Dealing with Multiple Imputations"
 author: "Carles Hernandez-Ferrer and Juan R. Gonzalez"
 date: "`r doc_date()`"
-package: "`r pkg_ver('BiocStyle')`"
+package: "`r pkg_ver('rexposome')`"
 abstract: >
       An introductory guide to analysing multiple imputed exposome data with R package `rexposome`. The areas covered in this document are: loading the multiple imputations of both exposures and phenotypes from common `data.frame`s, exploration the exposome data, and testing association between exposures and health outcomes.
 vignette: >
