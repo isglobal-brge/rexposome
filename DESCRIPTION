@@ -1,6 +1,6 @@
 Package: rexposome
 Title: Exposome exploration and outcome data analysis
-Version: 0.99.76
+Version: 0.99.77
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "González", ,"juanr.gonzalez@isglobal.org", role = "aut"))
 Maintainer: Carles Hernandez-Ferrer <carles.hernandez@isglobal.org>
@@ -14,8 +14,7 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.4),
     Biobase
-Imports: S4Vectors,
-    methods,
+Imports: methods,
     utils,
     stats,
     lsr,
