@@ -4,7 +4,7 @@
 #' @param messages If set to \code{TRUE} messages from  \code{mice}'s function
 #' will be displayed.
 setMethod(
-    f = "impute",
+    f = "imputation",
     signature = "ExposomeSet",
     definition = function(object, select, ..., messages = FALSE) {
         #ssystem <- match.arg(ssystem, c("mice", "hmisc"))

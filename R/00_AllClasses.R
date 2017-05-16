@@ -114,38 +114,6 @@ setClass(
   )
 )
 
-#' Class nlExWAS
-#'
-#' Class \code{nlExWAS} obtained from \link{nl_exwas} method of an
-#' \link{ExposomeSet} object, contains the result of testing the multiple
-#' models of exposures of an \code{ExposomeSet} to a set of given phenotypes.
-#' "nlExWAS" is the #' acronym of "Multivariate Exposome-Wide Association
-#' Study".
-#'
-#' @name nlExWAS
-#' @aliases nlExWAS-class
-#' @rdname nlExWAS-class
-#' @exportClass nlExWAS
-#' @slot ranking Results obtained from the \code{mboost} package as
-#' \code{data.frame}.
-#' @slot models Models tested in the \code{mboost} package.
-#' @slot n Number of samples (exposures) used.
-#' @slot predictors Predictors obained from \code{mboost} package.
-#' @slot X \code{data.fame} with the phenotypes used in the models.
-#' @slot xyformula Formulas used in \code{mboost} package.
-#' @return An object of class \code{nlExWAS}
-setClass(
-    Class = "nlExWAS",
-    representation = representation(
-        ranking = "data.frame",
-        models = "list",
-        n = "numeric",
-        predictors = "list",
-        X = "data.frame",
-        xyformula = "list"
-    )
-)
-
 #' Class mExWAS
 #'
 #' Class \code{mExWAS} obtained from \link{mexwas} method of an

@@ -28,7 +28,7 @@ setMethod(
         if(warnings) {
             warning("Categorical exposures will be droped and not used in the analysis.")
         }
-        message("A")
+
         x <<- dta[ , exposureNames(object)[fData(object)$`_type` == "numeric"]]
         x <- as.matrix(x)
         if(family %in% c("binomial", "multinomial")) phe <- as.factor(phe)

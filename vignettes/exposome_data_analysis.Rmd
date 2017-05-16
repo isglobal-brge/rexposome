@@ -315,14 +315,14 @@ plotHistogram(exp, select = "BDE209", show.trans = TRUE)
 The imputation process is out of `rexposome` scope. Nevertheless, `rexposome` incorporates a wrapper to run the imputation tools from the R packages and `Hmisc`. The imputation of the exposures in the `ExposomeSet` is done by using this code:
 
 ```{r impute_hmisc}
-exp <- impute(exp)
+exp <- imputation(exp)
 ```
 
 To use `mice` package instead of `hmisc`, see the vignette entitles *Dealing with Multiple Imputations*.
 
 ### Exposures Behaviour
 
-We can get a snapshot of the behaviour of the full *exposome* using the method `plotFamily`. This function allows drawing a plot of a given family of exposures or a mosaic with all the exposures.
+We can get a snapshot of the behaviour of the full *exposome* using the method `plotFamily` or its wrapper `plot`. This function allows drawing a plot of a given family of exposures or a mosaic with all the exposures.
 
 ```{r plot_all_exposures, fig.height=12, fig.width=8}
 plotFamily(exp, family = "all")
