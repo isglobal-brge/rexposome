@@ -1,0 +1,353 @@
+---
+title: "Tips and Tricks with `rexposome`"
+author: "Carles Hernandez-Ferrer and Juan R. Gonzalez"
+date: "`r doc_date()`"
+package: "`r pkg_ver('rexposome')`"
+abstract: > 
+    This document shows a series of section containing tips and tricks of managing exposome data. It includes some clues of how to retrive data from different objects and how to incorporate external data to already existing objects.
+vignette: >
+  %\VignetteIndexEntry{Tips and Tricks with `rexposome`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document
+---
+
+```{r setup, include=FALSE}
+BiocStyle::markdown()
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
+```
+
+
+# Introduction
+
+In this document we will deal with both `ExposomeSet` and `imExposomeSet` objects. Thus, we need to create them.
+
+The first step is to load the required libraries.
+
+```{r, message=FALSE}
+library(rexposome)
+library(mice)
+```
+
+`rexposome` is the main librari that we will use in the document. `mice` is the library used to perform the multiple imputation process on exposome data (see vignette "*Dealing with Multiple Imputations*" for more information).
+
+The main exposome data is included in the package (see vignette "*Exposome Data Analysis*" for more details). The following code locates the three files and save their path to three variables.
+
+```{r files_path}
+path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
+description <- paste0(path, .Platform$file.sep, "description.csv")
+phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
+exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+```
+
+
+## Creating an `ExposomeSet`
+
+Having the path of the three exposome files (exposures' description, phenotypes and exposures' measurment) we load them to create an `ExposomeSet` using the function `read_exposome`.
+
+```{r read_exposome}
+exp <- read_exposome(
+    exposures = exposures, 
+    description = description, 
+    phenotype = phenotype,
+    exposures.samCol = 1, 
+    description.expCol = 2, 
+    description.famCol = 1, 
+    phenotype.samCol = 1
+)
+```
+
+Function `read_exposome` takes three files and creates an object of class `ExposomeSet`:
+
+```{r}
+exp
+```
+
+
+## Creating an `imExposomeSet`
+
+To create an `imExposomeSet` we should load the raw data into R as `data.frame` objects. To this end we use `read.csv` function.
+
+```{r read_csv_files}
+dd <- read.csv(description, header=TRUE, stringsAsFactors=FALSE)
+ee <- read.csv(exposures, header=TRUE)
+pp <- read.csv(phenotype, header=TRUE)
+```
+
+```{r remove_exposures, echo=FALSE}
+dd <- dd[-which(dd$Family %in% c("Phthalates", "PBDEs", "PFOAs", "Metals")), ]
+ee <- ee[ , c("idnum", dd$Exposure)]
+```
+
+In order to perform the imputation process with `mice` some set-up is required into the `data.frame` objects:
+
+```{r set_up_imputation}
+rownames(ee) <- ee$idnum
+rownames(pp) <- pp$idnum
+dta <- cbind(ee[ , -1], pp[ , -1])
+
+for(ii in c(1:13, 18:47, 55:56)) {
+    dta[, ii] <- as.numeric(dta[ , ii])
+}
+for(ii in c(14:17, 48:54)) {
+    dta[ , ii] <- as.factor(dta[ , ii])
+}
+```
+
+The imputation process is carreid out with `mice` function from `mice` package (check vignette "*Dealing with Multiple Imputations*").
+
+```{r mice_imputation, message=FALSE}
+imp <- mice(dta[ , -52], pred = quickpred(dta[ , -52], mincor = 0.2, minpuc = 0.4),
+    seed = 38788, m = 5, maxit = 10, printFlag = FALSE)
+```
+
+Once the imputation is done we reformat the generated imputed data to a single `data.frame`.
+
+```{r extract_imputed}
+me <- complete(imp, action = 0)
+me[ , ".imp"] <- 0
+me[ , ".id"] <- rownames(me)
+
+for(set in 1:5) {
+    im <- complete(imp, action = set)
+    im[ , ".imp"] <- set
+    im[ , ".id"] <- rownames(im)
+    me <- rbind(me, im)
+}
+me <- me[ , c(".imp", ".id", colnames(me)[-(97:98)])]
+rownames(me) <- 1:nrow(me)
+```
+
+Having the two `data.frames` with the imputated data and the exposures description we can create an `imExposomeSet` using the function `load_imputed`.
+
+```{r create_imexposomeset}
+ex_imp <- load_imputed(data = me, description = dd, 
+                       description.famCol = 1, 
+                       description.expCol = 2)
+```
+
+Function `load_imputed` creates an object of class `ExposomeSet`:
+
+```{r}
+ex_imp
+```
+
+
+```{r save_data, echo=FALSE}
+exp_ori <- exp
+ex_imp_ori <- ex_imp
+```
+
+
+# Tips and Tricks for `ExposomeSet`
+
+The following section will encopasses a series of sections showing how to use `ExposomeSet` class.
+
+## Add External Pheno Data to an `ExposomeSet`
+
+```{r, echo=FALSE}
+exp <- exp_ori
+```
+
+The class `ExposomeSet` encapsulates three types of data: 
+
+ 1. **Exposure Data**: Matrix of measurment having exposures as columns and samples as rows.
+ 2. **Phenotype Data**: Matrix of measurmens hacing phenotypes, covariates and outcomes as columns and samples as rows.
+ 3. **Exposure-description Data**: Table of description having descriptos (incuding family of exposures) as columns and exposures as rows.
+
+To add extra **phenotypic information** to an objec of class `ExposomeSet` we should modify the matrix with *phenotype data*. Since `ExposomeSet` is an `eSet` based class, this can be archived by using the accessor operator (aka. `$`).
+
+```{r create_pheno_1, echo=FALSE}
+np <- sample(c("A", "B", "C"), size=109, replace=TRUE, prob=c(1/2, 1/4, 1/4))
+names(np) <- sampleNames(exp)
+```
+
+Let's supose that our *new phenotype* is stored in a vector having the classes `"A"`, `"B"` and `"C"` with the following proportions:
+
+```{r show_np_1}
+table(np)/length(np)
+```
+
+First we must be sure that the elements in `np` are the same elements present in the `ExpsomeSet`.
+
+```{r check_samples_1}
+identical(sampleNames(exp), names(np))
+```
+Then, being sure that all the samples of the `ExposomeSet` are in `np` and viceversa, we can add them by ensuring the same order.
+
+```{r add_pheno_dollar}
+pData(exp)$new_pheno <- np[sampleNames(exp)]
+phenotypeNames(exp)
+```
+
+Alternatively, we can overwrite the matrix with *phenotype data* with the new information that is required. To this, imagine our *new phenotype* is stored in a `data.frame`.
+
+```{r, echo=FALSE}
+exp <- exp_ori
+```
+
+```{r create_pheno_2, echo=FALSE}
+np <- data.frame(
+    Class=sample(c("A", "B", "C"), size=109, replace=TRUE, prob=c(1/2, 1/4, 1/4)),
+    NP_level=runif(109)
+)
+rownames(np) <- sampleNames(exp)
+```
+
+```{r show_np_2}
+np[1:3, ]
+```
+
+Then we can get the *phenotype data* from the `ExpressionSet` as a `data.frame`, merge it with our new data and set it back again to the `ExpressionSet`.
+
+```{r add_pheno_overwrite}
+pd <- pData(exp)
+pd <- merge(pd, np)
+pData(exp) <- pd
+```
+
+Then we can check if the two new phenotypes are present:
+
+```{r check_samples_2}
+phenotypeNames(exp)
+```
+
+
+## Extract Matrix of Corelations from an `ExposomeCor`
+
+```{r, echo=FALSE}
+exp <- exp_ori
+```
+
+
+To extract the correlation matrix from an object of class `ExposomeCor` we needs to use the method `extract`.
+
+```{r extr_cor, warning=FALSE}
+crr <- correlation(exp)
+mtr <- extract(crr)
+class(mtr)
+mtr[1:5, 1:5]
+```
+
+This object can be saved to a `.tsv` file with:
+
+```{r write_cor, eval=FALSE}
+write.table(mtr, file = "expos_cor.tsv", sep = "\t",
+    row.names = TRUE, col.names = TRUE, quote = FALSE
+)
+```
+
+Be sure to not have missing data when computing the correlation between exposures.
+
+# Tips and Tricks for `imExposomeSet`
+
+The following section will encopasses a series of sections showing how to use `imExposomeSet` class.
+
+## Add External Pheno Data to an `imExposomeSet`
+
+```{r, echo=FALSE}
+ex_imp <- ex_imp_ori
+```
+
+The class `imExposomeSet` encapsulates three types of data: 
+
+ 1. **Exposure Data**: Matrix of measurment having exposures as columns and samples as rows.
+ 2. **Phenotype Data**: Matrix of measurmens hacing phenotypes, covariates and outcomes as columns and samples as rows.
+ 3. **Exposure-description Data**: Table of description having descriptos (incuding family of exposures) as columns and exposures as rows.
+
+The difference between an `ExposomeSet` and an `imExposomeSet` is that the first one only holds a single version of the exposures and the phenotypes while the second one can hold more than one. Then the way the information is encapsulated and coordinated is not the same.
+
+
+```{r create_pheno_3, echo=FALSE}
+np <- data.frame(
+    .imp = pData(ex_imp)$`.imp`,
+    .id = pData(ex_imp)$`.id`,
+    Class=sample(c("A", "B", "C"), size=654, replace=TRUE, prob=c(1/2, 1/4, 1/4))
+)
+```
+
+Lets imagine we have a data frame `np` with the new phenotype we want to add to the `imExposomeSet`:
+
+```{r show_np_3}
+np[1:3, ]
+```
+
+As we have seen, the `data.frame` contains the columns `.imp` as identifier of the imputation set, `.id` with the samples' name and `Class` with the new data.
+
+So we will get the existing information on the `imExposomeSet` and metge it with the new information to reasign it to the `imExposomeSet`. To this end we will use the function `merge` to take into account the `.imp` and `.id` columns.
+
+```{r add_pheno_imp}
+pd <- pData(ex_imp)
+pd <- merge(pd, np, by = c(".imp", ".id"))
+pData(ex_imp) <- pd
+```
+
+Finall, we check that the new data is present in the pheno data of the `imExposomeSet`.
+
+```{r check_samples_3}
+phenotypeNames(ex_imp)
+```
+
+# Tips and Tricks for both `ExposomeSet` and `imExposomeSet`
+
+## Extract the exposures over the *threshold of effective tests* from an `ExWAS` object
+
+Before any other step we need to perform an *Exposome-Wide Association Study* to obtain an object of class `ExWAS` (see vignettes "*Exposome Data Analysis*" form more details).
+
+```{r exwas_wheezing, warning=FALSE, message=FALSE}
+we_ew <- exwas(exp, formula = wheezing~sex+age, family = "binomial")
+we_ew
+```
+
+Once we have the `ExWAS` object we can use the method `extract` to obtain a table with the P-Value of each association.
+
+```{r exwas_wheezing_table}
+tbl <- extract(we_ew)
+tail(tbl, n = 5)
+```
+
+Once we have the table of P-Values we can filter them to obtain the exposures of interest under a given threashold (0.05):
+
+```{r exwas_wheezing_sig}
+(sig <- tbl[tbl$pvalue <= 0.05, ])
+```
+
+
+Or we can save it to a `.tsv` file with:
+
+```{r exwas_wheezing_file, eval=FALSE}
+write.table(tbl, file = "wheezing.tsv", sep = "\t",
+    row.names = TRUE, col.names = TRUE, quote = FALSE
+)
+```
+
+
+## Ordering Exposures in `plotExwas`
+
+Once obtained an `ExWAS`, the results can be ploted using the method `plotExwas`. This method allows to order and subset the exposures that will be used in the plot with the argument `exp.order`.
+
+Let's see the original plot.
+
+```{r exwas_plot_raw}
+plotExwas(we_ew)
+```
+
+Now we will reverse the order.
+
+```{r exwas_plot_order}
+new_order <- exposureNames(exp)
+new_order <- new_order[order(new_order, decreasing = TRUE)]
+
+plotExwas(we_ew, exp.order = new_order)
+```
+
+And finaly we will subset only the exposures in *Metals* and *Air Pollutants*.
+
+```{r exwas_plot_subset}
+ex_sel <- familyNames(exp, by.exposure = TRUE)
+ex_sel <- names(ex_sel)[ex_sel %in% c("Metals", "Air Pollutants")]
+
+plotExwas(we_ew, exp.order = ex_sel)
+```
+

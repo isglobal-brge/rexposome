@@ -33,5 +33,5 @@ plotMissings(expo, set = "phenotypes")
 \link{plotFamily} to draw the profile of a family of exposures,
 \link{plotHistogram} to draw the shape of an exposure,
 \link{tableMissings} to get a table with the missing data of an ExposomeSet,
-\link{impute} to impute missing data on the exposures of an ExposomeSet
+\link{imputation} to impute missing data on the exposures of an ExposomeSet
 }

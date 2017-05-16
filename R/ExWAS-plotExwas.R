@@ -4,13 +4,13 @@
 #' @param color (optional) A vector of colors. The vector must have length
 #' equal to the number of families. The vector must be names with the
 #' name of the families.
+#' @param exp.order (optional) Order of the exposures.
 #' @param show.effective (default TRUE) draws a brown line on the
 #' threshold given by the effective number of tests.
 setMethod(
     f = "plotExwas",
     signature = "ExWAS",
-    definition = function(object, ..., subtitles, color, show.effective = TRUE) {
-
+    definition = function(object, ..., subtitles, color, exp.order, show.effective = TRUE) {
 
         multiple <- FALSE
         if(missing(...)) {
@@ -27,16 +27,18 @@ setMethod(
             } else if(length(subtitles) != length(items)) {
                 stop("Diffrent lenghts beween given objects and 'subtitles'.")
             }
+        } else {
+            subtitles <- NA
         }
 
         tbl <- data.frame(pvalue=0.0, effect=0.0, x2.5=0.0, x97.5=0.0,
-                         fm="", lpv=0.01, exposures="", family="" )
+                         fm="", lpv=0.01, exposure="", family="" )
 
-        for(ii in length(items)) {
+        for(ii in 1:length(items)) {
             it <- items[[ii]]
             tbli <- extract(it)
             colnames(tbli) <- c("pvalue", "effect", "x2.5", "x97.5")
-            if(missing(subtitles)) {
+            if(is.na(subtitles)) {
                 ff <- as.character(it@formula)
                 ff <- paste0(ff[2], ff[1], gsub(" ", "", ff[3]))
                 tbli$fm <- ff
@@ -61,8 +63,20 @@ setMethod(
             names(colorPlte) <- names(color)
         }
 
-        tbl <- tbl[order(tbl$family, tbl$exposure), ]
-        tbl$exposure <- factor(tbl$exposure, levels = unique(tbl$exposure))
+        tbl$family <- as.character(tbl$family)
+        tbl$exposure <- as.character(tbl$exposure)
+        tbl$fm <- as.character(tbl$fm)
+
+
+        if(missing(exp.order)) {
+            tbl <- tbl[order(tbl$family, tbl$exposure), ]
+            tbl$exposure <- factor(tbl$exposure, levels = unique(tbl$exposure))
+        } else {
+            if(sum(exp.order %in% tbl$exposure) != length(exp.order)) {
+                stop("Not all exposures in 'exp.order' are present in given 'ExWAS' objects.")
+            }
+            tbl <- c_order(tbl, "fm", "exposure", exp.order)
+        }
 
         if(!multiple) {
             plt <- ggplot2::ggplot(tbl, ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
@@ -96,3 +110,24 @@ setMethod(
 
         return(plt)
 })
+
+
+c_order <- function(x, var1, var2, val2) {
+    x <- x[order(x[ , var1]), ]
+    c <- unique(x[ , var1])
+    t <- x[x[ , var1] == c[1], ]
+    rownames(t) <- t[ , var2]
+    t <- t[val2, ]
+    if(length(c) == 1){
+        return(t)
+    } else {
+        c <- c[-1]
+    }
+    for(cc in c) {
+        tt <- x[x[ , var1] == cc, ]
+        rownames(tt) <- tt[ , var2]
+        tt <- tt[val2, ]
+        t <- rbind(t, tt)
+    }
+    return(t)
+}

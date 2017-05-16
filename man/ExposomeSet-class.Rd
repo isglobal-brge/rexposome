@@ -3,14 +3,14 @@
 %   R/ExposomeSet-correlation.R, R/ExposomeSet-dim.R, R/ExposomeSet-expo.R,
 %   R/ExposomeSet-exposureNames.R, R/ExposomeSet-exwas.R,
 %   R/ExposomeSet-familyNames.R, R/ExposomeSet-highAndLow.R,
-%   R/ExposomeSet-ilod.R, R/ExposomeSet-impute.R, R/ExposomeSet-mexwas.R,
-%   R/ExposomeSet-nl_exwas.R, R/ExposomeSet-normalityTest.R,
-%   R/ExposomeSet-pca.R, R/ExposomeSet-phenotypeNames.R,
-%   R/ExposomeSet-plotFamily.R, R/ExposomeSet-plotHistogram.R,
-%   R/ExposomeSet-plotLOD.R, R/ExposomeSet-plotMissings.R,
-%   R/ExposomeSet-restore.R, R/ExposomeSet-standardize.R,
-%   R/ExposomeSet-summary.R, R/ExposomeSet-tableLOD.R,
-%   R/ExposomeSet-tableMissings.R, R/ExposomeSet-trans.R
+%   R/ExposomeSet-ilod.R, R/ExposomeSet-imputation.R, R/ExposomeSet-mexwas.R,
+%   R/ExposomeSet-normalityTest.R, R/ExposomeSet-pca.R,
+%   R/ExposomeSet-phenotypeNames.R, R/ExposomeSet-plotFamily.R,
+%   R/ExposomeSet-plotHistogram.R, R/ExposomeSet-plotLOD.R,
+%   R/ExposomeSet-plotMissings.R, R/ExposomeSet-restore.R,
+%   R/ExposomeSet-standardize.R, R/ExposomeSet-summary.R,
+%   R/ExposomeSet-tableLOD.R, R/ExposomeSet-tableMissings.R,
+%   R/ExposomeSet-trans.R
 \docType{class}
 \name{ExposomeSet}
 \alias{ExposomeSet}
@@ -24,13 +24,13 @@
 \alias{familyNames,ExposomeSet-method}
 \alias{highAndLow,ExposomeSet-method}
 \alias{ilod,ExposomeSet-method}
-\alias{impute,ExposomeSet-method}
+\alias{imputation,ExposomeSet-method}
 \alias{mexwas,ExposomeSet-method}
-\alias{nl_exwas,ExposomeSet-method}
 \alias{normalityTest,ExposomeSet-method}
 \alias{pca,ExposomeSet-method}
 \alias{phenotypeNames,ExposomeSet-method}
 \alias{plotFamily,ExposomeSet-method}
+\alias{plot,ExposomeSet,ANY-method}
 \alias{plotHistogram,ExposomeSet-method}
 \alias{plotLOD,ExposomeSet-method}
 \alias{plotMissings,ExposomeSet-method}
@@ -65,12 +65,9 @@
 \S4method{ilod}{ExposomeSet}(object, seed = 1234, lod.col = "LOD",
   pNA = 0.2, tLog = FALSE, method = "QRILC", warnings = TRUE, ...)
 
-\S4method{impute}{ExposomeSet}(object, select, ..., messages = FALSE)
+\S4method{imputation}{ExposomeSet}(object, select, ..., messages = FALSE)
 
 \S4method{mexwas}{ExposomeSet}(object, phenotype, family, warnings = TRUE)
-
-\S4method{nl_exwas}{ExposomeSet}(object, phenotype, bbs.df, ..., mc.cores = 1,
-  verbose = FALSE, warnings = TRUE)
 
 \S4method{normalityTest}{ExposomeSet}(object, exposure, th = 0.05,
   min.val = 5, na.rm = TRUE)
@@ -81,6 +78,8 @@
 
 \S4method{plotFamily}{ExposomeSet}(x, family, group, group2, scatter = TRUE,
   na.omit = TRUE)
+
+\S4method{plot}{ExposomeSet,ANY}(x, y, ...)
 
 \S4method{plotHistogram}{ExposomeSet}(x, select, density = TRUE,
   show.trans = FALSE)
@@ -155,10 +154,6 @@ will be displayed.}
 
 \item{phenotype}{Health outcome to be used as dependent variable.}
 
-\item{bbs.df}{TO BE INDICATED}
-
-\item{mc.cores}{TO BE INDICATED}
-
 \item{exposure}{Vecror of exposures to be used.}
 
 \item{th}{Threshold of P-Value used to considere normalit}
@@ -222,12 +217,9 @@ family of each exposure.
 
 \item \code{ilod}: Imputation of under-LOD values of exposures.
 
-\item \code{impute}: Imputation of missing values of exposures.
+\item \code{imputation}: Imputation of missing values of exposures.
 
 \item \code{mexwas}: Performs a Multiple-EXposure-Wide Association Study.
-
-\item \code{nl_exwas}: Testing the association between an exposure and
-phenotype of an ExposomeSet using a non-lineal aproach.
 
 \item \code{normalityTest}: Test the normality of each exposure.
 
@@ -237,6 +229,8 @@ phenotype of an ExposomeSet using a non-lineal aproach.
 
 \item \code{plotFamily}: Draws a boxplot or accumulated-bar plot for each
 exposure in a given family.
+
+\item \code{plot}: Wrapper for \code{plotFamily} method.
 
 \item \code{plotHistogram}: Draws an histogram of a given continuous exposure
 or a pie chart if a given categorycal exposure.

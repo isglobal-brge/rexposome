@@ -275,7 +275,7 @@ setGeneric("highAndLow", function(object, ngroups = 3,
 #' @export normalityTest
 #' @seealso \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
-#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+#' \link{imputation} to impute missing data on the exposures of an ExposomeSet
 setGeneric("normalityTest", function(object, exposure, th = 0.05, min.val = 5,
                                      na.rm = TRUE) {
     standardGeneric("normalityTest")
@@ -306,7 +306,7 @@ setGeneric("normalityTest", function(object, exposure, th = 0.05, min.val = 5,
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
-#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+#' \link{imputation} to impute missing data on the exposures of an ExposomeSet
 setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
     standardGeneric("tableMissings")
 })
@@ -337,7 +337,7 @@ setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
-#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+#' \link{imputation} to impute missing data on the exposures of an ExposomeSet
 setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TRUE) {
     standardGeneric("tableLOD")
 })
@@ -367,7 +367,7 @@ setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TR
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
 #' \link{tableMissings} to get a table with the missing data of an ExposomeSet,
-#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+#' \link{imputation} to impute missing data on the exposures of an ExposomeSet
 setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
     standardGeneric("plotMissings")
 )
@@ -396,7 +396,7 @@ setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotHistogram} to draw the shape of an exposure,
 #' \link{tableMissings} to get a table with the missing data of an ExposomeSet,
-#' \link{impute} to impute missing data on the exposures of an ExposomeSet
+#' \link{imputation} to impute missing data on the exposures of an ExposomeSet
 setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE)
     standardGeneric("plotLOD")
 )
@@ -473,9 +473,9 @@ setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE
 #' package \code{Hmisc}. The function is designed to use those functions
 #' to impute missing values on exposures (not in phenotypes).
 #'
-#' @name impute
-#' @rdname impute-methods
-#' @aliases impute
+#' @name imputation
+#' @rdname imputation-methods
+#' @aliases imputation
 #' @param object \code{ExposomeSet} which exposures will be imputed.
 #' @param select Exposures to be imputed. If missing, all exposes will be
 #' imputed.
@@ -489,13 +489,13 @@ setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE
 #' @examples
 #' \dontrun{
 #' #Being x an ExposomeSet
-#' x <- impute(x)
+#' x <- imputation(x)
 #' }
-#' @export impute
+#' @export imputation
 #' @seealso \link{plotMissings} to plot the missing data of an ExposomeSet,
 #' \link{tableMissings} to get a table with the missing data of an ExposomeSet
-setGeneric("impute", function(object, select, ..., messages=FALSE)
-    standardGeneric("impute")
+setGeneric("imputation", function(object, select, ..., messages=FALSE)
+    standardGeneric("imputation")
 )
 
 #' Function to impute under-LOD values from an ExposomeSet
@@ -913,43 +913,6 @@ setGeneric("plotClassification", function(object, type = "heatmap", ...)
 )
 
 # -----------------------------------------------------------------------------
-
-#' Testing the association between an exposure and a phenotype of an
-#' ExposomeSet using a non-lineal aproach.
-#'
-#' The \code{nl_exwas} method performs an "Non-lineal Exposome-Wide
-#' Association Study" (M-ExWAS) using the exposures in \link{ExposomeSet}
-#' and one of its phenotype. It uses the package \code{mboost} and its
-#' functions \code{bols}, \code{bbs} and \code{gamboost}.
-#'
-#' @name nl_exwas
-#' @rdname nl_exwas-methods
-#' @aliases nl_exwas
-#' @param object \code{ExposomeSet} that will be used for the ExWAS.
-#' @param phenotype Target phenotype used for the study. If missing all the
-#' phenotypes in the \link{ExposomeSet} will be used.
-#' @param bbs.df Trace of the hat matrix for the base-learner defining the
-#' base-learner complexity. It is passed to \code{bbs} of \code{mboost}.
-#' @param ... Arguments passed to \code{gamboost}.
-#' @param mc.cores (default \code{1}) Number of cores to use in the analysis.
-#' @param verbose (default \code{FALSE}) Shows messages of the process.
-#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
-#' not be displayed.
-#' @return Returns an object of class \link{mExWAS}
-#' @examples
-#' \dontrun{
-#' #Being x an ExposomeSet
-#' w1 <- nl_exwas(x, "sex")
-#' w2 <- nl_exwas(x, "asthma")
-#' }
-#' @export nl_exwas
-#' @seealso \link{extract} to obtain a table with the result of the ExWAS,
-#' \link{plotExwas} to plot the results of the ExWAS
-setGeneric("nl_exwas", function(object, phenotype, bbs.df, ..., mc.cores = 1,
-    verbose = FALSE, warnings = TRUE)
-        standardGeneric("nl_exwas")
-)
-
 #' Testing the association between an exposure and a phenotype of an
 #' ExposomeSet using a multivariate aproach.
 #'
@@ -1075,7 +1038,15 @@ setGeneric("extract", function(object, sort = TRUE, ...)
 #' @rdname plotExwas-methods
 #' @aliases plotExwas
 #' @param object An \code{ExWAS} object which p-values will be plotted.
-#' @param ... NOT USED
+#' @param ... Other objects of class \code{ExWAS}.
+#' @paam subtitles (optional) Characters used as "substitle" when more than one
+#' \code{ExWAS} is given.
+#' @param color (optional) Character vector of HTML colors, labeled with
+#' family's names. Used to colore the exposures.
+#' @param exp.order (optional) Character vector of exposures used to order
+#' and subset the plot.
+#' @param show.effective (default \code{TRUE}) If set to \code{FALSE},
+#' line showing effective test threshold is not shown.
 #' @return An object of class \code{ggplot}.
 #' @examples
 #' data(exposome)
@@ -1084,7 +1055,7 @@ setGeneric("extract", function(object, sort = TRUE, ...)
 #' @export plotExwas
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
 #' \link{extract} to obtain a table with the result of the ExWAS
-setGeneric("plotExwas", function(object, ...)
+setGeneric("plotExwas", function(object, ..., subtitles, color, exp.order, show.effective = TRUE)
     standardGeneric("plotExwas")
 )
 
