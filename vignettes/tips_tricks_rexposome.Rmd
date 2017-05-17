@@ -258,7 +258,6 @@ The class `imExposomeSet` encapsulates three types of data:
 
 The difference between an `ExposomeSet` and an `imExposomeSet` is that the first one only holds a single version of the exposures and the phenotypes while the second one can hold more than one. Then the way the information is encapsulated and coordinated is not the same.
 
-
 ```{r create_pheno_3, echo=FALSE}
 np <- data.frame(
     .imp = pData(ex_imp)$`.imp`,

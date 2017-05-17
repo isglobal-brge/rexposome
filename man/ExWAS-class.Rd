@@ -15,7 +15,7 @@
 
 \S4method{plotEffect}{ExWAS}(x, y, select, xlab, ylab)
 
-\S4method{plotExwas}{ExWAS}(object, ..., subtitles, color,
+\S4method{plotExwas}{ExWAS}(object, ..., subtitles, color, exp.order,
   show.effective = TRUE)
 
 \S4method{tef}{ExWAS}(object)
@@ -40,6 +40,8 @@
 \item{color}{(optional) A vector of colors. The vector must have length
 equal to the number of families. The vector must be names with the
 name of the families.}
+
+\item{exp.order}{(optional) Order of the exposures.}
 
 \item{show.effective}{(default TRUE) draws a brown line on the
 threshold given by the effective number of tests.}

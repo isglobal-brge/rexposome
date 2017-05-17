@@ -14,7 +14,8 @@
 
 \S4method{raw}{mExWAS}(object)
 
-\S4method{plotExwas}{mExWAS}(object, ...)
+\S4method{plotExwas}{mExWAS}(object, ..., subtitles, color, exp.order,
+  show.effective = TRUE)
 }
 \arguments{
 \item{object}{A \code{\link{mExWAS}} object.}

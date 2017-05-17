@@ -1039,7 +1039,7 @@ setGeneric("extract", function(object, sort = TRUE, ...)
 #' @aliases plotExwas
 #' @param object An \code{ExWAS} object which p-values will be plotted.
 #' @param ... Other objects of class \code{ExWAS}.
-#' @paam subtitles (optional) Characters used as "substitle" when more than one
+#' @param subtitles (optional) Characters used as "substitle" when more than one
 #' \code{ExWAS} is given.
 #' @param color (optional) Character vector of HTML colors, labeled with
 #' family's names. Used to colore the exposures.
