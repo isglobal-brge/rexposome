@@ -7,13 +7,21 @@ setMethod(
         cat("    . categorical: ", sum(fData(object)$`_type` == "factor"), "\n")
         cat("    . continuous: ", sum(fData(object)$`_type` == "numeric"), "\n")
 
+        ni <- unique(pData(object)$`.imp`)
+        if(0 %in% ni) {
+            m <- paste0(length(ni), " (raw detected)" )
+        } else {
+            m <- paste0(length(ni), " (no raw detected)" )
+        }
+        cat(" . #imputations:", m, "\n")
+
         adim <- dim(object)
         cat(" . assayData:", adim[[1]], "exposures", adim[[2]], "individuals\n")
 
-        adim <- dim(pData(object)) - 2
-        cat(" . phenoData:", adim[[1]], "individuals", adim[[2]], "phenotypes\n")
+        adim <- dim(pData(object))
+        cat(" . phenoData:", adim[[1]] / length(ni), "individuals", adim[[2]], "phenotypes\n")
 
-        adim <- dim(fData(object)) - 2
-        cat(" . featureData:", adim[[1]], "exposures", adim[[2]], "explanations\n")
+        adim <- dim(fData(object))
+        cat(" . featureData:", adim[[1]], "exposures", adim[[2]] - 1, "explanations\n")
     }
 )

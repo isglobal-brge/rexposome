@@ -1,7 +1,6 @@
 library(testthat)
 suppressMessages({
     library(rexposome)
-    library(flexmix)
 })
 
 context("ExposomeSet - exwas")
