@@ -68,5 +68,4 @@
 #' @importFrom stats AIC aggregate anova as.formula coef confint.default cor fitted
 #' @importFrom stats glm lm mad median predict sd shapiro.test update vcov
 #' @importFrom ggrepel geom_text_repel
-#' @importFrom base raw
 NULL

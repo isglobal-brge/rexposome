@@ -1077,6 +1077,25 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
     standardGeneric("plotEffect")
 )
 
+#' Function to draw a plot of the pvalues stored in an \code{ExWAS} object
+#'
+#' This function draws a sort of manhattan plots using the p-value of the
+#' association of the exposures with phenotypes of an \code{ExWAS} object.
+#'
+#' @name plotEffect
+#' @rdname plotEffect-methods
+#' @aliases plotEffect
+#' @param x An \code{ExWAS} object which effect will be ploted.
+#' @param p.value (default \code{"-log10(0.001)") Threshold for P-Value.
+#' @export plotVolcano
+#' @seealso \code{\link{exwas}} as a constructor for \code{\link{ExWAS}}
+#' objects, \code{\link{extract}} to obtain a table with the result of
+#' the ExWAS, \code{\link{plotEffect}} to see or compare effects of
+#' one or two models.
+setGeneric("plotVolcano", function(x, p.value = -log10(0.001))
+    standardGeneric("plotVolcano")
+)
+
 #' Function to get the Threshold for effective tests (TEF)
 #'
 #' @name tef

@@ -28,8 +28,11 @@ setMethod(
 
         form <- as.character(formula)
         ne <- c()
-        items <- list()
+        items <- rbind(1:4)
+        colnames(items) <- c("effect", "2.5","97.5", "pvalue")
+        dta_all <- dta
         for(ex in exposureNames(object)) {
+            dta <- dta_all
             if(verbose) {
                 message("Processing '", ex, "'.")
             }
@@ -55,12 +58,12 @@ setMethod(
                 effect <- c(mod$coef[2], suppressMessages(confint.default(mod)[2,]))
                 p <- anova(mod, mod0, test = test)
                 p2 <- p[[names(p)[length(names(p))]]][2] # `Pr(>F)`, `Pr(>Chi)`
-                items <- c(items, c(effect, p2))
+                items <- rbind(items, c(effect, p2))
             }, error = function(e) {
                 effect <- NULL
                 p2 <- NULL
                 ne <- c(ne, ex)
-                items <- c(items, c(effect, p2))
+                items <- rbind(items, c(effect, p2))
             })
         }
 
@@ -68,16 +71,9 @@ setMethod(
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
         }
 
-        items <- do.call(rbind, lapply(items, function(xx) {
-            ans <- t(data.frame(xx))
-            colnames(ans) <- c("effect", "2.5","97.5", "pvalue")
-            ans
-        }))
-
-        rownames(items) <- exposureNames(object)
         items <- as.data.frame(items)
-
-
+        items <- items[-1, ]
+        rownames(items) <- exposureNames(object)
 
         ## Compute the threshold for effective tests
         if(tef) {

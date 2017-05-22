@@ -2,9 +2,12 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{plotEffect}
 \alias{plotEffect}
+\alias{plotEffect}
 \title{Function to draw a plot of the pvalues stored in an \code{ExWAS} object}
 \usage{
 plotEffect(x, y, select, xlab, ylab)
+
+plotVolcano(x)
 }
 \arguments{
 \item{x}{An \code{ExWAS} object which effect will be ploted.}
@@ -17,11 +20,16 @@ effects will be ploted in Y-axis.}
 \item{xlab}{(optional) Label for X-axis.}
 
 \item{ylab}{(optional) Label for Y-axis.}
+
+\item{x}{An \code{ExWAS} object which effect will be ploted.}
 }
 \value{
 An object of class \code{ggplot}.
 }
 \description{
+This function draws a sort of manhattan plots using the p-value of the
+association of the exposures with phenotypes of an \code{ExWAS} object.
+
 This function draws a sort of manhattan plots using the p-value of the
 association of the exposures with phenotypes of an \code{ExWAS} object.
 }
@@ -34,4 +42,9 @@ plotEffect(w1, w2)
 \seealso{
 \link{exwas} as a constructor for \link{ExWAS} objects,
 \link{extract} to obtain a table with the result of the ExWAS
+
+\code{\link{exwas}} as a constructor for \code{\link{ExWAS}}
+objects, \code{\link{extract}} to obtain a table with the result of
+the ExWAS, \code{\link{plotEffect}} to see or compare effects of
+one or two models.
 }
