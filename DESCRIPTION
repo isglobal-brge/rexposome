@@ -1,6 +1,6 @@
 Package: rexposome
 Title: Exposome exploration and outcome data analysis
-Version: 0.99.78
+Version: 0.99.79
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "González", ,"juanr.gonzalez@isglobal.org", role = "aut"))
 Maintainer: Carles Hernandez-Ferrer <carles.hernandez@isglobal.org>
@@ -25,7 +25,7 @@ Imports: methods,
     ggplot2,
     reshape2,
     pryr,
-    mboost,
+    S4Vectors,
     imputeLCMD,
     scatterplot3d,
     glmnet,

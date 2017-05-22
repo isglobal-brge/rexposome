@@ -943,22 +943,6 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
     standardGeneric("mexwas")
 )
 
-#' Getter for raw model gnerated with mexwas
-#'
-#' @name raw
-#' @rdname raw-methods
-#' @aliases raw
-#' @param object An object of class \code{\link{mExWAS}}.
-#' @examples
-#' data("exposome")
-#' wt <- mexwas(expo[3:7, 1:100], phenotype = "asthma", family = "binomial")
-#' raw(wt)
-#' @return An object of class \code{\link{glmnet}}
-#' @export raw
-setGeneric("raw", function(object)
-    standardGeneric("raw")
-)
-
 
 # -----------------------------------------------------------------------------
 
@@ -979,6 +963,9 @@ setGeneric("raw", function(object)
 #' included into the test.
 #' @param family Family of the distribution followed by the health outcome to
 #' be tested (gaussian, bionomal, ... check \link{glm}).
+#' @param tef (default \code{TRUE}) If \code{TRUE} it computed the
+#' effective number of tests and the threhold for the effective
+#' number of tests. Usually it needs imputed data.
 #' @param ... NOT USED
 #' @param verbose (default \code{FALSE}) If set o true messages along the
 #' tests are shown.
@@ -1000,7 +987,7 @@ setGeneric("raw", function(object)
 #' @export exwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
-setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FALSE, warnings = TRUE)
+setGeneric("exwas", function(object, formula, filter, family, ..., tef = TRUE, verbose = FALSE, warnings = TRUE)
     standardGeneric("exwas")
 )
 
@@ -1014,7 +1001,11 @@ setGeneric("exwas", function(object, formula, filter, family, ..., verbose = FAL
 #' @rdname extract-methods
 #' @aliases extract
 #' @param object Object of class \link{ExWAS}.
-#' @param sort If set to \code{TRUE}, and available, results are sorted.
+#' @param type (default \code{"test"}) Used with \code{\link{mExWAS}} to
+#' retrive both test table when \code{"test"} of \code{glmnet} object when
+#' \code{"raw"}.
+#' @param sort (default \code{TRUE}) If set to \code{TRUE}, and available,
+#' results are sorted.
 #' @param ... NOT USED - ONLY FOR EXTENDED FUNCTIONALLITY
 #' @return A \code{data.frame} with the pvalues and other information from the
 #' association a integration studies of the exposures and phenotypes and

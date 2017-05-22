@@ -10,9 +10,14 @@ extract(object, sort = TRUE, ...)
 \arguments{
 \item{object}{Object of class \link{ExWAS}.}
 
-\item{sort}{If set to \code{TRUE}, and available, results are sorted.}
+\item{sort}{(default \code{TRUE}) If set to \code{TRUE}, and available,
+results are sorted.}
 
 \item{...}{NOT USED - ONLY FOR EXTENDED FUNCTIONALLITY}
+
+\item{type}{(default \code{"test"}) Used with \code{\link{mExWAS}} to
+retrive both test table when \code{"test"} of \code{glmnet} object when
+\code{"raw"}.}
 }
 \value{
 A \code{data.frame} with the pvalues and other information from the

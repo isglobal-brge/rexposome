@@ -6,20 +6,15 @@
 \alias{mExWAS}
 \alias{mExWAS-class}
 \alias{extract,mExWAS-method}
-\alias{raw,mExWAS-method}
 \alias{plotExwas,mExWAS-method}
 \title{Class mExWAS}
 \usage{
-\S4method{extract}{mExWAS}(object, sort = TRUE)
-
-\S4method{raw}{mExWAS}(object)
+\S4method{extract}{mExWAS}(object, type = "test", sort = TRUE)
 
 \S4method{plotExwas}{mExWAS}(object, ..., subtitles, color, exp.order,
   show.effective = TRUE)
 }
 \arguments{
-\item{object}{A \code{\link{mExWAS}} object.}
-
 \item{sort}{NOT USED}
 
 \item{...}{Other used arguments.}
@@ -37,8 +32,6 @@ Study".
 \section{Methods (by generic)}{
 \itemize{
 \item \code{extract}: Method to obtain the generated model
-
-\item \code{raw}: Method to obtain raw model
 
 \item \code{plotExwas}: Method to plot a heap-map with the coeficient of each
 exposure

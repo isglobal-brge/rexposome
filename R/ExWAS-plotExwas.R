@@ -104,8 +104,10 @@ setMethod(
                 ggplot2::facet_wrap(~fm) +
                 ggplot2::theme(legend.position = "bottom")
         }
-        if(show.effective) {
-            plt <- plt + ggplot2::geom_vline(xintercept = -log10(object@effective), colour="Brown")
+        if(object@effective != 0) {
+            if(show.effective) {
+                plt <- plt + ggplot2::geom_vline(xintercept = -log10(object@effective), colour="Brown")
+            }
         }
 
         return(plt)

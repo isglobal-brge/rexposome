@@ -17,8 +17,8 @@ source( "http://bioconductor.org/biocLite.R" )
 
 packages = c('Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR',
 	'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
-	'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
-	'grid', 'Hmisc', 'gplots', 'gtools', 'scales'
+	'scales', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
+	'grid', 'Hmisc', 'gplots', 'gtools', 'S4Vectors'
 )
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {

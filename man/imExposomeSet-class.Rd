@@ -30,7 +30,7 @@
 \S4method{extract}{imExposomeSet}(object, rid = -1, ...)
 
 \S4method{exwas}{imExposomeSet}(object, formula, filter, family, ...,
-  verbose = FALSE, warnings = TRUE)
+  tef = TRUE, verbose = FALSE, warnings = TRUE)
 
 \S4method{familyNames}{imExposomeSet}(object, by.exposure = FALSE)
 

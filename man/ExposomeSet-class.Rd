@@ -54,7 +54,7 @@
 \S4method{exposureNames}{ExposomeSet}(object)
 
 \S4method{exwas}{ExposomeSet}(object, formula, filter, family, ...,
-  verbose = FALSE, warnings = TRUE)
+  tef = TRUE, verbose = FALSE, warnings = TRUE)
 
 \S4method{familyNames}{ExposomeSet}(object, by.exposure = FALSE)
 
@@ -125,6 +125,8 @@ from clustering output}
 \item{filter}{Expression to be used to filter \code{\link{ExposomeSet}}}
 
 \item{family}{Family descriving the nature of the health outcome}
+
+\item{tef}{If \code{TRUE} it computed the threshold for effective tests.}
 
 \item{verbose}{If set to \code{TRUE} is shows messages on progression.}
 

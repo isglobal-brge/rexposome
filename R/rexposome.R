@@ -33,7 +33,6 @@
 #'
 #' @import Biobase
 #' @import utils
-#' @import mboost
 #'
 #' @importClassesFrom Biobase eSet
 # @importClassesFrom MultiDataSet MultiDataSet
@@ -53,13 +52,11 @@
 #' @importFrom ggplot2 scale_y_continuous scale_fill_brewer
 #' @importFrom reshape2 melt
 #' @importFrom pryr named_dots
-# @importFrom mboost gamboost extract
 #' @importFrom imputeLCMD impute.QRILC impute.MinProb
 #' @importFrom scatterplot3d scatterplot3d
 #' @importFrom glmnet cv.glmnet glmnet
 #' @importFrom grid viewport grid.newpage pushViewport grid.layout
 #' @importFrom gridExtra grid.arrange
-# @importFrom mice mice complete
 #' @importFrom Hmisc impute
 #' @importFrom gplots heatmap.2
 #' @importFrom gtools quantcut
@@ -71,4 +68,5 @@
 #' @importFrom stats AIC aggregate anova as.formula coef confint.default cor fitted
 #' @importFrom stats glm lm mad median predict sd shapiro.test update vcov
 #' @importFrom ggrepel geom_text_repel
+#' @importFrom base raw
 NULL
