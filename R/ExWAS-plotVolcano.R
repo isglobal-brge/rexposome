@@ -5,12 +5,12 @@
 #' equal to the number of families. The vector must be names with the
 #' name of the families.
 #' @param exp.order (optional) Order of the exposures.
-#' @param show.effective (default TRUE) draws a brown line on the
-#' threshold given by the effective number of tests.
+#' @param show.effect (default FALSE) Applyes an exponential
+#' transformation on the effects of the exposures.
 setMethod(
     f = "plotVolcano",
     signature = "ExWAS",
-    definition = function(x, p.value = -log10(0.001)) {
+    definition = function(x, p.value = -log10(0.001), show.effect = FALSE) {
         x <- extract(x)
         volcano_plot(
             pval = x$pvalue,
@@ -18,7 +18,7 @@ setMethod(
             names = rownames(x),
             tFC = NULL,
             tPV = p.value,
-            show.effect = FALSE
+            show.effect = show.effect
         ) + ggplot2::xlab("effect")
     }
 )

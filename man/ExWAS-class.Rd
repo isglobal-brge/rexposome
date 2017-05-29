@@ -20,7 +20,8 @@
 \S4method{plotExwas}{ExWAS}(object, ..., subtitles, color, exp.order,
   show.effective = TRUE)
 
-\S4method{plotVolcano}{ExWAS}(x)
+\S4method{plotVolcano}{ExWAS}(x, p.value = -log10(0.001),
+  show.effect = FALSE)
 
 \S4method{tef}{ExWAS}(object)
 }
@@ -50,6 +51,9 @@ name of the families.}
 \item{show.effective}{(default TRUE) draws a brown line on the
 threshold given by the effective number of tests.}
 
+\item{show.effect}{(default FALSE) Applyes an exponential
+transformation on the effects of the exposures.}
+
 \item{object}{An object of class \code{ExWAS}, \code{mExWAS} or \code{nlExWAS}.}
 
 \item{color}{(optional) A vector of colors. The vector must have length
@@ -57,9 +61,6 @@ equal to the number of families. The vector must be names with the
 name of the families.}
 
 \item{exp.order}{(optional) Order of the exposures.}
-
-\item{show.effective}{(default TRUE) draws a brown line on the
-threshold given by the effective number of tests.}
 }
 \value{
 An object of class \code{ExWAS}

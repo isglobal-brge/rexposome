@@ -1087,12 +1087,14 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 #' @aliases plotEffect
 #' @param x An \code{ExWAS} object which effect will be ploted.
 #' @param p.value (default \code{"-log10(0.001)") Threshold for P-Value.
+#' @param show.effect (default FALSE) Applyes an exponential
+#' transformation on the effects of the exposures.
 #' @export plotVolcano
 #' @seealso \code{\link{exwas}} as a constructor for \code{\link{ExWAS}}
 #' objects, \code{\link{extract}} to obtain a table with the result of
 #' the ExWAS, \code{\link{plotEffect}} to see or compare effects of
 #' one or two models.
-setGeneric("plotVolcano", function(x, p.value = -log10(0.001))
+setGeneric("plotVolcano", function(x, p.value = -log10(0.001), show.effect = FALSE)
     standardGeneric("plotVolcano")
 )
 

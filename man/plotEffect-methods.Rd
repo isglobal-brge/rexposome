@@ -7,7 +7,7 @@
 \usage{
 plotEffect(x, y, select, xlab, ylab)
 
-plotVolcano(x)
+plotVolcano(x, p.value = -log10(0.001), show.effect = FALSE)
 }
 \arguments{
 \item{x}{An \code{ExWAS} object which effect will be ploted.}
@@ -20,6 +20,9 @@ effects will be ploted in Y-axis.}
 \item{xlab}{(optional) Label for X-axis.}
 
 \item{ylab}{(optional) Label for Y-axis.}
+
+\item{show.effect}{(default FALSE) Applyes an exponential
+transformation on the effects of the exposures.}
 
 \item{x}{An \code{ExWAS} object which effect will be ploted.}
 }
