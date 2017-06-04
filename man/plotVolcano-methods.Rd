@@ -14,6 +14,9 @@ plotVolcano(x, p.value = -log10(0.001), show.effect = FALSE)
 \item{show.effect}{(default \code{FALSE}) Applyes an exponential
 transformation on the effects of the exposures.}
 }
+\value{
+An object of class \code{ggplot}.
+}
 \description{
 This function draws a sort of manhattan plots using the p-value of the
 association of the exposures with phenotypes of an \code{ExWAS} object.
