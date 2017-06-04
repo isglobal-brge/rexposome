@@ -33,7 +33,7 @@ setMethod(
         mtrc <- data.frame(t(assayDataElement(object, "exp")))
         #sel <- c()
         for(ex in colnames(mtrc)) {
-            if(fData(object)[ex, "_type"] == "factor") {
+            if(fData(object)[ex, ".type"] == "factor") {
                 # if(length(unique(mtrc[ , ex])) > 2) {
                 #     if(warnings) {
                 #       warning("Exposure '", ex, "' will be droped to be multicategorical.")
@@ -71,9 +71,9 @@ setMethod(
     # }
 
     xx <- do.call(rbind, lapply(colnames(mtrc), function(ex_i) {
-        ty_i <- fData(object)[ex_i, "_type"]
+        ty_i <- fData(object)[ex_i, ".type"]
         yy <- sapply(colnames(mtrc), function(ex_j) {
-            ty_j <- fData(object)[ex_j, "_type"]
+            ty_j <- fData(object)[ex_j, ".type"]
 
             if(ty_i == "numeric" & ty_j == "numeric") {
                 # Both exposures are numeric

@@ -109,8 +109,8 @@ setClass(
   representation = representation(
     effective = "numeric",
     formula = "formula",
-    comparison = "data.frame",
-    description = "data.frame"
+    comparison = "DataFrame",
+    description = "DataFrame"
   )
 )
 
@@ -139,7 +139,7 @@ setClass(
     representation = representation(
         result = "list", # fit
         phenotype = "character",
-        description = "data.frame"
+        description = "DataFrame"
     )
 )
 
@@ -199,8 +199,8 @@ setClass(
     Class = "imExposomeSet",
     representation = representation(
         nimputation = "numeric",
-        assayData = "data.frame",
-        featureData = "data.frame",
-        phenoData = "data.frame"
+        assayData = "DataFrame",
+        featureData = "DataFrame",
+        phenoData = "DataFrame"
     )
 )

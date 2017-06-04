@@ -1,12 +1,9 @@
-#' @describeIn ExWAS Method to plot a manhatan plot for association between
-#' exposures and phenitypes
-#' @param object An object of class \code{ExWAS}, \code{mExWAS} or \code{nlExWAS}.
-#' @param color (optional) A vector of colors. The vector must have length
-#' equal to the number of families. The vector must be names with the
-#' name of the families.
-#' @param exp.order (optional) Order of the exposures.
-#' @param show.effect (default FALSE) Applyes an exponential
-#' transformation on the effects of the exposures.
+#' @describeIn ExWAS Method to plot a volcano plot for association between
+#' exposures and phenotypes
+#' @param p.value (default \code{-log10(0.001)}) Is the threshold from where
+#' the exposures can be taken as significants.
+#' @param show.effect (default \code{false}) Apply \code{exp} to obtained
+#' beta.
 setMethod(
     f = "plotVolcano",
     signature = "ExWAS",

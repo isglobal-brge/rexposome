@@ -19,7 +19,7 @@ setMethod(
         colnames(dta) <- c("id", "exposure", "value")
 
 
-        if(fData(x)[select, "_type"] == "numeric") {
+        if(fData(x)[select, ".type"] == "numeric") {
             if(show.trans) {
                 dta$exp <- exp(dta$value)
                 dta$log <- log(dta$value)

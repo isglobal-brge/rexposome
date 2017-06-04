@@ -7,8 +7,6 @@ setMethod(
     f = "imputation",
     signature = "ExposomeSet",
     definition = function(object, select, ..., messages = FALSE) {
-        #ssystem <- match.arg(ssystem, c("mice", "hmisc"))
-        ssystem <- "hmisc"
 
         if(missing(select)) {
             select <- exposureNames(object)
@@ -20,15 +18,8 @@ setMethod(
 
         dta <- as.data.frame(t(assayData(object)[["exp"]][select, ]))
 
-        if(ssystem == "mice") {
-            # imp <- mice::mice(dta, printFlag = messages, ...)
-            # fData(object)$`_imp` <- imp$method
-            # imp <- mice::complete(imp)
-
-        } else { #hmisc
-            imp <- apply(dta, 2, function(row) { Hmisc::impute(row, ...)})
-            fData(object)$`_imp` <- "hmisc"
-        }
+        imp <- apply(dta, 2, function(row) { Hmisc::impute(row, ...)})
+        fData(object)$`.imp` <- "hmisc"
 
         select.no <- exposureNames(object)[!exposureNames(object) %in% select]
 

@@ -4,7 +4,7 @@ setMethod(
     signature = "ExposomeSet",
     definition = function(object) {
         ms <- data.frame(t(assayDataElement(object, "exp")))
-        type <- fData(object)[colnames(ms), "_type"]
+        type <- fData(object)[colnames(ms), ".type"]
         for(ii in 1:length(type)) {
             if(type[ii] == "numeric") {
                 ms[ , ii] <- as.numeric(ms[ , ii])

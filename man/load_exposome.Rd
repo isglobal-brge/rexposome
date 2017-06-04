@@ -54,12 +54,12 @@ in description \code{data.frame}.
 }
 \note{
 \link{ExposomeSet}'s \code{fData} will contain two inner columns called
-\code{_std}, \code{_trn}, \code{_fct} and \code{_type} in order to trace the
+\code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to trace the
 transformations an exposure suffers and to know, at eny moment, if an
 exposure is categorical or continuous. The "description" file can contains a
 column called \code{type} with values \code{"factor"} and \code{"numeric"}
 to speficy how an exposure needs to be understood. If given, this column
-will be renamed to \code{_type}. If not given, it will be created using
+will be renamed to \code{.type}. If not given, it will be created using
 \code{exposures.asFactor} value.
 }
 \examples{

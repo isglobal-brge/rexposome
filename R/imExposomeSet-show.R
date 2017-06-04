@@ -4,8 +4,8 @@ setMethod(
     definition = function(object) {
         cat("Object of class 'imExposomeSet'\n", sep="")
         cat(" . exposures description:\n")
-        cat("    . categorical: ", sum(fData(object)$`_type` == "factor"), "\n")
-        cat("    . continuous: ", sum(fData(object)$`_type` == "numeric"), "\n")
+        cat("    . categorical: ", sum(fData(object)$`.type` == "factor"), "\n")
+        cat("    . continuous: ", sum(fData(object)$`.type` == "numeric"), "\n")
 
         ni <- unique(pData(object)$`.imp`)
         if(0 %in% ni) {

@@ -29,6 +29,10 @@ library(rexposome)
 library(mice)
 ```
 
+```{r library2, echo=FALSE, message=FALSE}
+library(psygenet2r)
+```
+
 The we load the `txt` files includes in `rexposome` package so we can load the exposures and see the amount of missing data (check vignette *Exposome Data Analysis* for more information). 
 
 The following lines locates where the `txt` files were installed.

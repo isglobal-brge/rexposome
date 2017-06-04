@@ -186,12 +186,3 @@ de
   }
   return(invisible())
 }
-
-#' @describeIn ExposomeSet Wrapper for \code{plotFamily} method.
-setMethod(
-    f = "plot",
-    signature = c("ExposomeSet", "ANY"),
-    definition = function(x, y, ...) {
-        plotFamily(x, ...)
-    }
-)

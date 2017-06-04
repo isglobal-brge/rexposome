@@ -13,9 +13,9 @@ setMethod(
             rownames(ee) <- ee[ , 1]
             rownames(pp) <- pp[ , 1]
             load_exposome(
-                exposures = ee[ , -1],
-                description = object@featureData[ , -ncol(object@featureData)],
-                phenotype = pp[ , -1]
+                exposures = as.data.frame(ee[ , -1]),
+                description = as.data.frame(object@featureData[ , -ncol(object@featureData)]),
+                phenotype = as.data.frame(pp[ , -1])
             )
         } else {
             stop("'rid' sould be larger or equall to 1.")

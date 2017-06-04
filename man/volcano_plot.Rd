@@ -34,8 +34,7 @@ Function that takes two numeric vectors (P-Value and fold change)
 and draws a volcano plot using \link{ggplot2}
 }
 \examples{
-data(gexp_r)
-data(exp_r)
-rst <- topTable(assocES(exp_r, gexp_r, formula=~sex+age, select="Cd"))
-volcano_plot(rst$P.Value, rst$logFC, rownames(rst))
+data(exposome)
+w1 <- extract(exwas(expo[1:20, ], asthma~1, family = "binomial"))
+volcano_plot(w1$pvalue, w1$effect, rownames(w1))
 }

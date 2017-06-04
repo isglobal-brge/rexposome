@@ -1,6 +1,6 @@
 #' @describeIn ExWAS Draws a plot with the confidence interval of each
 #' exposure. Alows to compare two ExWAS instances.
-#' @param x An \code{\link{ExWAS}} object
+# @param x An \code{\link{ExWAS}} object
 #' @param y An \code{\link{ExWAS}} object
 #' @param select (optional) Vector with the selected exposures
 #' @param xlab (optional) Label for x-axis
@@ -21,10 +21,10 @@ setMethod(
                     stop("Selected exposures are not in given ExWAS")
                 }
             }
-            ggplot2::ggplot(x[select, ], ggplot2::aes_string(x = "effect", y = "exposure")) +
+            ggplot2::ggplot(as.data.frame(x[select, ]), ggplot2::aes_string(x = "effect", y = "exposure")) +
                 ggplot2::geom_point(shape=18, size=5, color="gray60") +
                 ggplot2::geom_errorbarh(ggplot2::aes_string(xmin = "minE", xmax = "maxE")) +
-                ggplot2::theme_bw(base_size = 17) +
+                ggplot2::theme_bw() +
                 ggplot2::theme(
                     panel.grid.major = ggplot2::element_line(color = "WhiteSmoke", size = 0.3, linetype = "dashed"),
                     panel.grid.minor = ggplot2::element_line(color = "gray40", size = 0.3, linetype = "dashed")
@@ -64,7 +64,7 @@ setMethod(
                 ylab <- paste(ylab[2], "~", paste(ylab[3:length(ylab)], collapse=" + "), collapse=" ")
             }
 
-            ggplot2::ggplot(z[select, ], ggplot2::aes_string(x = "effect.x", y = "effect.y")) +
+            ggplot2::ggplot(as.data.frame(z[select, ]), ggplot2::aes_string(x = "effect.x", y = "effect.y")) +
                 ggplot2::geom_point(shape=18, size=5, color="gray60") +
                 ggplot2::theme_bw(base_size = 17) +
                 ggplot2::geom_errorbar(ggplot2::aes_string(ymin = "minE.y", ymax = "maxE.y")) +

@@ -27,7 +27,7 @@ setMethod(
 
 .summary_exposures <- function(object, select) {
     exposome <- expos(object)[ , select, drop=FALSE]
-    type <- fData(object)[select, "_type"]
+    type <- fData(object)[select, ".type"]
     for(ii in 1:length(type)) {
         exposome[, ii] <- switch (type[ii],
             numeric = as.numeric(as.character(exposome[, ii])),

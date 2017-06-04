@@ -131,6 +131,10 @@ In summary: All the exposures, rows, in the *description data* file are columns 
 library(rexposome)
 ```
 
+```{r library2, echo=FALSE, message=FALSE}
+library(psygenet2r)
+```
+
 `rexposome` provides two functions to load the *exposome* data: `read_exposome` and `load_exposome`. The function `read_exposome` will load the exposome data from txt files and `load_exposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
 
 ## Loading Exposome Data
@@ -527,6 +531,13 @@ plotExwas(fl_ew, we_ew, color = clr) +
       ggtitle("Exposome Association Study - Univariate Approach")
 
 ```
+
+Then a plot for the effects of a given model can be obtained with `plotEffect`:
+
+```{r exwas_effect_plot, warning=FALSE, fig.width=6, fig.height=16, message=FALSE}
+plotEffect(fl_ew)
+```
+
 
 ### Multivariate Exposome Analysis
 

@@ -20,11 +20,11 @@ setMethod(
 
         ## SELECT NUMERICAL EXPOSURES
         if(missing(select)) {
-            select.all <- fData(object)[ , "_type"]
+            select.all <- fData(object)[ , ".type"]
             names(select.all) <- exposureNames(object)
             select <- names(select.all[select.all == "numeric"])
         } else {
-            select.all <- fData(object)[ , "_type"]
+            select.all <- fData(object)[ , ".type"]
             names(select.all) <- exposureNames(object)
             if(sum(select.all[select] == "numeric") != length(select)) {
                 stop("Exposures in 'select' are not numerical.")
@@ -64,8 +64,8 @@ setMethod(
             )
 
             nfData <- fData(object)
-            nfData[select, "_type"] <- "factor"
-            nfData[select, "_fct"] <- trs
+            nfData[select, ".type"] <- "factor"
+            nfData[select, ".fct"] <- trs
             fData(object) <- nfData
 
         } else {
@@ -82,8 +82,8 @@ setMethod(
 
             nfData <- fData(object)[select, ]
             rownames(nfData) <- colnames(data.dst)
-            nfData[ , "_type"] <- "factor"
-            nfData[ , "_fct"] <- trs
+            nfData[ , ".type"] <- "factor"
+            nfData[ , ".fct"] <- trs
             fData(object) <- rbind(fData(object), nfData)
         }
         object

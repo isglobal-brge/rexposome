@@ -81,7 +81,7 @@ load_imputed <- function(data, description, description.famCol = 1,
     ## ------------------------------------------------------------------------
 
 
-    ## Need to create and fill _type of description
+    ## Need to create and fill .type of description
     if("type" %in% colnames(description)) {
         if(warnings) {
             warning("Fund colnames 'type' in description file. It will be ",
@@ -93,10 +93,10 @@ load_imputed <- function(data, description, description.famCol = 1,
             stop("In 'type' column of description file only 'factor' or ",
                  "'numeric' calues can be used.")
         }
-        description$`_type` <- description$type
+        description$`.type` <- description$type
         description <- description[ , -which(colnames(description) == "type"), drop=FALSE]
     } else {
-        description$`_type` <- sapply(rownames(description), function(ex) {
+        description$`.type` <- sapply(rownames(description), function(ex) {
             ifelse(length(unique(exposures[ , ex])) > exposures.asFactor, "numeric", "factor")
         })
     }
@@ -107,9 +107,9 @@ load_imputed <- function(data, description, description.famCol = 1,
     ## Create and validate ExposomeSet
     exposome <- new("imExposomeSet",
                     nimputation = length(unique(exposures[, 1])) - 1,
-                    assayData = exposures,
-                    phenoData = phenotypes,
-                    featureData = description
+                    assayData = S4Vectors::DataFrame(exposures),
+                    phenoData = S4Vectors::DataFrame(phenotypes),
+                    featureData = S4Vectors::DataFrame(description)
     )
 
     return(exposome)

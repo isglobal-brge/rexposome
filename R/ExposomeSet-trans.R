@@ -31,9 +31,9 @@ setMethod(
                                       raw = assayDataElement(object, "raw"),
                                       exp = t(data.dst)[rownames(assayDataElement(object, "raw")), ])
     tryCatch({
-        fData(object)[select, "_trn"] <- as.character(substitute(fun))
+        fData(object)[select, ".trn"] <- as.character(substitute(fun))
     }, error=function(e) {
-        fData(object)[select, "_trn"] <- "unknown"
+        fData(object)[select, ".trn"] <- "unknown"
     })
 
     return(object)

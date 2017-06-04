@@ -67,7 +67,7 @@ setMethod(
 
         new("ExWAS",
             effective = alpha_corrected,
-            comparison = items,
+            comparison = S4Vectors::DataFrame(items),
             description = fData(object),
             formula = formula
         )

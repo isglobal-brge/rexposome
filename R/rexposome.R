@@ -35,7 +35,7 @@
 #' @import utils
 #'
 #' @importClassesFrom Biobase eSet
-# @importClassesFrom MultiDataSet MultiDataSet
+#' @importClassesFrom S4Vectors DataFrame
 #'
 #' @importFrom lsr cramersV
 #' @importFrom FactoMineR PCA
@@ -68,4 +68,5 @@
 #' @importFrom stats AIC aggregate anova as.formula coef confint.default cor fitted
 #' @importFrom stats glm lm mad median predict sd shapiro.test update vcov IQR qnorm
 #' @importFrom ggrepel geom_text_repel
+#' @importFrom psygenet2r extract
 NULL

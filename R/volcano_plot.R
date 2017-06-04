@@ -16,17 +16,16 @@
 #' will should \code{2^logFC} instead to teh default \code{logFC}.
 #' @return A \code{ggplot} object
 #' @examples
-#' data(gexp_r)
-#' data(exp_r)
-#' rst <- topTable(assocES(exp_r, gexp_r, formula=~sex+age, select="Cd"))
-#' volcano_plot(rst$P.Value, rst$logFC, rownames(rst))
+#' data(exposome)
+#' w1 <- extract(exwas(expo[1:20, ], asthma~1, family = "binomial"))
+#' volcano_plot(w1$pvalue, w1$effect, rownames(w1))
 #' @export
 volcano_plot <- function(pval, fc, names, size=2, tFC=2, tPV=-log10(0.001),
                          show.effect=FALSE) {
     if(missing(names)) {
         names <- names(pval)
     }
-    dta <- data.frame(P.Value=pval, FC=fc, names, clr="gray87", alp=0.2, stringsAsFactors=FALSE)
+    dta <- data.frame(P.Value=pval, FC=fc, names, clr="gray87", alp=0.5, stringsAsFactors=FALSE)
     dta$PV <- -log10(dta$P.Value)
     dta$feature <- rownames(dta)
 
@@ -36,11 +35,11 @@ volcano_plot <- function(pval, fc, names, size=2, tFC=2, tPV=-log10(0.001),
 
     if(!is.null(tPV)) {
         dta$clr[dta$PV >= tPV] <- "tan3"
-        dta$alp[dta$PV >= tPV] <- 0.4
+        dta$alp[dta$PV >= tPV] <- 0.7
     }
     if(!is.null(tFC)) {
         dta$clr[abs(dta$FC) >= tFC] <- "olivedrab"
-        dta$alp[abs(dta$FC) >= tFC] <- 0.4
+        dta$alp[abs(dta$FC) >= tFC] <- 0.7
     }
 
     if(!is.null(tPV) & !is.null(tFC)) {
@@ -51,9 +50,10 @@ volcano_plot <- function(pval, fc, names, size=2, tFC=2, tPV=-log10(0.001),
     clrvalues <- c("gray87", "tan3", "olivedrab", "lightskyblue")
     names(clrvalues) <- c("gray87", "tan3", "olivedrab", "lightskyblue")
 
-    plt <- ggplot2::ggplot(dta, ggplot2::aes_string(x="FC", y="PV", color="clr", fill="clr", alpha="alp")) +
+    dta2 <<- dta
+    plt <- ggplot2::ggplot(dta, ggplot2::aes_string(x="FC", y="PV", color="clr", fill="clr")) +
         ggplot2::theme_bw() +
-        ggplot2::geom_point() +
+        ggplot2::geom_point(alpha=1) +
         ggplot2::scale_colour_manual(values=clrvalues) +
         ggplot2::ylab(expression(-log[10](P-Value))) +
         ggplot2::theme(legend.position="none")

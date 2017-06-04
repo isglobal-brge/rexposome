@@ -13,10 +13,10 @@ setMethod(
             featureData = featureData(object)
         )
 
-        fData(exposome)$`_fct` <- ""
-        fData(exposome)$`_trn` <- ""
-        fData(exposome)$`_std` <- ""
-        fData(exposome)$`_imp` <- ""
+        fData(exposome)$`.fct` <- ""
+        fData(exposome)$`.trn` <- ""
+        fData(exposome)$`.std` <- ""
+        fData(exposome)$`.imp` <- ""
 
         validObject(exposome)
 

@@ -991,35 +991,6 @@ setGeneric("exwas", function(object, formula, filter, family, ..., tef = TRUE, v
     standardGeneric("exwas")
 )
 
-#' Function to extract the results of the association and integration
-#' studies.
-#'
-#' Method \code{extract} can be applied to \link{ExWAS} objects to obtain a
-#' table with the results of the association studies.
-#'
-#' @name extract
-#' @rdname extract-methods
-#' @aliases extract
-#' @param object Object of class \link{ExWAS}.
-#' @param type (default \code{"test"}) Used with \code{\link{mExWAS}} to
-#' retrive both test table when \code{"test"} of \code{glmnet} object when
-#' \code{"raw"}.
-#' @param sort (default \code{TRUE}) If set to \code{TRUE}, and available,
-#' results are sorted.
-#' @param ... NOT USED - ONLY FOR EXTENDED FUNCTIONALLITY
-#' @return A \code{data.frame} with the pvalues and other information from the
-#' association a integration studies of the exposures and phenotypes and
-#' exposures and omics data.
-#' @examples
-#' data(exposome)
-#' w1 <- exwas(expo[1:5, ], asthma~1, family = "binomial")
-#' extract(w1)
-#' @export extract
-#' @seealso \link{ExWAS}
-setGeneric("extract", function(object, sort = TRUE, ...)
-    standardGeneric("extract")
-)
-
 #' Function to draw a plot of the pvalues stored in an \code{ExWAS} object
 #'
 #' This function draws a sort of manhattan plots using the p-value of the
@@ -1082,12 +1053,12 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 #' This function draws a sort of manhattan plots using the p-value of the
 #' association of the exposures with phenotypes of an \code{ExWAS} object.
 #'
-#' @name plotEffect
-#' @rdname plotEffect-methods
-#' @aliases plotEffect
+#' @name plotVolcano
+#' @rdname plotVolcano-methods
+#' @aliases plotVolcano
 #' @param x An \code{ExWAS} object which effect will be ploted.
-#' @param p.value (default \code{"-log10(0.001)") Threshold for P-Value.
-#' @param show.effect (default FALSE) Applyes an exponential
+#' @param p.value (default \code{"-log10(0.001)"}) Threshold for P-Value.
+#' @param show.effect (default \code{FALSE}) Applyes an exponential
 #' transformation on the effects of the exposures.
 #' @export plotVolcano
 #' @seealso \code{\link{exwas}} as a constructor for \code{\link{ExWAS}}

@@ -1,6 +1,8 @@
 #' @describeIn ExWAS Method to plot a manhatan plot for association between
 #' exposures and phenitypes
 #' @param object An object of class \code{ExWAS}, \code{mExWAS} or \code{nlExWAS}.
+#' @param subtitles Character vector with the "subtitle" for each plot when
+#' given more than one \code{ExWAS}.
 #' @param color (optional) A vector of colors. The vector must have length
 #' equal to the number of families. The vector must be names with the
 #' name of the families.
@@ -79,7 +81,7 @@ setMethod(
         }
 
         if(!multiple) {
-            plt <- ggplot2::ggplot(tbl, ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
+            plt <- ggplot2::ggplot(as.data.frame(tbl), ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
                 ggplot2::geom_point() +
                 ggplot2::theme_minimal() +
                 ggplot2::theme(panel.spacing = ggplot2::unit(0.5, 'lines'),
@@ -91,7 +93,7 @@ setMethod(
                     values = colorPlte) +
                 ggplot2::theme(legend.position = "right")
         } else {
-            plt <- ggplot2::ggplot(tbl, ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
+            plt <- ggplot2::ggplot(as.data.frame(tbl), ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
                 ggplot2::geom_point() +
                 ggplot2::theme_minimal() +
                 ggplot2::theme(panel.spacing = ggplot2::unit(0.5, 'lines'),

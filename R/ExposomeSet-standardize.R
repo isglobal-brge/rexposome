@@ -10,15 +10,15 @@ setMethod(
         }
         select.no <- exposureNames(object)[!exposureNames(object) %in% select]
 
-        if(sum(fData(object)[select, "_type"] == "factor") != 0) {
+        if(sum(fData(object)[select, ".type"] == "factor") != 0) {
             if(warnings) {
                 warning("Given categorical exposures.")
             }
             select.no <- c(select.no,
-                select[fData(object)[select, "_type"] == "factor"]
+                select[fData(object)[select, ".type"] == "factor"]
             )
             select <- select[
-                fData(object)[select, "_type"] != "factor"
+                fData(object)[select, ".type"] != "factor"
             ]
         }
 
@@ -50,7 +50,7 @@ setMethod(
         assayData(object) <- assayDataNew("environment",
                                           raw = assayDataElement(object, "raw"),
                                           exp = t(dd)[rownames(assayDataElement(object, "raw")), ])
-        fData(object)[select, "_std"] <- method
+        fData(object)[select, ".std"] <- method
 
         return(object)
       }

@@ -42,12 +42,12 @@
 #' is specified.
 #' @return An object of class \link{ExposomeSet}.
 #' @note \link{ExposomeSet}'s \code{fData} will contain two inner columns called
-#' \code{_std}, \code{_trn}, \code{_fct} and \code{_type} in order to trace the
+#' \code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to trace the
 #' transformations an exposure suffers and to know, at eny moment, if an
 #' exposure is categorical or continuous. The "description" file can contains a
 #' column called \code{type} with values \code{"factor"} and \code{"numeric"}
 #' to speficy how an exposure needs to be understood. If given, this column
-#' will be renamed to \code{_type}. If not given, it will be created using
+#' will be renamed to \code{.type}. If not given, it will be created using
 #' \code{exposures.asFactor} value.
 #' @examples
 #' ## Locate the data-files
@@ -100,29 +100,29 @@ read_exposome <- function(exposures, description, phenotype,
 
     ## Check for inner names on description
     ##   description cannot contain _status nor _type
-    if("_std" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '_std' as name of a column. ",
-             "Name '_std' cannot be used in 'ExposmeSet'.")
+    if(".std" %in% colnames(desc)) {
+        stop("Given descriptiion dat contains '.std' as name of a column. ",
+             "Name '.std' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_trn" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '_trn' as name of a column. ",
-             "Name '_trn' cannot be used in 'ExposmeSet'.")
+    if(".trn" %in% colnames(desc)) {
+        stop("Given descriptiion dat contains '.trn' as name of a column. ",
+             "Name '.trn' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_fct" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '_fct' as name of a column. ",
-             "Name '_fct' cannot be used in 'ExposmeSet'.")
+    if(".fct" %in% colnames(desc)) {
+        stop("Given descriptiion dat contains '.fct' as name of a column. ",
+             "Name '.fct' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_imp" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '_imp' as name of a column. ",
-             "Name '_imp' cannot be used in 'ExposmeSet'.")
+    if(".imp" %in% colnames(desc)) {
+        stop("Given descriptiion dat contains '.imp' as name of a column. ",
+             "Name '.imp' cannot be used in 'ExposmeSet'.")
     }
 
-    if("_type" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '_type' as name of a column. ",
-             "Name '_type' cannot be used in 'ExposmeSet'.")
+    if(".type" %in% colnames(desc)) {
+        stop("Given descriptiion dat contains '.type' as name of a column. ",
+             "Name '.type' cannot be used in 'ExposmeSet'.")
     }
     ## ------------------------------------------------------------------------
 
@@ -153,10 +153,10 @@ read_exposome <- function(exposures, description, phenotype,
     ## ------------------------------------------------------------------------
 
     ## Need to create _status
-    desc$`_fct` <- ""
-    desc$`_trn` <- ""
-    desc$`_std` <- ""
-    desc$`_imp` <- ""
+    desc$`.fct` <- ""
+    desc$`.trn` <- ""
+    desc$`.std` <- ""
+    desc$`.imp` <- ""
     ## ------------------------------------------------------------------------
 
     ## Need to create and fill _type of description
@@ -171,7 +171,7 @@ read_exposome <- function(exposures, description, phenotype,
             stop("In 'type' column of description file only 'factor' or ",
                  "'numeric' calues can be used.")
         }
-        desc$`_type` <- desc$type
+        desc$`.type` <- desc$type
         desc <- desc[ , -which(colnames(desc) == "type"), drop=FALSE]
     } else {
         desc$`_type` <- sapply(rownames(desc), function(ex) {
