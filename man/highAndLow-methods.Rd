@@ -50,7 +50,8 @@ dim(expo)
 #         3 factored exposures
 
 # Drop
-exp.hl <- highAndLow(expo, intervals = "standard", select = "ldde_lip", drop = TRUE)
+exp.hl <- highAndLow(expo, intervals = "standard",
+    select = "ldde_lip", drop = TRUE)
 dim(exp.hl)
 # exposures   samples phenotyes
 #       104      1200         4

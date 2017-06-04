@@ -69,4 +69,5 @@
 #' @importFrom stats glm lm mad median predict sd shapiro.test update vcov IQR qnorm
 #' @importFrom ggrepel geom_text_repel
 #' @importFrom psygenet2r extract
+#' @importFrom methods Summary
 NULL

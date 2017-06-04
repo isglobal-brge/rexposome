@@ -51,6 +51,7 @@ setMethod(
 )
 
 #' @describeIn imExposomeSet Wrapper for \code{plotFamily} method.
+#' @param y NOT USED
 setMethod(
     f = "plot",
     signature = c("imExposomeSet", "ANY"),

@@ -43,7 +43,7 @@ setMethod(
         if(intervals == "extreme") {
             lapply(colnames(data.dst), function(exp) {
                 lvl <- levels(data.dst[ , exp])
-                data.dst[!(data.dst[ , exp] %in% c(max(lvl), min(lvl))) , exp] <<- NA
+                data.dst[!(data.dst[ , exp] %in% c(max(lvl), min(lvl))) , exp] <- NA
             })
             trs <- "EXT"
         } else {

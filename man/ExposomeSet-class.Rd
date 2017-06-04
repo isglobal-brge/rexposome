@@ -96,8 +96,8 @@
 \S4method{standardize}{ExposomeSet}(object, select, method = "normal",
   na.rm = TRUE, warnings = TRUE)
 
-\S4method{Summary}{ExposomeSet}(object, set = c("exposures", "phenotypes"),
-  select)
+\S4method{Summary}{ExposomeSet}(x, set = c("exposures", "phenotypes"), select,
+  ..., na.rm = FALSE)
 
 \S4method{tableLOD}{ExposomeSet}(object, output = "n", lod.col = "LOD",
   sort = TRUE)

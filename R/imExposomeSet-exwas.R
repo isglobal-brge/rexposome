@@ -9,7 +9,8 @@
 setMethod(
     f = "exwas",
     signature = "imExposomeSet",
-    definition = function(object, formula, filter, family, ..., verbose = FALSE, warnings = TRUE) {
+    definition = function(object, formula, filter, family, ..., tef = TRUE,
+                          verbose = FALSE, warnings = TRUE) {
         dta <- data.frame(expos(object), pData(object)[ , -c(1:2)])
         dta <- dta[dta$`.imp` != 0, ]
         dta <- dta[ , -2]
@@ -24,8 +25,10 @@ setMethod(
         }
 
         form <- as.character(formula)
+
         ne <- c()
-        items <- lapply(exposureNames(object), function(ex) {
+        items <- list()
+        for(ex in exposureNames(object)) {
             if(verbose) {
                 message("Processing '", ex, "'.")
             }
@@ -40,12 +43,33 @@ setMethod(
                 })
                 tst <- pool_glm(fit_glm, m = object@nimputation)
 
-                return(summary(tst)[2, c(1, 6, 7, 5)])
+                items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
             }, error = function(e) {
-                ne <<- c(ne, ex)
-                return(c(NULL, NULL, NULL, NULL))
+                ne <- c(ne, ex)
+                items[[ex]] <- c(NULL, NULL, NULL, NULL)
             })
-        })
+        }
+        # items <- lapply(exposureNames(object), function(ex) {
+        #     if(verbose) {
+        #         message("Processing '", ex, "'.")
+        #     }
+        #
+        #     frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
+        #
+        #     tryCatch({
+        #         ## TEST
+        #         fit_glm <- lapply(1:object@nimputation, function(ii) {
+        #             dtai <- dta[dta[, 1] == ii, -1]
+        #             stats::glm(family=family, formula = frm, data = dtai)
+        #         })
+        #         tst <- pool_glm(fit_glm, m = object@nimputation)
+        #
+        #         return(summary(tst)[2, c(1, 6, 7, 5)])
+        #     }, error = function(e) {
+        #         ne <<- c(ne, ex)
+        #         return(c(NULL, NULL, NULL, NULL))
+        #     })
+        # })
 
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
@@ -56,13 +80,17 @@ setMethod(
         rownames(items) <- exposureNames(object)
 
         ## Compute the threshold for effective tests
-        cormat <- extract(correlation(toES(object, rid=1),
-            use="pairwise.complete.obs", method.cor = "pearson"))
-        M <- ncol(cormat)
-        lambdas <- base::eigen(cormat)$values
-        Vobs <- sum(((lambdas - 1)^2)) / (M - 1)
-        Meff <- M - sum((lambdas>1)*(lambdas-1))
-        alpha_corrected <- 1 - (1 - 0.05)^(1 / Meff)
+        if(tef) {
+            cormat <- extract(correlation(toES(object, rid=1),
+                use="pairwise.complete.obs", method.cor = "pearson"))
+            M <- ncol(cormat)
+            lambdas <- base::eigen(cormat)$values
+            Vobs <- sum(((lambdas - 1)^2)) / (M - 1)
+            Meff <- M - sum((lambdas>1)*(lambdas-1))
+            alpha_corrected <- 1 - (1 - 0.05)^(1 / Meff)
+        } else {
+            alpha_corrected <- -1
+        }
         ## /
 
         new("ExWAS",

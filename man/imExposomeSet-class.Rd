@@ -49,6 +49,8 @@
 \arguments{
 \item{x}{An \code{\link{imExposomeSet}} object.}
 
+\item{y}{NOT USED}
+
 \item{...}{Other used arguments}
 
 \item{object}{An object of class \code{\link{imExposomeSet}}}

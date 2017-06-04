@@ -23,6 +23,14 @@
 \item{...}{Other used arguments.}
 
 \item{sort}{NOT USED}
+
+\item{subtitles}{NOT USED}
+
+\item{color}{NOT USED}
+
+\item{exp.order}{NOT USED}
+
+\item{show.effective}{NOT USED}
 }
 \value{
 An object of class \code{mExWAS}

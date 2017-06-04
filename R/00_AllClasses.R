@@ -19,13 +19,13 @@
 #' from \code{data.frames}
 #' @return An object of class \code{ExposomeSet}
 setClass(
-  Class = "ExposomeSet",
-  contains = "eSet",
-  prototype = prototype(
-    new("VersionedBiobase",
-        versions = c(classVersion("eSet"), ExposomeSet = "1.0.0")
+    Class = "ExposomeSet",
+    contains = "eSet",
+    prototype = prototype(
+        new("VersionedBiobase",
+            versions = c(classVersion("eSet"), ExposomeSet = "1.0.0")
+        )
     )
-  )
 )
 
 #' Class ExposomeCorr
@@ -48,8 +48,8 @@ setClass(
 #' and exposures in an \code{\link{ExposomeSet}}
 #' @return An object of class \code{ExposomeCorr}
 setClass(
-  Class = "ExposomeCorr",
-  contains = "eSet"
+    Class = "ExposomeCorr",
+    contains = "eSet"
 )
 
 #' Class ExposomePCA
@@ -105,13 +105,13 @@ setClass(
 #' \code{\link{mExWAS}}
 #' @return An object of class \code{ExWAS}
 setClass(
-  Class = "ExWAS",
-  representation = representation(
-    effective = "numeric",
-    formula = "formula",
-    comparison = "DataFrame",
-    description = "DataFrame"
-  )
+    Class = "ExWAS",
+    representation = representation(
+        effective = "numeric",
+        formula = "formula",
+        comparison = "DataFrame",
+        description = "DataFrame"
+    )
 )
 
 #' Class mExWAS
@@ -161,14 +161,14 @@ setClass(
 #' \code{\link{ExposomeSet}} and create an \code{\link{ExposomeClust}}.
 #' @return An object of class \code{ExposomeClust}
 setClass(
-  Class = "ExposomeClust",
-  contains = "ExposomeSet",
-  representation = representation(
-    model = "list",
-    method = "character",
-    call = "character",
-    samples = "character"
-  )
+    Class = "ExposomeClust",
+    contains = "ExposomeSet",
+    representation = representation(
+        model = "list",
+        method = "character",
+        call = "character",
+        samples = "character"
+    )
 )
 
 

@@ -1,5 +1,9 @@
 #' @describeIn mExWAS Method to plot a heap-map with the coeficient of each
 #' exposure
+#' @param subtitles NOT USED
+#' @param color NOT USED
+#' @param exp.order NOT USED
+#' @param show.effective NOT USED
 #' @param ... Other used arguments.
 setMethod(
     f = "plotExwas",

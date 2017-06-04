@@ -87,26 +87,26 @@ setGeneric("expos", function(object)
 )
 
 
-#' Summary of an ExposomeSet.
-#'
-#' Given an \link{ExposomeSet} is shows a summary for its exposures or
-#' its phenotypes.
-#'
-#' @name Summary
-#' @rdname Summary-methods
-#' @aliases Summary
-#' @param object code{ExposomeSet} with 'set' will be summarized.
-#' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
-#' @param select Subseting of exposures of phenotypes.
-#' @return A basic description of the exposures in the \code{ExposomeSet}
-#' @examples
-#' data("exposome")
-#' Summary(expo, set = "exposures")
-#' @export Summary
-setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
-                               select)
-    standardGeneric("Summary")
-)
+#' #' Summary of an ExposomeSet.
+#' #'
+#' #' Given an \link{ExposomeSet} is shows a summary for its exposures or
+#' #' its phenotypes.
+#' #'
+#' #' @name Summary
+#' #' @rdname Summary-methods
+#' #' @aliases Summary
+#' #' @param object code{ExposomeSet} with 'set' will be summarized.
+#' #' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
+#' #' @param select Subseting of exposures of phenotypes.
+#' #' @return A basic description of the exposures in the \code{ExposomeSet}
+#' #' @examples
+#' #' data("exposome")
+#' #' Summary(expo, set = "exposures")
+#' #' @export Summary
+#' setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
+#'                                select)
+#'     standardGeneric("Summary")
+#' )
 
 
 #' Restore original data of an ExposomeSet.
@@ -141,7 +141,8 @@ setGeneric("restore", function(object)
 #' @aliases standardize
 #' @param object \code{ExposomeSet} with exposures to be standardized.
 #' @param select Subseting of exposures of phenotypes.
-#' @param method (default \code{"normal"}) Character selecting the method to be applied (\code{"normal"}
+#' @param method (default \code{"normal"}) Character selecting the method to be
+#' applied (\code{"normal"}
 #' \code{"iqr"} or \code{"robust"}).
 #' @param na.rm (by default \code{TRUE}) Removes NA data to perform
 #' standardization.
@@ -157,7 +158,8 @@ setGeneric("restore", function(object)
 #' @export standardize
 #' @seealso \link{highAndLow} to transform the continuous exposures to
 #' levelled factors, \link{trans} to transform the exposures
-setGeneric("standardize", function(object, select, method = "normal", na.rm = TRUE, warnings = TRUE)
+setGeneric("standardize", function(object, select, method = "normal",
+                                   na.rm = TRUE, warnings = TRUE)
     standardGeneric("standardize")
 )
 
@@ -185,7 +187,8 @@ setGeneric("standardize", function(object, select, method = "normal", na.rm = TR
 #' exp.t <- trans(expo, fun = log, select = "ldde_lip")
 #' @export trans
 #' @seealso \link{highAndLow} to transform the continuous exposures to levelled
-#' factors, \link{standardize} to standardize by normal or robust methods the exposures
+#' factors, \link{standardize} to standardize by normal or robust methods the
+#' exposures
 setGeneric("trans", function(object, fun, select, by.exposure = FALSE, ...)
     standardGeneric("trans")
 )
@@ -228,7 +231,8 @@ setGeneric("trans", function(object, fun, select, by.exposure = FALSE, ...)
 #' #         3 factored exposures
 #'
 #' # Drop
-#' exp.hl <- highAndLow(expo, intervals = "standard", select = "ldde_lip", drop = TRUE)
+#' exp.hl <- highAndLow(expo, intervals = "standard",
+#'     select = "ldde_lip", drop = TRUE)
 #' dim(exp.hl)
 #' # exposures   samples phenotyes
 #' #       104      1200         4
@@ -338,7 +342,8 @@ setGeneric("tableMissings", function(object, set, output = "n", sort = TRUE) {
 #' \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
 #' \link{imputation} to impute missing data on the exposures of an ExposomeSet
-setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD", sort = TRUE) {
+setGeneric("tableLOD", function(object, output = "n", lod.col = "LOD",
+                                sort = TRUE) {
     standardGeneric("tableLOD")
 })
 
@@ -397,7 +402,8 @@ setGeneric("plotMissings", function(object, set, x.max = 100, sort = TRUE)
 #' \link{plotHistogram} to draw the shape of an exposure,
 #' \link{tableMissings} to get a table with the missing data of an ExposomeSet,
 #' \link{imputation} to impute missing data on the exposures of an ExposomeSet
-setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE)
+setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100,
+                               sort = TRUE)
     standardGeneric("plotLOD")
 )
 
@@ -434,7 +440,8 @@ setGeneric("plotLOD", function(object, lod.col = "LOD", x.max = 100, sort = TRUE
 #' @export plotFamily
 #' @seealso \link{plotHistogram} to draw the shape of an exposure,
 #' \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
-setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.omit=TRUE)
+setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE,
+                                  na.omit=TRUE)
     standardGeneric("plotFamily")
 )
 
@@ -460,7 +467,8 @@ setGeneric("plotFamily", function(x, family, group, group2, scatter = TRUE, na.o
 #' @export plotHistogram
 #' @seealso \link{plotFamily} to draw the profile of a family of exposures,
 #' \link{plotMissings} to plot the missing data from an \link{ExposomeSet}
-setGeneric("plotHistogram", function(x, select, density = TRUE, show.trans=FALSE)
+setGeneric("plotHistogram", function(x, select, density = TRUE,
+                                     show.trans = FALSE)
     standardGeneric("plotHistogram")
 )
 
@@ -510,7 +518,8 @@ setGeneric("imputation", function(object, select, ..., messages=FALSE)
 #' @param seed (default \code{1234}) Seed to make the imputation reproducible.
 #' @param lod.col (default \code{"LOD"}) Name of the column in \code{fData}
 #' with the threshold of the LOD.
-#' @param pNA (default \code{0.2}) Maximum percentage allowed of values under LOD
+#' @param pNA (default \code{0.2}) Maximum percentage allowed of values under
+#' LOD
 #' @param tLog (default \code{FALSE}) If set to \code{TRUE} it transforms all
 #' the exposures to lod before the imputation.
 #' @param method (default \code{"QRILC"}) Method to be used to impute the
@@ -529,7 +538,9 @@ setGeneric("imputation", function(object, select, ..., messages=FALSE)
 #' @export ilod
 #' @seealso \link{plotMissings} to plot the missing data of an ExposomeSet,
 #' \link{tableMissings} to get a table with the missing data of an ExposomeSet
-setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLog = FALSE, method = "QRILC", warnings = TRUE, ...)
+setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2,
+                            tLog = FALSE, method = "QRILC", warnings = TRUE,
+                            ...)
     standardGeneric("ilod")
 )
 
@@ -668,7 +679,9 @@ setGeneric("plotEXP", function(object, exposure)
 #' plotPCA(epca, set = "samples", phenotype = "sex") +
 #' ggplot2::theme(legend.position = "bottom")
 #' @export plotPCA
-setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, show.exposures=FALSE, show.samples=FALSE, phenotype)
+setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2,
+                               show.exposures = FALSE, show.samples = FALSE,
+                               phenotype)
     standardGeneric("plotPCA")
 )
 
@@ -686,7 +699,7 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, show.exposures=F
 #' @param cmpZ Component to be placed at Z axis
 #' @param phenotype Used to color samples by phentoype
 #' @param main Title for the plot
-#' @param angle	(default \code{35}) angle between x and y axis.
+#' @param angle (default \code{35}) angle between x and y axis.
 #' @param pch (default \code{16}) plotting "character", i.e. symbol to use.
 #' @param legend (default \code{TRUE}) If \code{TRUE} shows the legend.
 #' @param plines (default \code{TRUE}) If \code{TRUE} it draws the lines from
@@ -698,7 +711,9 @@ setGeneric("plotPCA", function(object, set, cmpX = 1, cmpY = 2, show.exposures=F
 #' epca <- pca(expo[3:7, 1:100])
 #' plot3PCA(epca, cmpX = 1, cmpY = 2, cmpZ = 3, phenotype = "sex")
 #' @export plot3PCA
-setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main, angle=35, pch=16, legend=TRUE, plines=TRUE)
+setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main,
+                                angle = 35, pch = 16, legend = TRUE,
+                                plines = TRUE)
     standardGeneric("plot3PCA")
 )
 

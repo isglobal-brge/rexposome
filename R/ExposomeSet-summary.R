@@ -2,7 +2,10 @@
 setMethod(
     f = "Summary",
     signature = "ExposomeSet",
-    definition = function(object, set=c("exposures", "phenotypes"), select) {
+    #definition = function(object, set=c("exposures", "phenotypes"), select) {
+    definition = function(x, set=c("exposures", "phenotypes"), select, ...,
+                          na.rm = FALSE) {
+        object <- x; rm(x)
         set <- match.arg(set)
         if(missing(select)) {
             select <- switch(set,

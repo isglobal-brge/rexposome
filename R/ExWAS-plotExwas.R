@@ -13,7 +13,6 @@ setMethod(
     f = "plotExwas",
     signature = "ExWAS",
     definition = function(object, ..., subtitles, color, exp.order, show.effective = TRUE) {
-
         multiple <- FALSE
         if(missing(...)) {
             items <- list(object)
@@ -108,7 +107,13 @@ setMethod(
         }
         if(object@effective != 0) {
             if(show.effective) {
-                plt <- plt + ggplot2::geom_vline(xintercept = -log10(object@effective), colour="Brown")
+                if(object@effective == -1) {
+                    warning("Cannot show 'effective threshold' because it was ",
+                            "not computed in 'exwas'.")
+                } else {
+                    plt <- plt + ggplot2::geom_vline(
+                        xintercept = -log10(object@effective), colour="Brown")
+                }
             }
         }
 

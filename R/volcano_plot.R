@@ -50,7 +50,6 @@ volcano_plot <- function(pval, fc, names, size=2, tFC=2, tPV=-log10(0.001),
     clrvalues <- c("gray87", "tan3", "olivedrab", "lightskyblue")
     names(clrvalues) <- c("gray87", "tan3", "olivedrab", "lightskyblue")
 
-    dta2 <<- dta
     plt <- ggplot2::ggplot(dta, ggplot2::aes_string(x="FC", y="PV", color="clr", fill="clr")) +
         ggplot2::theme_bw() +
         ggplot2::geom_point(alpha=1) +
