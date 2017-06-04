@@ -1060,6 +1060,7 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 #' @param p.value (default \code{"-log10(0.001)"}) Threshold for P-Value.
 #' @param show.effect (default \code{FALSE}) Applyes an exponential
 #' transformation on the effects of the exposures.
+#' @return An object of class \code{ggplot}.
 #' @export plotVolcano
 #' @seealso \code{\link{exwas}} as a constructor for \code{\link{ExWAS}}
 #' objects, \code{\link{extract}} to obtain a table with the result of
