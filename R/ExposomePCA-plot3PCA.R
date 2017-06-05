@@ -14,7 +14,7 @@ setMethod(
             stop("Given phenotype ('", phenotype, "') not in ExposomePCA")
         }
 
-        dta <- extract(object, table=="individuals")
+        dta <- extract(object, table="individuals")
         if(cmpX >= ncol(dta) | cmpY >= ncol(dta) | cmpZ >= ncol(dta)) {
             stop("Given value for 'cmpX', 'cmpY' or 'cmpZ' larger than computed ",
                  "components (ncp=", ncol(dta), ").")
