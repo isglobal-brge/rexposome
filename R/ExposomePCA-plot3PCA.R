@@ -14,7 +14,7 @@ setMethod(
             stop("Given phenotype ('", phenotype, "') not in ExposomePCA")
         }
 
-        dta <- data.frame(object@pca$ind$coord)
+        dta <- extract(object, table=="individuals")
         if(cmpX >= ncol(dta) | cmpY >= ncol(dta) | cmpZ >= ncol(dta)) {
             stop("Given value for 'cmpX', 'cmpY' or 'cmpZ' larger than computed ",
                  "components (ncp=", ncol(dta), ").")
@@ -34,9 +34,9 @@ setMethod(
             )
         }
 
-        xlab <- paste0(xlab, " (", round(object@pca$eig[cmpX, 2], 2), "%)")
-        ylab <- paste0(ylab, " (", round(object@pca$eig[cmpY, 2], 2), "%)")
-        zlab <- paste0(zlab, " (", round(object@pca$eig[cmpZ, 2], 2), "%)")
+        xlab <- paste0(xlab, " (", round(extract(object, table="eigen")[cmpX, 2], 2), "%)")
+        ylab <- paste0(ylab, " (", round(extract(object, table="eigen")[cmpY, 2], 2), "%)")
+        zlab <- paste0(zlab, " (", round(extract(object, tabke="eigen")[cmpZ, 2], 2), "%)")
 
         if(plines) {
             scatterplot3d::scatterplot3d(dta[ , cmpX], dta[ , cmpY], dta[ , cmpZ],

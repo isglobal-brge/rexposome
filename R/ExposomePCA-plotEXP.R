@@ -5,7 +5,7 @@ setMethod(
     signature = "ExposomePCA",
     definition = function(object, exposure) {
 
-        dta <- data.frame(object@pca$var$cor)
+        dta <- extract(object, table="correlation") #data.frame(object@pca$var$cor)
 
         if(missing(exposure)) {
             exposure <- rownames(dta)
