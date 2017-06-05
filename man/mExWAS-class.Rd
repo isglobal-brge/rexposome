@@ -18,9 +18,16 @@
   show.effective = TRUE)
 }
 \arguments{
+\item{x}{Object of class \code{mExWAS}}
+
 \item{y}{NOT USED}
 
 \item{...}{Other used arguments.}
+
+\item{object}{object of class \code{mExWAS}.}
+
+\item{type}{(default \code{"test"}). Can take \code{"test"} or \code{"raw"}
+to obtain a \code{data.frame} of \code{glmnet} result.}
 
 \item{sort}{NOT USED}
 

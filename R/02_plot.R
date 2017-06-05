@@ -61,6 +61,7 @@ setMethod(
 )
 
 #' @describeIn mExWAS Wrapper for \code{plotExwas} method.
+#' @param x Object of class \code{mExWAS}
 #' @param y NOT USED
 setMethod(
     f = "plot",

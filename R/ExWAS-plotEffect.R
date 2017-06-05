@@ -10,7 +10,7 @@ setMethod(
     signature = "ExWAS",
     definition = function(x, y, select, xlab, ylab) {
         xr <- x
-        x <- extract(x)
+        x <- psygenet2r::extract(x)
         x$exposure <- rownames(x)
         if(missing(y)) {
             colnames(x)[3:4] <- c("minE", "maxE")
@@ -31,7 +31,7 @@ setMethod(
                 )
         } else {
             yr <- y
-            y <- extract(y)
+            y <- psygenet2r::extract(y)
             y$exposure <- rownames(y)
             exposures <- intersect(x$exposure, y$exposure)
 

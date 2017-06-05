@@ -4,8 +4,10 @@
 #' @param filter Expression to be used to filter \code{\link{ExposomeSet}}
 #' @param family Family descriving the nature of the health outcome
 #' @param ... Other used arguments
+#' @param tef If set to \code{TRUE} the threshold for effective
+#' test is computed.
 #' @param verbose If set to \code{TRUE} it shows messages on progression.
-#' @param warnings I set to \code{TRUE} it shows warnings on progession.
+#' @param warnings If set to \code{TRUE} it shows warnings on progession.
 setMethod(
     f = "exwas",
     signature = "imExposomeSet",
@@ -81,7 +83,7 @@ setMethod(
 
         ## Compute the threshold for effective tests
         if(tef) {
-            cormat <- extract(correlation(toES(object, rid=1),
+            cormat <- psygenet2r::extract(correlation(toES(object, rid=1),
                 use="pairwise.complete.obs", method.cor = "pearson"))
             M <- ncol(cormat)
             lambdas <- base::eigen(cormat)$values

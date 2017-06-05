@@ -37,7 +37,7 @@ setMethod(
 
         for(ii in 1:length(items)) {
             it <- items[[ii]]
-            tbli <- extract(it)
+            tbli <- psygenet2r::extract(it)
             colnames(tbli) <- c("pvalue", "effect", "x2.5", "x97.5")
             if(is.na(subtitles)) {
                 ff <- as.character(it@formula)

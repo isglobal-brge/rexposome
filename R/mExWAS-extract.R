@@ -1,4 +1,7 @@
 #' @describeIn mExWAS Method to obtain the generated model
+#' @param object object of class \code{mExWAS}.
+#' @param type (default \code{"test"}). Can take \code{"test"} or \code{"raw"}
+#' to obtain a \code{data.frame} of \code{glmnet} result.
 #' @param sort NOT USED
 setMethod(
     f = "extract",

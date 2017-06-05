@@ -63,9 +63,12 @@
 
 \item{family}{Family descriving the nature of the health outcome}
 
+\item{tef}{If set to \code{TRUE} the threshold for effective
+test is computed.}
+
 \item{verbose}{If set to \code{TRUE} it shows messages on progression.}
 
-\item{warnings}{I set to \code{TRUE} it shows warnings on progession.}
+\item{warnings}{If set to \code{TRUE} it shows warnings on progession.}
 
 \item{by.exposure}{If set to \code{TRUE} ir returns the family which
 each exposure belongs}

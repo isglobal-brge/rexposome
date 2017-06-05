@@ -17,7 +17,7 @@
 #' @return A \code{ggplot} object
 #' @examples
 #' data(exposome)
-#' w1 <- extract(exwas(expo[1:20, ], asthma~1, family = "binomial"))
+#' w1 <- psygenet2r::extract(exwas(expo[1:20, ], asthma~1, family = "binomial"))
 #' volcano_plot(w1$pvalue, w1$effect, rownames(w1))
 #' @export
 volcano_plot <- function(pval, fc, names, size=2, tFC=2, tPV=-log10(0.001),
