@@ -92,8 +92,8 @@ for(ii in c(14:17, 48:54)) {
 With this `data.frame` we perform the imputation calling `mice` functions (for more information about this call, check `mice`'s vignette). We remove the columns *birthdate* since it is not necessary for the imputations and carries lots of categories.
 
 ```{r mice_imputation, message=FALSE}
-imp <- mice(dta[ , -52], pred = quickpred(dta[ , -52], mincor = 0.2, minpuc = 0.4),
-    seed = 38788, m = 5, maxit = 10, printFlag = FALSE)
+imp <- mice(dta[ , -52], pred = quickpred(dta[ , -52], mincor = 0.2, 
+    minpuc = 0.4), seed = 38788, m = 5, maxit = 10, printFlag = FALSE)
 class(imp)
 ```
 

@@ -21,7 +21,8 @@
 #'      pNA = pNA, pLOD = pLOD, log = log, seed = seed)
 #' }
 
-imputeLOD <- function(x, lod, description = NULL, pNA = 0.2, pLOD = 0, log = TRUE, seed = NULL) {
+imputeLOD <- function(x, lod, description = NULL, pNA = 0.2, pLOD = 0,
+    log = TRUE, seed = NULL) {
   #
   # Checkings:
   #

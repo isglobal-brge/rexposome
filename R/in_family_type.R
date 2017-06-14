@@ -9,11 +9,6 @@
 # exposures formated as \code{numeric} or as \code{factor} in a data.frame.
 # @return A character with \code{"numeric"} or \code{"factor"} or a data.frame
 # with the exposures's value as \code{mumeric} or as \code{factor}
-# @examples
-# \dontrun{
-# .family_type(x, "Indoor air")
-# # return "factor"
-# }
 .family_type <- function(object, family, as.type = FALSE) {
   exposures <- rownames(pData(featureData(object)))[pData(featureData(object))[ , 1] == family]
   if(!as.type) {
