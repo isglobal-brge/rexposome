@@ -6,7 +6,8 @@
 setMethod(
     f = "normalityTest",
     signature = "ExposomeSet",
-    definition = function(object, exposure, th = 0.05, min.val = 5, na.rm = TRUE) {
+    definition = function(object, exposure, th = 0.05, min.val = 5,
+                          na.rm = TRUE, warnings = TRUE) {
         if(missing(exposure)) {
             exposure <- exposureNames(object)
         } else {
@@ -14,22 +15,35 @@ setMethod(
                 stop("Given exposures not in ExposomeSet")
             }
         }
+        dta <- expos(object)
+        if(nrow(dta) > 4999) {
+            if(warnings) {
+                warning("Given 'ExposomeSet' has more than 4999 samples. ",
+                        "In order to compute 'shapiro.test' it will be ",
+                        "reduced to random 4999 samples.")
+            }
+            dta <- dta[sample(1:nrow(dta), size = 4999), , drop = FALSE]
+        }
         if(length(exposure) == 1) {
-            expos <- assayDataElement(object, "exp")[exposure, ]
+            expos <- dta[ , exposure, drop = TRUE]
             pv <- shapiro.test(expos[!is.na(expos)])
-            tst <- data.frame(exposure = exposure, normality = pv$p.value <= th, p.value = pv$p.value)
+            tst <- data.frame(exposure = exposure,
+                              normality = pv$p.value <= th,
+                              p.value = pv$p.value)
             rownames(tst) <- exposure
         } else {
-            tst <- data.frame(do.call(rbind, apply(assayDataElement(object, "exp")[exposure, ], 1, function(ex) {
-                ex <- ex[!is.na(ex)]
-                if(sum(!is.na(ex)) >= min.val) {
-                    pv <- shapiro.test(ex)
-                    list(pv$p.value >= th, pv$p.value)
+            tst <- list()
+            for(ex in exposure) {
+                var <- dta[ , ex, drop = TRUE]
+                if(sum(!is.na(var)) >= min.val) {
+                    var <- var[!is.na(var)]
+                    pv <- shapiro.test(var)
+                    tst[[ex]] <- list(pv$p.value >= th, pv$p.value)
                 } else {
-                    pv <- NA
-                    list(NA, NA)
+                    tst[[ex]] <- list(NA, NA)
                 }
-            })))
+            }
+            tst <- data.frame(do.call(rbind, tst))
             tst$exposure <- exposure
             tst <- tst[ , c(3, 1, 2)]
             colnames(tst) <- c("exposure", "normality", "p.value")
@@ -39,6 +53,6 @@ setMethod(
 
             tst <- tst[order(tst$p.value), ]
         }
-        tst
+        return(tst)
     }
 )

@@ -268,6 +268,7 @@ setGeneric("highAndLow", function(object, ngroups = 3,
 #' to test the exposures.
 #' @param na.rm (by default \code{TRUE}) Removes the NA values to test the
 #' normality on the exposure.
+#' @param warnings (by default: \code{TRUE}) Show warnings if required.
 #' @return A \code{data.frame} with three columns: exposure, normality and
 #' p.value. "exposure" column contains the name of each exposure. "normalty"
 #' column contains a \code{logical} value indicating if the obtained p-value
@@ -281,7 +282,7 @@ setGeneric("highAndLow", function(object, ngroups = 3,
 #' \link{plotMissings} to draw a plot with the missing data an ExposomeSet,
 #' \link{imputation} to impute missing data on the exposures of an ExposomeSet
 setGeneric("normalityTest", function(object, exposure, th = 0.05, min.val = 5,
-                                     na.rm = TRUE) {
+                                     na.rm = TRUE, warnings=TRUE) {
     standardGeneric("normalityTest")
 })
 

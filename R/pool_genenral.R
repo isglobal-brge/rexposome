@@ -110,5 +110,6 @@ pool_glm <- function (analyses, m, method = "smallsample") {
                 ubar = ubar, b = b, t = t, r = r, dfcom = dfcom, df = df,
                 fmi = fmi, lambda = lambda)
     oldClass(fit) <- c("mipo", "glm")
+
     return(fit)
 }

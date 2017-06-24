@@ -13,6 +13,9 @@ setMethod(
     signature = "imExposomeSet",
     definition = function(object, formula, filter, family, ..., tef = TRUE,
                           verbose = FALSE, warnings = TRUE) {
+        if(missing(family)) {
+            stop("Missing argument 'family'.")
+        }
         dta <- data.frame(expos(object), pData(object)[ , -c(1:2)])
         dta <- dta[dta$`.imp` != 0, ]
         dta <- dta[ , -2]
@@ -28,7 +31,7 @@ setMethod(
 
         form <- as.character(formula)
 
-        ne <- c()
+        ne <- list()
         items <- list()
         for(ex in exposureNames(object)) {
             if(verbose) {
@@ -38,6 +41,7 @@ setMethod(
             frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
 
             tryCatch({
+                message("A")
                 ## TEST
                 fit_glm <- lapply(1:object@nimputation, function(ii) {
                     dtai <- dta[dta[, 1] == ii, -1]
@@ -46,32 +50,16 @@ setMethod(
                 tst <- pool_glm(fit_glm, m = object@nimputation)
 
                 items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
+                message("B")
             }, error = function(e) {
-                ne <- c(ne, ex)
+                if(verbose) {
+                    message("\tProcess of '", ex, "' failed.", e)
+                }
+                ne[[ex]] <- e
                 items[[ex]] <- c(NULL, NULL, NULL, NULL)
+                message("D")
             })
         }
-        # items <- lapply(exposureNames(object), function(ex) {
-        #     if(verbose) {
-        #         message("Processing '", ex, "'.")
-        #     }
-        #
-        #     frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
-        #
-        #     tryCatch({
-        #         ## TEST
-        #         fit_glm <- lapply(1:object@nimputation, function(ii) {
-        #             dtai <- dta[dta[, 1] == ii, -1]
-        #             stats::glm(family=family, formula = frm, data = dtai)
-        #         })
-        #         tst <- pool_glm(fit_glm, m = object@nimputation)
-        #
-        #         return(summary(tst)[2, c(1, 6, 7, 5)])
-        #     }, error = function(e) {
-        #         ne <<- c(ne, ex)
-        #         return(c(NULL, NULL, NULL, NULL))
-        #     })
-        # })
 
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")

@@ -73,7 +73,7 @@
 \S4method{mexwas}{ExposomeSet}(object, phenotype, family, warnings = TRUE)
 
 \S4method{normalityTest}{ExposomeSet}(object, exposure, th = 0.05,
-  min.val = 5, na.rm = TRUE)
+  min.val = 5, na.rm = TRUE, warnings = TRUE)
 
 \S4method{pca}{ExposomeSet}(object, npc = 10)
 
