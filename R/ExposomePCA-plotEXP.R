@@ -31,7 +31,7 @@ setMethod(
             ) +
             ggplot2::labs(fill="Correlation\n", colour="") +
             ggplot2::xlab("") + ggplot2::ylab("exposures") +
-            ggplot2::scale_fill_gradient2(midpoint=0, low="blue", mid="white",
-                                          high="red", space ="Lab")
+            ggplot2::scale_fill_gradient2(midpoint=0, low="red", mid="white",
+                                          high="blue", space ="Lab")
     }
 )

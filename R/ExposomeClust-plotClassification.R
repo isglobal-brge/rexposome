@@ -75,7 +75,7 @@ setMethod(
   agrted <- t(apply(scaled, 2, ff, y=classification(x)))
   colnames(agrted) <- paste("Group", 1:ncol(agrted))
 
-  gplots::heatmap.2(agrted, col = gplots::bluered(100), dendrogram = "row",
+  gplots::heatmap.2(agrted, col = rev(gplots::bluered(100)), dendrogram = "row",
                     cexRow = cexRow, srtCol = 0, cexCol = cexCol, adjCol = adjCol,
                     density.info="none", tracecol = "darkgreen", lhei = c(2, 10))
 
