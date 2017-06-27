@@ -108,26 +108,6 @@ setGeneric("expos", function(object)
 #'     standardGeneric("Summary")
 #' )
 
-
-#' Restore original data of an ExposomeSet.
-#'
-#' Given an \link{ExposomeSet} is restores the original data and remove
-#' all changes (standardization, transformation, imputation) that exposures
-#' could have.
-#'
-#' @name restore
-#' @rdname restore-methods
-#' @aliases restore
-#' @param object On object of class \code{ExposomeSet}.
-#' @return An \code{ExposomeSet} with no transformations.
-#' @examples
-#' data("exposome")
-#' restore(expo)
-#' @export restore
-setGeneric("restore", function(object)
-    standardGeneric("restore")
-)
-
 # -----------------------------------------------------------------------------
 
 #' Standardize of an ExposomeSet.

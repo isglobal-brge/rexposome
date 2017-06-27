@@ -2,7 +2,27 @@
 % Please edit documentation in R/01_AllMethods.R
 \name{standardize}
 \alias{standardize}
-\title{Standardize of an ExposomeSet.}
+\title{#' Summary of an ExposomeSet.
+#'
+#' Given an \link{ExposomeSet} is shows a summary for its exposures or
+#' its phenotypes.
+#'
+#' @name Summary
+#' @rdname Summary-methods
+#' @aliases Summary
+#' @param object code{ExposomeSet} with 'set' will be summarized.
+#' @param set Set to be sumarized (\code{"exposures"} or \code{"phenotypes"}).
+#' @param select Subseting of exposures of phenotypes.
+#' @return A basic description of the exposures in the \code{ExposomeSet}
+#' @examples
+#' data("exposome")
+#' Summary(expo, set = "exposures")
+#' @export Summary
+setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
+                               select)
+    standardGeneric("Summary")
+)
+Standardize of an ExposomeSet.}
 \usage{
 standardize(object, select, method = "normal", na.rm = TRUE,
   warnings = TRUE)

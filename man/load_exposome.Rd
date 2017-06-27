@@ -5,8 +5,7 @@
 \title{Creation of an ExposomeSet from \code{data.frames}}
 \usage{
 load_exposome(exposures, description, phenotype, description.famCol = 1,
-  exposures.asFactor = 5, std.e = c("none", "normal", "robust"),
-  trn.e = "none", warnings = TRUE, ...)
+  exposures.asFactor = 5, warnings = TRUE)
 }
 \arguments{
 \item{exposures}{\code{data.frame} of exposures.}
@@ -24,19 +23,8 @@ than this number of unique items will be considered as "continuous" while
 the exposures with less or equal number of items will be considered as
 "factor".}
 
-\item{std.e}{If specified, it will be the method used to standardize
-the exposures. It can be set to \code{"normal"}, where mean/sd will be used,
-or to \code{"robust"}, where median/mad will be used (see
-\link{standardize}).}
-
-\item{trn.e}{If specified it can contain a names vector of functions to be
-applied to the exposures's \code{data.frame} (see \link{transform}).}
-
 \item{warnings}{(default \code{TRUE}) If \code{TRUE} shows useful
 information/warnings from the process of loading the exposome.}
-
-\item{...}{Other arguments will be given to \link{transform} if \code{trn.e}
-is specified.}
 }
 \value{
 An object of class \link{ExposomeSet}.
@@ -53,14 +41,14 @@ same way, the columns in exposure's \code{data.frames} must be the same
 in description \code{data.frame}.
 }
 \note{
-\link{ExposomeSet}'s \code{fData} will contain two inner columns called
-\code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to trace the
-transformations an exposure suffers and to know, at eny moment, if an
-exposure is categorical or continuous. The "description" file can contains a
-column called \code{type} with values \code{"factor"} and \code{"numeric"}
-to speficy how an exposure needs to be understood. If given, this column
-will be renamed to \code{.type}. If not given, it will be created using
-\code{exposures.asFactor} value.
+\link{ExposomeSet}'s \code{fData} will contain some inner columns
+called \code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to
+trace the transformations an exposure suffers and to know, at eny moment, if
+an exposure is categorical or continuous. The "description" file can
+contains a column called \code{type} with values \code{"factor"} and
+\code{"numeric"} to speficy how an exposure needs to be understood. If
+given, this column will be renamed to \code{.type}. If not given, it will
+be created using \code{exposures.asFactor} value.
 }
 \examples{
 path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")

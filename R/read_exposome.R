@@ -30,25 +30,17 @@
 #' than this number of unique items will be considered as "continuous" while
 #' the exposures with less or equal number of items will be considered as
 #' "factor".
-#' @param std.e If specified, it will be the method used to standardize
-#' the exposures. It can be set to \code{"normal"}, where mean/sd will be used,
-#' or to \code{"robust"}, where median/mad will be used (see
-#' \link{standardize}).
-#' @param trn.e If specified it can contain a names vector of functions to be
-#' applied to the exposures's \code{data.frame} (see \link{transform}).
 #' @param warnings (default \code{TRUE}) If \code{TRUE} shows useful
 #' information/warnings from the process of loading the exposome.
-#' @param ... Other arguments will be given to \link{transform} if \code{trn.e}
-#' is specified.
 #' @return An object of class \link{ExposomeSet}.
-#' @note \link{ExposomeSet}'s \code{fData} will contain two inner columns called
-#' \code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to trace the
-#' transformations an exposure suffers and to know, at eny moment, if an
-#' exposure is categorical or continuous. The "description" file can contains a
-#' column called \code{type} with values \code{"factor"} and \code{"numeric"}
-#' to speficy how an exposure needs to be understood. If given, this column
-#' will be renamed to \code{.type}. If not given, it will be created using
-#' \code{exposures.asFactor} value.
+#' @note \link{ExposomeSet}'s \code{fData} will contain some inner columns
+#' called \code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to
+#' trace the transformations an exposure suffers and to know, at eny moment, if
+#' an exposure is categorical or continuous. The "description" file can
+#' contains a column called \code{type} with values \code{"factor"} and
+#' \code{"numeric"} to speficy how an exposure needs to be understood. If
+#' given, this column will be renamed to \code{.type}. If not given, it will
+#' be created using \code{exposures.asFactor} value.
 #' @examples
 #' ## Locate the data-files
 #' path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
@@ -74,136 +66,23 @@ read_exposome <- function(exposures, description, phenotype,
     sep = ",", na.strings = c("NA", "-", "?", " ", ""),
     exposures.samCol = 1, description.expCol = 1, description.famCol = 2,
     phenotype.samCol = 1, exposures.asFactor = 5,
-    std.e = c("none", "normal", "robust"), trn.e = "none",
     warnings = TRUE, ...) {
 
     ## Load the three dataframes
-    exp <- utils::read.table(exposures, header = TRUE, row.names = exposures.samCol,
-                    sep = sep, na.strings = na.strings)
-    phe <- utils::read.table(phenotype, header = TRUE, row.names = phenotype.samCol,
-                    sep = sep, na.strings = na.strings, stringsAsFactors = TRUE)
-    desc <- utils::read.table(description, header = TRUE, row.names = description.expCol,
-                     sep = sep, na.strings = na.strings)
+    exp <- utils::read.table(exposures, header = TRUE,
+        row.names = exposures.samCol, sep = sep, na.strings = na.strings)
+    phe <- utils::read.table(phenotype, header = TRUE,
+        row.names = phenotype.samCol, sep = sep, na.strings = na.strings,
+        stringsAsFactors = TRUE)
+    desc <- utils::read.table(description, header = TRUE,
+        row.names = description.expCol, sep = sep, na.strings = na.strings)
     if(description.famCol > description.expCol) {
         description.famCol <- description.famCol - 1
     }
     ## ------------------------------------------------------------------------
 
-    ## Order the colmuns on description
-    ##   rownames <- exposures
-    ##   column  1 must be the family
-    description.famCol <- colnames(desc)[description.famCol]
-    desc <- desc[ , c(description.famCol,
-                      colnames(desc)[colnames(desc) != description.famCol]), drop=FALSE]
-    colnames(desc)[1] <- "Family"
-    ## ------------------------------------------------------------------------
+    load_exposome(exp, desc, phe, description.famCol, exposures.asFactor,
+                  warnings)
 
-    ## Check for inner names on description
-    ##   description cannot contain _status nor _type
-    if(".std" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '.std' as name of a column. ",
-             "Name '.std' cannot be used in 'ExposmeSet'.")
-    }
-
-    if(".trn" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '.trn' as name of a column. ",
-             "Name '.trn' cannot be used in 'ExposmeSet'.")
-    }
-
-    if(".fct" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '.fct' as name of a column. ",
-             "Name '.fct' cannot be used in 'ExposmeSet'.")
-    }
-
-    if(".imp" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '.imp' as name of a column. ",
-             "Name '.imp' cannot be used in 'ExposmeSet'.")
-    }
-
-    if(".type" %in% colnames(desc)) {
-        stop("Given descriptiion dat contains '.type' as name of a column. ",
-             "Name '.type' cannot be used in 'ExposmeSet'.")
-    }
-    ## ------------------------------------------------------------------------
-
-    ## Check that the exposures and the samples from the three dataframes
-    ## are the same
-    exp.col <- colnames(exp)
-    exp.col <- exp.col[order(exp.col)]
-    exp.row <- rownames(exp)
-    exp.row <- exp.row[order(exp.row), drop=FALSE]
-    exp <- exp[exp.row, exp.col]
-
-    des.row <- rownames(desc)
-    des.row <- des.row[order(des.row)]
-    desc <- desc[des.row, , drop=FALSE]
-
-    phe.row <- rownames(phe)
-    phe.row <- phe.row[order(phe.row)]
-    phe <- phe[phe.row, , drop=FALSE]
-
-    if(!identical(exp.col, des.row)) {
-        stop("Exposures's names in exposures and in description files ",
-            "don't match.")
-    }
-    if(!identical(exp.row, phe.row)) {
-        stop("Samples's names in exposures and in phenotype files don't match.")
-    }
-    rm(exp.col, exp.row, des.row, phe.row)
-    ## ------------------------------------------------------------------------
-
-    ## Need to create _status
-    desc$`.fct` <- ""
-    desc$`.trn` <- ""
-    desc$`.std` <- ""
-    desc$`.imp` <- ""
-    ## ------------------------------------------------------------------------
-
-    ## Need to create and fill _type of description
-    if("type" %in% colnames(desc)) {
-        if(warnings) {
-            warning("Fund colnames 'type' in description file. It will be ",
-                    "used to check for exposures' type. Then 'type' column ",
-                    "will be droped.")
-        }
-        desc$type <- as.character(desc$type)
-        if(sum(unique(desc$type) %in% c("numeric", "factor")) != 2) {
-            stop("In 'type' column of description file only 'factor' or ",
-                 "'numeric' calues can be used.")
-        }
-        desc$`.type` <- desc$type
-        desc <- desc[ , -which(colnames(desc) == "type"), drop=FALSE]
-    } else {
-        desc$`.type` <- sapply(rownames(desc), function(ex) {
-            ifelse(length(unique(exp[ , ex])) > exposures.asFactor, "numeric", "factor")
-        })
-    }
-    ## ------------------------------------------------------------------------
-
-    ## Exposures must be saved as numeric-matrix
-    exp <- (as.matrix(exp))
-    ## ------------------------------------------------------------------------
-
-    ## Create and validate ExposomeSet
-    exposome <- new("ExposomeSet",
-        assayData = assayDataNew("environment", raw = t(exp), exp = t(exp)),
-        phenoData = AnnotatedDataFrame(phe),
-        featureData = AnnotatedDataFrame(desc)
-    )
-
-    validObject(exposome)
-    ## ------------------------------------------------------------------------
-
-    ## Standardization and transformation
-    std.e <- match.arg(std.e)
-    if(std.e != "none") {
-        exposome <- standardize(exposome, std.e)
-    }
-
-    if(!missing(trn.e)) {
-        exposome <- transform(exposome, fun = trn.e, ...)
-    }
-    ## ------------------------------------------------------------------------
-
-  return(exposome)
+    return(exposome)
 }

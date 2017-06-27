@@ -8,10 +8,9 @@
 %   R/ExposomeSet-normalityTest.R, R/ExposomeSet-pca.R,
 %   R/ExposomeSet-phenotypeNames.R, R/ExposomeSet-plotFamily.R,
 %   R/ExposomeSet-plotHistogram.R, R/ExposomeSet-plotLOD.R,
-%   R/ExposomeSet-plotMissings.R, R/ExposomeSet-restore.R,
-%   R/ExposomeSet-standardize.R, R/ExposomeSet-summary.R,
-%   R/ExposomeSet-tableLOD.R, R/ExposomeSet-tableMissings.R,
-%   R/ExposomeSet-trans.R
+%   R/ExposomeSet-plotMissings.R, R/ExposomeSet-standardize.R,
+%   R/ExposomeSet-summary.R, R/ExposomeSet-tableLOD.R,
+%   R/ExposomeSet-tableMissings.R, R/ExposomeSet-trans.R
 \docType{class}
 \name{ExposomeSet}
 \alias{ExposomeSet}
@@ -35,7 +34,6 @@
 \alias{plotHistogram,ExposomeSet-method}
 \alias{plotLOD,ExposomeSet-method}
 \alias{plotMissings,ExposomeSet-method}
-\alias{restore,ExposomeSet-method}
 \alias{standardize,ExposomeSet-method}
 \alias{Summary,ExposomeSet-method}
 \alias{tableLOD,ExposomeSet-method}
@@ -90,8 +88,6 @@
 
 \S4method{plotMissings}{ExposomeSet}(object, set = c("exposures",
   "phenotypes"), x.max = 100, sort = TRUE)
-
-\S4method{restore}{ExposomeSet}(object)
 
 \S4method{standardize}{ExposomeSet}(object, select, method = "normal",
   na.rm = TRUE, warnings = TRUE)
@@ -243,9 +239,6 @@ or a pie chart if a given categorycal exposure.
 \item \code{plotLOD}: Draws a barchart with the amount of under-LOD values.
 
 \item \code{plotMissings}: Draws a bar-plot with the amount of missing values.
-
-\item \code{restore}: Returns the object at the same point is was
-when created.
 
 \item \code{standardize}: Standardization of exposures.
 

@@ -19,25 +19,17 @@
 #' than this number of unique items will be considered as "continuous" while
 #' the exposures with less or equal number of items will be considered as
 #' "factor".
-#' @param std.e If specified, it will be the method used to standardize
-#' the exposures. It can be set to \code{"normal"}, where mean/sd will be used,
-#' or to \code{"robust"}, where median/mad will be used (see
-#' \link{standardize}).
-#' @param trn.e If specified it can contain a names vector of functions to be
-#' applied to the exposures's \code{data.frame} (see \link{transform}).
 #' @param warnings (default \code{TRUE}) If \code{TRUE} shows useful
 #' information/warnings from the process of loading the exposome.
-#' @param ... Other arguments will be given to \link{transform} if \code{trn.e}
-#' is specified.
 #' @return An object of class \link{ExposomeSet}.
-#' @note \link{ExposomeSet}'s \code{fData} will contain two inner columns called
-#' \code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to trace the
-#' transformations an exposure suffers and to know, at eny moment, if an
-#' exposure is categorical or continuous. The "description" file can contains a
-#' column called \code{type} with values \code{"factor"} and \code{"numeric"}
-#' to speficy how an exposure needs to be understood. If given, this column
-#' will be renamed to \code{.type}. If not given, it will be created using
-#' \code{exposures.asFactor} value.
+#' @note \link{ExposomeSet}'s \code{fData} will contain some inner columns
+#' called \code{.std}, \code{.trn}, \code{.fct} and \code{.type} in order to
+#' trace the transformations an exposure suffers and to know, at eny moment, if
+#' an exposure is categorical or continuous. The "description" file can
+#' contains a column called \code{type} with values \code{"factor"} and
+#' \code{"numeric"} to speficy how an exposure needs to be understood. If
+#' given, this column will be renamed to \code{.type}. If not given, it will
+#' be created using \code{exposures.asFactor} value.
 #' @export load_exposome
 #' @seealso \link{ExposomeSet} for class description,
 #' \link{read_exposome} for constructor from txt/csv
@@ -63,8 +55,7 @@
 #' )
 load_exposome <- function(exposures, description, phenotype,
                           description.famCol = 1, exposures.asFactor = 5,
-                          std.e = c("none", "normal", "robust"), trn.e = "none",
-                          warnings = TRUE, ...) {
+                          warnings = TRUE) {
 
     ## Order the colmuns on description
     ##   rownames <- exposures
@@ -148,10 +139,12 @@ load_exposome <- function(exposures, description, phenotype,
                  "'numeric' calues can be used.")
         }
         description$`.type` <- description$type
-        description <- description[ , -which(colnames(description) == "type"), drop=FALSE]
+        description <- description[ , -which(colnames(description) == "type"),
+                                    drop=FALSE]
     } else {
         description$`.type` <- sapply(rownames(description), function(ex) {
-            ifelse(length(unique(exposures[ , ex])) > exposures.asFactor, "numeric", "factor")
+            ifelse(length(unique(exposures[ , ex])) > exposures.asFactor,
+                   "numeric", "factor")
         })
     }
     ## ------------------------------------------------------------------------
@@ -162,23 +155,12 @@ load_exposome <- function(exposures, description, phenotype,
 
     ## Create and validate ExposomeSet
     exposome <- new("ExposomeSet",
-                    assayData = assayDataNew("environment", raw = t(exposures), exp = t(exposures)),
+                    assayData = assayDataNew("environment", exp = t(exposures)),
                     phenoData = AnnotatedDataFrame(phenotype),
                     featureData = AnnotatedDataFrame(description)
     )
 
     validObject(exposome)
-    ## ------------------------------------------------------------------------
-
-    ## Standardization and transformation
-    std.e <- match.arg(std.e)
-    if(std.e != "none") {
-        exposome <- standardize(exposome, std.e)
-    }
-
-    if(!missing(trn.e)) {
-        exposome <- transform(exposome, fun = trn.e, ...)
-    }
     ## ------------------------------------------------------------------------
 
     return(exposome)
