@@ -77,9 +77,7 @@ setMethod(
         }
         ## /
 
-        assayData(object) <- assayDataNew("environment",
-                                          raw = assayDataElement(object, "raw"),
-                                          exp = dta.imp)
+        assayData(object) <- assayDataNew("environment", exp = dta.imp)
         return(object)
     }
 
