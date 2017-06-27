@@ -16,9 +16,9 @@ setMethod(
         dta <- cbind(dta, phe)
 
         xx <- data.frame(t(do.call(rbind, lapply(phenotype, function(ph) {
-            typ <- .pheno_type(object, ph, exp2fac)
+            typ <- rexposome:::.pheno_type(object, ph, exp2fac)
             dta <- dta[!is.na(dta[ , ph]), ]
-            sapply(dim, function(nc) {
+            vapply(dim, function(nc) {
                 if(typ == "factor") {
                     summary(stats::glm(as.formula(paste0(ph, "~", nc)),
                         data = dta, family = "binomial"))$coefficients[2, 4]
@@ -26,7 +26,7 @@ setMethod(
                     summary(stats::glm(as.formula(paste0(ph, "~", nc)),
                         data = dta, family = "gaussian"))$coefficients[2, 4]
                 }
-            })
+            }, FUN.VALUE = numeric(1))
         }))))
         colnames(xx) <- phenotype
         xx$Dim <- rownames(xx)

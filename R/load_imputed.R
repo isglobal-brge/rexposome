@@ -96,9 +96,9 @@ load_imputed <- function(data, description, description.famCol = 1,
         description$`.type` <- description$type
         description <- description[ , -which(colnames(description) == "type"), drop=FALSE]
     } else {
-        description$`.type` <- sapply(rownames(description), function(ex) {
+        description$`.type` <- vapply(rownames(description), function(ex) {
             ifelse(length(unique(exposures[ , ex])) > exposures.asFactor, "numeric", "factor")
-        })
+        }, FUN.VALUE = character(1))
     }
     ## ------------------------------------------------------------------------
 
