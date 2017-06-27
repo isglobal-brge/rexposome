@@ -180,7 +180,7 @@ phenotypeNames(ex_imp)
 
 `fData` will return the description of the exposures (including internal information to manage them).
 
-```{r exposures}
+```{r exposures_matrix}
 head(fData(ex_imp), n = 3)
 ```
 

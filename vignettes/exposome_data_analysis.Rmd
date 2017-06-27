@@ -249,7 +249,7 @@ phenotypeNames(exp)
 
 `fData` will return the description of the exposures (including internal information to manage them).
 
-```{r exposures}
+```{r feature}
 head(fData(exp), n = 3)
 ```
 
