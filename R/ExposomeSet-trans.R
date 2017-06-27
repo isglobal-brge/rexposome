@@ -28,7 +28,7 @@ setMethod(
     colnames(data.dst) <- c(select, select.no)
 
     assayData(object) <- assayDataNew("environment",
-        exp = t(data.dst)[rownames(assayDataElement(object, "raw")), ])
+        exp = t(data.dst)[rownames(assayDataElement(object, "exp")), ])
     tryCatch({
         fData(object)[select, ".trn"] <- as.character(substitute(fun))
     }, error=function(e) {

@@ -35,7 +35,8 @@ setMethod(
         ## COVNERT FROM CNT TO DST
         data.cnt <- expos(object)[, select, drop=FALSE]
         data.dst <- data.frame(lapply(colnames(data.cnt), function(exp) {
-            gtools::quantcut(data.cnt[ , exp], seq(0, 1, length = ngroups + 1), right = FALSE)
+            gtools::quantcut(data.cnt[ , exp], seq(0, 1, length = ngroups + 1),
+                             right = FALSE)
         }))
         ##
 
@@ -57,7 +58,7 @@ setMethod(
             data.dst <- cbind(data.dst,
                               t(assayData(object)[["exp"]][select.no, ]))
             colnames(data.dst) <- c(select, select.no)
-            data.dst <- data.dst[ , rownames(assayDataElement(object, "raw"))]
+            data.dst <- data.dst[ , rownames(assayDataElement(object, "exp"))]
             assayData(object) <- assayDataNew("environment",
                 exp = t(data.dst))
 
@@ -74,8 +75,7 @@ setMethod(
             ## /
 
             assayData(object) <- assayDataNew("environment",
-                                              exp = rbind(assayDataElement(object, "exp"), t(data.dst)),
-                                              raw = rbind(assayDataElement(object, "raw"), t(data.dst))
+                  exp = rbind(assayDataElement(object, "exp"), t(data.dst))
             )
 
             nfData <- fData(object)[select, ]
