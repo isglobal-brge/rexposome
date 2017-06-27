@@ -233,7 +233,9 @@ as_iew
 As usual, the \texttt{ExWAS} object obtained from `exwas` method can be plotted using `plotExwas`:
 
 ```{r plot_exwas, fig.height=7}
-plotExwas(as_iew)
+clr <- rainbow(length(familyNames(ex_imp)))
+names(clr) <- familyNames(ex_imp)
+plotExwas(as_iew, color = clr)
 ```
 
 ## Extract the exposures over the *threshold of effective tests*
