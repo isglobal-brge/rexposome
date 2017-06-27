@@ -15,7 +15,8 @@ vignette: >
 
 ```{r setup, include=FALSE}
 BiocStyle::markdown()
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
+options(width=80)
+knitr::opts_chunk$set(echo = TRUE, warnings = FALSE, tidy = TRUE)
 ```
 
 # Introduction
@@ -256,6 +257,12 @@ head(fData(exp), n = 3)
 
 ```{r phenotype}
 head(pData(exp), n = 3)
+```
+
+Finally, the method `expos` allows to obtain the matrix of exposures as a `data.frame`:
+
+```{r exposures}
+expos(exp)[1:10, c("Cotinine", "PM10V", "PM25", "X5cxMEPP")]
 ```
 
 ## Exposome Pre-process

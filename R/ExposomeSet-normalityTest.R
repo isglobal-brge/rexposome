@@ -10,11 +10,20 @@ setMethod(
                           na.rm = TRUE, warnings = TRUE) {
         if(missing(exposure)) {
             exposure <- exposureNames(object)
+            exposure <- exposure[
+                fData(object)[exposure, ".type"] == "numeric"
+            ]
         } else {
             if(sum(exposure %in% exposureNames(object)) != length(exposure)) {
-                stop("Given exposures not in ExposomeSet")
+                stop("Given exposures not in 'ExposomeSet'.")
+            }
+            if(sum(exposure[fData(object)[exposure, ".type"] == "factor"])
+               != 0) {
+                stop("Given categorical exposures.")
             }
         }
+
+
         dta <- expos(object)
         if(nrow(dta) > 4999) {
             if(warnings) {
@@ -24,6 +33,9 @@ setMethod(
             }
             dta <- dta[sample(1:nrow(dta), size = 4999), , drop = FALSE]
         }
+
+        dta <- dta[ , fData(object)[exposure, ".type"] == "numeric"]
+
         if(length(exposure) == 1) {
             expos <- dta[ , exposure, drop = TRUE]
             pv <- shapiro.test(expos[!is.na(expos)])

@@ -81,7 +81,7 @@ read_exposome <- function(exposures, description, phenotype,
     }
     ## ------------------------------------------------------------------------
 
-    load_exposome(exp, desc, phe, description.famCol, exposures.asFactor,
+    exposome <- load_exposome(exp, desc, phe, description.famCol, exposures.asFactor,
                   warnings)
 
     return(exposome)

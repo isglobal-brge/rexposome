@@ -32,11 +32,9 @@ setMethod(
                     sqrt = shapiro.test(dta$sqrt)$p.value
                 )
 
-                pv <- sapply(pv, function(ii) {
+                pv <- vapply(pv, function(ii) {
                     paste0("(pval: ", format(ii, scientific=TRUE, digits=5), ")");
-                })
-
-                #pv.p <- sapply(levels(dta.r$variable), function(ft) min(dta.r[dta.r$variable == ft, "value"], na.rm=TRUE))
+                }, FUN.VALUE = character(1))
 
                 dta.r <- reshape2::melt(dta, id.vars=c("exposure", "id"))
                 levels(dta.r$variable) <- paste(c("raw", "exp", "log", "sqrt"), pv)
