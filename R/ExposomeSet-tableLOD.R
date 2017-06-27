@@ -29,7 +29,7 @@ setMethod(
                 } else {
                     sum(dta[ , ex] <= ld[ex, "LOD"], na.rm = TRUE) / nrow(dta)
                 }
-            }, FUN.Value = numeric(1))
+            }, FUN.VALUE = numeric(1))
         } else {
             stop("Invalid 'output' type.")
         }

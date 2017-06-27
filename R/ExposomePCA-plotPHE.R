@@ -16,7 +16,7 @@ setMethod(
         dta <- cbind(dta, phe)
 
         xx <- data.frame(t(do.call(rbind, lapply(phenotype, function(ph) {
-            typ <- rexposome:::.pheno_type(object, ph, exp2fac)
+            typ <- .pheno_type(object, ph, exp2fac)
             dta <- dta[!is.na(dta[ , ph]), ]
             vapply(dim, function(nc) {
                 if(typ == "factor") {

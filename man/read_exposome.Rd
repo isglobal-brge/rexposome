@@ -7,7 +7,7 @@
 read_exposome(exposures, description, phenotype, sep = ",",
   na.strings = c("NA", "-", "?", " ", ""), exposures.samCol = 1,
   description.expCol = 1, description.famCol = 2, phenotype.samCol = 1,
-  exposures.asFactor = 5, warnings = TRUE, ...)
+  exposures.asFactor = 5, warnings = TRUE)
 }
 \arguments{
 \item{exposures}{String with the path to the file with the matrix of

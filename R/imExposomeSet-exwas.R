@@ -45,9 +45,9 @@ setMethod(
                 ## TEST
                 fit_glm <- lapply(1:object@nimputation, function(ii) {
                     dtai <- dta[dta[, 1] == ii, -1]
-                    stats::lm(family=family, formula = frm, data = dtai)
+                    stats::glm(family=family, formula = frm, data = dtai)
                 })
-                tst <- rexposome:::pool_glm(fit_glm, m = object@nimputation)
+                tst <- pool_glm(fit_glm, m = object@nimputation)
 
                 items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
                 message("B")
