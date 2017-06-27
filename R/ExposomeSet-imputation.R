@@ -28,7 +28,6 @@ setMethod(
         imp <- imp[ , exposureNames(object)]
 
         assayData(object) <- assayDataNew("environment",
-                                          raw = assayDataElement(object, "raw"),
                                           exp = t(as.matrix(imp)))
         return(object)
     }
