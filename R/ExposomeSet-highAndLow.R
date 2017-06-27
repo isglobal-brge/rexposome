@@ -59,9 +59,7 @@ setMethod(
             colnames(data.dst) <- c(select, select.no)
             data.dst <- data.dst[ , rownames(assayDataElement(object, "raw"))]
             assayData(object) <- assayDataNew("environment",
-                                              exp = t(data.dst),
-                                              raw = assayDataElement(object, "raw")
-            )
+                exp = t(data.dst))
 
             nfData <- fData(object)
             nfData[select, ".type"] <- "factor"

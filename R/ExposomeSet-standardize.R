@@ -48,8 +48,7 @@ setMethod(
             t(assayData(object)[["exp"]][select.no, ]))
 
         assayData(object) <- assayDataNew("environment",
-                                          raw = assayDataElement(object, "raw"),
-                                          exp = t(dd)[rownames(assayDataElement(object, "raw")), ])
+            exp = t(dd)[rownames(assayDataElement(object, "raw")), ])
         fData(object)[select, ".std"] <- method
 
         return(object)
