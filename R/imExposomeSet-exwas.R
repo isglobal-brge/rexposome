@@ -41,7 +41,6 @@ setMethod(
             frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
 
             tryCatch({
-                message("A")
                 ## TEST
                 fit_glm <- lapply(1:object@nimputation, function(ii) {
                     dtai <- dta[dta[, 1] == ii, -1]
@@ -50,14 +49,12 @@ setMethod(
                 tst <- pool_glm(fit_glm, m = object@nimputation)
 
                 items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
-                message("B")
             }, error = function(e) {
                 if(verbose) {
                     message("\tProcess of '", ex, "' failed.", e)
                 }
                 ne[[ex]] <- e
                 items[[ex]] <- c(NULL, NULL, NULL, NULL)
-                message("D")
             })
         }
 

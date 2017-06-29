@@ -52,7 +52,7 @@ load_imputed <- function(data, description, description.famCol = 1,
     description.famCol <- colnames(description)[description.famCol]
     description.expCol <- colnames(description)[description.expCol]
     description <- description[ , c(description.famCol, description.expCol,
-                                    colnames(description)[!colnames(description) %in% c(description.famCol, description.expCol)]), drop=FALSE]
+        colnames(description)[!colnames(description) %in% c(description.famCol, description.expCol)]), drop=FALSE]
     colnames(description)[1] <- "Family"
     colnames(description)[2] <- "Exposure"
     rownames(description) <- description$Exposure
@@ -60,7 +60,8 @@ load_imputed <- function(data, description, description.famCol = 1,
 
     ## Split the exposures from the phenotypes ar data data.frame
     exp.names <- c(".imp", ".id", rownames(description))
-    phe.names <- colnames(data)[!colnames(data) %in% rownames(description)]
+    phe.names <-  c(".imp", ".id",
+        colnames(data)[!colnames(data) %in% exp.names])
 
     exposures <- data[ , exp.names, drop=FALSE]
     phenotypes <- data[ , phe.names, drop=FALSE]
