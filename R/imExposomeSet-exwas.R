@@ -17,6 +17,7 @@ setMethod(
             stop("Missing argument 'family'.")
         }
         dta <- data.frame(expos(object), pData(object)[ , -c(1:2)])
+        nmis <- apply(dta[dta$`.imp` == 0, ], 2, function(x) sum(is.na(x)))
         dta <- dta[dta$`.imp` != 0, ]
         dta <- dta[ , -2]
 
@@ -46,7 +47,14 @@ setMethod(
                     dtai <- dta[dta[, 1] == ii, -1]
                     stats::glm(family=family, formula = frm, data = dtai)
                 })
-                tst <- pool_glm(fit_glm, m = object@nimputation)
+                mira_glm <- list(
+                    call = NULL,
+                    call1 = NULL,
+                    nmis = nmis,
+                    analyses = fit_glm
+                )
+                class(mira_glm) <- "mira"
+                tst <- pool_glm(mira_glm)
 
                 items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
             }, error = function(e) {

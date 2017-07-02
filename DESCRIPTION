@@ -39,14 +39,14 @@ Imports: methods,
     grDevices, 
     graphics,
     ggrepel,
-    psygenet2r
+    psygenet2r,
+    mice
 Suggests: mclust,
     flexmix,
     testthat,
     BiocStyle,
     knitr,
-    rmarkdown,
-    mice
+    rmarkdown
 biocViews: Software,
     BiologicalQuestion,
     Infrastructure,
