@@ -16,9 +16,9 @@ setMethod(
             }
         }
 
-        dta <- as.data.frame(t(assayData(object)[["exp"]][select, ]))
-
+        dta <- expos(object)[ , select, drop = FALSE]
         imp <- apply(dta, 2, function(row) { Hmisc::impute(row, ...)})
+
         fData(object)$`.imp` <- "hmisc"
 
         select.no <- exposureNames(object)[!exposureNames(object) %in% select]
