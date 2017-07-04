@@ -16,13 +16,15 @@ setMethod(
         dta <- cbind(dta, phe)
 
         xx <- data.frame(t(do.call(rbind, lapply(phenotype, function(ph) {
-            typ <- .pheno_type(object, ph, exp2fac)
+            typ <- rexposome:::.pheno_type(object, ph, exp2fac)
             dta <- dta[!is.na(dta[ , ph]), ]
             vapply(dim, function(nc) {
                 if(typ == "factor") {
+                    dta[ , ph] <- as.factor(dta[ , ph])
                     summary(stats::glm(as.formula(paste0(ph, "~", nc)),
                         data = dta, family = "binomial"))$coefficients[2, 4]
                 } else if(typ == "numeric") {
+                    dta[ , ph] <- as.numeric(dta[ , ph])
                     summary(stats::glm(as.formula(paste0(ph, "~", nc)),
                         data = dta, family = "gaussian"))$coefficients[2, 4]
                 }
