@@ -7,7 +7,8 @@
 setMethod(
     f = "exwas",
     signature = "ExposomeSet",
-    definition = function(object, formula, filter, family, ...,  tef = TRUE, verbose = FALSE, warnings = TRUE) {
+    definition = function(object, formula, filter, family, ...,  tef = TRUE,
+                          verbose = FALSE, warnings = TRUE) {
         dta <- cbind(expos(object), pData(object))
         if(!missing(filter)) {
             sel <- eval(substitute(filter), as.data.frame(dta))
@@ -41,6 +42,14 @@ setMethod(
             nr <- nrow(dta)
             for(phe in all.vars(frm)) {
                 dta <- dta[!is.na(dta[ , phe]), ]
+                if(phe %in% phenotypeNames(object)) {
+                    typ <- rexposome:::.pheno_type(object, phe, 5)
+                    if(typ == "factor") {
+                        dta[ , phe] <- as.factor(dta[ , phe])
+                    } else {
+                        dta[ , phe] <- as.numeric(dta[ , phe])
+                    }
+                }
             }
             dta <- dta[ , all.vars(frm)]
 
