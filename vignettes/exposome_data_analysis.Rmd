@@ -551,8 +551,8 @@ plotEffect(fl_ew)
 The last approach is a multivariate analysis in order to find the group of exposures related to the health outcome. This can be done using methods like Elastic Net. The method `mexwas` applies elastic net to the exposures given a health outcome of interest.
 
 ```{r enet, warning=FALSE}
-bl_mew <- mexwas(exp, phenotype = "blood_pre", family = "gaussian")
-we_mew <- mexwas(exp, phenotype = "wheezing", family = "binomial")
+bl_mew <- mexwas(exp_std, phenotype = "blood_pre", family = "gaussian")
+we_mew <- mexwas(exp_std, phenotype = "wheezing", family = "binomial")
 ```
 
 The coefficient of each exposure is plotted with `plotExwas`. The method draws a heat map with two columns and the exposures as rows. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (`Min`) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (`1SE`). 

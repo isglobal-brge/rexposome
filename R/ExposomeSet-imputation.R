@@ -17,7 +17,10 @@ setMethod(
         }
 
         dta <- expos(object)[ , select, drop = FALSE]
-        imp <- apply(dta, 2, function(row) { Hmisc::impute(row, ...)})
+        imp <- do.call(cbind,
+            lapply(colnames(dta), function(ex) { Hmisc::impute(dta[ , ex], ...)}))
+        colnames(imp) <- colnames(dta)
+        rownames(imp) <- rownames(dta)
 
         fData(object)$`.imp` <- "hmisc"
 
