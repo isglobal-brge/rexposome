@@ -62,7 +62,7 @@
 #' )
 #' @export readExposome
 #' @seealso \link{ExposomeSet} for class description,
-#' \link{load_exposome} for constructor from loaded
+#' \link{loadExposome} for constructor from loaded
 #' \code{data.frame}s
 readExposome <- function(exposures, description, phenotype,
     sep = ",", na.strings = c("NA", "-", "?", " ", ""),

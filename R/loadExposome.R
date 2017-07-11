@@ -33,7 +33,7 @@
 #' be created using \code{exposures.asFactor} value.
 #' @export loadExposome
 #' @seealso \link{ExposomeSet} for class description,
-#' \link{read_exposome} for constructor from txt/csv
+#' \link{readExposome} for constructor from txt/csv
 #' files.
 #' @examples
 #' path <- file.path(path.package("rexposome"), "extdata")
@@ -52,7 +52,8 @@
 #' exp <- loadExposome(
 #' exposures = ee,
 #' description = dd,
-#' phenotype = pp
+#' phenotype = pp,
+#' description.famCol = "Family"
 #' )
 loadExposome <- function(exposures, description, phenotype,
         description.famCol = "family", exposures.asFactor = 5,

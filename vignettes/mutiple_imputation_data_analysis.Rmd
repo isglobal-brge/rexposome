@@ -136,7 +136,7 @@ The format of the multiple imputation data for `rexposome` needs to follow some 
 
 ## Creating an `imExposomeSet`
 
-With the exposome `data.frame` and the description `data.frame` an object of class `imExposomeSet` can be created. To this end, the function `load_imputed` is used:
+With the exposome `data.frame` and the description `data.frame` an object of class `imExposomeSet` can be created. To this end, the function `loadImputed` is used:
 
 ```{r create_imexposomeset}
 ex_imp <- loadImputed(data = me, description = dd, 
@@ -144,7 +144,7 @@ ex_imp <- loadImputed(data = me, description = dd,
                        description.expCol = 2)
 ```
 
-The function `load_imputed` has several arguments:
+The function `loadImputed` has several arguments:
 
 ```{r args_load}
 args(loadImputed)

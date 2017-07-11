@@ -43,7 +43,7 @@ setMethod(
             for(phe in all.vars(frm)) {
                 dta <- dta[!is.na(dta[ , phe]), ]
                 if(phe %in% phenotypeNames(object)) {
-                    typ <- rexposome:::.pheno_type(object, phe, 5)
+                    typ <- .pheno_type(object, phe, 5)
                     if(typ == "factor") {
                         dta[ , phe] <- as.factor(dta[ , phe])
                     } else {

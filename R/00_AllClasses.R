@@ -14,8 +14,8 @@
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot phenoData Contains the phenotypes or variables experimenter-supplied
 #' (see \link{eSet}, \link{AnnotatedDataFrame}).
-#' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}
-#' from files, \code{\link{load_exposome}} to create an \code{ExposomeSet}
+#' @seealso \code{\link{readExposome}} to create an \code{ExposomeSet}
+#' from files, \code{\link{loadExposome}} to create an \code{ExposomeSet}
 #' from \code{data.frames}
 #' @return An object of class \code{ExposomeSet}
 setClass(
@@ -192,7 +192,7 @@ setClass(
 #' the exposures.
 #' @slot phenoData \code{data.frame} containing \code{.imp}, \code{.id} and
 #' the phenotypes.
-#' @seealso \code{\link{load_imputed}} to create an \code{imExposomeSet}
+#' @seealso \code{\link{loadImputed}} to create an \code{imExposomeSet}
 #' from \code{data.frames}
 #' @return An object of class \code{imExposomeSet}
 setClass(

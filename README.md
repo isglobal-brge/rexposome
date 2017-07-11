@@ -62,7 +62,7 @@ In `rexposome` the _exposome_ is understood as a set of three files:
   2. The phenotype file (diseasome file): A matrix with the phenotypes or diseases description, having the individuals as rows and the phenotypes as columns.
   3. The description file: A table describing the exposures. It must have, at last, two columns: one with the exposures and one with the family/group of exposures. The order of the exposures must be the same as in exposure-file.
 
-The _exposome_ is loaded from files using the function `read_exposome`. If the information is stored in standard R `data.frame`s, those can be converted to an `ExposomeSet` using the function `load_exposome`.
+The _exposome_ is loaded from files using the function `readExposome`. If the information is stored in standard R `data.frame`s, those can be converted to an `ExposomeSet` using the function `loadExposome`.
 
 ### Exposome Characterization
 

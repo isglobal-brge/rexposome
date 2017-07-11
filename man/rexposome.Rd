@@ -8,8 +8,8 @@
 \description{
 #' @section exposures loading and exposures managment:
 \code{rexposome} offers two methods to bring exposome data to R and
-Bioconductor. \code{\link{read_exposome}} allows to read three txt-like
-files (\code{.csv}, \code{.tsv}, ...) while \code{\link{load_exposome}}
+Bioconductor. \code{\link{readExposome}} allows to read three txt-like
+files (\code{.csv}, \code{.tsv}, ...) while \code{\link{loadExposome}}
 is sued with \code{matrix} and \code{data.frame}s. The class obtained is
 an \code{\link{ExposomeSet}}, a class based in \code{eSet} for exposome
 data managment.

@@ -91,17 +91,13 @@ each exposure belongs}
 
 \item{na.omit}{NOT USED}
 
-\item{i}{\code{numeric} with the number of imputaion to be returned}
+\item{i}{Character corresponding to selected sample names.}
 
 \item{j}{Character coresponding to selected exposures.}
 
 \item{k}{Character corresponding to selected phenotypes.}
 
 \item{drop}{NOT USED}
-
-\item{x}{\code{imExposomeSet}}
-
-\item{i}{Character corresponding to selected sample names.}
 }
 \value{
 An object of class \code{imExposomeSet}
@@ -166,6 +162,6 @@ the phenotypes.}
 Sample order is not guarantee
 }
 \seealso{
-\code{\link{load_imputed}} to create an \code{imExposomeSet}
+\code{\link{loadImputed}} to create an \code{imExposomeSet}
 from \code{data.frames}
 }

@@ -267,7 +267,7 @@ the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).}
 }}
 
 \seealso{
-\code{\link{read_exposome}} to create an \code{ExposomeSet}
-from files, \code{\link{load_exposome}} to create an \code{ExposomeSet}
+\code{\link{readExposome}} to create an \code{ExposomeSet}
+from files, \code{\link{loadExposome}} to create an \code{ExposomeSet}
 from \code{data.frames}
 }

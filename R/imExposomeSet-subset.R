@@ -1,8 +1,8 @@
 #' @describeIn imExposomeSet Get an \code{ExposomeSet} with the selected
 #' imputation
 #' @aliases imExposomeSet-methods
-#' @param x \code{imExposomeSet}
-#' @param i \code{numeric} with the number of imputaion to be returned
+# @param x \code{imExposomeSet}
+# @param i \code{numeric} with the number of imputaion to be returned
 setMethod(
     f = "[[",
     signature = "imExposomeSet",
