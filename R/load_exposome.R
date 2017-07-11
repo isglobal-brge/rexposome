@@ -30,7 +30,7 @@
 #' \code{"numeric"} to speficy how an exposure needs to be understood. If
 #' given, this column will be renamed to \code{.type}. If not given, it will
 #' be created using \code{exposures.asFactor} value.
-#' @export load_exposome
+#' @export loadExposome
 #' @seealso \link{ExposomeSet} for class description,
 #' \link{read_exposome} for constructor from txt/csv
 #' files.
@@ -53,7 +53,7 @@
 #' description = dd,
 #' phenotype = pp
 #' )
-load_exposome <- function(exposures, description, phenotype,
+loadExposome <- function(exposures, description, phenotype,
                           description.famCol = 1, exposures.asFactor = 5,
                           warnings = TRUE) {
 

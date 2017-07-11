@@ -4,7 +4,8 @@
 %   R/imExposomeSet-exposureNames.R, R/imExposomeSet-extract.R,
 %   R/imExposomeSet-exwas.R, R/imExposomeSet-familyNames.R,
 %   R/imExposomeSet-phenotypeNames.R, R/imExposomeSet-plotFamily.R,
-%   R/imExposomeSet-sampleNames.R, R/imExposomeSet-toES.R
+%   R/imExposomeSet-sampleNames.R, R/imExposomeSet-subset.R,
+%   R/imExposomeSet-toES.R
 \docType{class}
 \name{imExposomeSet}
 \alias{imExposomeSet}
@@ -19,6 +20,11 @@
 \alias{phenotypeNames,imExposomeSet-method}
 \alias{plotFamily,imExposomeSet-method}
 \alias{sampleNames,imExposomeSet-method}
+\alias{[[,imExposomeSet-method}
+\alias{imExposomeSet-methods}
+\alias{[,imExposomeSet,ANY,ANY,ANY-method}
+\alias{imExposomeSet-methods}
+\alias{[}
 \alias{toES,imExposomeSet-method}
 \title{Class imExposomeSet}
 \usage{
@@ -43,6 +49,10 @@
   scatter = FALSE, na.omit = TRUE)
 
 \S4method{sampleNames}{imExposomeSet}(object)
+
+\S4method{[[}{imExposomeSet}(x, i)
+
+\S4method{[}{imExposomeSet,ANY,ANY,ANY}(x, i, j, k, ..., drop = FALSE)
 
 \S4method{toES}{imExposomeSet}(object, rid = 1)
 }
@@ -80,6 +90,18 @@ each exposure belongs}
 \item{scatter}{If set to true it shows the samples value in the plot}
 
 \item{na.omit}{NOT USED}
+
+\item{i}{\code{numeric} with the number of imputaion to be returned}
+
+\item{j}{Character coresponding to selected exposures.}
+
+\item{k}{Character corresponding to selected phenotypes.}
+
+\item{drop}{NOT USED}
+
+\item{x}{\code{imExposomeSet}}
+
+\item{i}{Character corresponding to selected sample names.}
 }
 \value{
 An object of class \code{imExposomeSet}
@@ -117,6 +139,11 @@ exposure in the all imputed sets.
 
 \item \code{sampleNames}: Method to obtain samples' names
 
+\item \code{[[}: Get an \code{ExposomeSet} with the selected
+imputation
+
+\item \code{[}: Subset an \code{imExposomeSet}
+
 \item \code{toES}: Returns an \code{\link{ExposomeSet}} with ethe given imputation.
 }}
 
@@ -135,6 +162,9 @@ the exposures.}
 the phenotypes.}
 }}
 
+\note{
+Sample order is not guarantee
+}
 \seealso{
 \code{\link{load_imputed}} to create an \code{imExposomeSet}
 from \code{data.frames}

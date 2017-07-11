@@ -58,11 +58,11 @@
 #'   description.famCol = 1,
 #'   phenotype.samCol = 1
 #' )
-#' @export read_exposome
+#' @export readExposome
 #' @seealso \link{ExposomeSet} for class description,
 #' \link{load_exposome} for constructor from loaded
 #' \code{data.frame}s
-read_exposome <- function(exposures, description, phenotype,
+readExposome <- function(exposures, description, phenotype,
     sep = ",", na.strings = c("NA", "-", "?", " ", ""),
     exposures.samCol = 1, description.expCol = 1, description.famCol = 2,
     phenotype.samCol = 1, exposures.asFactor = 5,
