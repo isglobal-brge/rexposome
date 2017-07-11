@@ -13,11 +13,12 @@ setMethod(
 
             rownames(ee) <- ee[ , 1]
             rownames(pp) <- pp[ , 1]
-            load_exposome(
+            loadExposome(
                 exposures = as.data.frame(ee[ , -1]),
                 #description = as.data.frame(object@featureData[ , -ncol(object@featureData)]),
                 description = as.data.frame(fData(object)[ , -ncol(fData(object))]),
-                phenotype = as.data.frame(pp[ , -1])
+                phenotype = as.data.frame(pp[ , -1]),
+                description.famCol = "Family"
             )
         } else {
             stop("'rid' sould be larger or equall to 1.")
