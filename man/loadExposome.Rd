@@ -4,7 +4,7 @@
 \alias{loadExposome}
 \title{Creation of an ExposomeSet from \code{data.frames}}
 \usage{
-loadExposome(exposures, description, phenotype, description.famCol = 1,
+loadExposome(exposures, description, phenotype, description.famCol = "family",
   exposures.asFactor = 5, warnings = TRUE)
 }
 \arguments{
@@ -15,8 +15,9 @@ loadExposome(exposures, description, phenotype, description.famCol = 1,
 
 \item{phenotype}{\code{data.frame} with the phenotypes of interest.}
 
-\item{description.famCol}{(default \code{1}) Index where the family's
-name (per exposures) if found in file "description".}
+\item{description.famCol}{(default \code{"family"}) Index where the family's
+name (per exposures) if found in file "description". It can be both numeric
+or character.}
 
 \item{exposures.asFactor}{(default \code{5}) The exposures with more
 than this number of unique items will be considered as "continuous" while
@@ -51,10 +52,10 @@ given, this column will be renamed to \code{.type}. If not given, it will
 be created using \code{exposures.asFactor} value.
 }
 \examples{
-path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-description <- paste0(path, .Platform$file.sep, "description.csv")
-phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
-exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
+phenotype <- file.path(path, "phenotypes.csv")
+exposures <- file.path(path, "exposures.csv")
 dd <- read.csv(description, header=TRUE)
 ee <- read.csv(exposures, header=TRUE)
 pp <- read.csv(phenotype, header=TRUE)
@@ -64,7 +65,7 @@ rownames(ee) <- ee[ , 1]
 ee <- ee[ , -1]
 rownames(pp) <- pp[ , 1]
 pp <- pp[ , -1]
-exp <- load_exposome(
+exp <- loadExposome(
 exposures = ee,
 description = dd,
 phenotype = pp

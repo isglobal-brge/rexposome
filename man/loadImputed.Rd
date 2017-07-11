@@ -4,8 +4,8 @@
 \alias{loadImputed}
 \title{Creation of an imExposomeSet from \code{data.frames}}
 \usage{
-loadImputed(data, description, description.famCol = 1,
-  description.expCol = 2, exposures.asFactor = 5)
+loadImputed(data, description, description.famCol = "family",
+  description.expCol = "exposure", exposures.asFactor = 5)
 }
 \arguments{
 \item{data}{The \code{data.frame} of both exposures and phentoypes obtained
@@ -14,11 +14,13 @@ from \code{mice}.}
 \item{description}{\code{data.frame} with the description of the exposures
 (relation between exposures and exposure-family).}
 
-\item{description.famCol}{(default \code{1}) Index where the family's
-name (per exposures) if found in file "description".}
+\item{description.famCol}{(default \code{"family"}) Index where the family's
+name (per exposures) if found in file "description". It can be both numeric
+or character.}
 
-\item{description.expCol}{(default \code{2}) Index where the exposure's
-name if found in file "description".}
+\item{description.expCol}{(default \code{"exposures"}) Index where the
+exposure's name if found in file "description". It can be both numeric
+or character.}
 
 \item{exposures.asFactor}{(default \code{5}) The exposures with more
 than this number of unique items will be considered as "continuous" while
@@ -44,11 +46,11 @@ phentoypes.
 }
 \examples{
 data("me") # me is an imputed matrix of exposure and phenotyes
-path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-description <- paste0(path, .Platform$file.sep, "description.csv")
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
 dd <- read.csv(description, header=TRUE, stringsAsFactors=FALSE)
 dd <- dd[dd$Exposure \%in\% colnames(me), ]
-ex_imp <- load_imputed(data = me, description = dd,
+ex_imp <- loadImputed(data = me, description = dd,
 description.famCol = 1,
 description.expCol = 2)
 }

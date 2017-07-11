@@ -13,8 +13,9 @@
 #' @param description \code{data.frame} with the description of the exposures
 #' (relation between exposures and exposure-family).
 #' @param phenotype \code{data.frame} with the phenotypes of interest.
-#' @param description.famCol (default \code{1}) Index where the family's
-#' name (per exposures) if found in file "description".
+#' @param description.famCol (default \code{"family"}) Index where the family's
+#' name (per exposures) if found in file "description". It can be both numeric
+#' or character.
 #' @param exposures.asFactor (default \code{5}) The exposures with more
 #' than this number of unique items will be considered as "continuous" while
 #' the exposures with less or equal number of items will be considered as
@@ -35,10 +36,10 @@
 #' \link{read_exposome} for constructor from txt/csv
 #' files.
 #' @examples
-#' path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-#' description <- paste0(path, .Platform$file.sep, "description.csv")
-#' phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
-#' exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+#' path <- file.path(path.package("rexposome"), "extdata")
+#' description <- file.path(path, "description.csv")
+#' phenotype <- file.path(path, "phenotypes.csv")
+#' exposures <- file.path(path, "exposures.csv")
 #' dd <- read.csv(description, header=TRUE)
 #' ee <- read.csv(exposures, header=TRUE)
 #' pp <- read.csv(phenotype, header=TRUE)
@@ -48,14 +49,14 @@
 #' ee <- ee[ , -1]
 #' rownames(pp) <- pp[ , 1]
 #' pp <- pp[ , -1]
-#' exp <- load_exposome(
+#' exp <- loadExposome(
 #' exposures = ee,
 #' description = dd,
 #' phenotype = pp
 #' )
 loadExposome <- function(exposures, description, phenotype,
-                          description.famCol = 1, exposures.asFactor = 5,
-                          warnings = TRUE) {
+        description.famCol = "family", exposures.asFactor = 5,
+        warnings = TRUE) {
 
     ## Order the colmuns on description
     ##   rownames <- exposures

@@ -5,9 +5,9 @@
 \title{Creation of an ExposomeSet from files}
 \usage{
 readExposome(exposures, description, phenotype, sep = ",",
-  na.strings = c("NA", "-", "?", " ", ""), exposures.samCol = 1,
-  description.expCol = 1, description.famCol = 2, phenotype.samCol = 1,
-  exposures.asFactor = 5, warnings = TRUE)
+  na.strings = c("NA", "-", "?", " ", ""), exposures.samCol = "sample",
+  description.expCol = "exposure", description.famCol = "family",
+  phenotype.samCol = "sample", exposures.asFactor = 5, warnings = TRUE)
 }
 \arguments{
 \item{exposures}{String with the path to the file with the matrix of
@@ -25,17 +25,19 @@ load the files "exposures", "description" and "phenotype".}
 \item{na.strings}{(default \code{c("NA", "-", "?", " ", "")}) Character
 defining the \code{NA} values in expsome's files.}
 
-\item{exposures.samCol}{(default \code{1}) Index where the samples' name
-are found in file "exposures".}
+\item{exposures.samCol}{(default \code{"sample"}) Index where the samples'
+name are found in file "exposures". It can be both charatcer or numeric.}
 
-\item{description.expCol}{(default \code{1}) Index where the exposures'
-name are found in file "description".}
+\item{description.expCol}{(default \code{"exposure"}) Index where the
+exposures' name are found in file "description". It can be both numeric
+or character.}
 
-\item{description.famCol}{(default \code{2}) Index where the family's
-name (per exposures) if found in file "description".}
+\item{description.famCol}{(default \code{"family"}) Index where the family's
+name (per exposures) if found in file "description". It can be both numeric
+or character.}
 
-\item{phenotype.samCol}{(default \code{1}) Index where the sample's name
-are found in file "phenotype".}
+\item{phenotype.samCol}{(default \code{"sample"}) Index where the sample's
+name are found in file "phenotype". It can be both numeric or character.}
 
 \item{exposures.asFactor}{(default \code{5}) The exposures with more
 than this number of unique items will be considered as "continuous" while
@@ -70,13 +72,13 @@ be created using \code{exposures.asFactor} value.
 }
 \examples{
 ## Locate the data-files
-path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-description <- paste0(path, .Platform$file.sep, "description.csv")
-phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
-exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
+phenotype <- file.path(path, "phenotypes.csv")
+exposures <- file.path(path, "exposures.csv")
 
 ## Create ExposomeSet from files
-exp <- read_exposome(
+exp <- readExposome(
   exposures = exposures,
   description = description,
   phenotype = phenotype,
