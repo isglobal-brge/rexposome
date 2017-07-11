@@ -136,7 +136,7 @@ library(rexposome)
 library(psygenet2r)
 ```
 
-`rexposome` provides two functions to load the *exposome* data: `read_exposome` and `load_exposome`. The function `read_exposome` will load the exposome data from txt files and `load_exposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
+`rexposome` provides two functions to load the *exposome* data: `readExposome` and `loadexposome`. The function `readExposome` will load the exposome data from txt files and `loadExposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
 
 ## Loading Exposome Data
 
@@ -145,22 +145,22 @@ library(psygenet2r)
 The function `read_exposome` will create an `ExposomeSet` from the three `txt` files. The following lines are used to locate these three files, that were included in the package for demonstration purposes.
 
 ```{r files_path}
-path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-description <- paste0(path, .Platform$file.sep, "description.csv")
-phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
-exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
+phenotype <- file.path(path, "phenotypes.csv")
+exposures <- file.path(path, "exposures.csv")
 ```
 
 These files follows the rules described in **Data Format** section. They are `csv` files, meaning each values is split from the others by a comma (`,`). Function `read_exposome` allows to load most any type of files containing *exposome* data:
 
 ```{r ags_read_exposome}
-args(read_exposome)
+args(readExposome)
 ```
 
 `read_exposome` expects, by default, `csv` files. Changing the content of the argument `sep` will allow to load other files types. The missing values are set using the argument `na.strings`. This means that the character assigned to this argument will be interpreted as a missing value. By default, those characters are `"NA"`, `"-"`, `"?"`, `" "` and `""`. Then, the columns with the exposures' names and the individual's names need to be indicated. Arguments `exposures.samCol` and `phenotype.samCol` indicates the column with the individuals' names at _exposures file_ and _phenotypes file_. The arguments `description.expCol` and `description.famCol` indicates the column containing the exposures' names and the exposures' family in the _description file_.
 
 ```{r read_exposome}
-exp <- read_exposome(
+exp <- readExposome(
     exposures = exposures, 
     description = description, 
     phenotype = phenotype,
@@ -185,7 +185,7 @@ Under the section _exposures description_ the number of continuous (84) and cate
 The function `load_exposome` allows to create an `ExposomeSet` through three `data.frames`: one as *description data*, one as *exposures data* and one as *phenotypes data*. The arguments are similar to the ones from `read_exposome`:
 
 ```{r ags_load_exposome}
-args(load_exposome)
+args(loadExposome)
 ```
 
 In order to illustrate how to use `load_exposome`, we are loading the previous `csv` files as `data.frames`:
@@ -220,10 +220,11 @@ pp <- pp[ , -1]
 Then, the `ExposomeSet` is creating by giving the three `data.frames` to `load_exposome`:
 
 ```{r load_exposome}
-exp <- load_exposome(
+exp <- loadExposome(
     exposures = ee, 
     description = dd, 
-    phenotype = pp
+    phenotype = pp,
+    description.famCol = "Family"
 )
 ```
 

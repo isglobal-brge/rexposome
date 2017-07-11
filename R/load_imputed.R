@@ -51,8 +51,12 @@ loadImputed <- function(data, description, description.famCol = "family",
     # Order the colmuns on description
     ##   column  1 must be the family
     ##   column  2 must be the exposures
-    description.famCol <- colnames(description)[description.famCol]
-    description.expCol <- colnames(description)[description.expCol]
+    if(class(description.famCol) %in% c("integer", "numeric")) {
+        description.famCol <- colnames(description)[description.famCol]
+    }
+    if(class(description.expCol) %in% c("integer", "numeric")) {
+        description.expCol <- colnames(description)[description.expCol]
+    }
     description <- description[ , c(description.famCol, description.expCol,
         colnames(description)[!colnames(description) %in% c(description.famCol, description.expCol)]), drop=FALSE]
     colnames(description)[1] <- "Family"

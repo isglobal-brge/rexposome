@@ -61,7 +61,9 @@ loadExposome <- function(exposures, description, phenotype,
     ## Order the colmuns on description
     ##   rownames <- exposures
     ##   column  1 must be the family
-    description.famCol <- colnames(description)[description.famCol]
+    if(class(description.famCol) %in% c("integer", "numeric")) {
+        description.famCol <- colnames(description)[description.famCol]
+    }
     description <- description[ , c(description.famCol,
                       colnames(description)[colnames(description) != description.famCol]), drop=FALSE]
     colnames(description)[1] <- "Family"
