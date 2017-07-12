@@ -1,4 +1,4 @@
-pool_glm <- function (object, method = "smallsample") {
+pool_glm <- function (object, method = "smallsample", ex) {
     expandvcov <- function(q, u) {
         err <- is.na(q)
         return(u)
@@ -22,23 +22,37 @@ pool_glm <- function (object, method = "smallsample") {
     fa <- mice::getfit(object, 1)
     analyses <- mice::getfit(object)
 
-    k <- length(coef(fa))
-    names <- names(coef(fa))
+    mxv <- sapply(1:m, function(ii) { length(stats::coef(analyses[[ii]])) })
+    mx <- max(mxv)
+
+    if(sum(mxv == mx) != length(object$analyses)) {
+        warning("Only ", sum(mxv == mx), " of ", length(object$analyses),
+                " will be used in this analysis (", ex, ").")
+    }
+
+    k <- length(stats::coef(fa))
+    names <- names(stats::coef(fa))
     qhat <- matrix(NA, nrow = m, ncol = k,
                    dimnames = list(1:m, names))
     u <- array(NA, dim = c(m, k, k),
                dimnames = list(1:m, names, names))
+
     for (i in 1:m) {
         fit <- analyses[[i]]
-        qhat[i, ] <- coef(fit)
-        ui <- vcov(fit)
-        ui <- expandvcov(qhat[i, ], ui)
-        if (ncol(ui) != ncol(qhat))
-            stop("Different number of parameters: coef(fit): ",
-                 ncol(qhat), ", vcov(fit): ", ncol(ui))
-        u[i, , ] <- array(ui, dim = c(1, dim(ui)))
+        if(length(stats::coef(fit)) == mx) {
+            qhat[i, ] <- stats::coef(fit)
+            ui <- vcov(fit)
+            ui <- expandvcov(qhat[i, ], ui)
+            if (ncol(ui) != ncol(qhat))
+                stop("Different number of parameters: coef(fit): ",
+                     ncol(qhat), ", vcov(fit): ", ncol(ui), "(", ex, ")")
+            u[i, , ] <- array(ui, dim = c(1, dim(ui)))
+        }
     }
 
+    qhat <- qhat[mxv == mx, ]
+    u <- u[mxv == mx, , ]
+    m <- sum(mxv == mx)
 
     # qbar: final coefficients
     qbar <- apply(qhat, 2, mean)

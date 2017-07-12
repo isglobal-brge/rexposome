@@ -54,7 +54,7 @@ setMethod(
                     analyses = fit_glm
                 )
                 class(mira_glm) <- "mira"
-                tst <- pool_glm(mira_glm)
+                tst <- pool_glm(mira_glm, ex = ex)
 
                 items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
             }, error = function(e) {
