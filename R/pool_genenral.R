@@ -19,16 +19,22 @@ pool_glm <- function (object, method = "smallsample", ex) {
     }
 
     m <- length(object$analyses)
-    fa <- mice::getfit(object, 1)
     analyses <- mice::getfit(object)
 
-    mxv <- sapply(1:m, function(ii) { length(stats::coef(analyses[[ii]])) })
-    mx <- max(mxv)
+    mxc <- sapply(1:m, function(ii) { length(stats::coef(analyses[[ii]])) })
+    mxv <- sapply(1:m, function(ii) { ncol(vcov(analyses[[ii]])) })
 
-    if(sum(mxv == mx) != length(object$analyses)) {
+    mx <- max(c(mxv, mxv))
+
+    if(sum(mxv == mx & mxc == mx) != length(object$analyses)) {
         warning("Only ", sum(mxv == mx), " of ", length(object$analyses),
                 " will be used in this analysis (", ex, ").")
     }
+
+    analyses <- analyses[mxv == mx & mxc == mx]
+
+    m <- length(analyses)
+    fa <- mice::getfit(object, 1)
 
     k <- length(stats::coef(fa))
     names <- names(stats::coef(fa))
@@ -50,9 +56,9 @@ pool_glm <- function (object, method = "smallsample", ex) {
         }
     }
 
-    qhat <- qhat[mxv == mx, ]
-    u <- u[mxv == mx, , ]
-    m <- sum(mxv == mx)
+    #qhat <- qhat[mxv == mx, ]
+    #u <- u[mxv == mx, , ]
+    #m <- sum(mxv == mx)
 
     # qbar: final coefficients
     qbar <- apply(qhat, 2, mean)
