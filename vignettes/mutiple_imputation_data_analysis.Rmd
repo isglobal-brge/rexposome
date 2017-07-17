@@ -259,3 +259,9 @@ tbl <- extract(as_iew)
 ```{r sig}
 (sig <- tbl[tbl$pvalue <= thr, ])
 ```
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```

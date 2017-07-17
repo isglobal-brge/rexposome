@@ -562,3 +562,9 @@ The coefficient of each exposure is plotted with `plotExwas`. The method draws a
 plotExwas(bl_mew, we_mew) + ylab("") +
         ggtitle("Exposome Association Study - Multivariate Approach")
 ```
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
