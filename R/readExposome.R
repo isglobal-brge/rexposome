@@ -78,9 +78,6 @@ readExposome <- function(exposures, description, phenotype,
         stringsAsFactors = TRUE)
     desc <- utils::read.table(description, header = TRUE,
         row.names = description.expCol, sep = sep, na.strings = na.strings)
-    if(description.famCol > description.expCol) {
-        description.famCol <- description.famCol - 1
-    }
     ## ------------------------------------------------------------------------
 
     exposome <- loadExposome(exp, desc, phe, description.famCol, exposures.asFactor,
