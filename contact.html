@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>rexposome framework</title>
+    <title>rexposome project</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -45,15 +45,21 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="installation.html">Installation</a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Installation<b class="caret"></b></a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="install_rexposome.html">rexposome</a></li>
+                            <li><a href="install_omicRexposome.html">omicRexposome</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Vignette <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/exposome_data_analysis.html" target="_blank">Exposome Data Analysis</a></li>
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/mutiple_imputation_data_analysis.html" target="_blank">Dealing with Multiple Imputations</a></li>
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/tips_tricks_rexposome.html" target="_blank">Tips and Tricks with rexposome</a></li>
-                    </ul>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="vignettes/exposome_data_analysis.html" target="_blank">Exposome Data Analysis</a></li>
+                            <li><a href="vignettes/dealing_multiple_imputations.html" target="_blank">Dealing with Multiple Imputations</a></li>
+                            <li class="divider"></li>
+                            <li><a href="vignettes/exposome_data_integration_with_omic_data.html" target="_blank">Exposome Data Integration with Omic Data</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -80,7 +86,8 @@
                     <div class="card-block">
                         <h4 class="card-title"><a href="#">Carles Hernandez-Ferrer</a></h4>
                         <p class="card-text"><h4><small>PhD Student</small></h4>
-                        <code>carles.hernandez@isglobal.org</code></p>
+                        <code>carles.hernandez@isglobal.org</code></br>
+                        <code>https://carleshf.netlify.com</code></p>
                         <p>Coding from 2007, <span class=".text-success">Carles Hernandez-Ferrer</span> joined the Bioinformatic Research Group in Epidemiology (BRGE) in 2013 as a PhD Student. Under the supervision of Dr. Juan R. Gonzalez, the main topic of his PhD project is to develop new tools for exposome-omic data analisis. A result of this work is the <code>rexposome framework</code>, where <code>respoxomse</code> R package belongs.</p>
                         <p>He is currently working on the exposome and omics data analysis of 7th Framework Program project The Human Early-Life Exposome (HELIX).
                         </p>

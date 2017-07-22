@@ -45,15 +45,21 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="installation.html">Installation</a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Installation<b class="caret"></b></a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="install_rexposome.html">rexposome</a></li>
+                            <li><a href="install_omicRexposome.html">omicRexposome</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Vignette <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/exposome_data_analysis.html" target="_blank">Exposome Data Analysis</a></li>
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/mutiple_imputation_data_analysis.html" target="_blank">Dealing with Multiple Imputations</a></li>
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/tips_tricks_rexposome.html" target="_blank">Tips and Tricks with rexposome</a></li>
-                    </ul>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="vignettes/exposome_data_analysis.html" target="_blank">Exposome Data Analysis</a></li>
+                            <li><a href="vignettes/dealing_multiple_imputations.html" target="_blank">Dealing with Multiple Imputations</a></li>
+                            <li class="divider"></li>
+                            <li><a href="vignettes/exposome_data_integration_with_omic_data.html" target="_blank">Exposome Data Integration with Omic Data</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -71,7 +77,8 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>rexposome project</h1>
-            <p>Under the framework of the HELIX project, the Bioinformatics Research Group in Epidemiology (BRGE) from the Barcelona Global Health Institute (ISGlobal) has developed the <code>rexposome project</code>. This is a compendium of two packages including <code>rexposome</code> and <code>omicRexposome</code>, that was raised under Bioconductor framework and designed to incorporate, explore and analyse exposome data using R.</p>
+            <p><strong>rexposome project</strong> is a set of two R packages developed at the <em>Bioinformatics Research Group in Epidemiology</em> (BRGE) from the <em>Barcelona Global Health Institute</em> (ISGlobal). Its aim is to provide a generic framework to easily perform incorporate <span class="text-primary"><strong>exposome</strong></span> data in R pipelines, with the goal to characterize, and analyse exposome.</p>
+            <p>The packages included in <strong>rexposome project</strong> are <code>rexposome</code> and <code>omicRexposome</code>. The first is in charge to offer an interface to load exposome data into Bioconductor-like objects and a pipelines to characterize the exposome, including to perform <span class="text-primary"><strong>Exposome-Wide Association Studies</strong></span>. The second one contains the two functions to perform association and integrations analysis between both exposome and omic data-sets.</p>            
             <!--<p><a class="btn btn-primary btn-large">Call to action!</a>
             </p>-->
             <div class="btn-group">
@@ -87,8 +94,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="https://github.com/isglobal-brge/rexposome/">rexposome</a></li>
                         <li><a href="https://github.com/isglobal-brge/omicRexposome">omicRexposome</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">postRexposome</a></li>
                     </ul>
                 </div>
             </div>
@@ -109,20 +114,10 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="img/files.png" alt=""> <!-- src="http://placehold.it/800x500" -->
+                    <img src="img/files.png" alt="">
                     <div class="caption">
                         <h3>exposome data loading</h3>
-                        <p><code>rexposome</code> implements <code>read_exposome</code> and <code>load_exposme</code> functions. The first one is in charge to load into R exposome data stored in raw file and to create an <code>ExposomeSet</code>. The second one creates an <code>ExposomeSet</code> from already existing <code>data.frame</code>s.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="img/exposures.png" alt="">
-                    <div class="caption">
-                        <h3>exposome data management</h3>
-                        <p><code>rexposome</code> implement the <code>ExposomeSet</code> class. It is an <code>eSet</code> based class used to store and manage exposome data in R under the framework of Biocondcutor.</p>
+                        <p><code>rexposome</code> implements <code>readExposome</code> and <code>loadExposme</code> functions. The first one is in charge to load into R exposome data stored in raw file and to create an <code>ExposomeSet</code>. The second one creates an <code>ExposomeSet</code> from already existing <code>data.frame</code>s.</p>
                     </div>
                 </div>
             </div>
@@ -132,7 +127,7 @@
                     <img src="img/correlation.png" alt="">
                     <div class="caption">
                         <h3>exposome data exploration</h3>
-                        <p>Several functions are implemented in <code>rexposome</code> to explore and describe exposome data. The methods <code>tableMissings</code> and <code>plotMissings</code> allow to analyse the amount of missing data. <code>plotHistogram</code> and <code>plotFamily</code> allow to see the behaviour of thee exposures. <code>correlation</code> and <code>plotCorrelation</code> helps to understand the relation between exposures.</p>
+                        <p>Several functions are implemented in <code>rexposome</code> to explore and describe exposome data. The method <code>plotMissings</code> allow to analyse the amount of missing data. <code>plotHistogram</code> and <code>plotFamily</code> allow to see the behaviour of thee exposures. <code>correlation</code> and <code>plotCorrelation</code> helps to understand the relation between exposures.</p>
                     </div>
                 </div>
             </div>
@@ -142,13 +137,21 @@
                     <img src="img/exwas.png" alt="">
                     <div class="caption">
                         <h3>exposome data analysis</h3>
-                        <p><code>rexposome</code> allows to perform <span class="text-primary">EXposome-Wide Association Study</span> (EXWAS) in both univariate and multivariate ways using standard single-exposure association test or through an elastic net approach.</p>
-                        <!--<p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>-->
+                        <p><code>rexposome</code> allows to perform EXposome-Wide Association Study (EXWAS) in both univariate and multivariate ways using standard single-exposure association test or through an elastic net approach.</p>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="img/exposures.png" alt="">
+                    <div class="caption">
+                        <h3>exposome-omic data analysis</h3>
+                        <p><code>omicRexposome</code> implement the functions <code>associations</code> and <code>integration</code>. The fist allows to test the association between exposures and omic features (genes, CpGs...). The second allows to perform an integration of multiple layers, including exposome data.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- /.row -->
 

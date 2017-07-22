@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>rexposome framework</title>
+    <title>rexposome project</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -47,15 +47,21 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="installation.html">Installation</a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Installation<b class="caret"></b></a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="install_rexposome.html">rexposome</a></li>
+                            <li><a href="install_omicRexposome.html">omicRexposome</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Vignette <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/exposome_data_analysis.html" target="_blank">Exposome Data Analysis</a></li>
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/mutiple_imputation_data_analysis.html" target="_blank">Dealing with Multiple Imputations</a></li>
-                        <li><a href="https://htmlpreview.github.io/?https://github.com/isglobal-brge/rexposome/blob/master/vignettes/tips_tricks_rexposome.html" target="_blank">Tips and Tricks with rexposome</a></li>
-                    </ul>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="vignettes/exposome_data_analysis.html" target="_blank">Exposome Data Analysis</a></li>
+                            <li><a href="vignettes/dealing_multiple_imputations.html" target="_blank">Dealing with Multiple Imputations</a></li>
+                            <li class="divider"></li>
+                            <li><a href="vignettes/exposome_data_integration_with_omic_data.html" target="_blank">Exposome Data Integration with Omic Data</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -85,34 +91,29 @@
         </p>
 
         <pre><code class="R">packages = c(
-    'Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR', 'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
-    'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra', 'grid', 'Hmisc', 'gplots', 'gtools', 'scales'
-)
+    'Biobase', 'lsr', 'FactoMineR', 'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
+    'S4Vectors' 'scatterplot3d', 'glmnet', 'gridExtra', 'grid', 'Hmisc', 'gplots', 'gtools', 'scales',
+    'lme4', 'ggrepel', 'psygenet2r', 'mice', 'imputeLCMD', 'flexmix', 'testthat', 'BiocStyle', 'knitr',
+    'rmarkdown'
+) 
 
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
-    message( "Installing ", pkg )
     biocLite( pkg )
   }
 }</code></pre>
             
         <p>
-        <code>rexposome</code> is installed using <code>devtools</code> R package. to install <code>devtools</code> run this command in the R session:
+        <code>rexposome</code> is installed using <code>devtools</code> R package. To install <code>devtools</code> run this command in the R session:
         </p>
 
         <pre><code class="R">install.packages("devtools")</code></pre>
 
         <p>
-        Due to the publication process of <code>rexposome</code> at Bioconductor, the requirement is set to R-3.4. For those using R-3.4, the following code installs rexposome:
+        Due to the publication process of <code>rexposome</code> at Bioconductor, the requirement is set to R-3.4. The following code installs <code>rexposome</code>:
         </p>
 
         <pre><code class="R">devtools::install_github("isglobal-brge/rexposome")</code></pre>
-
-        <p>
-        For those using an older version of R (but newer than R-3.o) the following code installs rexposome:
-        </p>
-
-        <pre><code class="R">devtools::install_github("isglobal-brge/rexposome", ref="R-3.0")</code></pre>
     </div>
     <!-- /.container -->
 
