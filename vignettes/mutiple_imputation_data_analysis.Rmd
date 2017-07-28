@@ -1,0 +1,267 @@
+---
+title: "Dealing with Multiple Imputations"
+author: "Carles Hernandez-Ferrer and Juan R. Gonzalez"
+date: "`r doc_date()`"
+package: "`r pkg_ver('rexposome')`"
+abstract: >
+      An introductory guide to analysing multiple imputed exposome data with R package `rexposome`. The areas covered in this document are: loading the multiple imputations of both exposures and phenotypes from common `data.frame`s, exploration the exposome data, and testing association between exposures and health outcomes.
+vignette: >
+  %\VignetteIndexEntry{Dealing with Multiple Imputations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document
+---
+
+```{r setup, include=FALSE}
+BiocStyle::markdown()
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
+```
+
+# Introduction
+
+## Dummy Imputation with `mice`
+
+To illustrate how to perform a multiple imputation using `mice` we start loading both `rexposome` and `mice` libraries.
+
+```{r, message=FALSE}
+library(rexposome)
+library(mice)
+```
+
+```{r library2, echo=FALSE, message=FALSE}
+library(psygenet2r)
+```
+
+The we load the `txt` files includes in `rexposome` package so we can load the exposures and see the amount of missing data (check vignette *Exposome Data Analysis* for more information). 
+
+The following lines locates where the `txt` files were installed.
+
+```{r files_path}
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
+phenotype <- file.path(path, "phenotypes.csv")
+exposures <- file.path(path, "exposures.csv")
+```
+
+Once the files are located we load them as `data.frames`:
+
+```{r read_csv_files}
+dd <- read.csv(description, header=TRUE, stringsAsFactors=FALSE)
+ee <- read.csv(exposures, header=TRUE)
+pp <- read.csv(phenotype, header=TRUE)
+```
+
+In order to speed up the imputation process that will be carried in this vignette, we will remove four families of exposures.
+
+```{r remove_exposures}
+dd <- dd[-which(dd$Family %in% c("Phthalates", "PBDEs", "PFOAs", "Metals")), ]
+ee <- ee[ , c("idnum", dd$Exposure)]
+```
+
+We can check the amount of missing data in both exposures and phenotypes `data.frames`:
+
+```{r check_na}
+data.frame(
+    Set=c("Exposures", "Phenotypes"),
+    Count=c(sum(is.na(ee)), sum(is.na(pp)))
+)
+```
+
+Before running `mice`, we need to collapse both the exposures and the phenotypes in a single `data.frame`.
+
+```{r set_up_imputation}
+rownames(ee) <- ee$idnum
+rownames(pp) <- pp$idnum
+
+dta <- cbind(ee[ , -1], pp[ , -1])
+dta[1:3, c(1:3, 52:56)]
+```
+
+Once this is done, the *class* of each column needs to be set, so `mice` will be able to differentiate between continuous and categorical exposures.
+
+```{r class_imputation}
+for(ii in c(1:13, 18:47, 55:56)) {
+    dta[, ii] <- as.numeric(dta[ , ii])
+}
+for(ii in c(14:17, 48:54)) {
+    dta[ , ii] <- as.factor(dta[ , ii])
+}
+```
+
+With this `data.frame` we perform the imputation calling `mice` functions (for more information about this call, check `mice`'s vignette). We remove the columns *birthdate* since it is not necessary for the imputations and carries lots of categories.
+
+```{r mice_imputation, message=FALSE}
+imp <- mice(dta[ , -52], pred = quickpred(dta[ , -52], mincor = 0.2, 
+    minpuc = 0.4), seed = 38788, m = 5, maxit = 10, printFlag = FALSE)
+class(imp)
+```
+
+The created object `imp`, that is an object of class `mids` contains 20 data-sets with the imputed exposures and the phenotypes. To work with this information we need to extract each one of these sets and create a new data-set that includes all of them. This new `data.frame` will be passed to `rexposome` (check next section to see the requirements).
+
+`mice` package includes the function `complete` that allows to extract a single data-set from an object of class `mids`. We will use this function to extract the sets and join them in a single `data.frame`.
+
+If we set the argument `action` of the `complete` function to `0`, it will return the original data:
+
+```{r extract_non_imputed}
+me <- complete(imp, action = 0)
+me[ , ".imp"] <- 0
+me[ , ".id"] <- rownames(me)
+dim(me)
+summary(me[, c("H_pesticides", "Benzene")])
+```
+
+If the `action` number is between 1 and the `m` value, it will return the selected set.
+
+```{r extract_imputation}
+for(set in 1:5) {
+    im <- complete(imp, action = set)
+    im[ , ".imp"] <- set
+    im[ , ".id"] <- rownames(im)
+    me <- rbind(me, im)
+}
+me <- me[ , c(".imp", ".id", colnames(me)[-(97:98)])]
+rownames(me) <- 1:nrow(me)
+dim(me)
+```
+
+## Data Format
+
+The format of the multiple imputation data for `rexposome` needs to follow some restrictions:
+
+  1. Both the **exposures** and the **phenotypes** are stored in the same `data.frame`.
+  2. This `data.frame` must have a column called `.imp` indicating the number of imputation. This imputation tagged as `0` are raw exposures (no imputation).
+  3. This `data.frame` must have a column called `.id` indicating the name of samples. This will be converted to character.
+  4. A `data.frame` with the *description* with the relation between exposures and families.
+
+## Creating an `imExposomeSet`
+
+With the exposome `data.frame` and the description `data.frame` an object of class `imExposomeSet` can be created. To this end, the function `loadImputed` is used:
+
+```{r create_imexposomeset}
+ex_imp <- loadImputed(data = me, description = dd, 
+                       description.famCol = 1, 
+                       description.expCol = 2)
+```
+
+The function `loadImputed` has several arguments:
+
+```{r args_load}
+args(loadImputed)
+```
+
+The argument `data` is filled with the `data.frame` of exposures. The argument `decription` with the `data.frame` with the exposures' description. `description.famCol` indicates the column on the description that corresponds to the family. `description.expCol` indicates the column on the description that corresponds to the exposures. Finally, `exposures.asFactor` indicates that the exposures with less that, by default, five different values are considered categorical exposures, otherwise continuous.
+
+```{r imexposomeset_show}
+ex_imp
+```
+
+The output of this object indicates that we loaded 14 exposures, being 13 continuous and 1 categorical.
+
+### Accessing to Exposome Data
+
+The class `ExposomeSet` has several accessors to get the data stored in it. There are four basic methods that returns the names of the individuals (`sampleNames`), the name of the exposures (`exposureNames`), the name of the families of exposures (`familyNames`) and the name of the phenotypes (`phenotypeNames`).
+
+```{r individuals_names}
+head(sampleNames(ex_imp))
+```
+
+```{r exposures_names}
+head(exposureNames(ex_imp))
+```
+
+```{r families_names}
+familyNames(ex_imp)
+```
+
+```{r phenotype_names}
+phenotypeNames(ex_imp)
+```
+
+`fData` will return the description of the exposures (including internal information to manage them).
+
+```{r exposures_matrix}
+head(fData(ex_imp), n = 3)
+```
+
+`pData` will return the phenotypes information.
+
+```{r phenotype}
+head(pData(ex_imp), n = 3)
+```
+
+### Exposures Behaviour
+
+The behavior of the exposures through the imputation process can be studies using the `plotFamily` method. This method will draw the behavior of the exposures in each imputation set in a single chart.
+
+The method required an argument `family` and it will draw a mosaic with the plots from the exposures within the family. Following the same strategy than using an `ExposomeSet`, when the exposures are continuous box-plots are used.
+
+```{r plot_family_continuous}
+plotFamily(ex_imp, family = "Organochlorines")
+```
+
+For categorical exposures, the method draws accumulated bar-plot:
+
+```{r plot_family_categorical}
+plotFamily(ex_imp, family = "Home Environment")
+```
+
+The arguments `group` and `na.omit` are not available when `plotFamily` is used with an `imExposomeSet`.
+
+## Extracting an `ExposomeSet` from an `imExposomeSet`
+
+Once an `imExposomeSet` is created, an `ExposomeSet` can be obtained by selecting one of the internal imputed-sets. This is done using the method `toES` and setting the argument `rid` with the number of the imputed-set to use:
+
+```{r creating_es}
+ex_1 <- toES(ex_imp, rid = 1)
+ex_1
+
+ex_3 <- toES(ex_imp, rid = 3)
+ex_3
+```
+
+
+# Exposome-Wide Association Studies (ExWAS)
+
+The interesting point on working with multiple imputations is to test the association of the different version of the exposures with a target phenotype. `rexposome` implements the method `exwas` to be used with an `imExposomeSet`.
+
+```{r exwas, warning=FALSE, message=FALSE, warning=FALSE}
+as_iew <- exwas(ex_imp, formula = blood_pre~sex+age, family = "gaussian")
+as_iew
+```
+
+As usual, the \texttt{ExWAS} object obtained from `exwas` method can be plotted using `plotExwas`:
+
+```{r plot_exwas, fig.height=7}
+clr <- rainbow(length(familyNames(ex_imp)))
+names(clr) <- familyNames(ex_imp)
+plotExwas(as_iew, color = clr)
+```
+
+## Extract the exposures over the *threshold of effective tests*
+
+The method `extract` allows to obtain a table of P-Values from an `ExWAS` object. At the same time, the `tef` method allows to obtain the *threshold of effective tests* computed at `exwas`. We can use them combined in order to create a table with the P-Value of the exposures that are beyond the *threshold of efective tests*.
+
+  1. First we get the *threshold of effective tests* 
+
+```{r tef}
+(thr <- tef(as_iew))
+```
+
+  2. Second we get the table of P-Values
+  
+```{r pvalue}
+tbl <- extract(as_iew)
+```
+
+  3. Third we filter the table with the threshold
+
+```{r sig}
+(sig <- tbl[tbl$pvalue <= thr, ])
+```
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```

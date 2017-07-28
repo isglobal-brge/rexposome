@@ -1,0 +1,105 @@
+exposure	exposure.family	description
+ldde_lip	Organochlorines	dde (ng/g lipid), serum T1 - log 10 transformed
+lddt_lip	Organochlorines	ddt (ng/g lipid), serum T1 - log 10 transformed
+lhcb_lip	Organochlorines	hcb (ng/g lipid), serum T1 - log 10 transformed
+lbhch_lip	Organochlorines	bhch (ng/g lipid), serum T1 - log 10 transformed
+lpcb118_lip	Organochlorines	pcb118 (ng/g lipid), serum T1 - log 10 transformed
+lpcb153_lip	Organochlorines	pcb153 (ng/g lipid), serum T1 - log 10 transformed
+lpcb180_lip	Organochlorines	pcb180 (ng/g lipid), serum T1 - log 10 transformed
+lpcb138_lip	Organochlorines	pcb138 (ng/g lipid), serum T1 - log 10 transformed
+lbde17_lip	PBDEs	BDE 17 (ng/g lipid), colostrum - log 10 transformed
+lbde28_lip	PBDEs	BDE 28 (ng/g lipid), colostrum - log 10 transformed
+lbde71_lip	PBDEs	BDE 71 (ng/g lipid), colostrum - log 10 transformed
+lbde47_lip	PBDEs	BDE 47 (ng/g lipid), colostrum - log 10 transformed
+lbde66_lip	PBDEs	BDE 66 (ng/g lipid), colostrum - log 10 transformed
+lbde100_lip	PBDEs	BDE 100 (ng/g lipid), colostrum - log 10 transformed
+lbde99_lip	PBDEs	BDE 99 (ng/g lipid), colostrum - log 10 transformed
+lbde85_lip	PBDEs	BDE 85 (ng/g lipid), colostrum - log 10 transformed
+lbde154_lip	PBDEs	BDE 154 (ng/g lipid), colostrum - log 10 transformed
+lbde153_lip	PBDEs	BDE 153 (ng/g lipid), colostrum - log 10 transformed
+lbde138_lip	PBDEs	BDE 138 (ng/g lipid), colostrum - log 10 transformed
+lbde183_lip	PBDEs	BDE 183 (ng/g lipid), colostrum - log 10 transformed
+lbde190_lip	PBDEs	BDE 190 (ng/g lipid), colostrum - log 10 transformed
+lbde209_lip	PBDEs	BDE 209 (ng/g lipid), colostrum - log 10 transformed
+logcbPFHxS	PFAS	PFHxS (æg/l), cord blood - log 10 transformed
+logcbPFOA	PFAS	PFOA (æg/l), cord blood - log 10 transformed
+logcbPFOS	PFAS	PFOS (æg/l), cord blood - log 10 transformed
+logcbPFNA	PFAS	PFNA (æg/l), cord blood - log 10 transformed
+logmPFHxS	PFAS	PFHxS (æg/l), maternal serum - log 10 transformed
+logmPFOA	PFAS	PFOA (æg/l), maternal serum - log 10 transformed
+logmPFOS	PFAS	PFOS (æg/l), maternal serum - log 10 transformed
+logmPFNA	PFAS	PFNA (æg/l), maternal serum - log 10 transformed
+loghg	Metals	hg (æg/l), cord blood - log 10 transformed
+logpb	Metals	pb (æg/dl), cord blood - log 10 transformed
+lcrCo_T1	Metals	Co (ng/g creatinine), urine T1 - log 10 transformed
+lcrNi_T1	Metals	Ni (ng/g creatinine), urine T1 - log 10 transformed
+lcrCu_T1	Metals	Cu (ng/g creatinine), urine T1 - log 10 transformed
+lcrZn_T1	Metals	Zn (ng/g creatinine), urine T1 - log 10 transformed
+lcrAs_T1	Metals	As (ng/g creatinine), urine T1 - log 10 transformed
+lcrSe_T1	Metals	Se (ng/g creatinine), urine T1 - log 10 transformed
+lcrMo_T1	Metals	Mo (ng/g creatinine), urine T1 - log 10 transformed
+lcrCd_T1	Metals	Cd (ng/g creatinine), urine T1 - log 10 transformed
+lcrSb_T1	Metals	Sb (ng/g creatinine), urine T1 - log 10 transformed
+lcrCs_T1	Metals	Cs (ng/g creatinine), urine T1 - log 10 transformed
+lcrTl_T1	Metals	Tl (ng/g creatinine), urine T1 - log 10 transformed
+lcrPb_T1	Metals	Pb (ng/g creatinine), urine T1 - log 10 transformed
+lcrCo_T3	Metals	Co (ng/g creatinine), urine T3 - log 10 transformed
+lcrNi_T3	Metals	Ni (ng/g creatinine), urine T3 - log 10 transformed
+lcrCu_T3	Metals	Cu (ng/g creatinine), urine T3 - log 10 transformed
+lcrZn_T3	Metals	Zn (ng/g creatinine), urine T3 - log 10 transformed
+lcrAs_T3	Metals	As (ng/g creatinine), urine T3 - log 10 transformed
+lcrSe_T3	Metals	Se (ng/g creatinine), urine T3 - log 10 transformed
+lcrMo_T3	Metals	Mo (ng/g creatinine), urine T3 - log 10 transformed
+lcrCd_T3	Metals	Cd (ng/g creatinine), urine T3 - log 10 transformed
+lcrSb_T3	Metals	Sb (ng/g creatinine), urine T3 - log 10 transformed
+lcrCs_T3	Metals	Cs (ng/g creatinine), urine T3 - log 10 transformed
+lcrTl_T3	Metals	Tl (ng/g creatinine), urine T3 - log 10 transformed
+lcrPb_T3	Metals	Pb (ng/g creatinine), urine T3 - log 10 transformed
+lcrMEHP_av	Phthalates 	MEHP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcrMEHHP_av	Phthalates 	MEHHP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcr_5cxMEP_v	Phthalates 	_5cxMEPP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcr_5cxMEPP_av	Phthalates 	_2cxMMHP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcr_2cxMMHP_av	Phthalates 	MEP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcrMiBP_av	Phthalates 	MiBP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcrMnBP_av	Phthalates 	MnBP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcr_7OHMMe_v	Phthalates 	_7OHMMeOP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcr_7OHMMeOP_av	Phthalates 	MBzP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcrMEOHP_av	Phthalates 	MEOHP creatinine adjusted, average urine T1-T3 - log 10 transformed
+lcrbpa_av	Phenols	BPA (æg/g creatine), average urine T1-T3 - log 10 transformed
+l_24_dcp_T3	Phenols	2,4-dichlorophenol (ng/mL), urine T3 - log 10 transformed
+l_25_dcp_T3	Phenols	2,5-dichlorophenol (ng/mL), urine T3 - log 10 transformed
+lb_pb_T3	Phenols	Butyl paraben (ng/mL), urine T3 - log 10 transformed
+le_pb_T3	Phenols	Ethyl paraben (ng/mL), urine T3 - log 10 transformed
+lm_pb_T3	Phenols	Methyl paraben (ng/mL), urine T3 - log 10 transformed
+lp_pb_T3	Phenols	Propyl paraben (ng/mL), urine T3 - log 10 transformed
+lbp_3_T3	Phenols	Benzophenome-3 (ng/mL), urine T3 - log 10 transformed
+ltcs_T3	Phenols	Triclosan (ng/mL), urine T3 - log 10 transformed
+lTHM_preg	Water DBPs	Average total THM uptake (æg/day) in the whole pregnancy - log10 transformed
+lTHM_T1	Water DBPs	Average total THM uptake (æg/day) in the first trimester- log10 transformed
+lTHM_T2	Water DBPs	Average total THM uptake (æg/day) in the second trimester- log10 transformed
+lTHM_T3	Water DBPs	Average total THM uptake (æg/day) in the third trimester- log10 transformed
+lCHCL3_preg	Water DBPs	Average Chloroform uptake (æg/day) in the whole pregnancy- log10 transformed
+lCHCL3_T1	Water DBPs	Average Chloroform uptake (æg/day) in the first trimester- log10 transformed
+lCHCL3_T2	Water DBPs	Average Chloroform uptake (æg/day) in the second trimester- log10 transformed
+lCHCL3_T3	Water DBPs	Average Chloroform uptake (æg/day) in the third trimester- log10 transformed
+lBROM_preg	Water DBPs	Average Brominated THM uptake (æg/day) in the whole pregnancy- log10 transformed
+lBROM_T1	Water DBPs	Average Brominated THM uptake (æg/day) in the first trimester- log10 transformed
+lBROM_T2	Water DBPs	Average Brominated THM uptake (æg/day) in the second trimester- log10 transformed
+lBROM_T3	Water DBPs	Average Brominated THM uptake (æg/day) in the third trimester- log10 transformed
+lcotinine	Cotinine	cotinine (ng/mL), urine T3 - log10 transformed
+NO2_T1	Ambient air pollutants	NO2 levels (æg/m3) in the first trimester - log10 transformed
+NO2_T2	Ambient air pollutants	NO2 levels (æg/m3) in the second trimester- log10 transformed
+NO2_T3	Ambient air pollutants	NO2 levels (æg/m3) in the third trimester- log10 transformed
+NO2_preg	Ambient air pollutants	NO2 levels (æg/m3) in the whole pregnancy- log10 transformed
+Ben_T1	Ambient air pollutants	Benzene levels (æg/m3) in the first trimester- log10 transformed
+Ben_T2	Ambient air pollutants	Benzene levels (æg/m3) in the second trimester- log10 transformed
+Ben_T3	Ambient air pollutants	Benzene levels (æg/m3) in the third trimester- log10 transformed
+Ben_preg	Ambient air pollutants	Benzene levels (æg/m3) in the whole pregnancy- log10 transformed
+NDVI100	Built environment	surrounding NDVI measures across buffers of 100m, home adresses at delivery
+NDVI250	Green spaces	surrounding NDVI measures across buffers of 250m, home adresses at delivery
+NDVI500	Green spaces	surrounding NDVI measures across buffers of 500m, home adresses at delivery
+gascooking	Indoor air	=1 if use of gas stove during pregnancy
+ETS	Indoor air	=1 if passive smoking (home, work, leasure time, restaurants) during pregnancy
+cleaning_products	Indoor air	=1 if use of any cleaning product
+home_pesticides	Indoor air	=1 if use of insecticide sprays at home
+garden_pesticides	Indoor air	=1 if fumigate plants with insecticides or other pesticides

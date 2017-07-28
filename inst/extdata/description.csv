@@ -1,0 +1,89 @@
+Family,Exposure,Name
+PFOAs,PFHxS,Perfluorohexane sulfonic acid
+PFOAs,PFOA,Perfluorooctanoic acid
+PFOAs,PFOS,Perfluorooctane sulfonic acid
+PFOAs,PFNA,Perfluorononanoic acid
+Organochlorines,DDE,Dichlorodiphenyldichloroethylene
+Organochlorines,DDT,Dichlorodiphenyltrichloroethane
+Organochlorines,HCB,Hexachlorobenzene
+Organochlorines,bHCH,β-hexachlorocyclohexane
+Organochlorines,PCB118,Polychlorinated biphenyl -118
+Organochlorines,PCB153,Polychlorinated biphenyl -153
+Organochlorines,PCB180,Polychlorinated biphenyl -180
+Organochlorines,PCB138,Polychlorinated biphenyl -138
+PBDEs,BDE17,Polybrominated diphenyl ether -17
+PBDEs,BDE28,Polybrominated diphenyl ether -28
+PBDEs,BDE71,Polybrominated diphenyl ether -71
+PBDEs,BDE47,Polybrominated diphenyl ether -47
+PBDEs,BDE66,Polybrominated diphenyl ether -66
+PBDEs,BDE100,Polybrominated diphenyl ether -100
+PBDEs,BDE99,Polybrominated diphenyl ether -99
+PBDEs,BDE85,Polybrominated diphenyl ether -85
+PBDEs,BDE154,Polybrominated diphenyl ether -154
+PBDEs,BDE153,Polybrominated diphenyl ether -153
+PBDEs,BDE138,Polybrominated diphenyl ether -138
+PBDEs,BDE183,Polybrominated diphenyl ether -183
+PBDEs,BDE190,Polybrominated diphenyl ether -190
+PBDEs,BDE209,Polybrominated diphenyl ether -209
+Metals,Hg,Mercury
+Metals,Co,Cobalt
+Metals,Ni,Nickel
+Metals,As,Asenic
+Metals,Cu,Copper
+Metals,Zn,Zinc
+Metals,Se,Selenium
+Metals,Mo,Molybdenum
+Metals,Cd,Cadmium
+Metals,Sb,Antimony
+Metals,Cs,Cesium
+Metals,Tl,Thallium
+Metals,Pb,Lead
+Phthalates,MEHP,Mono-(2-ethylhexyl) phthalate
+Phthalates,MEHHP,Mono-(2-ethyl-5-hydroxyhexyl) phthalate
+Phthalates,X5cxMEPP,Mono(2-ethyl-5-carboxypentyl) phthalate
+Phthalates,X2cxMMHP,Mono[2-(carboxymethyl)hexyl]phthalate
+Phthalates,MEP,Monoethyl phthalate
+Phthalates,MiBP,Monoisobutyl phthalate
+Phthalates,MnBP,Mono-n-butyl phthalate
+Phthalates,X7OHMMeOP,Mono(4-methyl-7-hydroxyoctyl) phthalate
+Phthalates,MBzP,Monobenzyl phthalate
+Phthalates,MEOHP,Mono-(2-ethyl-5-oxohexyl) phthalate
+Bisphenol A,BPA,Bisphenol A
+Water Pollutants,THM,Trihalomethanes
+Water Pollutants,CHCl3,Chloroform
+Water Pollutants,BTHM,Brominated THM
+Cotinine,Cotinine,Cotinine
+Home Environment,Gas,Gas cooking
+Home Environment,ETS,Environmental tobacco smoke
+Home Environment,H_pesticides,Pesticides used in the home
+Home Environment,G_pesticides,Pesticides used in the garden
+Air Pollutants,Benzene,Benzene
+Air Pollutants,PM25CU,Copper levels in PM2.5
+Air Pollutants,PM25FE,Iron levels in PM2.5
+Air Pollutants,PM25K,Potassium levels in PM2.5
+Air Pollutants,PM25Ni,Nickel levels in PM2.5
+Air Pollutants,PM25S,Sulfur levels in PM2.5
+Air Pollutants,PM25Sl,Silicon levels in PM2.5
+Air Pollutants,PM25V,Vanadium levels PM2.5
+Air Pollutants,PM25Zn,Zn levels in PM2.5
+Air Pollutants,PM10Cu,Copper levels in PM10
+Air Pollutants,PM10Fe,Iron levels in PM10
+Air Pollutants,PM10K,Potassium levels in PM10
+Air Pollutants,PM10Ni,Nickel levels in PM10
+Air Pollutants,PM10S,Sulfur levels in PM10
+Air Pollutants,PM10SI,Silicon levels in PM10
+Air Pollutants,PM10V,Vanadium levels PM10
+Air Pollutants,PM10Zn,Zn levels in PM10
+Air Pollutants,NO2,Nitrogen dioxide
+Air Pollutants,NO,Nitrogen oxide
+Air Pollutants,NOx,Mono-nitrogen oxides
+Air Pollutants,PM25,Particles <= 2.5
+Air Pollutants,PM10,Particles <= 10
+Air Pollutants,PMcoarse,Particles between 2.5 and 10 μm in size
+Air Pollutants,AbsPM25,Measurement of the blackness of PM2.5 filters
+Built Environment,Dens,Building density (within 100 m radius of home address)
+Built Environment,Conn,Street connectivity  (within 100 m radius of home address)
+Built Environment,Green,Green spaces  (within 250 m radius of home address)
+Noise,Noise_d,Average of noise in the day
+Noise,Noise_n,Average of noise in the night
+Temperature,Temp,Average surface temperature (within 50 m radius of home address)

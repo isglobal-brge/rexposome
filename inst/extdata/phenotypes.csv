@@ -1,0 +1,110 @@
+idnum,whistling_chest,flu,rhinitis,wheezing,birthdate,sex,age,cbmi,blood_pre
+id001,never,no,no,no,2004-12-29,male,4.2,16.3,120
+id002,never,no,no,no,2005-01-05,male,4.2,16.4,121
+id003,7-12 epi,no,no,yes,2005-01-05,male,4.2,19,120
+id004,never,no,no,no,2005-01-01,female,4.3,15.5,117
+id005,never,no,no,no,2005-02-01,female,4.2,14.9,121
+id006,1-2 epi,no,yes,no,2005-01-01,male,4.1,14.8,113
+id007,never,no,no,no,2004-12-25,female,4.2,14,120
+id008,never,no,no,no,2005-01-07,male,4.2,19,118
+id009,never,yes,no,no,2005-01-11,male,4.2,15.3,117
+id010,1-2 epi,yes,no,no,2004-12-23,male,4.2,15.6,116
+id011,never,no,no,no,2005-02-03,male,4.3,18,118
+id012,never,no,no,no,2005-01-16,male,4.3,14.4,126
+id013,never,no,no,no,2005-01-10,female,4.2,16.6,120
+id014,never,no,no,no,2005-01-19,male,4.2,16.1,120
+id015,never,yes,no,no,2005-01-09,female,4.4,15.3,116
+id016,3-6 epi,no,no,no,2005-01-13,female,4.2,15.1,121
+id017,never,no,no,no,2005-01-21,female,4.3,14.8,119
+id018,never,no,no,no,2004-12-30,female,4.2,14.9,115
+id019,never,no,no,no,2005-01-18,male,4.2,18.1,NA
+id020,never,no,no,no,2005-02-08,female,4.8,15.5,120
+id021,never,no,no,no,2005-01-18,female,4.2,16.4,125
+id022,never,yes,no,no,2005-02-15,male,4.2,18.8,123
+id023,never,no,no,no,2005-02-15,female,4.2,14.9,117
+id024,never,no,no,no,2005-01-23,female,4.4,17,111
+id025,never,no,no,no,2005-02-03,male,4.2,19.4,112
+id026,1-2 epi,no,no,yes,2005-01-27,female,4.4,17.9,123
+id027,7-12 epi,no,no,yes,2005-01-24,female,4.1,13.8,117
+id028,never,no,no,no,2005-02-07,male,4.3,14.9,121
+id029,7-12 epi,no,no,yes,2005-01-15,male,4.2,17.8,120
+id030,never,no,no,no,2005-01-29,male,4.2,17.7,120
+id031,1-2 epi,no,no,no,2005-01-27,female,4.2,15.6,121
+id032,never,no,no,no,2005-01-25,female,4.2,20.1,125
+id033,never,no,no,no,2005-01-04,male,4.4,14.4,124
+id034,never,no,no,yes,2005-02-08,female,4.1,15.7,121
+id035,never,no,no,no,2005-01-29,male,4.7,16.1,120
+id036,never,no,no,no,NA,female,4.2,15.2,121
+id037,never,no,no,no,2005-02-19,female,4,13.1,118
+id038,1-2 epi,no,no,no,2005-02-13,male,4.1,17.3,114
+id039,never,no,no,no,2005-02-10,male,4,15.6,123
+id040,never,no,no,no,2005-03-06,female,4.2,19.3,NA
+id041,never,no,no,no,2005-01-30,male,4.3,16.4,124
+id042,never,no,no,no,2005-03-09,female,4.1,13.7,109
+id043,7-12 epi,yes,no,yes,2005-02-20,female,4.2,18.5,116
+id044,3-6 epi,no,no,no,2005-02-16,male,4.1,15.5,122
+id045,never,no,no,no,2005-02-22,female,4.5,19.2,121
+id046,1-2 epi,yes,no,yes,2005-02-23,male,4.3,18.7,123
+id047,never,no,no,no,2005-01-22,female,4.2,14.9,115
+id048,never,no,no,no,2005-01-16,female,4.2,15.2,121
+id049,1-2 epi,yes,no,no,2005-01-19,female,4.2,15.4,121
+id050,1-2 epi,yes,no,yes,2005-02-14,male,4.1,17.8,112
+id051,never,no,no,no,2005-02-12,female,4,17.9,117
+id052,never,no,no,no,2005-02-27,female,4.2,19.8,125
+id053,1-2 epi,yes,no,yes,2005-03-03,male,4.2,14.5,120
+id054,never,no,no,no,2005-03-08,male,4.2,16.7,121
+id055,never,no,no,no,2005-03-13,male,4.1,16.9,116
+id056,1-2 epi,no,no,yes,2005-03-06,male,4.2,15.9,120
+id057,never,no,no,no,2005-02-14,male,4.2,17.5,121
+id058,never,no,no,no,2005-02-13,female,4.2,15.7,121
+id059,never,no,no,no,2005-02-24,female,4.4,15.4,126
+id060,never,no,no,no,2005-03-29,female,4.2,16.9,113
+id061,never,no,no,no,2005-02-22,female,4.2,12.9,116
+id062,1-2 epi,yes,no,yes,2005-02-26,female,4.2,16.7,114
+id063,never,no,no,no,2005-02-28,male,4.2,17.8,119
+id064,never,no,no,no,2005-02-26,female,4.1,16.2,124
+id065,3-6 epi,no,no,no,2005-03-16,female,4.4,14.2,117
+id066,never,no,no,no,2005-03-09,male,4.3,17.7,112
+id067,never,yes,no,no,2005-03-15,male,4.1,13.2,121
+id068,never,no,no,no,2005-02-28,female,4.1,17.7,125
+id069,never,no,no,no,2005-03-11,male,4.2,19.5,122
+id070,never,no,no,no,2005-04-04,female,4.3,16.3,114
+id071,never,no,no,no,2005-03-15,female,4.6,20.7,117
+id072,1-2 epi,yes,no,yes,2005-04-08,male,4.2,17,116
+id073,never,no,no,no,2005-03-19,female,4.1,16.2,115
+id074,never,no,no,no,2005-02-16,female,4.3,13.6,125
+id075,never,no,no,no,2005-03-23,female,4.7,14.9,123
+id076,never,no,no,no,2005-03-22,male,4.1,15.5,123
+id077,never,no,no,yes,NA,female,3.9,17.7,120
+id078,never,no,no,no,2005-03-28,female,4.2,15.3,118
+id079,never,no,no,no,2005-03-18,female,4.1,15.8,120
+id080,1-2 epi,no,no,no,2005-04-11,male,4.2,16.2,121
+id081,never,no,yes,no,2005-03-26,female,4.3,13.9,118
+id082,never,no,no,no,2005-03-24,male,4.1,16.1,122
+id083,never,no,no,no,2005-04-25,female,4.3,14.4,118
+id084,never,no,no,no,2005-04-27,male,4.1,16.5,126
+id085,1-2 epi,yes,no,no,2005-04-24,male,4.3,16.5,121
+id086,never,no,no,no,2005-03-18,female,4.2,15,125
+id087,never,no,no,no,2005-04-12,male,4,14.6,122
+id088,never,no,no,no,2005-04-03,female,4.1,16.1,118
+id089,never,no,no,no,2005-04-07,male,4.1,15.6,117
+id090,1-2 epi,yes,yes,no,2005-04-05,male,4.1,16.1,119
+id091,7-12 epi,no,no,yes,2005-04-05,female,4.2,18.9,114
+id092,never,no,no,no,2005-04-21,female,4.6,18.2,116
+id093,1-2 epi,no,no,no,2005-04-06,male,4.2,14.6,123
+id094,3-6 epi,no,no,yes,2005-04-27,female,4.5,15.9,117
+id095,never,no,no,no,2005-04-29,male,4,14.5,116
+id096,never,no,no,no,2005-04-30,male,4.2,15.4,118
+id097,never,no,no,no,2005-04-17,female,4.1,15.8,116
+id098,never,no,no,no,2005-04-27,female,4.1,16.6,125
+id099,never,no,no,no,2005-04-19,male,4.6,16.1,117
+id100,never,no,no,no,2005-04-05,male,4.1,16.9,117
+id101,never,no,no,no,2005-04-11,female,4,17,117
+id102,never,no,no,no,2005-03-31,female,4.2,15,115
+id103,1-2 epi,yes,no,no,2005-04-09,male,4.3,18,120
+id104,never,no,no,no,NA,male,4.4,17.7,114
+id105,never,no,no,no,2005-04-19,female,4.1,15.6,117
+id106,1-2 epi,no,no,no,2005-05-02,male,4.1,14.4,116
+id107,7-12 epi,no,no,yes,2005-04-07,male,4.1,17.5,118
+id108,never,no,no,no,2005-04-17,female,4.1,15,123
+id109,never,no,no,no,2005-05-14,male,4.1,16.1,118

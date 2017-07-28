@@ -1,0 +1,570 @@
+---
+title: "Exposome Data Analysis"
+author: "Carles Hernandez-Ferrer and Juan R. Gonzalez"
+date: "`r doc_date()`"
+package: "`r pkg_ver('rexposome')`"
+abstract: >
+    An introductory guide to analysing exposome data with R package `rexposome`. The areas covered in this document are: loading exposome data from files and matrices, exploration the exposome data including missing data quantification and individual clustering, and testing association between exposures and health outcomes.
+output: 
+  BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Exposome Data Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8} 
+---
+
+```{r setup, include=FALSE}
+BiocStyle::markdown()
+options(width=80)
+knitr::opts_chunk$set(echo = TRUE, warnings = FALSE, tidy = TRUE)
+```
+
+# Introduction
+
+`rexposome` is an R package designed for the analysis of *exposome* data. The *exposome* can be defined as the measure of all the exposures of an individual in a lifetime and how those exposures relate to health. Hence, the aim or `rexposome` is to offer a set of functions to incorporate *exposome* data to R framework. Also to provide a series of tools to analyse *exposome* data using standard methods from Biocondcutor.
+
+## Installation
+
+`rexposome` is currently in development and not available from CRAN nor Bioconductor. Anyway, the package can be installed by using `devtools` R package and taking the source from Bioinformatic Research Group in Epidemiology's GitHub repository.
+
+This can be done by opening an R session and typing the following code:
+
+```{r github, eval=FALSE}
+devtools::install_github("isglobal-brge/rexposome")
+```
+
+User must take into account that this sentence do not install the packages dependencies.
+
+## Pipeline
+
+The following pictures illustrates the `rexposome`'s pipeline:
+
+![Pipeline for exposome analysis](pipeline.png)
+
+The first step is to load *exposome* data on R. `rexposome` provides to functions for this aim: one to load three `TXT` files and another to use three `data.frames`. Then the quantification of missing data and values under limit of detection (LOD) is done, and it helps to consider imputation processes. The *exposome* characterization is useful to understand the nature of the *exposome* and the relations between exposures. The clustering processes on individual exposure data is done to find exposure-signatures which association with health outcomes can be tested in the next step. From both exposures and exposure-signatures levels, the association with health outcomes is tested using *Exposome-Wide Association Studies* (ExWAS).
+
+## Data Format
+
+`rexposome` defines the *exposome* data as a three different data-sets:
+
+  1) Description Data
+  2) Exposure Data
+  3) Phenotype Data
+
+The *description data* is a file describing the *exposome*. This means that has a row for each exposure and, at last, defined the families of exposures. Usually, this file incorporates a description of the exposures, the matrix where it was obtained and the units of measurement among others.
+
+The following is an example of a *description data* file:
+
+```
+exposure  family  matrix         description
+bde100    PBDEs   colostrum       BDE 100 - log10
+bde138    PBDEs   colostrum       BDE 138 - log10
+bde209    PBDEs   colostrum       BDE 209 - log10
+PFOA      PFAS    cord blood      PFOA - log10
+PFNA      PFAS    cord blood      PFNA - log10
+PFOA      PFAS    maternal serum  PFOA - log10
+PFNA      PFAS    maternal serum  PFNA - log10
+hg        Metals  cord blood      hg - log 10
+Co        Metals  urine           Co (creatinine) - log10
+Zn        Metals  urine           Zn (creatinine) - log10
+Pb        Metals  urine           Pb (creatinine) - log10
+THM       Water   ---             Average total THM uptake - log10
+CHCL3     Water   ---             Average Chloroform uptake - log10
+BROM      Water   ---             Average Brominated THM uptake - log10
+NO2       Air     ---             NO2 levels whole pregnancy- log10
+Ben       Air     ---             Benzene levels whole pregnancy- log10
+```
+
+The *exposures data* file is the one containing the measures of each exposures for all the individuals included in the analysis. It is a matrix-like file having a row per individual and a column per exposures. It must includes a column with the subject's identifier.
+
+The following is an example of a *exposures data* file:
+
+```
+id    bde100  bde138  bde209  PFOA    ...
+sub01  2.4665  0.7702  1.6866  2.0075 ...
+sub02  0.7799  1.4147  1.2907  1.0153 ...  
+sub03 -1.6583 -0.9851 -0.8902 -0.0806 ... 
+sub04 -1.0812 -0.6639 -0.2988 -0.4268 ... 
+sub05 -0.2842 -0.1518 -1.5291 -0.7365 ... 
+...   ...     ...     ...     ...
+```
+
+The last of the data-sets is the *phenotype data* files. This file contains the covariates to be included in the analysis as well as the health outcomes of interest. It contains a row per individual included in the analysis and a column for each covariate and outcome. Moreover, it must include a column with the individual's identifier.
+
+The following is an example of a *phenotype data* file:
+
+```
+id    asthma   BMI      sex  age  ...
+sub01 control  23.2539  boy  4    ...
+sub02 asthma   24.4498  girl 5    ...
+sub03 asthma   15.2356  boy  4    ...
+sub04 control  25.1387  girl 4    ...
+sub05 control  22.0477  boy  5    ...
+...   ...      ...      ...  ...
+```
+
+To properly coordinate the *exposome* data, the information included in the three data-sets must follow some rules:
+
+  - *description data* files has a column identifying the exposures
+  - *exposures data* file has a column for each exposures defined in *description data* file
+  - *exposures data* file has a column identifying the individuals
+  - *phenotype data* files has a column identifying the same individuals included in the *exposures data* file
+
+This rules are easy seen in the following figure:
+
+![Links Between Files](file_links.png)
+
+In summary: All the exposures, rows, in the *description data* file are columns in the *exposures data* file (plus the column for identifying subjects). All the subjects in the *exposures data* files are, also, in the *phenotype data* file.
+
+
+
+
+
+
+
+
+
+# Analysis
+
+`rexposome` R package is loaded using the standard `library` command:
+
+```{r library, message=FALSE}
+library(rexposome)
+```
+
+```{r library2, echo=FALSE, message=FALSE}
+library(psygenet2r)
+```
+
+`rexposome` provides two functions to load the *exposome* data: `readExposome` and `loadexposome`. The function `readExposome` will load the exposome data from txt files and `loadExposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
+
+## Loading Exposome Data
+
+### From `TXT` files
+
+The function `readExposome` will create an `ExposomeSet` from the three `txt` files. The following lines are used to locate these three files, that were included in the package for demonstration purposes.
+
+```{r files_path}
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
+phenotype <- file.path(path, "phenotypes.csv")
+exposures <- file.path(path, "exposures.csv")
+```
+
+These files follows the rules described in **Data Format** section. They are `csv` files, meaning each values is split from the others by a comma (`,`). Function `readExposome` allows to load most any type of files containing *exposome* data:
+
+```{r ags_read_exposome}
+args(readExposome)
+```
+
+`readExposome` expects, by default, `csv` files. Changing the content of the argument `sep` will allow to load other files types. The missing values are set using the argument `na.strings`. This means that the character assigned to this argument will be interpreted as a missing value. By default, those characters are `"NA"`, `"-"`, `"?"`, `" "` and `""`. Then, the columns with the exposures' names and the individual's names need to be indicated. Arguments `exposures.samCol` and `phenotype.samCol` indicates the column with the individuals' names at _exposures file_ and _phenotypes file_. The arguments `description.expCol` and `description.famCol` indicates the column containing the exposures' names and the exposures' family in the _description file_.
+
+```{r read_exposome}
+exp <- readExposome(
+    exposures = exposures, 
+    description = description, 
+    phenotype = phenotype,
+    exposures.samCol = 1, 
+    description.expCol = 2, 
+    description.famCol = 1, 
+    phenotype.samCol = 1
+)
+```
+
+The result is an object of class `ExposomeSet`, that can show all the information of the loaded exposome:
+
+```{r show_es_1}
+exp
+```
+
+Under the section _exposures description_ the number of continuous (84) and categorical (4) exposures are shown. The _assayData_, _phenoData_ and _featureData_ shows the content of the files we loaded with `readExposome`.
+
+### From `data.frame`
+
+
+The function `loadExposome` allows to create an `ExposomeSet` through three `data.frames`: one as *description data*, one as *exposures data* and one as *phenotypes data*. The arguments are similar to the ones from `readExposome`:
+
+```{r ags_load_exposome}
+args(loadExposome)
+```
+
+In order to illustrate how to use `loadExposome`, we are loading the previous `csv` files as `data.frames`:
+
+```{r read_csv_files}
+dd <- read.csv(description, header=TRUE)
+ee <- read.csv(exposures, header=TRUE)
+pp <- read.csv(phenotype, header=TRUE)
+```
+
+Then we rearrange the `data.frames` to fulfil with the requirements of the *exposome* data. The `data.frame` corresponding to *description data* needs to have the exposure's names as rownames.
+
+```{r set_dd_rownames}
+rownames(dd) <- dd[, 2]
+dd <- dd[ , -2]
+```
+
+The `data.frame` corresponding to *exposures data* needs to have the individual's identifiers as rownames:
+
+```{r set_ee_rownames}
+rownames(ee) <- ee[ , 1]
+ee <- ee[ , -1]
+```
+
+The `data.frame` corresponding to *phenotypes data* needs to have the individual's identifiers as a rownames, as the previous `data.frame`:
+
+```{r set_pp, rownames}
+rownames(pp) <- pp[ , 1]
+pp <- pp[ , -1]
+```
+
+Then, the `ExposomeSet` is creating by giving the three `data.frames` to `loadExposome`:
+
+```{r load_exposome}
+exp <- loadExposome(
+    exposures = ee, 
+    description = dd, 
+    phenotype = pp,
+    description.famCol = "Family"
+)
+```
+
+### Accessing to Exposome Data
+
+The class `ExposomeSet` has several accessors to get the data stored in it. There are four basic methods that returns the names of the individuals (`sampleNames`), the name of the exposures (`exposureNames`), the name of the families of exposures (`familyNames`) and the name of the phenotypes (`phenotypeNames`).
+
+```{r individuals_names}
+head(sampleNames(exp))
+```
+
+```{r exposures_names}
+head(exposureNames(exp))
+```
+
+```{r families_names}
+familyNames(exp)
+```
+
+```{r phenotype_names}
+phenotypeNames(exp)
+```
+
+`fData` will return the description of the exposures (including internal information to manage them).
+
+```{r feature}
+head(fData(exp), n = 3)
+```
+
+`pData` will return the phenotypes information.
+
+```{r phenotype}
+head(pData(exp), n = 3)
+```
+
+Finally, the method `expos` allows to obtain the matrix of exposures as a `data.frame`:
+
+```{r exposures}
+expos(exp)[1:10, c("Cotinine", "PM10V", "PM25", "X5cxMEPP")]
+```
+
+## Exposome Pre-process
+
+### Missing Data in Exposures and Phenotypes
+
+The number of missing data on each exposure and on each phenotype can be found by using the function `tableMissings`. This function returns a vector with the amount of missing data in each exposure or phenotype. The argument `set` indicates if the number of missing values is counted on exposures of phenotypes. The argument `output` indicates if it is shown as counts (`output="n"`) or as percentage (`output="p"`).
+
+The current exposome data has no missing in the exposures nor in the phenotypes:
+
+```{r misssing_data_table}
+tableMissings(exp, set = "exposures", output = "n")
+tableMissings(exp, set = "phenotypes", output = "n")
+```
+
+Alternatively to `tableMissings`, the function `plotMissings` draw a bar plot with the percentage of missing data in each exposure of phenotype. 
+
+```{r missing_exposures_plot, fig.height=8}
+plotMissings(exp, set = "exposures")
+```
+
+### Exposures Normality
+
+Most of the test done in *exposome* analysis requires that the exposures must follow a normal distribution. The function `normalityTest` performs a test on each exposure for normality behaviour. The result is a `data.frame` with the exposures' names, a flag `TRUE`/`FALSE` for normality and the p-value obtained from the *Shapiro-Wilk Normality Test* (if the p-value is under the threshold, then the exposure is not normal).
+
+```{r normality}
+nm <- normalityTest(exp)
+table(nm$normality)
+```
+
+So, the exposures that do not follow a normal distribution are:
+
+```{r no_normality}
+nm$exposure[!nm$normality]
+```
+
+Some of these exposures are categorical so they must not follow a normal distribution. This is the case, for example, of `G_pesticides`. If we plot the histogram of the values of the exposures it will make clear:
+
+```{r histogram_cleaning, message=FALSE}
+library(ggplot2)
+plotHistogram(exp, select = "G_pesticides") +
+    ggtitle("Garden Pesticides")
+```
+
+Some others exposures are continuous variables that do not overpass the normality test. A visual inspection is required in this case.
+
+
+```{r histogram_no_normal, message=FALSE, warning=FALSE}
+plotHistogram(exp, select = "BDE209") + 
+    ggtitle("BDE209 - Histogram")
+```
+
+If the exposures were following an anon normal distribution, the method `plotHistogram` has an argument `show.trans` that set to `TRUE` draws the histogram of the exposure plus three typical transformations:
+
+```{r histogram_trans, message=FALSE, warning=FALSE}
+plotHistogram(exp, select = "BDE209", show.trans = TRUE)
+```
+
+### Exposures Imputation
+
+The imputation process is out of `rexposome` scope. Nevertheless, `rexposome` incorporates a wrapper to run the imputation tools from the R packages and `Hmisc`. The imputation of the exposures in the `ExposomeSet` is done by using this code:
+
+```{r impute_hmisc}
+exp <- imputation(exp)
+```
+
+To use `mice` package instead of `hmisc`, see the vignette entitles *Dealing with Multiple Imputations*.
+
+### Exposures Behaviour
+
+We can get a snapshot of the behaviour of the full *exposome* using the method `plotFamily` or its wrapper `plot`. This function allows drawing a plot of a given family of exposures or a mosaic with all the exposures.
+
+```{r plot_all_exposures, fig.height=12, fig.width=8}
+plotFamily(exp, family = "all")
+```
+
+This plotting method allows to group the exposure by a given phenotype using the argument `group`:
+
+```{r plot_phenols_sex}
+plotFamily(exp, family = "Phthalates", group = "sex")
+```
+
+The same method allows to include a second group using the argument `group2`:
+
+```{r plot_phenols_sex_rhinitis}
+plotFamily(exp, family = "Phthalates", group = "rhinitis", group2 = "rhinitis")
+```
+
+### Exposures PCA
+
+To properly perform a PCA analysis the exposures needs to be standardised. The standardisation is done using function `standardize` that allows using a *normal* and a *robust* approaches or use the *interquartile range*. The *normal aproache* scales the exposures using the mean as a centre and the standard variation used as dispersion. In *robust aproach* the median and the median absolute deviation are used. This transformation are only applied to continuous exposures. When *interquartile range* is used, the median is used as a center and the coeficient between the interquartile range of the exposure and the normal range between the percentile 75 and 25 as variance.
+
+```{r standardize, warning=FALSE}
+exp_std <- standardize(exp, method = "normal")
+exp_std
+```
+Once the exposures are standardized we can run a PCA on the `ExposomeSet` using the method `pca`.
+
+```{r pca}
+exp_pca <- pca(exp_std)
+```
+
+The method `pca` returns an object of class `ExposomePCA`. This object encapsulates all the information generated by the principal component analysis. The method `plotPCA` can be used in several ways. The first way is setting the argument `set` to `"all"` to create a mosaic of plots.
+
+```{r plot_pca_all}
+plotPCA(exp_pca, set = "all")
+```
+
+The plots in the first row correspond to the exposures and samples space. The first plot shows all the exposures on the axis for the first and the second principal components. The second plot shows all the individuals on the axis for the first and second principal components.
+
+The plots on the second row are a summary of the variability explained by each component. The first plot is a bar plot with the variability explained by each component highlighting the components that are being drawn in the two first plots. The second plot is a line plot indicating the cumulative variability explained until each principal component. The vertical dashed line indicates the last principal component that is drawn in the first two plots. The horizontal dashed line indicates the amount of explained variability.
+
+A second way of using `plotPCA` is changing the content of the argument `set` to `"samples"` to see the samples' space. When the `set` argument is filled with `samples`, the argument `phenotype` can be used to colour each sample with its phenotype value.
+
+```{r plot_pca_samples}
+plotPCA(exp_pca, set = "samples", phenotype = "sex")
+```
+
+This plot shows the sample space of the first and the second principal component. Each dot is a sample and it is coloured depending on its value in `sex`. We can see that no cluster is done in terms of sex.
+
+This view be recreated in a 3D space using the function `plot3PCA`:
+
+```{r plot_pca_samples_3d}
+plot3PCA(exp_pca, cmpX=1, cmpY=2, cmpZ=3, phenotype = "sex")
+```
+
+### Exposures Correlation
+
+The correlation between exposures, in terms of intra-family and inter-family exposures, is interesting to take into account. The correlation of the exposome can be computed using `correlation`.
+
+```{r correlation, warning=FALSE, message=FALSE}
+exp_cr <- correlation(exp, use = "pairwise.complete.obs", method.cor = "pearson")
+```
+
+The values of the correlation can be obtained using the method `extract`. This returns a `data.frame`.
+
+```{r extract_correlation}
+extract(exp_cr)[1:4, 1:4]
+```
+
+The best option to see the inter-family correlations is the *circos of correlations* while the *matrix of correlations* is a better way for studying the intra-family correlations. Both of them are drawn using the method `plotCorrelation`.
+
+```{r correlation_circos, fig.width=8, fig.height=8}
+plotCorrelation(exp_cr, type = "circos")
+```
+
+```{r correlation_matrix, fig.width=7, fig.height=7}
+plotCorrelation(exp_cr, type = "matrix")
+```
+
+### Individuals Clustering
+
+Clustering analysis on exposures data results in exposure profile. The method `clustering` allows applying most of any clustering method to an `ExposomeSet` method.
+
+The argument of the method `clustering` are:
+
+```{r clustering_args}
+args(clustering)
+```
+
+The argument `method` is filled with the *clustering function*. This *clustering function* needs to accept an argument called `data`, that will be filled with the exposures-matrix. The object obtained from the *clustering function* needs to have an accessor called `classification`. Otherwise the argument `cmethod` needs to be filled with a function that takes the results of the *clustering function* and returns a vector with the classification of each individual.
+
+In this analysis we apply the clustering method `hclust`. Hence we create a function to accept an argument called `data`. 
+
+```{r hclust_function}
+hclust_data <- function(data, ...) {
+    hclust(d = dist(x = data), ...)
+}
+```
+
+The argument `...` allows passing arguments from `recposome`'s `clustering` method to `hclust`.
+
+Then, a function to obtain the classification of each sample is also required. This function will use the `cutree` function to obtain the labels.
+
+```{r hclus_k3}
+hclust_k3 <- function(result) {
+    cutree(result, k = 3)
+}
+```
+
+The new function `hclust_k3` is a function that takes the results of `hclust_data` and applies it the `cutree` function, requesting 3 groups of individuals.
+
+Having both *clustering function* (`hclust_data`) and the *classification function* (`hclust_k3`) we use them in the `clustering` method:
+
+```{r expo_clustering}
+exp_c <- clustering(exp, method = hclust_data, cmethod = hclust_k3)
+exp_c
+```
+
+The profile for each group of individuals can be plotted with `plotClassification` method.
+
+```{r plot_clustering, fig.width=12, fig.height=15}
+plotClassification(exp_c)
+```
+
+The classification of each individual can be obtained using the method `classification`. We can get a table with the number of samples per group with:
+
+```{r classification_clustering}
+table(classification(exp_c))
+```
+
+As seen, the groups are given as numbers and the `plotClassification` transforms it to names (_Group 1_, _Group 2_ and _Group 3_).
+
+
+## Exposure Association
+
+Once preprocessed the exposome its association with health outcomes can be tested through three different approaches:
+
+  1. Using the results of the PCA
+  2. Testing the association of each exposure to a given trait (single exposure association)
+  3. Testing the association of the exposome to a given trait (multiple exposure associations)
+
+### Understanding Principal Component Analysis
+
+From the results of the PCA on the exposome data, two measures can be obtained: the correlation of the exposures with the principal components and the association of the phenotypes with the principal components. 
+
+The method `plotEXP` draws a heat map with the correlation of each exposure to the principal components.
+
+```{r plot_pca_exp_cor, fig.width=7, fig.height=12, message=FALSE, warning=FALSE}
+plotEXP(exp_pca) + theme(axis.text.y = element_text(size = 6.5)) + ylab("")
+```
+
+From the plot, some conclusions can be obtained:
+
+  * **PC 1** is hight correlated with **particle matter** (*PM*) exposures.
+  * **PC 2** is correlated with the **Polybrominated Diphenyl Ethers** (*BDES*) exposures.
+  * **PC 5** is negative correlated with **Perfluorooctanoic Acid** (*PFOAS*) and **Polychlorinated Biphenyl** (*PCBS*).
+
+These conclusions are useful to give a meaning to the Principal Components in terms of exposures.
+
+The method `plotPHE` test the association between the phenotypes and the principal components and draws a heat map with the score of the association.
+
+```{r plot_pca_phe_ass, fig.width=7, fig.height=4, message=FALSE, warning=FALSE}
+plotPHE(exp_pca)
+```
+
+The conclusions that can be taken from the heat map are:
+
+  * **age** is associated to **PC 10**.
+  * **sex** is associated to **PC 6** and **PC 10**.
+  * **flu** is associated to **PC 5**.
+
+### Exposome-Wide Association Studies (ExWAS)
+
+Method `exwas` performs univariate test of the association between exposures and health outcomes. This method requests a `formula` to test and the family of the distribution of the health outcome (dependent variable).
+
+The following line performs an ExWAS on flu and wheezing adjusted by sex and age. Since the content of `flu` and others in the `ExposomeSet` is dichotomous, the `family` is set to binomial (for more information see `?glm`).
+
+```{r exwas_flu, warning=FALSE, message=FALSE}
+fl_ew <- exwas(exp, formula = blood_pre~sex+age, family = "gaussian")
+fl_ew
+```
+
+```{r exwas_wheezing, warning=FALSE, message=FALSE}
+we_ew <- exwas(exp, formula = wheezing~sex+age, family = "binomial")
+we_ew
+```
+
+The method `exwas` calculates the effective number of tests in base of the correlation between the exposures. This is transformed into a *threshold* for the p-values of the association. This threshold can be obtained using the method `tef`.
+
+A table with the associations between the exposures and `flu` is obtained with method `extract`:
+
+```{r exwas_extrat}
+head(extract(fl_ew))
+```
+
+A Manhattan-like plot with the p-values of the association between each exposure and asthma, coloured by families of exposures, is draw by method `plotExwas`.
+
+```{r exwas_plot, warning=FALSE, fig.width=10, fig.height=12, message=FALSE}
+clr <- rainbow(length(familyNames(exp)))
+names(clr) <- familyNames(exp)
+plotExwas(fl_ew, we_ew, color = clr) + 
+      ggtitle("Exposome Association Study - Univariate Approach")
+
+```
+
+Then a plot for the effects of a given model can be obtained with `plotEffect`:
+
+```{r exwas_effect_plot, warning=FALSE, fig.width=6, fig.height=16, message=FALSE}
+plotEffect(fl_ew)
+```
+
+
+### Multivariate Exposome Analysis
+
+The last approach is a multivariate analysis in order to find the group of exposures related to the health outcome. This can be done using methods like Elastic Net. The method `mexwas` applies elastic net to the exposures given a health outcome of interest.
+
+```{r enet, warning=FALSE}
+bl_mew <- mexwas(exp_std, phenotype = "blood_pre", family = "gaussian")
+we_mew <- mexwas(exp_std, phenotype = "wheezing", family = "binomial")
+```
+
+The coefficient of each exposure is plotted with `plotExwas`. The method draws a heat map with two columns and the exposures as rows. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (`Min`) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (`1SE`). 
+
+```{r plot_enet_heatmap, fig.width=10, fig.height=12}
+plotExwas(bl_mew, we_mew) + ylab("") +
+        ggtitle("Exposome Association Study - Multivariate Approach")
+```
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
