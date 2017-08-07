@@ -5,7 +5,8 @@
 \title{Creation of an imExposomeSet from \code{data.frames}}
 \usage{
 loadImputed(data, description, description.famCol = "family",
-  description.expCol = "exposure", exposures.asFactor = 5)
+  description.expCol = "exposure", exposures.asFactor = 5,
+  warnings = TRUE)
 }
 \arguments{
 \item{data}{The \code{data.frame} of both exposures and phentoypes obtained
@@ -26,6 +27,9 @@ or character.}
 than this number of unique items will be considered as "continuous" while
 the exposures with less or equal number of items will be considered as
 "factor".}
+
+\item{warnings}{(default \code{TRUE}) If \code{TRUE} shows useful
+information/warnings from the process of loading the exposome.}
 }
 \value{
 An object of class \link{imExposomeSet}.

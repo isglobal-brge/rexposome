@@ -58,6 +58,10 @@
 loadExposome <- function(exposures, description, phenotype,
         description.famCol = "family", exposures.asFactor = 5,
         warnings = TRUE) {
+    if(!description.famCol %in% colnames(description)) {
+        stop("Invalid value for 'description.famCol' ('", description.famCol,
+             "').")
+    }
 
     ## Order the colmuns on description
     ##   rownames <- exposures
@@ -133,9 +137,8 @@ loadExposome <- function(exposures, description, phenotype,
     ## Need to create and fill _type of description
     if("type" %in% colnames(description)) {
         if(warnings) {
-            warning("Fund colnames 'type' in description file. It will be ",
-                    "used to check for exposures' type. Then 'type' column ",
-                    "will be droped.")
+            warning("Found colname 'type' in description file. It will be ",
+                "used to check for exposures' type. Then it will be droped.")
         }
         description$type <- as.character(description$type)
         if(sum(unique(description$type) %in% c("numeric", "factor")) != 2) {
