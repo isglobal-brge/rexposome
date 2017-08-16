@@ -140,8 +140,8 @@ loadExposome <- function(exposures, description, phenotype,
             warning("Found colname 'type' in description file. It will be ",
                 "used to check for exposures' type. Then it will be droped.")
         }
-        description$type <- as.character(description$type)
-        if(sum(unique(description$type) %in% c("numeric", "factor")) != 2) {
+        description$type <- gsub(" ", "", as.character(description$type))
+        if(sum(! unique(description$type) %in% c("numeric", "factor")) != 0) {
             stop("In 'type' column of description file only 'factor' or ",
                  "'numeric' calues can be used.")
         }

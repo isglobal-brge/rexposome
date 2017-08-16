@@ -5,25 +5,24 @@ setMethod(
     #definition = function(object, set=c("exposures", "phenotypes"), select) {
     definition = function(x, set=c("exposures", "phenotypes"), select, ...,
                           na.rm = FALSE) {
-        object <- x; rm(x)
         set <- match.arg(set)
         if(missing(select)) {
             select <- switch(set,
-                exposures = rownames(assayData(object)[["exp"]]),
-                phenotypes = colnames(pData(phenoData(object)))
+                exposures = exposureNames(x),
+                phenotypes = phenotypeNames(x)
             )
         } else {
             ss <- sum(select %in% switch(set,
-                     exposures = rownames(assayData(object)[["exp"]]),
-                     phenotypes = colnames(pData(phenoData(object)))
+                     exposures = exposureNames(x),
+                     phenotypes = phenotypeNames(x)
                     ))
             if(ss != length(select)) {
                 stop("Selected exposures/phenotypes not in ExpressionSet.")
             }
         }
         switch(set,
-            exposures = .summary_exposures(object, select),
-            phenotypes = summary(pData(phenoData(object))[ , select, drop=FALSE])
+            exposures = .summary_exposures(x, select),
+            phenotypes = summary(pData(phenoData(x))[ , select, drop=FALSE])
         )
     }
 )
@@ -31,7 +30,8 @@ setMethod(
 .summary_exposures <- function(object, select) {
     exposome <- expos(object)[ , select, drop=FALSE]
     type <- fData(object)[select, ".type"]
-    for(ii in 1:length(type)) {
+    for(ii in seq(length(type))) {
+        message(ii)
         exposome[, ii] <- switch (type[ii],
             numeric = as.numeric(as.character(exposome[, ii])),
             factor = as.factor(as.character(exposome[, ii]))
