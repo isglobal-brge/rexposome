@@ -31,7 +31,6 @@ setMethod(
     exposome <- expos(object)[ , select, drop=FALSE]
     type <- fData(object)[select, ".type"]
     for(ii in seq(length(type))) {
-        message(ii)
         exposome[, ii] <- switch (type[ii],
             numeric = as.numeric(as.character(exposome[, ii])),
             factor = as.factor(as.character(exposome[, ii]))
