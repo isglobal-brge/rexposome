@@ -15,7 +15,8 @@ vignette: >
 
 ```{r setup, include=FALSE}
 BiocStyle::markdown()
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
+options(width=80)
+knitr::opts_chunk$set(echo = TRUE, warnings = FALSE, tidy = TRUE)
 ```
 
 # Introduction
@@ -131,31 +132,35 @@ In summary: All the exposures, rows, in the *description data* file are columns 
 library(rexposome)
 ```
 
-`rexposome` provides two functions to load the *exposome* data: `read_exposome` and `load_exposome`. The function `read_exposome` will load the exposome data from txt files and `load_exposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
+```{r library2, echo=FALSE, message=FALSE}
+library(psygenet2r)
+```
+
+`rexposome` provides two functions to load the *exposome* data: `readExposome` and `loadexposome`. The function `readExposome` will load the exposome data from txt files and `loadExposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
 
 ## Loading Exposome Data
 
 ### From `TXT` files
 
-The function `read_exposome` will create an `ExposomeSet` from the three `txt` files. The following lines are used to locate these three files, that were included in the package for demonstration purposes.
+The function `readExposome` will create an `ExposomeSet` from the three `txt` files. The following lines are used to locate these three files, that were included in the package for demonstration purposes.
 
 ```{r files_path}
-path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-description <- paste0(path, .Platform$file.sep, "description.csv")
-phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
-exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
+phenotype <- file.path(path, "phenotypes.csv")
+exposures <- file.path(path, "exposures.csv")
 ```
 
-These files follows the rules described in **Data Format** section. They are `csv` files, meaning each values is split from the others by a comma (`,`). Function `read_exposome` allows to load most any type of files containing *exposome* data:
+These files follows the rules described in **Data Format** section. They are `csv` files, meaning each values is split from the others by a comma (`,`). Function `readExposome` allows to load most any type of files containing *exposome* data:
 
 ```{r ags_read_exposome}
-args(read_exposome)
+args(readExposome)
 ```
 
-`read_exposome` expects, by default, `csv` files. Changing the content of the argument `sep` will allow to load other files types. The missing values are set using the argument `na.strings`. This means that the character assigned to this argument will be interpreted as a missing value. By default, those characters are `"NA"`, `"-"`, `"?"`, `" "` and `""`. Then, the columns with the exposures' names and the individual's names need to be indicated. Arguments `exposures.samCol` and `phenotype.samCol` indicates the column with the individuals' names at _exposures file_ and _phenotypes file_. The arguments `description.expCol` and `description.famCol` indicates the column containing the exposures' names and the exposures' family in the _description file_.
+`readExposome` expects, by default, `csv` files. Changing the content of the argument `sep` will allow to load other files types. The missing values are set using the argument `na.strings`. This means that the character assigned to this argument will be interpreted as a missing value. By default, those characters are `"NA"`, `"-"`, `"?"`, `" "` and `""`. Then, the columns with the exposures' names and the individual's names need to be indicated. Arguments `exposures.samCol` and `phenotype.samCol` indicates the column with the individuals' names at _exposures file_ and _phenotypes file_. The arguments `description.expCol` and `description.famCol` indicates the column containing the exposures' names and the exposures' family in the _description file_.
 
 ```{r read_exposome}
-exp <- read_exposome(
+exp <- readExposome(
     exposures = exposures, 
     description = description, 
     phenotype = phenotype,
@@ -172,18 +177,18 @@ The result is an object of class `ExposomeSet`, that can show all the informatio
 exp
 ```
 
-Under the section _exposures description_ the number of continuous (84) and categorical (4) exposures are shown. The _assayData_, _phenoData_ and _featureData_ shows the content of the files we loaded with `read_exposome`.
+Under the section _exposures description_ the number of continuous (84) and categorical (4) exposures are shown. The _assayData_, _phenoData_ and _featureData_ shows the content of the files we loaded with `readExposome`.
 
 ### From `data.frame`
 
 
-The function `load_exposome` allows to create an `ExposomeSet` through three `data.frames`: one as *description data*, one as *exposures data* and one as *phenotypes data*. The arguments are similar to the ones from `read_exposome`:
+The function `loadExposome` allows to create an `ExposomeSet` through three `data.frames`: one as *description data*, one as *exposures data* and one as *phenotypes data*. The arguments are similar to the ones from `readExposome`:
 
 ```{r ags_load_exposome}
-args(load_exposome)
+args(loadExposome)
 ```
 
-In order to illustrate how to use `load_exposome`, we are loading the previous `csv` files as `data.frames`:
+In order to illustrate how to use `loadExposome`, we are loading the previous `csv` files as `data.frames`:
 
 ```{r read_csv_files}
 dd <- read.csv(description, header=TRUE)
@@ -212,13 +217,14 @@ rownames(pp) <- pp[ , 1]
 pp <- pp[ , -1]
 ```
 
-Then, the `ExposomeSet` is creating by giving the three `data.frames` to `load_exposome`:
+Then, the `ExposomeSet` is creating by giving the three `data.frames` to `loadExposome`:
 
 ```{r load_exposome}
-exp <- load_exposome(
+exp <- loadExposome(
     exposures = ee, 
     description = dd, 
-    phenotype = pp
+    phenotype = pp,
+    description.famCol = "Family"
 )
 ```
 
@@ -244,7 +250,7 @@ phenotypeNames(exp)
 
 `fData` will return the description of the exposures (including internal information to manage them).
 
-```{r exposures}
+```{r feature}
 head(fData(exp), n = 3)
 ```
 
@@ -252,6 +258,12 @@ head(fData(exp), n = 3)
 
 ```{r phenotype}
 head(pData(exp), n = 3)
+```
+
+Finally, the method `expos` allows to obtain the matrix of exposures as a `data.frame`:
+
+```{r exposures}
+expos(exp)[1:10, c("Cotinine", "PM10V", "PM25", "X5cxMEPP")]
 ```
 
 ## Exposome Pre-process
@@ -315,14 +327,14 @@ plotHistogram(exp, select = "BDE209", show.trans = TRUE)
 The imputation process is out of `rexposome` scope. Nevertheless, `rexposome` incorporates a wrapper to run the imputation tools from the R packages and `Hmisc`. The imputation of the exposures in the `ExposomeSet` is done by using this code:
 
 ```{r impute_hmisc}
-exp <- impute(exp)
+exp <- imputation(exp)
 ```
 
 To use `mice` package instead of `hmisc`, see the vignette entitles *Dealing with Multiple Imputations*.
 
 ### Exposures Behaviour
 
-We can get a snapshot of the behaviour of the full *exposome* using the method `plotFamily`. This function allows drawing a plot of a given family of exposures or a mosaic with all the exposures.
+We can get a snapshot of the behaviour of the full *exposome* using the method `plotFamily` or its wrapper `plot`. This function allows drawing a plot of a given family of exposures or a mosaic with all the exposures.
 
 ```{r plot_all_exposures, fig.height=12, fig.width=8}
 plotFamily(exp, family = "all")
@@ -528,13 +540,20 @@ plotExwas(fl_ew, we_ew, color = clr) +
 
 ```
 
+Then a plot for the effects of a given model can be obtained with `plotEffect`:
+
+```{r exwas_effect_plot, warning=FALSE, fig.width=6, fig.height=16, message=FALSE}
+plotEffect(fl_ew)
+```
+
+
 ### Multivariate Exposome Analysis
 
 The last approach is a multivariate analysis in order to find the group of exposures related to the health outcome. This can be done using methods like Elastic Net. The method `mexwas` applies elastic net to the exposures given a health outcome of interest.
 
 ```{r enet, warning=FALSE}
-bl_mew <- mexwas(exp, phenotype = "blood_pre", family = "gaussian")
-we_mew <- mexwas(exp, phenotype = "wheezing", family = "binomial")
+bl_mew <- mexwas(exp_std, phenotype = "blood_pre", family = "gaussian")
+we_mew <- mexwas(exp_std, phenotype = "wheezing", family = "binomial")
 ```
 
 The coefficient of each exposure is plotted with `plotExwas`. The method draws a heat map with two columns and the exposures as rows. The heat map is coloured with the coefficient of each exposure in relation with the health outcome, so the ones in white are not interesting. The two columns of the heat map correspond to the minimum lambda (`Min`) and to the lambda which gives the most regularised model such that error is within one standard error of the minimum (`1SE`). 
@@ -542,4 +561,10 @@ The coefficient of each exposure is plotted with `plotExwas`. The method draws a
 ```{r plot_enet_heatmap, fig.width=10, fig.height=12}
 plotExwas(bl_mew, we_mew) + ylab("") +
         ggtitle("Exposome Association Study - Multivariate Approach")
+```
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
 ```

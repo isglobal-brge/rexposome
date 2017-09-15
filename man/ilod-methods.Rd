@@ -15,7 +15,8 @@ ilod(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLog = FALSE,
 \item{lod.col}{(default \code{"LOD"}) Name of the column in \code{fData}
 with the threshold of the LOD.}
 
-\item{pNA}{(default \code{0.2}) Maximum percentage allowed of values under LOD}
+\item{pNA}{(default \code{0.2}) Maximum percentage allowed of values under
+LOD}
 
 \item{tLog}{(default \code{FALSE}) If set to \code{TRUE} it transforms all
 the exposures to lod before the imputation.}

@@ -4,13 +4,20 @@
 #' @param filter Expression to be used to filter \code{\link{ExposomeSet}}
 #' @param family Family descriving the nature of the health outcome
 #' @param ... Other used arguments
+#' @param tef If set to \code{TRUE} the threshold for effective
+#' test is computed.
 #' @param verbose If set to \code{TRUE} it shows messages on progression.
-#' @param warnings I set to \code{TRUE} it shows warnings on progession.
+#' @param warnings If set to \code{TRUE} it shows warnings on progession.
 setMethod(
     f = "exwas",
     signature = "imExposomeSet",
-    definition = function(object, formula, filter, family, ..., verbose = FALSE, warnings = TRUE) {
+    definition = function(object, formula, filter, family, ..., tef = TRUE,
+                          verbose = FALSE, warnings = TRUE) {
+        if(missing(family)) {
+            stop("Missing argument 'family'.")
+        }
         dta <- data.frame(expos(object), pData(object)[ , -c(1:2)])
+        nmis <- apply(dta[dta$`.imp` == 0, ], 2, function(x) sum(is.na(x)))
         dta <- dta[dta$`.imp` != 0, ]
         dta <- dta[ , -2]
 
@@ -24,8 +31,10 @@ setMethod(
         }
 
         form <- as.character(formula)
-        ne <- c()
-        items <- lapply(exposureNames(object), function(ex) {
+
+        ne <- list()
+        items <- list()
+        for(ex in exposureNames(object)) {
             if(verbose) {
                 message("Processing '", ex, "'.")
             }
@@ -38,14 +47,24 @@ setMethod(
                     dtai <- dta[dta[, 1] == ii, -1]
                     stats::glm(family=family, formula = frm, data = dtai)
                 })
-                tst <- pool_glm(fit_glm, m = object@nimputation)
+                mira_glm <- list(
+                    call = NULL,
+                    call1 = NULL,
+                    nmis = nmis,
+                    analyses = fit_glm
+                )
+                class(mira_glm) <- "mira"
+                tst <- pool_glm(mira_glm, ex = ex)
 
-                return(summary(tst)[2, c(1, 6, 7, 5)])
+                items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
             }, error = function(e) {
-                ne <<- c(ne, ex)
-                return(c(NULL, NULL, NULL, NULL))
+                if(verbose) {
+                    message("\tProcess of '", ex, "' failed.", e)
+                }
+                ne[[ex]] <- e
+                items[[ex]] <- c(NULL, NULL, NULL, NULL)
             })
-        })
+        }
 
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
@@ -56,18 +75,22 @@ setMethod(
         rownames(items) <- exposureNames(object)
 
         ## Compute the threshold for effective tests
-        cormat <- extract(correlation(toES(object, rid=1),
-            use="pairwise.complete.obs", method.cor = "pearson"))
-        M <- ncol(cormat)
-        lambdas <- base::eigen(cormat)$values
-        Vobs <- sum(((lambdas - 1)^2)) / (M - 1)
-        Meff <- M - sum((lambdas>1)*(lambdas-1))
-        alpha_corrected <- 1 - (1 - 0.05)^(1 / Meff)
+        if(tef) {
+            cormat <- psygenet2r::extract(correlation(toES(object, rid=1),
+                use="pairwise.complete.obs", method.cor = "pearson"))
+            M <- ncol(cormat)
+            lambdas <- base::eigen(cormat)$values
+            Vobs <- sum(((lambdas - 1)^2)) / (M - 1)
+            Meff <- M - sum((lambdas>1)*(lambdas-1))
+            alpha_corrected <- 1 - (1 - 0.05)^(1 / Meff)
+        } else {
+            alpha_corrected <- -1
+        }
         ## /
 
         new("ExWAS",
             effective = alpha_corrected,
-            comparison = items,
+            comparison = S4Vectors::DataFrame(items),
             description = fData(object),
             formula = formula
         )

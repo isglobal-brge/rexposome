@@ -10,15 +10,15 @@
   
 ## Installation
 
-`rexposome` requires R version equal or newer than 3.3.0. The following script allows to install `rexposome` dependencies:
+`rexposome` requires R version equal or newer than 3.0. The following script allows to install `rexposome` dependencies:
 
 ```r
 source( "http://bioconductor.org/biocLite.R" )
 
 packages = c('Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR',
 	'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
-	'mboost', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
-	'grid', 'Hmisc', 'gplots',	'gtools', 'scales'
+	'scales', 'imputeLCMD', 'scatterplot3d', 'glmnet', 'gridExtra',
+	'grid', 'Hmisc', 'gplots', 'gtools', 'S4Vectors'
 )
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
@@ -34,10 +34,17 @@ The package can be installed using the R package `devtools`. `devtools` can be i
 install.packages("devtools")
 ```
 
-Once `devtools` and the dependences are installed, the following code installs `rexposome`:
+
+Due to the publication process of `rexposome` at Biocondcuto, the requirment is set to R-3.4. For those using R-3.4, the following code installs `rexposome`:
 
 ```r
 devtools::install_github("isglobal-brge/rexposome")
+```
+
+For those using an older version of R (but newer than R-3.o) the following code installs `rexposome`:
+
+```r
+devtools::install_github("isglobal-brge/rexposome", ref="R-3.0")
 ```
 
 ### Details
@@ -55,7 +62,7 @@ In `rexposome` the _exposome_ is understood as a set of three files:
   2. The phenotype file (diseasome file): A matrix with the phenotypes or diseases description, having the individuals as rows and the phenotypes as columns.
   3. The description file: A table describing the exposures. It must have, at last, two columns: one with the exposures and one with the family/group of exposures. The order of the exposures must be the same as in exposure-file.
 
-The _exposome_ is loaded from files using the function `read_exposome`. If the information is stored in standard R `data.frame`s, those can be converted to an `ExposomeSet` using the function `load_exposome`.
+The _exposome_ is loaded from files using the function `readExposome`. If the information is stored in standard R `data.frame`s, those can be converted to an `ExposomeSet` using the function `loadExposome`.
 
 ### Exposome Characterization
 

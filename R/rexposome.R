@@ -2,8 +2,8 @@
 #'
 #' #' @section exposures loading and exposures managment:
 #' \code{rexposome} offers two methods to bring exposome data to R and
-#' Bioconductor. \code{\link{read_exposome}} allows to read three txt-like
-#' files (\code{.csv}, \code{.tsv}, ...) while \code{\link{load_exposome}}
+#' Bioconductor. \code{\link{readExposome}} allows to read three txt-like
+#' files (\code{.csv}, \code{.tsv}, ...) while \code{\link{loadExposome}}
 #' is sued with \code{matrix} and \code{data.frame}s. The class obtained is
 #' an \code{\link{ExposomeSet}}, a class based in \code{eSet} for exposome
 #' data managment.
@@ -33,10 +33,9 @@
 #'
 #' @import Biobase
 #' @import utils
-#' @import mboost
 #'
 #' @importClassesFrom Biobase eSet
-# @importClassesFrom MultiDataSet MultiDataSet
+#' @importClassesFrom S4Vectors DataFrame
 #'
 #' @importFrom lsr cramersV
 #' @importFrom FactoMineR PCA
@@ -53,13 +52,11 @@
 #' @importFrom ggplot2 scale_y_continuous scale_fill_brewer
 #' @importFrom reshape2 melt
 #' @importFrom pryr named_dots
-# @importFrom mboost gamboost extract
 #' @importFrom imputeLCMD impute.QRILC impute.MinProb
 #' @importFrom scatterplot3d scatterplot3d
 #' @importFrom glmnet cv.glmnet glmnet
 #' @importFrom grid viewport grid.newpage pushViewport grid.layout
 #' @importFrom gridExtra grid.arrange
-# @importFrom mice mice complete
 #' @importFrom Hmisc impute
 #' @importFrom gplots heatmap.2
 #' @importFrom gtools quantcut
@@ -69,6 +66,9 @@
 #' @importFrom graphics layout legend lines par plot plot.new text
 #' @importFrom methods formalArgs new validObject
 #' @importFrom stats AIC aggregate anova as.formula coef confint.default cor fitted
-#' @importFrom stats glm lm mad median predict sd shapiro.test update vcov
+#' @importFrom stats glm lm mad median predict sd shapiro.test update vcov IQR qnorm
+#' @importFrom stats df.residual pt
 #' @importFrom ggrepel geom_text_repel
+#' @importFrom psygenet2r extract
+#' @importFrom methods Summary
 NULL

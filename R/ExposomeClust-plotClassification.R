@@ -2,19 +2,18 @@
 #' @param type (default \code{"heatmap"}) Type of plot.
 #' @param ... Argument given to \code{heatmap.2}
 setMethod(
-  f = "plotClassification",
-  signature = "ExposomeClust",
-  definition = function(object, type="heatmap", ...) {
-    x <- object; rm(object)
-    type <- match.arg(type, c("heatmap", "valuemap"))
-    if(type == "heatmap") {
-      .cluster_heatmap(x, ...)
-    } else if(type == "valuemap") {
-      .cluster_valuemap(x, ...)
-    } else {
-      stop("Invalid type of plot.")
+    f = "plotClassification",
+    signature = "ExposomeClust",
+    definition = function(object, type="heatmap", ...) {
+        type <- match.arg(type, c("heatmap", "valuemap"))
+        if(type == "heatmap") {
+            .cluster_heatmap(object, ...)
+        } else if(type == "valuemap") {
+            .cluster_valuemap(object, ...)
+        } else {
+        stop("Invalid type of plot.")
+        }
     }
-  }
 )
 
 .cluster_valuemap <- function(x, family, scatter = TRUE) {
@@ -76,7 +75,7 @@ setMethod(
   agrted <- t(apply(scaled, 2, ff, y=classification(x)))
   colnames(agrted) <- paste("Group", 1:ncol(agrted))
 
-  gplots::heatmap.2(agrted, col = gplots::bluered(100), dendrogram = "row",
+  gplots::heatmap.2(agrted, col = rev(gplots::bluered(100)), dendrogram = "row",
                     cexRow = cexRow, srtCol = 0, cexCol = cexCol, adjCol = adjCol,
                     density.info="none", tracecol = "darkgreen", lhei = c(2, 10))
 

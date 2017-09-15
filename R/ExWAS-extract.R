@@ -7,7 +7,7 @@ setMethod(
   definition = function(object, sort = TRUE, ...) {
     x <- object@comparison
     if(sort) {
-        x <- x[order(x$pvalue), c("pvalue", "effect", "2.5", "97.5")]
+        x <- x[order(x$pvalue), c("pvalue", "effect", "X2.5", "X97.5")]
     }
     x
   }

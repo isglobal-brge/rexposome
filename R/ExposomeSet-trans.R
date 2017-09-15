@@ -14,7 +14,7 @@ setMethod(
         stop("Slected exposures not in given ExposomeSet.")
     }
     select.no <- exposureNames(object)[!exposureNames(object) %in% select]
-    data.cnt <- expos(object)[ , select, drop=FALSE] # t(assayData(object)[["exp"]][select, , drop=FALSE])
+    data.cnt <- expos(object)[ , select, drop = FALSE]
     if(by.exposure) {
         data.dst <- data.frame(lapply(colnames(data.cnt), function(exp) {
           fun(data.cnt[ , exp], ...)
@@ -28,9 +28,12 @@ setMethod(
     colnames(data.dst) <- c(select, select.no)
 
     assayData(object) <- assayDataNew("environment",
-                                      raw = assayDataElement(object, "raw"),
-                                      exp = t(data.dst)[rownames(assayDataElement(object, "raw")), ])
-    fData(object)[select, "_trn"] <- as.character(substitute(fun))
+        exp = t(data.dst)[rownames(assayDataElement(object, "exp")), ])
+    tryCatch({
+        fData(object)[select, ".trn"] <- as.character(substitute(fun))
+    }, error=function(e) {
+        fData(object)[select, ".trn"] <- "unknown"
+    })
 
     return(object)
   }

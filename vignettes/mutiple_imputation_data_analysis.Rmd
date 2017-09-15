@@ -2,7 +2,7 @@
 title: "Dealing with Multiple Imputations"
 author: "Carles Hernandez-Ferrer and Juan R. Gonzalez"
 date: "`r doc_date()`"
-package: "`r pkg_ver('BiocStyle')`"
+package: "`r pkg_ver('rexposome')`"
 abstract: >
       An introductory guide to analysing multiple imputed exposome data with R package `rexposome`. The areas covered in this document are: loading the multiple imputations of both exposures and phenotypes from common `data.frame`s, exploration the exposome data, and testing association between exposures and health outcomes.
 vignette: >
@@ -29,15 +29,19 @@ library(rexposome)
 library(mice)
 ```
 
+```{r library2, echo=FALSE, message=FALSE}
+library(psygenet2r)
+```
+
 The we load the `txt` files includes in `rexposome` package so we can load the exposures and see the amount of missing data (check vignette *Exposome Data Analysis* for more information). 
 
 The following lines locates where the `txt` files were installed.
 
 ```{r files_path}
-path <- paste0(path.package("rexposome"), .Platform$file.sep, "extdata")
-description <- paste0(path, .Platform$file.sep, "description.csv")
-phenotype <- paste0(path, .Platform$file.sep, "phenotypes.csv")
-exposures <- paste0(path, .Platform$file.sep, "exposures.csv")
+path <- file.path(path.package("rexposome"), "extdata")
+description <- file.path(path, "description.csv")
+phenotype <- file.path(path, "phenotypes.csv")
+exposures <- file.path(path, "exposures.csv")
 ```
 
 Once the files are located we load them as `data.frames`:
@@ -88,8 +92,8 @@ for(ii in c(14:17, 48:54)) {
 With this `data.frame` we perform the imputation calling `mice` functions (for more information about this call, check `mice`'s vignette). We remove the columns *birthdate* since it is not necessary for the imputations and carries lots of categories.
 
 ```{r mice_imputation, message=FALSE}
-imp <- mice(dta[ , -52], pred = quickpred(dta[ , -52], mincor = 0.2, minpuc = 0.4),
-    seed = 38788, m = 5, maxit = 10, printFlag = FALSE)
+imp <- mice(dta[ , -52], pred = quickpred(dta[ , -52], mincor = 0.2, 
+    minpuc = 0.4), seed = 38788, m = 5, maxit = 10, printFlag = FALSE)
 class(imp)
 ```
 
@@ -132,18 +136,18 @@ The format of the multiple imputation data for `rexposome` needs to follow some 
 
 ## Creating an `imExposomeSet`
 
-With the exposome `data.frame` and the description `data.frame` an object of class `imExposomeSet` can be created. To this end, the function `load_imputed` is used:
+With the exposome `data.frame` and the description `data.frame` an object of class `imExposomeSet` can be created. To this end, the function `loadImputed` is used:
 
 ```{r create_imexposomeset}
-ex_imp <- load_imputed(data = me, description = dd, 
+ex_imp <- loadImputed(data = me, description = dd, 
                        description.famCol = 1, 
                        description.expCol = 2)
 ```
 
-The function `load_imputed` has several arguments:
+The function `loadImputed` has several arguments:
 
 ```{r args_load}
-args(load_imputed)
+args(loadImputed)
 ```
 
 The argument `data` is filled with the `data.frame` of exposures. The argument `decription` with the `data.frame` with the exposures' description. `description.famCol` indicates the column on the description that corresponds to the family. `description.expCol` indicates the column on the description that corresponds to the exposures. Finally, `exposures.asFactor` indicates that the exposures with less that, by default, five different values are considered categorical exposures, otherwise continuous.
@@ -176,7 +180,7 @@ phenotypeNames(ex_imp)
 
 `fData` will return the description of the exposures (including internal information to manage them).
 
-```{r exposures}
+```{r exposures_matrix}
 head(fData(ex_imp), n = 3)
 ```
 
@@ -229,7 +233,9 @@ as_iew
 As usual, the \texttt{ExWAS} object obtained from `exwas` method can be plotted using `plotExwas`:
 
 ```{r plot_exwas, fig.height=7}
-plotExwas(as_iew)
+clr <- rainbow(length(familyNames(ex_imp)))
+names(clr) <- familyNames(ex_imp)
+plotExwas(as_iew, color = clr)
 ```
 
 ## Extract the exposures over the *threshold of effective tests*
@@ -252,4 +258,10 @@ tbl <- extract(as_iew)
 
 ```{r sig}
 (sig <- tbl[tbl$pvalue <= thr, ])
+```
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
 ```

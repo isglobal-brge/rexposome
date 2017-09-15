@@ -20,11 +20,11 @@ setMethod(
 
         ## SELECT NUMERICAL EXPOSURES
         if(missing(select)) {
-            select.all <- fData(object)[ , "_type"]
+            select.all <- fData(object)[ , ".type"]
             names(select.all) <- exposureNames(object)
             select <- names(select.all[select.all == "numeric"])
         } else {
-            select.all <- fData(object)[ , "_type"]
+            select.all <- fData(object)[ , ".type"]
             names(select.all) <- exposureNames(object)
             if(sum(select.all[select] == "numeric") != length(select)) {
                 stop("Exposures in 'select' are not numerical.")
@@ -35,7 +35,8 @@ setMethod(
         ## COVNERT FROM CNT TO DST
         data.cnt <- expos(object)[, select, drop=FALSE]
         data.dst <- data.frame(lapply(colnames(data.cnt), function(exp) {
-            gtools::quantcut(data.cnt[ , exp], seq(0, 1, length = ngroups + 1), right = FALSE)
+            gtools::quantcut(data.cnt[ , exp], seq(0, 1, length = ngroups + 1),
+                             right = FALSE)
         }))
         ##
 
@@ -43,7 +44,7 @@ setMethod(
         if(intervals == "extreme") {
             lapply(colnames(data.dst), function(exp) {
                 lvl <- levels(data.dst[ , exp])
-                data.dst[!(data.dst[ , exp] %in% c(max(lvl), min(lvl))) , exp] <<- NA
+                data.dst[!(data.dst[ , exp] %in% c(max(lvl), min(lvl))) , exp] <- NA
             })
             trs <- "EXT"
         } else {
@@ -57,15 +58,13 @@ setMethod(
             data.dst <- cbind(data.dst,
                               t(assayData(object)[["exp"]][select.no, ]))
             colnames(data.dst) <- c(select, select.no)
-            data.dst <- data.dst[ , rownames(assayDataElement(object, "raw"))]
+            data.dst <- data.dst[ , rownames(assayDataElement(object, "exp"))]
             assayData(object) <- assayDataNew("environment",
-                                              exp = t(data.dst),
-                                              raw = assayDataElement(object, "raw")
-            )
+                exp = t(data.dst))
 
             nfData <- fData(object)
-            nfData[select, "_type"] <- "factor"
-            nfData[select, "_fct"] <- trs
+            nfData[select, ".type"] <- "factor"
+            nfData[select, ".fct"] <- trs
             fData(object) <- nfData
 
         } else {
@@ -76,14 +75,13 @@ setMethod(
             ## /
 
             assayData(object) <- assayDataNew("environment",
-                                              exp = rbind(assayDataElement(object, "exp"), t(data.dst)),
-                                              raw = rbind(assayDataElement(object, "raw"), t(data.dst))
+                  exp = rbind(assayDataElement(object, "exp"), t(data.dst))
             )
 
             nfData <- fData(object)[select, ]
             rownames(nfData) <- colnames(data.dst)
-            nfData[ , "_type"] <- "factor"
-            nfData[ , "_fct"] <- trs
+            nfData[ , ".type"] <- "factor"
+            nfData[ , ".fct"] <- trs
             fData(object) <- rbind(fData(object), nfData)
         }
         object

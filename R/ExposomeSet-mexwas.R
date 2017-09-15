@@ -28,8 +28,8 @@ setMethod(
         if(warnings) {
             warning("Categorical exposures will be droped and not used in the analysis.")
         }
-        message("A")
-        x <<- dta[ , exposureNames(object)[fData(object)$`_type` == "numeric"]]
+
+        x <- dta[ , exposureNames(object)[fData(object)$`.type` == "numeric"]]
         x <- as.matrix(x)
         if(family %in% c("binomial", "multinomial")) phe <- as.factor(phe)
         ms <- ifelse(family %in% c("gaussian", "poisson"), "mse", "auc")
@@ -38,7 +38,7 @@ setMethod(
 
         new("mExWAS",
             result = list(cvfit, fit),
-            description = fData(object)[colnames(x), ],
+            description = S4Vectors::DataFrame(fData(object)[colnames(x), ]),
             phenotype = phenotype
         )
     }

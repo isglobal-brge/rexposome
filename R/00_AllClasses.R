@@ -14,18 +14,18 @@
 #' the family where they belong (see \link{eSet}, \link{AnnotatedDataFrame}).
 #' @slot phenoData Contains the phenotypes or variables experimenter-supplied
 #' (see \link{eSet}, \link{AnnotatedDataFrame}).
-#' @seealso \code{\link{read_exposome}} to create an \code{ExposomeSet}
-#' from files, \code{\link{load_exposome}} to create an \code{ExposomeSet}
+#' @seealso \code{\link{readExposome}} to create an \code{ExposomeSet}
+#' from files, \code{\link{loadExposome}} to create an \code{ExposomeSet}
 #' from \code{data.frames}
 #' @return An object of class \code{ExposomeSet}
 setClass(
-  Class = "ExposomeSet",
-  contains = "eSet",
-  prototype = prototype(
-    new("VersionedBiobase",
-        versions = c(classVersion("eSet"), ExposomeSet = "1.0.0")
+    Class = "ExposomeSet",
+    contains = "eSet",
+    prototype = prototype(
+        new("VersionedBiobase",
+            versions = c(classVersion("eSet"), ExposomeSet = "1.0.0")
+        )
     )
-  )
 )
 
 #' Class ExposomeCorr
@@ -48,8 +48,8 @@ setClass(
 #' and exposures in an \code{\link{ExposomeSet}}
 #' @return An object of class \code{ExposomeCorr}
 setClass(
-  Class = "ExposomeCorr",
-  contains = "eSet"
+    Class = "ExposomeCorr",
+    contains = "eSet"
 )
 
 #' Class ExposomePCA
@@ -105,44 +105,12 @@ setClass(
 #' \code{\link{mExWAS}}
 #' @return An object of class \code{ExWAS}
 setClass(
-  Class = "ExWAS",
-  representation = representation(
-    effective = "numeric",
-    formula = "formula",
-    comparison = "data.frame",
-    description = "data.frame"
-  )
-)
-
-#' Class nlExWAS
-#'
-#' Class \code{nlExWAS} obtained from \link{nl_exwas} method of an
-#' \link{ExposomeSet} object, contains the result of testing the multiple
-#' models of exposures of an \code{ExposomeSet} to a set of given phenotypes.
-#' "nlExWAS" is the #' acronym of "Multivariate Exposome-Wide Association
-#' Study".
-#'
-#' @name nlExWAS
-#' @aliases nlExWAS-class
-#' @rdname nlExWAS-class
-#' @exportClass nlExWAS
-#' @slot ranking Results obtained from the \code{mboost} package as
-#' \code{data.frame}.
-#' @slot models Models tested in the \code{mboost} package.
-#' @slot n Number of samples (exposures) used.
-#' @slot predictors Predictors obained from \code{mboost} package.
-#' @slot X \code{data.fame} with the phenotypes used in the models.
-#' @slot xyformula Formulas used in \code{mboost} package.
-#' @return An object of class \code{nlExWAS}
-setClass(
-    Class = "nlExWAS",
+    Class = "ExWAS",
     representation = representation(
-        ranking = "data.frame",
-        models = "list",
-        n = "numeric",
-        predictors = "list",
-        X = "data.frame",
-        xyformula = "list"
+        effective = "numeric",
+        formula = "formula",
+        comparison = "DataFrame",
+        description = "DataFrame"
     )
 )
 
@@ -171,7 +139,7 @@ setClass(
     representation = representation(
         result = "list", # fit
         phenotype = "character",
-        description = "data.frame"
+        description = "DataFrame"
     )
 )
 
@@ -193,14 +161,14 @@ setClass(
 #' \code{\link{ExposomeSet}} and create an \code{\link{ExposomeClust}}.
 #' @return An object of class \code{ExposomeClust}
 setClass(
-  Class = "ExposomeClust",
-  contains = "ExposomeSet",
-  representation = representation(
-    model = "list",
-    method = "character",
-    call = "character",
-    samples = "character"
-  )
+    Class = "ExposomeClust",
+    contains = "ExposomeSet",
+    representation = representation(
+        model = "list",
+        method = "character",
+        call = "character",
+        samples = "character"
+    )
 )
 
 
@@ -224,15 +192,15 @@ setClass(
 #' the exposures.
 #' @slot phenoData \code{data.frame} containing \code{.imp}, \code{.id} and
 #' the phenotypes.
-#' @seealso \code{\link{load_imputed}} to create an \code{imExposomeSet}
+#' @seealso \code{\link{loadImputed}} to create an \code{imExposomeSet}
 #' from \code{data.frames}
 #' @return An object of class \code{imExposomeSet}
 setClass(
     Class = "imExposomeSet",
     representation = representation(
         nimputation = "numeric",
-        assayData = "data.frame",
-        featureData = "data.frame",
-        phenoData = "data.frame"
+        assayData = "DataFrame",
+        featureData = "DataFrame",
+        phenoData = "DataFrame"
     )
 )

@@ -17,7 +17,7 @@ setMethod(
       stop("Invalid method for clustering analysis. Requested method with 'data' argument.")
     }
 
-    select <- rownames(fData(object))[fData(object)$`_type` == "numeric"]
+    select <- rownames(fData(object))[fData(object)$`.type` == "numeric"]
 
     data.clust <- expos(object)[ , select, drop = FALSE]
 

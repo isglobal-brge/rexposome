@@ -9,13 +9,6 @@
 # formated as \code{numeric} or as \code{factor}.
 # @return A character with \code{"numeric"} or \code{"factor"} or a vector
 # with the exposure's value as \code{mumeric} or as \code{factor}
-# @examples
-# \dontrun{
-# .pheno_type(x, "gascooking")
-# # return "factor"
-# .pheno_type(x, "gascooking", TRUE)
-# # return 1 1 1 1 0 0 1
-# }
 .pheno_type <- function(object, pheno, exp2fac = 5, as.type = FALSE) {
   phenotypes <- pData(phenoData(object))[ , pheno]
   phenotypes.u <- unique(as.character(phenotypes))

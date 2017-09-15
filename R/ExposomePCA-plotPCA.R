@@ -41,7 +41,7 @@ setMethod(
 
 
 .plot_exposures <- function(object, cmpX, cmpY, show.exposures) {
-    dta <- data.frame(object@pca$var$coord)
+    dta <- extract(object, table = "exposures") #data.frame(object@pca$var$coord)
     dta$Family <- pData(object@featureData)[rownames(dta), 1]
     dta$Label <- rownames(dta)
 
@@ -60,8 +60,8 @@ setMethod(
         ggplot2::geom_hline(yintercept = 0, linetype = "dotdash", color = "red", size = 1) +
         ggplot2::geom_vline(xintercept = 0, linetype = "dotdash", color = "red", size = 1) +
         ggplot2::geom_point(ggplot2::aes_string(color = "Family")) +
-        ggplot2::xlab(paste0("PC", cmpX, " (", round(object@pca$eig[cmpX, 2], 2), "%)")) +
-        ggplot2::ylab(paste0("PC", cmpY, " (", round(object@pca$eig[cmpY, 2], 2), "%)"))
+        ggplot2::xlab(paste0("PC", cmpX, " (", round(extract(object, table="eigen")[cmpX, 2], 2), "%)")) +
+        ggplot2::ylab(paste0("PC", cmpY, " (", round(extract(object, table="eigen")[cmpY, 2], 2), "%)"))
     if(show.exposures) {
         ## Add labels for features
         plt <- plt + ggrepel::geom_text_repel(
@@ -97,8 +97,8 @@ setMethod(
         ) +
         ggplot2::geom_hline(yintercept = 0, linetype = "dotdash", color = "red", size = 1) +
         ggplot2::geom_vline(xintercept = 0, linetype = "dotdash", color = "red", size = 1) +
-        ggplot2::xlab(paste0("PC", cmpX, " (", round(object@pca$eig[cmpX, 2], 2), "%)")) +
-        ggplot2::ylab(paste0("PC", cmpY, " (", round(object@pca$eig[cmpY, 2], 2), "%)"))
+        ggplot2::xlab(paste0("PC", cmpX, " (", round(extract(object, table="eigen")[cmpX, 2], 2), "%)")) +
+        ggplot2::ylab(paste0("PC", cmpY, " (", round(extract(object, table="eigen")[cmpY, 2], 2), "%)"))
 
     if(is.na(phenotype)) {
         plt <- plt + ggplot2::geom_point()
@@ -124,7 +124,7 @@ setMethod(
 }
 
 .plot_explained <- function(object, cmpX, cmpY) {
-    dta <- object@pca$eig[, 2, drop = FALSE]
+    dta <- extract(object, table="eigen")[, 2, drop = FALSE]
     dta$componet <- paste("PC", stringr::str_pad(1:nrow(dta), pad = "0", width = 2), sep="")
     colnames(dta) <- c("exp", "cmp")
     dta$color <- "black"
@@ -149,7 +149,7 @@ setMethod(
 }
 
 .plot_acum <- function(object, cmpX, cmpY) {
-    dta <- object@pca$eig[, 3, drop = FALSE]
+    dta <- extract(object, table="eigen")[, 3, drop = FALSE]
     dta$componet <- paste("PC", stringr::str_pad(1:nrow(dta), pad = "0", width = 2), sep="")
     colnames(dta) <- c("acum", "cmp")
     dta$tt <- "A"
@@ -173,6 +173,6 @@ setMethod(
         ggplot2::geom_vline(xintercept = ifelse(cmpX >= cmpY, cmpX, cmpY),
             colour = "FireBrick", size = 1, linetype = "dashed") +
         ggplot2::geom_hline(yintercept = ifelse(cmpX >= cmpY, object@pca$eig[cmpX,3],
-                object@pca$eig[cmpY, 3]), colour = "FireBrick", size = 1,
+                extract(object, table="eigen")[cmpY, 3]), colour = "FireBrick", size = 1,
             linetype = "dashed")
 }

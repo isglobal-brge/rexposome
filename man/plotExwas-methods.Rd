@@ -4,12 +4,24 @@
 \alias{plotExwas}
 \title{Function to draw a plot of the pvalues stored in an \code{ExWAS} object}
 \usage{
-plotExwas(object, ...)
+plotExwas(object, ..., subtitles, color, exp.order, show.effective = TRUE)
 }
 \arguments{
 \item{object}{An \code{ExWAS} object which p-values will be plotted.}
 
-\item{...}{NOT USED}
+\item{...}{Other objects of class \code{ExWAS}.}
+
+\item{subtitles}{(optional) Characters used as "substitle" when more than one
+\code{ExWAS} is given.}
+
+\item{color}{(optional) Character vector of HTML colors, labeled with
+family's names. Used to colore the exposures.}
+
+\item{exp.order}{(optional) Character vector of exposures used to order
+and subset the plot.}
+
+\item{show.effective}{(default \code{TRUE}) If set to \code{FALSE},
+line showing effective test threshold is not shown.}
 }
 \value{
 An object of class \code{ggplot}.

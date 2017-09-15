@@ -30,30 +30,11 @@ setMethod(
             }
         }
 
-        mtrc <- data.frame(t(assayDataElement(object, "exp")))
-        #sel <- c()
-        for(ex in colnames(mtrc)) {
-            if(fData(object)[ex, "_type"] == "factor") {
-                # if(length(unique(mtrc[ , ex])) > 2) {
-                #     if(warnings) {
-                #       warning("Exposure '", ex, "' will be droped to be multicategorical.")
-                #     }
-                # } else {
-                mtrc[ , ex] <- factor(mtrc[ , ex])
-                #   sel <- c(sel, ex)
-                # }
-            } else {
-                mtrc[ , ex] <- as.numeric(mtrc[ , ex])
-                # sel <- c(sel, ex)
-            }
-        }
-
+        mtrc <- expos(object)
         cr <- .corr_exposures(mtrc, object, cor.arg, crm.arg, lm.arg, warnings)
-        #cr <- .corr_exposures(mtrc, object, cor.arg, chis.arg, lm.arg, warnings)
 
         new("ExposomeCorr",
             assayData = assayDataNew("environment", corr = t(cr)),
-            #featureData = featureData(object[sel, ])
             featureData = featureData(object)
         )
     }
@@ -62,18 +43,10 @@ setMethod(
 
 
 .corr_exposures <- function(mtrc, object, cor.arg, crm.arg, lm.arg, warnings) {
-    # lm.beta <- function (x) {
-    #     b <- coef(x)[-1]
-    #     sx <- sd(x$model[,-1])
-    #     sy <- sd(x$model[,1])
-    #     beta <- b * sx/sy
-    #     return(beta)
-    # }
-
     xx <- do.call(rbind, lapply(colnames(mtrc), function(ex_i) {
-        ty_i <- fData(object)[ex_i, "_type"]
-        yy <- sapply(colnames(mtrc), function(ex_j) {
-            ty_j <- fData(object)[ex_j, "_type"]
+        ty_i <- fData(object)[ex_i, ".type"]
+        yy <- vapply(colnames(mtrc), function(ex_j) {
+            ty_j <- fData(object)[ex_j, ".type"]
 
             if(ty_i == "numeric" & ty_j == "numeric") {
                 # Both exposures are numeric
@@ -93,12 +66,7 @@ setMethod(
                     NA
                 })
 
-            } else { # if(ty_i == "numeric" & ty_j == "factor") {
-                # One of the exposures is numeric and the other is facor
-                #   If the factor exposures is multicategorical we can use the
-                #   interclass correlation coeficient.
-                ### irr::icc(mtrc[ , c(ex_i, ex_j)], "twoway")
-
+            } else {
                 # One of the exposures is numeric and the other is facor
                 #   If the factor exposures is multicategorical we can use the
                 #   r from multiple regresion model as estimator for the
@@ -120,7 +88,7 @@ setMethod(
                     NA
                 })
             }
-        })
+        }, FUN.VALUE = numeric(1))
         names(yy) <- colnames(mtrc)
         yy
     }))

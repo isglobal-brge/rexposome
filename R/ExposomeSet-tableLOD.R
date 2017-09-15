@@ -15,21 +15,21 @@ setMethod(
         }
 
         if(output == "n") {
-            x <- sapply(rownames(ld), function(ex) {
+            x <- vapply(rownames(ld), function(ex) {
                 if(is.na(ld[ex, lod.col])) {
                     return(0)
                 } else {
                     sum(dta[ , ex] <= ld[ex, "LOD"], na.rm = TRUE)
                 }
-            })
+            }, FUN.VALUE = numeric(1))
         } else if(output == "p") {
-            x <- sapply(rownames(ld), function(ex) {
+            x <- vapply(rownames(ld), function(ex) {
                 if(is.na(ld[ex, lod.col])) {
                     return(0)
                 } else {
                     sum(dta[ , ex] <= ld[ex, "LOD"], na.rm = TRUE) / nrow(dta)
                 }
-            })
+            }, FUN.VALUE = numeric(1))
         } else {
             stop("Invalid 'output' type.")
         }

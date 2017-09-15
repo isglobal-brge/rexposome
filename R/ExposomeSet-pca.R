@@ -4,7 +4,7 @@ setMethod(
     f = "pca",
     signature = "ExposomeSet",
     definition = function(object, npc = 10) {
-        select <- rownames(fData(object))[fData(object)$`_type` == "numeric"]
+        select <- rownames(fData(object))[fData(object)$`.type` == "numeric"]
         exposures <- expos(object)[ , select]
         # exposures <- do.call(cbind, lapply(exposuresNames(object), function(ex) {
         #     if(exposureType(object, ex) == "numeric") {
