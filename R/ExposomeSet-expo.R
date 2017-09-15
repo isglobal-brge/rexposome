@@ -7,7 +7,7 @@ setMethod(
         type <- fData(object)[colnames(ms), "_type"]
         for(ii in 1:length(type)) {
             if(type[ii] == "numeric") {
-                ms[ , ii] <- as.numeric(ms[ , ii])
+                ms[ , ii] <- as.numeric( as.character( ms[ , ii] ) )
             } else {
                 ms[ , ii] <- as.factor(ms[ , ii])
             }
@@ -15,3 +15,4 @@ setMethod(
         ms
     }
 )
+
