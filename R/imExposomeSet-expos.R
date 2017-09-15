@@ -4,7 +4,7 @@ setMethod(
     signature="imExposomeSet",
     definition = function(object) {
         ms <- data.frame(t(data.frame(object@assayData$exp)))
-        if( !".type" %in% colnames(ms)) {
+        if( !".type" %in% colnames(fData(object))) {
             stop("Invalid 'ExposomeSet'. It has no '.type' column in its 'fData'.")
         }
         type <- fData(object)[colnames(ms)[-(1:2)], ".type"]
