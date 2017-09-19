@@ -3,6 +3,6 @@ setMethod(
     f = "exposureNames",
     signature = "imExposomeSet",
     definition = function(object) {
-        colnames(expos(object))[-(1:2)]
+        colnames(psygenet2r::extract(object, rid = 1))
     }
 )

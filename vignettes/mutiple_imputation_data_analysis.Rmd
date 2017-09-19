@@ -140,8 +140,8 @@ With the exposome `data.frame` and the description `data.frame` an object of cla
 
 ```{r create_imexposomeset}
 ex_imp <- loadImputed(data = me, description = dd, 
-                       description.famCol = 1, 
-                       description.expCol = 2)
+                       description.famCol = "Family", 
+                       description.expCol = "Exposure")
 ```
 
 The function `loadImputed` has several arguments:

@@ -30,7 +30,7 @@ setMethod(
             }
         }
 
-        mtrc <- expos(object)
+        mtrc <- expos( object )
         cr <- .corr_exposures(mtrc, object, cor.arg, crm.arg, lm.arg, warnings)
 
         new("ExposomeCorr",

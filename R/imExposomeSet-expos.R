@@ -3,7 +3,7 @@ setMethod(
     f = "expos",
     signature="imExposomeSet",
     definition = function(object) {
-        ms <- data.frame(t(data.frame(object@assayData)))
+        ms <- data.frame(object@assayData)
         if( !".type" %in% colnames(fData(object))) {
             stop("Invalid 'ExposomeSet'. It has no '.type' column in its 'fData'.")
         }

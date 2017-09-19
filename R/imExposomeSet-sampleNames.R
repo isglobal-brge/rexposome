@@ -3,6 +3,6 @@ setMethod(
     f = "sampleNames",
     signature = "imExposomeSet",
     definition = function(object) {
-        unique(expos(object)[ , ".id"])
+        rownames(psygenet2r::extract(object, rid = 1))
     }
 )

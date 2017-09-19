@@ -16,7 +16,9 @@ setMethod(
         if(missing(family)) {
             stop("Missing argument 'family'.")
         }
-        dta <- data.frame(expos(object), pData(object)[ , -c(1:2)])
+
+        dta <- data.frame(expos( object ), pData(object)[ , -c(1:2)])
+
         nmis <- apply(dta[dta$`.imp` == 0, ], 2, function(x) sum(is.na(x)))
         dta <- dta[dta$`.imp` != 0, ]
         dta <- dta[ , -2]
@@ -43,7 +45,7 @@ setMethod(
 
             tryCatch({
                 ## TEST
-                fit_glm <- lapply(1:object@nimputation, function(ii) {
+                fit_glm <- lapply(seq(object@nimputation), function(ii) {
                     dtai <- dta[dta[, 1] == ii, -1]
                     stats::glm(family=family, formula = frm, data = dtai)
                 })
@@ -57,6 +59,9 @@ setMethod(
                 tst <- pool_glm(mira_glm, ex = ex)
 
                 items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
+                if(length(unique(dta[ , ex])) > 2 & fData(object)[ex, ".type"] == "factor") {
+                    items[[ex]][1] <- NA
+                }
             }, error = function(e) {
                 if(verbose) {
                     message("\tProcess of '", ex, "' failed.", e)

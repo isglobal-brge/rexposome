@@ -164,10 +164,10 @@ exp <- readExposome(
     exposures = exposures, 
     description = description, 
     phenotype = phenotype,
-    exposures.samCol = 1, 
-    description.expCol = 2, 
-    description.famCol = 1, 
-    phenotype.samCol = 1
+    exposures.samCol = "idnum", 
+    description.expCol = "Exposure", 
+    description.famCol = "Family", 
+    phenotype.samCol = "idnum"
 )
 ```
 
