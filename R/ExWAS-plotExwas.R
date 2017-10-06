@@ -49,7 +49,7 @@ setMethod(
             tbli$lpv <- -log10(tbli$pvalue)
             tbli$exposure <- rownames(tbli)
             tbli$family <- object@description[rownames(tbli), 1]
-            tbl <- rbind(tbl, tbli)
+            tbl <- rbind(tbl, as.data.frame(tbli))
         }
         tbl <- tbl[-1, ]
         rownames(tbl) <- 1:nrow(tbl)

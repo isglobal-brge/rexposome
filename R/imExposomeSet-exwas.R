@@ -32,8 +32,6 @@ setMethod(
             formula <- formula(formula)
         }
 
-
-
         if( sum( ! all.vars(formula) %in% colnames(dta) ) != 0 ) {
             sel <- all.vars(formula)[ ! all.vars(formula) %in% colnames(dta) ]
             stop("Not all variables (", paste( sel, collapse = ", " ), ") exists in given 'ExposomeSet'.")
@@ -43,6 +41,7 @@ setMethod(
 
         ne <- list()
         items <- list()
+        ex_names <- vector()
         for(ex in exposureNames(object)) {
             if(verbose) {
                 message("Processing '", ex, "'.")
@@ -51,34 +50,44 @@ setMethod(
             frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
 
             tbl <- sapply(all.vars(frm), function(x) length(table( dta[ , x, drop = FALSE])))
-
-            tryCatch({
-                ## TEST
-                fit_glm <- lapply(seq(object@nimputation), function(ii) {
-                    dtai <- dta[dta[, 1] == ii, -1]
-                    stats::glm(family=family, formula = frm, data = dtai)
-                })
-                mira_glm <- list(
-                    call = NULL,
-                    call1 = NULL,
-                    nmis = nmis,
-                    analyses = fit_glm
-                )
-                class(mira_glm) <- "mira"
-                tst <- pool_glm(mira_glm, ex = ex)
-
-                items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
-                if(length(unique(dta[ , ex])) > 2 & fData(object)[ex, ".type"] == "factor") {
-                    items[[ex]][1] <- NA
-                }
-            }, error = function(e) {
-                if(verbose) {
-                    message("\tProcess of '", ex, "' failed.", e)
-                }
-                ne[[ex]] <- e
+            if(sum(!sapply(tbl, ">", 1)) != 0) {
+                warning("When testing for '", ex, "', at last one covariate ",
+                        "is constant (",
+                        paste(paste(names(tbl), tbl, sep=": "), collapse=", "),
+                        ")")
                 items[[ex]] <- c(NULL, NULL, NULL, NULL)
-            })
+            } else {
+                tryCatch({
+                    ## TEST
+                    fit_glm <- lapply(seq(object@nimputation), function(ii) {
+                        dtai <- dta[dta[, 1] == ii, -1]
+                        stats::glm(family=family, formula = frm, data = dtai)
+                    })
+                    mira_glm <- list(
+                        call = NULL,
+                        call1 = NULL,
+                        nmis = nmis,
+                        analyses = fit_glm
+                    )
+                    class(mira_glm) <- "mira"
+                    tst <- pool_glm(mira_glm, ex = ex)
+
+                    items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
+                    if(length(unique(dta[ , ex])) > 2 & fData(object)[ex, ".type"] == "factor") {
+                        items[[ex]][1] <- NA
+                    }
+                    ex_names <- c(ex_names, ex)
+                }, error = function(e) {
+                    if(verbose) {
+                        message("\tProcess of '", ex, "' failed.", e)
+                    }
+                    ne[[ex]] <- e
+                    items[[ex]] <- c(NULL, NULL, NULL, NULL)
+                })
+            }
         }
+
+        items2 <<- items
 
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
@@ -86,7 +95,8 @@ setMethod(
 
         items <- data.frame(do.call(rbind, items))
         colnames(items) <- c("effect", "2.5","97.5", "pvalue")
-        rownames(items) <- exposureNames(object)
+        ex <<- exposureNames(object)
+        rownames(items) <- ex_names # exposureNames(object)
 
         ## Compute the threshold for effective tests
         if(tef) {
