@@ -85,10 +85,7 @@ loadImputed <- function(data, description, description.famCol = "family",
     exposures <- data[ , exp.names, drop=FALSE]
     phenotypes <- data[ , phe.names, drop=FALSE]
 
-    #exposures[ , 1] <- as.numeric(exposures[ , 1])
     exposures[ , 2] <- as.character(exposures[ , 2])
-
-    #phenotypes[ , 1] <- as.numeric(phenotypes[ , 1])
     phenotypes[ , 2] <- as.character(phenotypes[ , 2])
 
     exposures <- exposures[order(exposures[ , 1], exposures[, 2]), ]

@@ -32,6 +32,13 @@ setMethod(
             formula <- formula(formula)
         }
 
+
+
+        if( sum( ! all.vars(formula) %in% colnames(dta) ) != 0 ) {
+            sel <- all.vars(formula)[ ! all.vars(formula) %in% colnames(dta) ]
+            stop("Not all variables (", paste( sel, collapse = ", " ), ") exists in given 'ExposomeSet'.")
+        }
+
         form <- as.character(formula)
 
         ne <- list()
@@ -42,6 +49,8 @@ setMethod(
             }
 
             frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
+
+            tbl <- sapply(all.vars(frm), function(x) length(table( dta[ , x, drop = FALSE])))
 
             tryCatch({
                 ## TEST
