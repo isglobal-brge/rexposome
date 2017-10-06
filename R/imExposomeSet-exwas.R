@@ -34,7 +34,7 @@ setMethod(
 
         if( sum( ! all.vars(formula) %in% colnames(dta) ) != 0 ) {
             sel <- all.vars(formula)[ ! all.vars(formula) %in% colnames(dta) ]
-            stop("Not all variables (", paste( sel, collapse = ", " ), ") exists in given 'ExposomeSet'.")
+            stop("Not all variables (", paste( sel, collapse = ", " ), ") exists in given 'imExposomeSet'.")
         }
 
         form <- as.character(formula)
