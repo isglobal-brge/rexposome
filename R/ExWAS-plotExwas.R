@@ -34,7 +34,8 @@ setMethod(
         }
 
         tbl <- data.frame(pvalue=0.0, effect=0.0, x2.5=0.0, x97.5=0.0,
-                         fm="", lpv=0.01, exposure="", family="" )
+                         fm="", lpv=0.01, exposure_clean="", exposure="",
+                         family="")
 
         for(ii in 1:length(items)) {
             it <- items[[ii]]
@@ -48,8 +49,9 @@ setMethod(
                 tbli$fm <- subtitles[ii]
             }
             tbli$lpv <- -log10(tbli$pvalue)
-            tbli$exposure <- apply(strsplit(rownames(tbli), "\\$"), "[[", 1)
-            tbli$family <- object@description[rownames(tbli), 1]
+            tbli$exposure <- rownames(tbli)
+            tbli$exposure_clean <- sapply(strsplit(rownames(tbli), "\\$"), "[[", 1)
+            tbli$family <- object@description[tbli$exposure_clean, 1]
             tbl <- rbind(tbl, as.data.frame(tbli))
         }
         tbl <- tbl[-1, ]

@@ -34,8 +34,6 @@ setMethod(
             formula <- formula(formula)
         }
 
-        tt <<- colnames(dta)
-
         if( sum( ! all.vars(formula) %in% colnames(dta) ) != 0 ) {
             sel <- all.vars(formula)[ ! all.vars(formula) %in% colnames(dta) ]
             stop("Not all variables (", paste( sel, collapse = ", " ), ") exists in given 'imExposomeSet'.")
@@ -112,7 +110,6 @@ setMethod(
 
         items <- data.frame(do.call(rbind, items))
         colnames(items) <- c("effect", "2.5","97.5", "pvalue")
-        ex <<- exposureNames(object)
         rownames(items) <- ex_names # exposureNames(object)
 
         ## Compute the threshold for effective tests
