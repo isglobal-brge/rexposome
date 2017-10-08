@@ -7,8 +7,8 @@
 setMethod(
     f = "exwas",
     signature = "ExposomeSet",
-    definition = function(object, formula, filter, family, ...,  tef = TRUE,
-                          verbose = FALSE, warnings = TRUE) {
+    definition = function(object, formula, filter, family, ..., baselevels,
+            tef = TRUE, verbose = FALSE, warnings = TRUE) {
         dta <- cbind(expos(object), pData(object))
         if(!missing(filter)) {
             sel <- eval(substitute(filter), as.data.frame(dta))
@@ -28,6 +28,8 @@ setMethod(
         }
 
         form <- as.character(formula)
+        cL <- ifelse(missing(baselevels), FALSE, TRUE)
+
         ne <- c()
         items <- rbind(1:4)
         colnames(items) <- c("effect", "2.5","97.5", "pvalue")
@@ -37,6 +39,14 @@ setMethod(
             if(verbose) {
                 message("Processing '", ex, "'.")
             }
+
+            # check if relevel is necessary
+            if(cL) {
+                if(ex %in% names(baselevels)) {
+                    dta[ , ex] <- stats::relevel(dta[ , ex], baselevels[ex])
+                }
+            }
+            # /
 
             frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
             nr <- nrow(dta)

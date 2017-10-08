@@ -39,7 +39,7 @@
 \S4method{extract}{imExposomeSet}(object, rid = -1, ...)
 
 \S4method{exwas}{imExposomeSet}(object, formula, filter, family, ...,
-  tef = TRUE, verbose = FALSE, warnings = TRUE)
+  baselevels, tef = TRUE, verbose = FALSE, warnings = TRUE)
 
 \S4method{familyNames}{imExposomeSet}(object, by.exposure = FALSE)
 
@@ -72,6 +72,9 @@
 \item{filter}{Expression to be used to filter \code{\link{ExposomeSet}}}
 
 \item{family}{Family descriving the nature of the health outcome}
+
+\item{baselevels}{Labeled vector with the base-level of the
+categorical exposures}
 
 \item{tef}{If set to \code{TRUE} the threshold for effective
 test is computed.}

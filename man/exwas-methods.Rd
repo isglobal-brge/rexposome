@@ -5,8 +5,8 @@
 \title{Testing the association between an exposure and a phenotype of an
 ExposomeSet}
 \usage{
-exwas(object, formula, filter, family, ..., tef = TRUE, verbose = FALSE,
-  warnings = TRUE)
+exwas(object, formula, filter, family, ..., baselevels, tef = TRUE,
+  verbose = FALSE, warnings = TRUE)
 }
 \arguments{
 \item{object}{\code{ExposomeSet} that will be used for the ExWAS.}
@@ -22,6 +22,9 @@ included into the test.}
 be tested (gaussian, bionomal, ... check \link{glm}).}
 
 \item{...}{NOT USED}
+
+\item{baselevels}{(optional) If set, must be a labeled vector with the
+default base level for categorical exposures.}
 
 \item{tef}{(default \code{TRUE}) If \code{TRUE} it computed the
 effective number of tests and the threhold for the effective

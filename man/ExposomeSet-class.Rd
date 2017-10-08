@@ -54,7 +54,7 @@
 
 \S4method{exposureNames}{ExposomeSet}(object)
 
-\S4method{exwas}{ExposomeSet}(object, formula, filter, family, ...,
+\S4method{exwas}{ExposomeSet}(object, formula, filter, family, ..., baselevels,
   tef = TRUE, verbose = FALSE, warnings = TRUE)
 
 \S4method{familyNames}{ExposomeSet}(object, by.exposure = FALSE)

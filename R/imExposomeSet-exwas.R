@@ -4,6 +4,8 @@
 #' @param filter Expression to be used to filter \code{\link{ExposomeSet}}
 #' @param family Family descriving the nature of the health outcome
 #' @param ... Other used arguments
+#' @param baselevels Labeled vector with the base-level of the
+#' categorical exposures
 #' @param tef If set to \code{TRUE} the threshold for effective
 #' test is computed.
 #' @param verbose If set to \code{TRUE} it shows messages on progression.
@@ -11,8 +13,8 @@
 setMethod(
     f = "exwas",
     signature = "imExposomeSet",
-    definition = function(object, formula, filter, family, ..., tef = TRUE,
-                          verbose = FALSE, warnings = TRUE) {
+    definition = function(object, formula, filter, family, ..., baselevels,
+                          tef = TRUE, verbose = FALSE, warnings = TRUE) {
         if(missing(family)) {
             stop("Missing argument 'family'.")
         }
@@ -38,6 +40,7 @@ setMethod(
         }
 
         form <- as.character(formula)
+        cL <- ifelse(missing(baselevels), FALSE, TRUE)
 
         ne <- list()
         items <- list()
@@ -48,6 +51,14 @@ setMethod(
             }
 
             frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
+
+            # check if relevel is necessary
+            if(cL) {
+                if(ex %in% names(baselevels)) {
+                    dta[ , ex] <- stats::relevel(dta[ , ex], baselevels[ex])
+                }
+            }
+            # /
 
             tbl <- sapply(all.vars(frm), function(x) length(table( dta[ , x, drop = FALSE])))
             if(sum(!sapply(tbl, ">", 1)) != 0) {

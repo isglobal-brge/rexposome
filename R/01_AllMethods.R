@@ -963,6 +963,8 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
 #' effective number of tests and the threhold for the effective
 #' number of tests. Usually it needs imputed data.
 #' @param ... NOT USED
+#' @param baselevels (optional) If set, must be a labeled vector with the
+#' default base level for categorical exposures.
 #' @param verbose (default \code{FALSE}) If set o true messages along the
 #' tests are shown.
 #' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
@@ -983,7 +985,8 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
 #' @export exwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
-setGeneric("exwas", function(object, formula, filter, family, ..., tef = TRUE, verbose = FALSE, warnings = TRUE)
+setGeneric("exwas", function(object, formula, filter, family, ..., baselevels,
+        tef = TRUE, verbose = FALSE, warnings = TRUE)
     standardGeneric("exwas")
 )
 
