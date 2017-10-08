@@ -34,6 +34,8 @@ setMethod(
             formula <- formula(formula)
         }
 
+        tt <<- colnames(dta)
+
         if( sum( ! all.vars(formula) %in% colnames(dta) ) != 0 ) {
             sel <- all.vars(formula)[ ! all.vars(formula) %in% colnames(dta) ]
             stop("Not all variables (", paste( sel, collapse = ", " ), ") exists in given 'imExposomeSet'.")
@@ -83,11 +85,17 @@ setMethod(
                     class(mira_glm) <- "mira"
                     tst <- pool_glm(mira_glm, ex = ex)
 
-                    items[[ex]] <- summary(tst)[2, c(1, 6, 7, 5)]
+                    dt <- summary(tst)
                     if(length(unique(dta[ , ex])) > 2 & fData(object)[ex, ".type"] == "factor") {
-                        items[[ex]][1] <- NA
+                        items[[ex]] <- dt[startsWith(rownames(dt), ex), c(1, 6, 7, 5)]
+                        rownames(items[[ex]]) <- paste(
+                            ex, levels( dta[ , ex] )[ -1 ], sep = "$"
+                        )
+                        ex_names <- c(ex_names, rownames(items[[ex]]))
+                    } else {
+                        items[[ex]] <- dt[2, c(1, 6, 7, 5)]
+                        ex_names <- c(ex_names, ex)
                     }
-                    ex_names <- c(ex_names, ex)
                 }, error = function(e) {
                     if(verbose) {
                         message("\tProcess of '", ex, "' failed.", e)
@@ -97,8 +105,6 @@ setMethod(
                 })
             }
         }
-
-        items2 <<- items
 
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")

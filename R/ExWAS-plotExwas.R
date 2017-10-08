@@ -12,7 +12,8 @@
 setMethod(
     f = "plotExwas",
     signature = "ExWAS",
-    definition = function(object, ..., subtitles, color, exp.order, show.effective = TRUE) {
+    definition = function(object, ..., subtitles, color, exp.order,
+                          show.effective = TRUE) {
         multiple <- FALSE
         if(missing(...)) {
             items <- list(object)
@@ -47,7 +48,7 @@ setMethod(
                 tbli$fm <- subtitles[ii]
             }
             tbli$lpv <- -log10(tbli$pvalue)
-            tbli$exposure <- rownames(tbli)
+            tbli$exposure <- apply(strsplit(rownames(tbli), "\\$"), "[[", 1)
             tbli$family <- object@description[rownames(tbli), 1]
             tbl <- rbind(tbl, as.data.frame(tbli))
         }
