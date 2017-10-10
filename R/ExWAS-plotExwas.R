@@ -13,7 +13,7 @@ setMethod(
     f = "plotExwas",
     signature = "ExWAS",
     definition = function(object, ..., subtitles, color, exp.order,
-                          show.effective = TRUE) {
+                          labels, show.effective = TRUE) {
         multiple <- FALSE
         if(missing(...)) {
             items <- list(object)
@@ -35,7 +35,7 @@ setMethod(
 
         tbl <- data.frame(pvalue=0.0, effect=0.0, x2.5=0.0, x97.5=0.0,
                          fm="", lpv=0.01, exposure_clean="", exposure="",
-                         family="")
+                         family="", label="")
 
         for(ii in 1:length(items)) {
             it <- items[[ii]]
@@ -52,6 +52,17 @@ setMethod(
             tbli$exposure <- rownames(tbli)
             tbli$exposure_clean <- sapply(strsplit(rownames(tbli), "\\$"), "[[", 1)
             tbli$family <- object@description[tbli$exposure_clean, 1]
+            if(missing(labels)) {
+                tbli$label <- rownames( tbli )
+            } else {
+                tbli$label <- sapply( strsplit( rownames( tbli ), "\\$" ), function( nm ) {
+                    ex <- ifelse( nm[ 1 ] %in% names( labels ), labels[ nm[ 1 ] ], nm[ 1 ] )
+                    if( length( nm ) == 2 ) {
+                        ex <- paste0( ex, " (", nm[ 2 ], ")" )
+                    }
+                    ex
+                })
+            }
             tbl <- rbind(tbl, as.data.frame(tbli))
         }
         tbl <- tbl[-1, ]
@@ -70,6 +81,7 @@ setMethod(
         tbl$family <- as.character(tbl$family)
         tbl$exposure <- as.character(tbl$exposure)
         tbl$fm <- as.character(tbl$fm)
+        tbl$label <- as.character(tbl$label)
 
 
         if(missing(exp.order)) {
@@ -83,7 +95,7 @@ setMethod(
         }
 
         if(!multiple) {
-            plt <- ggplot2::ggplot(as.data.frame(tbl), ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
+            plt <- ggplot2::ggplot(as.data.frame(tbl), ggplot2::aes_string(x = "lpv", y = "label", color = "family")) +
                 ggplot2::geom_point() +
                 ggplot2::theme_minimal() +
                 ggplot2::theme(panel.spacing = ggplot2::unit(0.5, 'lines'),
@@ -95,7 +107,7 @@ setMethod(
                     values = colorPlte) +
                 ggplot2::theme(legend.position = "right")
         } else {
-            plt <- ggplot2::ggplot(as.data.frame(tbl), ggplot2::aes_string(x = "lpv", y = "exposure", color = "family")) +
+            plt <- ggplot2::ggplot(as.data.frame(tbl), ggplot2::aes_string(x = "lpv", y = "label", color = "family")) +
                 ggplot2::geom_point() +
                 ggplot2::theme_minimal() +
                 ggplot2::theme(panel.spacing = ggplot2::unit(0.5, 'lines'),

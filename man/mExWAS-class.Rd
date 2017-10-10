@@ -14,7 +14,7 @@
 
 \S4method{extract}{mExWAS}(object, type = "test", sort = TRUE)
 
-\S4method{plotExwas}{mExWAS}(object, ..., subtitles, color, exp.order,
+\S4method{plotExwas}{mExWAS}(object, ..., subtitles, color, exp.order, labels,
   show.effective = TRUE)
 }
 \arguments{

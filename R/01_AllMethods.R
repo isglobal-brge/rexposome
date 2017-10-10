@@ -1006,6 +1006,8 @@ setGeneric("exwas", function(object, formula, filter, family, ..., baselevels,
 #' family's names. Used to colore the exposures.
 #' @param exp.order (optional) Character vector of exposures used to order
 #' and subset the plot.
+#' @param labels (optional) Character vector with the labels for each exposure.
+#' It must be labeled vector.
 #' @param show.effective (default \code{TRUE}) If set to \code{FALSE},
 #' line showing effective test threshold is not shown.
 #' @return An object of class \code{ggplot}.
@@ -1016,7 +1018,8 @@ setGeneric("exwas", function(object, formula, filter, family, ..., baselevels,
 #' @export plotExwas
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
 #' \link{extract} to obtain a table with the result of the ExWAS
-setGeneric("plotExwas", function(object, ..., subtitles, color, exp.order, show.effective = TRUE)
+setGeneric("plotExwas", function(object, ..., subtitles, color, exp.order,
+                                 labels, show.effective = TRUE)
     standardGeneric("plotExwas")
 )
 

@@ -23,7 +23,7 @@
 
 \S4method{plotEffect}{ExWAS}(x, y, select, xlab, ylab)
 
-\S4method{plotExwas}{ExWAS}(object, ..., subtitles, color, exp.order,
+\S4method{plotExwas}{ExWAS}(object, ..., subtitles, color, exp.order, labels,
   show.effective = TRUE)
 
 \S4method{plotVolcano}{ExWAS}(x, p.value = -log10(0.001),
