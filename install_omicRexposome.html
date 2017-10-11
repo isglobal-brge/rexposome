@@ -87,35 +87,19 @@
         <pre><code class="R">source( "http://bioconductor.org/biocLite.R" )</code></pre>
 
         <p>
-        Having the library <code>BiocInstaller</code> installed and loaded into the R session, the following commands will install <code>omicRexposome</code>'s dependencies:
+        Having the library <code>BiocInstaller</code> installed and loaded into the R session, the following commands will install <code>BRGEdata</code>. Although this step is not mandatory, it is recommended.
+        </p>
+        <p>
+        The <code>BRGEdata</code> is a data package used by <code>omicRexposome</code> in its vignette and in mos of all the code examples from help files.
         </p>
 
-        <pre><code class="R">ppackages = c(
-    'Biobase', 'limma', 'sva', 'ggplot2', 'ggrepel', 'PMA', 'omicade4', 'gridExtra', 'SmartSVA',
-    'isva' 'parallel', 'glmnet', 'gridExtra', 'grid', 'Hmisc', 'gplots', 'gtools', 'scales',
-    'lme4', 'ggrepel', 'SummarizedExperiment', 'stringr', 'BiocStyle', 'knitr', 'rmarkdown', 'snpStats',
-    'MultiDataSet'
-) 
-
-for( pkg in packages ) {
-  if( !pkg %in% rownames( installed.packages() ) ) {
-    biocLite( pkg )
-  }
-}</code></pre>
+        <pre><code class="R">biocLite("isglobal-brge/BRGEdata")</code></pre>
 
         <p>
-        Then we need to install the <em>data-package</em> for <code>omicRexposome</code>. The <code>BRGEdata</code>, as well as <code>omicRexposome</code> is installed using <code>devtools</code> R package. To install <code>devtools</code> run this command in the R session:
+        Once <code>BRGEdata</code> is installed, <code>omicRexposome</code> is installed using the same function.
         </p>
 
-        <pre><code class="R">install.packages("devtools")</code></pre>
-
-        <p>
-        Due to the publication process of <code>omicRexposome</code> at Bioconductor, the requirement is set to R-3.4. The following code installs <code>BRGEdata</code> and <code>omicRexposome</code>:
-        </p>
-
-        <pre><code class="R">devtools::install_github("isglobal-brge/brgedata")
-devtools::install_github("isglobal-brge/omicRexposome")</code></pre>
-    </div>
+        <pre><code class="R">biocLite("isglobal-brge/omicRexposome")</code></pre>
     <!-- /.container -->
 
     <!-- Footer -->

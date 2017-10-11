@@ -87,33 +87,10 @@
         <pre><code class="R">source( "http://bioconductor.org/biocLite.R" )</code></pre>
 
         <p>
-        Having the library <code>BiocInstaller</code> installed and loaded into the R session, the following commands will install <code>rexposome</code>'s dependencies:
+        Having the library <code>BiocInstaller</code> installed and loaded into the R session, the following commands will install <code>rexposome</code> and its dependencies:
         </p>
 
-        <pre><code class="R">packages = c(
-    'Biobase', 'lsr', 'FactoMineR', 'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
-    'S4Vectors' 'scatterplot3d', 'glmnet', 'gridExtra', 'grid', 'Hmisc', 'gplots', 'gtools', 'scales',
-    'lme4', 'ggrepel', 'psygenet2r', 'mice', 'imputeLCMD', 'flexmix', 'testthat', 'BiocStyle', 'knitr',
-    'rmarkdown'
-) 
-
-for( pkg in packages ) {
-  if( !pkg %in% rownames( installed.packages() ) ) {
-    biocLite( pkg )
-  }
-}</code></pre>
-            
-        <p>
-        <code>rexposome</code> is installed using <code>devtools</code> R package. To install <code>devtools</code> run this command in the R session:
-        </p>
-
-        <pre><code class="R">install.packages("devtools")</code></pre>
-
-        <p>
-        Due to the publication process of <code>rexposome</code> at Bioconductor, the requirement is set to R-3.4. The following code installs <code>rexposome</code>:
-        </p>
-
-        <pre><code class="R">devtools::install_github("isglobal-brge/rexposome")</code></pre>
+        <pre><code class="R">biocLite("isglobal-brge/rexposome")</code></pre>
     </div>
     <!-- /.container -->
 
