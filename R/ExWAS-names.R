@@ -3,6 +3,6 @@ setMethod(
     f = "names",
     signature = "ExWAS",
     definition = function(x) {
-        unique(sapply(strsplit(rownames(sys@comparison), "\\$"), "[[", 1))
+        unique(sapply(strsplit(rownames(x@comparison), "\\$"), "[[", 1))
     }
 )
