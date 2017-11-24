@@ -91,7 +91,11 @@ setMethod(
             if(sum(exp.order %in% tbl$exposure) != length(exp.order)) {
                 stop("Not all exposures in 'exp.order' are present in given 'ExWAS' objects.")
             }
-            tbl <- c_order(tbl, "fm", "exposure", exp.order)
+            # tbl <- c_order(tbl, "fm", "exposure", exp.order)
+            rownames( tbl ) <- tbl$exposure
+            tbl <- tbl[ as.character( exp.order ), ]
+            tbl$label <-  factor( tbl$label, tbl$label )
+
         }
 
         if(!multiple) {
@@ -107,7 +111,7 @@ setMethod(
                     values = colorPlte) +
                 ggplot2::theme(legend.position = "right")
         } else {
-            plt <- ggplot2::ggplot(as.data.frame(tbl), ggplot2::aes_string(x = "lpv", y = "label", color = "family")) +
+            plt <- ggplot2::ggplot(tbl, ggplot2::aes_string(x = "lpv", y = "label", color = "family")) +
                 ggplot2::geom_point() +
                 ggplot2::theme_minimal() +
                 ggplot2::theme(panel.spacing = ggplot2::unit(0.5, 'lines'),
@@ -136,7 +140,7 @@ setMethod(
 })
 
 
-c_order <- function(x, var1, var2, val2) {
+xc_order <- function(x, var1, var2, val2) {
     x <- x[order(x[ , var1]), ]
     c <- unique(x[ , var1])
     t <- x[x[ , var1] == c[1], ]
