@@ -114,7 +114,7 @@ setMethod(
 
         ## Compute the threshold for effective tests
         if(tef) {
-            cormat <- psygenet2r::extract(correlation(toES(object, rid=1),
+            cormat <- extract(correlation(toES(object, rid=1),
                 use="pairwise.complete.obs", method.cor = "pearson"))
             M <- ncol(cormat)
             lambdas <- base::eigen(cormat)$values

@@ -35,6 +35,6 @@ and draws a volcano plot using \link{ggplot2}
 }
 \examples{
 data(exposome)
-w1 <- psygenet2r::extract(exwas(expo[1:20, ], asthma~1, family = "binomial"))
+w1 <- extract(exwas(expo[1:20, ], asthma~1, family = "binomial"))
 volcano_plot(w1$pvalue, w1$effect, rownames(w1))
 }

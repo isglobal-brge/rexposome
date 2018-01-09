@@ -104,13 +104,13 @@ setMethod(
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
         }
 
-        items <- as.data.frame(items)
+        items <- data.frame(items, stringsAsFactors = FALSE)
         rownames(items) <- items[ , 5] # exposureNames(object)
         items <- items[-1, -5]
 
         ## Compute the threshold for effective tests
         if(tef) {
-            cormat <- psygenet2r::extract(correlation(object,
+            cormat <- extract(correlation(object,
                                           use="pairwise.complete.obs", method.cor = "pearson"))
             M <- ncol(cormat)
             lambdas <- base::eigen(cormat)$values
