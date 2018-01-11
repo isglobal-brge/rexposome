@@ -94,9 +94,9 @@ each exposure belongs}
 
 \item{na.omit}{NOT USED}
 
-\item{i}{Character corresponding to selected sample names.}
+\item{i}{Character coresponding to selected exposures.}
 
-\item{j}{Character coresponding to selected exposures.}
+\item{j}{Character corresponding to selected sample names.}
 
 \item{k}{Character corresponding to selected phenotypes.}
 

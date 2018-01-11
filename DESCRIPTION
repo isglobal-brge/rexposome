@@ -39,7 +39,6 @@ Imports: methods,
     grDevices, 
     graphics,
     ggrepel,
-    psygenet2r,
     mice
 Suggests: mclust,
     flexmix,

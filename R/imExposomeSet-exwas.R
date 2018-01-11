@@ -69,6 +69,9 @@ setMethod(
                 items[[ex]] <- c(NULL, NULL, NULL, NULL)
             } else {
                 tryCatch({
+                    typ <- fData(object)[ ex, ".type" ]
+                    typ <- ifelse( typ != "factor", FALSE, length( levels( dta[ , ex ] ) ) > 2 )
+
                     ## TEST
                     fit_glm <- lapply(seq(object@nimputation), function(ii) {
                         dtai <- dta[dta[, 1] == ii, -1]
@@ -84,22 +87,40 @@ setMethod(
                     tst <- pool_glm(mira_glm, ex = ex)
 
                     dt <- summary(tst)
-                    if(length(unique(dta[ , ex])) > 2 & fData(object)[ex, ".type"] == "factor") {
-                        items[[ex]] <- dt[startsWith(rownames(dt), ex), c(1, 6, 7, 5)]
-                        rownames(items[[ex]]) <- paste(
-                            ex, levels( dta[ , ex] )[ -1 ], sep = "$"
+                    if( typ ) {
+                        message( "HERE 1 " )
+                        mod0 <- lapply(seq(object@nimputation), function(ii) {
+                            dtai <- dta[dta[, 1] == ii, -1]
+                            stats::glm(family=family, formula = formula, data = dtai)
+                        })
+                        message( "HERE 2 " )
+                        mira_mod0 <- list(
+                            call = NULL,
+                            call1 = NULL,
+                            nmis = nmis,
+                            analyses = mod0
                         )
+                        class(mira_mod0) <- "mira"
+                        p <- mice::pool.compare(mira_glm, mira_mod0)$pvalue
+
+                        rn2 <- paste( ex, levels( dta[ , ex ] ), sep = "$" )[ seq( 2, length( levels( dta[ , ex ] ) ) ) ]
+
+                        items[[ex]] <- rbind(cbind(dt[startsWith(rownames(dt), ex), c(1, 6, 7, 5)], rn2), c(NA, NA, NA, p, ex))
+                        rownames(items[[ex]]) <- items[[ex]][ , 5]
                         ex_names <- c(ex_names, rownames(items[[ex]]))
+                        colnames(items[[ex]]) <- c("effect", "x2.5","x97.5", "pvalue", "name")
                     } else {
-                        items[[ex]] <- dt[2, c(1, 6, 7, 5)]
+                        items[[ex]] <- c(dt[2, c(1, 6, 7, 5)], ex)
                         ex_names <- c(ex_names, ex)
+                        names(items[[ex]]) <- c("effect", "x2.5","x97.5", "pvalue", "name")
                     }
+
                 }, error = function(e) {
                     if(verbose) {
                         message("\tProcess of '", ex, "' failed.", e)
                     }
                     ne[[ex]] <- e
-                    items[[ex]] <- c(NULL, NULL, NULL, NULL)
+                    items[[ex]] <- c(NULL, NULL, NULL, NULL, ex)
                 })
             }
         }
