@@ -4,7 +4,7 @@ setMethod(
     signature = "ExposomeSet",
     definition = function(object, select, method = "normal",
         na.rm = TRUE, warnings = TRUE) {
-        method <- match.arg(method, choices = c("normal", "iqr", "robust"))
+        method <- match.arg(method, choices = c("normal", "iqr", "iqr2", "robust"))
         if(missing(select)) {
             select <- exposureNames(object)
         }
@@ -37,7 +37,12 @@ setMethod(
             center <- apply(dd, 2, median, na.rm = na.rm)
             vari   <- apply(dd, 2, IQR, na.rm = na.rm)
             iqr.normal.range <- qnorm(0.75)-qnorm(0.25)
-            vari <- vari/iqr.normal.range
+            vari   <- vari/iqr.normal.range
+        } else if (method == "iqr2") {
+            center <- apply(dd, 2, mean, na.rm = na.rm)
+            vari   <- apply(dd, 2, IQR, na.rm = na.rm)
+            iqr.normal.range <- qnorm(0.75)-qnorm(0.25)
+            vari   <- vari/iqr.normal.range
         } else {
             stop("Invalid method for standardize.")
         }
