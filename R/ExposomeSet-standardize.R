@@ -40,9 +40,7 @@ setMethod(
             vari   <- vari/iqr.normal.range
         } else if (method == "iqr2") {
             center <- apply(dd, 2, mean, na.rm = na.rm)
-            vari   <- apply(dd, 2, IQR, na.rm = na.rm)
-            iqr.normal.range <- qnorm(0.75)-qnorm(0.25)
-            vari   <- vari/iqr.normal.range
+            vari <- apply(dd, 2, IQR, na.rm = na.rm)
         } else {
             stop("Invalid method for standardize.")
         }
