@@ -93,6 +93,9 @@ setMethod(
 
 
             }, error = function(e) {
+                if(warnings) {
+                    message("[warning]: ", e)
+                }
                 effect <- NULL
                 p2 <- NULL
                 ne <- c(ne, ex)

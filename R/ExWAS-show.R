@@ -10,7 +10,7 @@ setMethod(
             cat("Threshold for effective tests (TEF): ",
                 format(object@effective, digits = 3, scientific = TRUE), "\n")
         } else {
-            cat("Threshold for effective tests (TEF):  NOT COMPUTED")
+            cat("Threshold for effective tests (TEF):  NOT COMPUTED\n")
         }
         cat(" . Tests < TEF:", sum(object@comparison$pvalue < tef(object)), "\n")
     }

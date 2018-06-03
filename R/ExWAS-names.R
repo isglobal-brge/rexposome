@@ -3,6 +3,10 @@ setMethod(
     f = "names",
     signature = "ExWAS",
     definition = function(x) {
-        unique(sapply(strsplit(rownames(x@comparison), "\\$"), "[[", 1))
+        if(nrow(x@comparison) > 0) {
+            unique(sapply(strsplit(rownames(x@comparison), "\\$"), "[[", 1))
+        } else {
+            character()
+        }
     }
 )

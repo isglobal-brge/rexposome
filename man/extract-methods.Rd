@@ -7,7 +7,7 @@
 extract(object, ...)
 }
 \arguments{
-\item{object}{Object of class \code{DataGeNET.Psy} or \code{JaccardIndexPsy}}
+\item{object}{Object of class \code{ExWAS}, \code{ExposomeClust} or \code{ExposomeCorr}}
 
 \item{...}{NO USED}
 }
@@ -16,7 +16,6 @@ A \code{data.frame} containing the raw result from PsyGeNET or
 a \code{data.frame} with the result Jaccard Index for each disease.
 }
 \description{
-Obtain the raw data from a PsyGeNET's query  stored in a
-\code{DataGeNET.Psy} object or the raw data with all the Jaccard Index for
-the disease of interest of an \code{JaccardIndexPsy} object.
+Returns internal table of results of objects of class \code{ExWAS},
+\code{ExposomeClust} and \code{ExposomeCorr}.
 }

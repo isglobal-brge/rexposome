@@ -1119,14 +1119,13 @@ setGeneric("toES", function(object, rid = 1)
 
 #' Raw data from \code{ExWAS}, \code{ExposomeClust} and \code{ExposomeCorr}.
 #'
-#' Obtain the raw data from a PsyGeNET's query  stored in a
-#' \code{DataGeNET.Psy} object or the raw data with all the Jaccard Index for
-#' the disease of interest of an \code{JaccardIndexPsy} object.
+#' Returns internal table of results of objects of class \code{ExWAS},
+#' \code{ExposomeClust} and \code{ExposomeCorr}.
 #'
 #' @name extract
 #' @rdname extract-methods
 #' @aliases extract
-#' @param object Object of class \code{DataGeNET.Psy} or \code{JaccardIndexPsy}
+#' @param object Object of class \code{ExWAS}, \code{ExposomeClust} or \code{ExposomeCorr}
 #' @param ... NO USED
 #' @return A \code{data.frame} containing the raw result from PsyGeNET or
 #' a \code{data.frame} with the result Jaccard Index for each disease.

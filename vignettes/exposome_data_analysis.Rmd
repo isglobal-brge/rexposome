@@ -132,9 +132,6 @@ In summary: All the exposures, rows, in the *description data* file are columns 
 library(rexposome)
 ```
 
-```{r library2, echo=FALSE, message=FALSE}
-library(psygenet2r)
-```
 
 `rexposome` provides two functions to load the *exposome* data: `readExposome` and `loadexposome`. The function `readExposome` will load the exposome data from txt files and `loadExposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
 
