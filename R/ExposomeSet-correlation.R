@@ -80,7 +80,8 @@ setMethod(
                     fm <- do.call("lm", c(list(formula = fm,
                         data = mtrc[ , c(ex_i, ex_j)]), lm.arg))
                     # lm.beta(fm)
-                    sqrt(summary(fm)$r.squared)
+                    sq <- sqrt(summary(fm)$r.squared)
+                    ifelse(summary(fm)$coefficients[2,1] < 0, sq * -1, sq)
                 }, error = function(e) {
                     if(warnings) {
                         warning(ex_i, " - ", ex_j, ": ", e)
