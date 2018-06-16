@@ -722,6 +722,7 @@ setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main,
 #' data("exposome")
 #' expo.c <- correlation(expo)
 #' expo.c
+#' expo.c.table <- extract(expo.c)
 #' @export correlation
 #' @seealso \link{plotCorrelation} to plot the correlations of an
 #' \link{ExposomeCorr}, \link{clustering} to see how the exposures can
