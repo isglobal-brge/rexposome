@@ -10,6 +10,7 @@
 #' test is computed.
 #' @param verbose If set to \code{TRUE} it shows messages on progression.
 #' @param warnings If set to \code{TRUE} it shows warnings on progession.
+
 setMethod(
     f = "exwas",
     signature = "imExposomeSet",
@@ -84,16 +85,16 @@ setMethod(
                         analyses = fit_glm
                     )
                     class(mira_glm) <- "mira"
-                    tst <- pool_glm(mira_glm, ex = ex)
 
-                    dt <- summary(tst)
+                    #tst <- rexposome:::pool_glm(mira_glm, ex = ex)
+                    tst <- mice::mipo(mira_glm)
+
+                    dt <- summary(tst, conf.int = TRUE)
                     if( typ ) {
-                        message( "HERE 1 " )
                         mod0 <- lapply(seq(object@nimputation), function(ii) {
                             dtai <- dta[dta[, 1] == ii, -1]
                             stats::glm(family=family, formula = formula, data = dtai)
                         })
-                        message( "HERE 2 " )
                         mira_mod0 <- list(
                             call = NULL,
                             call1 = NULL,
@@ -105,12 +106,12 @@ setMethod(
 
                         rn2 <- paste( ex, levels( dta[ , ex ] ), sep = "$" )[ seq( 2, length( levels( dta[ , ex ] ) ) ) ]
 
-                        items[[ex]] <- rbind(cbind(dt[startsWith(rownames(dt), ex), c(1, 6, 7, 5)], rn2), c(NA, NA, NA, p, ex))
+                        items[[ex]] <- rbind(cbind(as.numeric(dt[startsWith(rownames(dt), ex), c(1, 6, 7, 5)]), rn2), c(NA, NA, NA, p, ex))
                         rownames(items[[ex]]) <- items[[ex]][ , 5]
                         ex_names <- c(ex_names, rownames(items[[ex]]))
                         colnames(items[[ex]]) <- c("effect", "x2.5","x97.5", "pvalue", "name")
                     } else {
-                        items[[ex]] <- c(dt[2, c(1, 6, 7, 5)], ex)
+                        items[[ex]] <- c(as.numeric(dt[2, c(1, 6, 7, 5)]), ex)
                         ex_names <- c(ex_names, ex)
                         names(items[[ex]]) <- c("effect", "x2.5","x97.5", "pvalue", "name")
                     }
@@ -125,12 +126,14 @@ setMethod(
             }
         }
 
+        message( "A" )
+
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
         }
 
         items <- data.frame(do.call(rbind, items))
-        colnames(items) <- c("effect", "2.5","97.5", "pvalue")
+        colnames(items) <- c("effect", "2.5","97.5", "pvalue", "ex")
         rownames(items) <- ex_names # exposureNames(object)
 
         ## Compute the threshold for effective tests
