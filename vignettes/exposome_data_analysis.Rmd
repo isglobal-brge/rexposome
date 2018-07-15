@@ -539,7 +539,7 @@ plotExwas(fl_ew, we_ew, color = clr) +
 
 Then a plot for the effects of a given model can be obtained with `plotEffect`:
 
-```{r exwas_effect_plot, warning=FALSE, fig.width=6, fig.height=16, message=FALSE}
+```{r exwas_effect_plot, warning=FALSE, fig.width=8, fig.height=10, message=FALSE}
 plotEffect(fl_ew)
 ```
 
