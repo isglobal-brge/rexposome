@@ -38,8 +38,8 @@
 #' dd <- read.csv(description, header=TRUE, stringsAsFactors=FALSE)
 #' dd <- dd[dd$Exposure %in% colnames(me), ]
 #' ex_imp <- loadImputed(data = me, description = dd,
-#' description.famCol = 1,
-#' description.expCol = 2)
+#' description.famCol = "Family",
+#' description.expCol = "Exposure")
 loadImputed <- function(data, description, description.famCol = "family",
         description.expCol = "exposure", exposures.asFactor = 5,
         warnings = TRUE) {
