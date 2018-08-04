@@ -57,6 +57,9 @@ name of the families.}
 
 \item{exp.order}{(optional) Order of the exposures.}
 
+\item{labels}{(optional) Character vector with the labels for each exposure.
+It must be labeled vector.}
+
 \item{show.effective}{(default TRUE) draws a brown line on the
 threshold given by the effective number of tests.}
 

@@ -37,6 +37,8 @@ to obtain a \code{data.frame} of \code{glmnet} result.}
 
 \item{exp.order}{NOT USED}
 
+\item{labels}{NOT USED}
+
 \item{show.effective}{NOT USED}
 }
 \value{

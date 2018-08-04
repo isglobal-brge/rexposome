@@ -125,6 +125,8 @@ from clustering output}
 
 \item{family}{Family descriving the nature of the health outcome}
 
+\item{baselevels}{Labeled vector with the default base level for categorical exposures.}
+
 \item{tef}{If \code{TRUE} it computed the threshold for effective tests.}
 
 \item{verbose}{If set to \code{TRUE} is shows messages on progression.}

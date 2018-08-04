@@ -9,6 +9,8 @@
 #' @param exp.order (optional) Order of the exposures.
 #' @param show.effective (default TRUE) draws a brown line on the
 #' threshold given by the effective number of tests.
+#' @param labels (optional) Character vector with the labels for each exposure.
+#' It must be labeled vector.
 setMethod(
     f = "plotExwas",
     signature = "ExWAS",

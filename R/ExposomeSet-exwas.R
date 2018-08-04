@@ -4,6 +4,7 @@
 #' @param family Family descriving the nature of the health outcome
 #' @param tef If \code{TRUE} it computed the threshold for effective tests.
 #' @param verbose If set to \code{TRUE} is shows messages on progression.
+#' @param baselevels Labeled vector with the default base level for categorical exposures.
 setMethod(
     f = "exwas",
     signature = "ExposomeSet",

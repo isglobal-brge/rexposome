@@ -58,10 +58,6 @@
 loadExposome <- function(exposures, description, phenotype,
         description.famCol = "family", exposures.asFactor = 5,
         warnings = TRUE) {
-    if(!description.famCol %in% colnames(description)) {
-        stop("Invalid value for 'description.famCol' ('", description.famCol,
-             "').")
-    }
 
     ## Order the colmuns on description
     ##   rownames <- exposures
@@ -69,6 +65,12 @@ loadExposome <- function(exposures, description, phenotype,
     if(class(description.famCol) %in% c("integer", "numeric")) {
         description.famCol <- colnames(description)[description.famCol]
     }
+
+    if(!description.famCol %in% colnames(description)) {
+        stop("Invalid value for 'description.famCol' ('", description.famCol,
+             "').")
+    }
+
     description <- description[ , c(description.famCol,
                       colnames(description)[colnames(description) != description.famCol]), drop=FALSE]
     colnames(description)[1] <- "Family"
