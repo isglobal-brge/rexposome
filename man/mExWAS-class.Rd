@@ -14,7 +14,7 @@
 
 \S4method{extract}{mExWAS}(object, type = "test", sort = TRUE)
 
-\S4method{plotExwas}{mExWAS}(object, ..., subtitles, color, exp.order,
+\S4method{plotExwas}{mExWAS}(object, ..., subtitles, color, exp.order, labels,
   show.effective = TRUE)
 }
 \arguments{
@@ -36,6 +36,8 @@ to obtain a \code{data.frame} of \code{glmnet} result.}
 \item{color}{NOT USED}
 
 \item{exp.order}{NOT USED}
+
+\item{labels}{NOT USED}
 
 \item{show.effective}{NOT USED}
 }

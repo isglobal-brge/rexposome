@@ -65,6 +65,12 @@ loadExposome <- function(exposures, description, phenotype,
     if(class(description.famCol) %in% c("integer", "numeric")) {
         description.famCol <- colnames(description)[description.famCol]
     }
+
+    if(!description.famCol %in% colnames(description)) {
+        stop("Invalid value for 'description.famCol' ('", description.famCol,
+             "').")
+    }
+
     description <- description[ , c(description.famCol,
                       colnames(description)[colnames(description) != description.famCol]), drop=FALSE]
     colnames(description)[1] <- "Family"
@@ -133,12 +139,11 @@ loadExposome <- function(exposures, description, phenotype,
     ## Need to create and fill _type of description
     if("type" %in% colnames(description)) {
         if(warnings) {
-            warning("Fund colnames 'type' in description file. It will be ",
-                    "used to check for exposures' type. Then 'type' column ",
-                    "will be droped.")
+            warning("Found colname 'type' in description file. It will be ",
+                "used to check for exposures' type. Then it will be droped.")
         }
-        description$type <- as.character(description$type)
-        if(sum(unique(description$type) %in% c("numeric", "factor")) != 2) {
+        description$type <- gsub(" ", "", as.character(description$type))
+        if(sum(! unique(description$type) %in% c("numeric", "factor")) != 0) {
             stop("In 'type' column of description file only 'factor' or ",
                  "'numeric' calues can be used.")
         }

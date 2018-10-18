@@ -30,6 +30,7 @@ object.
 data("exposome")
 expo.c <- correlation(expo)
 expo.c
+expo.c.table <- extract(expo.c)
 }
 \seealso{
 \link{plotCorrelation} to plot the correlations of an

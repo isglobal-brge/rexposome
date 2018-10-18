@@ -26,6 +26,8 @@
 #' than this number of unique items will be considered as "continuous" while
 #' the exposures with less or equal number of items will be considered as
 #' "factor".
+#' @param warnings (default \code{TRUE}) If \code{TRUE} shows useful
+#' information/warnings from the process of loading the exposome.
 #' @return An object of class \link{imExposomeSet}.
 #' @export loadImputed
 #' @seealso \link{imExposomeSet} for class description
@@ -36,10 +38,21 @@
 #' dd <- read.csv(description, header=TRUE, stringsAsFactors=FALSE)
 #' dd <- dd[dd$Exposure %in% colnames(me), ]
 #' ex_imp <- loadImputed(data = me, description = dd,
-#' description.famCol = 1,
-#' description.expCol = 2)
+#' description.famCol = "Family",
+#' description.expCol = "Exposure")
 loadImputed <- function(data, description, description.famCol = "family",
-        description.expCol = "exposure", exposures.asFactor = 5) {
+        description.expCol = "exposure", exposures.asFactor = 5,
+        warnings = TRUE) {
+
+    if(!description.famCol %in% colnames(description)) {
+        stop("Invalid value for 'description.famCol' ('", description.famCol,
+             "').")
+    }
+
+    if(!description.expCol %in% colnames(description)) {
+        stop("Invalid value for 'description.expCol' ('", description.expCol,
+             "').")
+    }
 
     if(!".imp" %in% colnames(data)) {
         stop("Given imputed exposures matrix has no column '.imp'.")
@@ -72,10 +85,7 @@ loadImputed <- function(data, description, description.famCol = "family",
     exposures <- data[ , exp.names, drop=FALSE]
     phenotypes <- data[ , phe.names, drop=FALSE]
 
-    #exposures[ , 1] <- as.numeric(exposures[ , 1])
     exposures[ , 2] <- as.character(exposures[ , 2])
-
-    #phenotypes[ , 1] <- as.numeric(phenotypes[ , 1])
     phenotypes[ , 2] <- as.character(phenotypes[ , 2])
 
     exposures <- exposures[order(exposures[ , 1], exposures[, 2]), ]
@@ -91,9 +101,8 @@ loadImputed <- function(data, description, description.famCol = "family",
     ## Need to create and fill .type of description
     if("type" %in% colnames(description)) {
         if(warnings) {
-            warning("Fund colnames 'type' in description file. It will be ",
-                    "used to check for exposures' type. Then 'type' column ",
-                    "will be droped.")
+            warning("Found colname 'type' in description file. It will be ",
+                "used to check for exposures' type. Then it will be droped.")
         }
         description$type <- as.character(description$type)
         if(sum(unique(description$type) %in% c("numeric", "factor")) != 2) {

@@ -8,10 +8,11 @@ setMethod(
             if(rid > object@nimputation) {
                 stop("Given 'rid' with imputation number is too large.")
             }
-            return(object@assayData[
-                object@assayData[ , 1] == rid, -(1:2), drop=FALSE])
+            tt <- object@assayData[object@assayData[ , 1] == rid, -(1:2), drop=FALSE]
+            rownames(tt) <- object@assayData[object@assayData[ , 1] == rid, ".id"]
+            return(tt)
         } else {
-            return(expos(object))
+            stop("Invalid given 'rid'.")
         }
     }
 )

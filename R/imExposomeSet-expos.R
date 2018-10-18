@@ -4,12 +4,15 @@ setMethod(
     signature="imExposomeSet",
     definition = function(object) {
         ms <- data.frame(object@assayData)
+        if( !".type" %in% colnames(fData(object))) {
+            stop("Invalid 'ExposomeSet'. It has no '.type' column in its 'fData'.")
+        }
         type <- fData(object)[colnames(ms)[-(1:2)], ".type"]
         expo.n <- rownames(fData(object))
         names(type) <- expo.n
         for(ii in expo.n) {
             if(type[ii] == "numeric") {
-                ms[ , ii] <- as.numeric(ms[ , ii])
+                ms[ , ii] <- as.numeric( as.character( ms[ , ii]) )
             } else if(type[ii] == "factor") {
                 ms[ , ii] <- as.factor(ms[ , ii])
             }

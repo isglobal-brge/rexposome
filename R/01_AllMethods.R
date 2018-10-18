@@ -722,6 +722,7 @@ setGeneric("plot3PCA", function(object, cmpX, cmpY, cmpZ, phenotype, main,
 #' data("exposome")
 #' expo.c <- correlation(expo)
 #' expo.c
+#' expo.c.table <- extract(expo.c)
 #' @export correlation
 #' @seealso \link{plotCorrelation} to plot the correlations of an
 #' \link{ExposomeCorr}, \link{clustering} to see how the exposures can
@@ -963,6 +964,8 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
 #' effective number of tests and the threhold for the effective
 #' number of tests. Usually it needs imputed data.
 #' @param ... NOT USED
+#' @param baselevels (optional) If set, must be a labeled vector with the
+#' default base level for categorical exposures.
 #' @param verbose (default \code{FALSE}) If set o true messages along the
 #' tests are shown.
 #' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
@@ -983,7 +986,8 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
 #' @export exwas
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
-setGeneric("exwas", function(object, formula, filter, family, ..., tef = TRUE, verbose = FALSE, warnings = TRUE)
+setGeneric("exwas", function(object, formula, filter, family, ..., baselevels,
+        tef = TRUE, verbose = FALSE, warnings = TRUE)
     standardGeneric("exwas")
 )
 
@@ -1003,6 +1007,8 @@ setGeneric("exwas", function(object, formula, filter, family, ..., tef = TRUE, v
 #' family's names. Used to colore the exposures.
 #' @param exp.order (optional) Character vector of exposures used to order
 #' and subset the plot.
+#' @param labels (optional) Character vector with the labels for each exposure.
+#' It must be labeled vector.
 #' @param show.effective (default \code{TRUE}) If set to \code{FALSE},
 #' line showing effective test threshold is not shown.
 #' @return An object of class \code{ggplot}.
@@ -1013,7 +1019,8 @@ setGeneric("exwas", function(object, formula, filter, family, ..., tef = TRUE, v
 #' @export plotExwas
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
 #' \link{extract} to obtain a table with the result of the ExWAS
-setGeneric("plotExwas", function(object, ..., subtitles, color, exp.order, show.effective = TRUE)
+setGeneric("plotExwas", function(object, ..., subtitles, color, exp.order,
+                                 labels, show.effective = TRUE)
     standardGeneric("plotExwas")
 )
 
@@ -1107,4 +1114,23 @@ setGeneric("tef", function(object)
 #' toES(ex_imp, rid = 1)
 setGeneric("toES", function(object, rid = 1)
     standardGeneric("toES")
+)
+
+
+
+#' Raw data from \code{ExWAS}, \code{ExposomeClust} and \code{ExposomeCorr}.
+#'
+#' Returns internal table of results of objects of class \code{ExWAS},
+#' \code{ExposomeClust} and \code{ExposomeCorr}.
+#'
+#' @name extract
+#' @rdname extract-methods
+#' @aliases extract
+#' @param object Object of class \code{ExWAS}, \code{ExposomeClust} or \code{ExposomeCorr}
+#' @param ... NO USED
+#' @return A \code{data.frame} containing the raw result from PsyGeNET or
+#' a \code{data.frame} with the result Jaccard Index for each disease.
+#' @export extract
+setGeneric ("extract",
+            function(object, ...){standardGeneric("extract")}
 )

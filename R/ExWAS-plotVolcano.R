@@ -8,7 +8,7 @@ setMethod(
     f = "plotVolcano",
     signature = "ExWAS",
     definition = function(x, p.value = -log10(0.001), show.effect = FALSE) {
-        x <- psygenet2r::extract(x)
+        x <- extract(x)
         volcano_plot(
             pval = x$pvalue,
             fc = x$effect,

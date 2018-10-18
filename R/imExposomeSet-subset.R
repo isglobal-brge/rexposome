@@ -13,8 +13,8 @@ setMethod(
 
 #' @describeIn imExposomeSet Subset an \code{imExposomeSet}
 #' @aliases imExposomeSet-methods [
-#' @param i Character corresponding to selected sample names.
-#' @param j Character coresponding to selected exposures.
+#' @param i Character coresponding to selected exposures.
+#' @param j Character corresponding to selected sample names.
 #' @param drop NOT USED
 #' @param k Character corresponding to selected phenotypes.
 #' @note Sample order is not guarantee
@@ -22,29 +22,29 @@ setMethod(
     f = "[",
     signature = "imExposomeSet",
     definition = function(x, i, j, k, ..., drop = FALSE) {
-        if(!missing(i)) { # Subset samples
-            if(class(i) %in% c("numeric", "integer")) {
-                i <- sampleNames(x)[i]
+        if(!missing(i)) { # Subset exposures
+            if(class(i) %in% c("numeric", "integer", "logical")) {
+                i <- exposureNames(x)[i]
             }
-            if(sum(i %in% sampleNames(x)) != length(i)) {
-                stop("Given samples not in imExposomeSet.")
-            }
-            x@assayData <- x@assayData[x@assayData$`.id` %in% i, ]
-            x@phenoData <- x@phenoData[x@phenoData$`.id` %in% i, ]
-        }
-        if(!missing(j)) {
-            if(class(j) %in% c("numeric", "integer")) {
-                j <- exposureNames(x)[j]
-            }
-            if(sum(j %in% exposureNames(x)) != length(j)) {
+            if(sum(i %in% exposureNames(x)) != length(i)) {
                 stop("Given exposures not in imExposomeSet.")
             }
-            x@assayData <- x@assayData[ , c(".imp", ".id", j)]
-            x@featureData <- x@featureData[j, ]
+            x@assayData <- x@assayData[ , c(".imp", ".id", i)]
+            x@featureData <- x@featureData[i, ]
+        if(!missing(j)) { # Subset samples
+            if(class(j) %in% c("numeric", "integer", "logical")) {
+                j <- sampleNames(x)[j]
+            }
+            if(sum(j %in% sampleNames(x)) != length(j)) {
+                stop("Given samples not in imExposomeSet.")
+            }
+            x@assayData <- x@assayData[x@assayData$`.id` %in% j, ]
+            x@phenoData <- x@phenoData[x@phenoData$`.id` %in% j, ]
+        }
         }
         if(!missing(k)) {
             message(class(k))
-            if(class(k) %in% c("numeric", "integer")) {
+            if(class(k) %in% c("numeric", "integer", "logical")) {
                 k <- phenotypeNames(x)[k]
             }
             if(sum(k %in% phenotypeNames(x)) != length(k)) {

@@ -3,6 +3,6 @@ setMethod(
     f = "exposureNames",
     signature = "imExposomeSet",
     definition = function(object) {
-        colnames(expos(object))[-(1:2)]
+        colnames(extract(object, rid = 1))
     }
 )

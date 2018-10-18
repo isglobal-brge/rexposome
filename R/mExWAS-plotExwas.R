@@ -4,6 +4,7 @@
 #' @param color NOT USED
 #' @param exp.order NOT USED
 #' @param show.effective NOT USED
+#' @param labels NOT USED
 #' @param ... Other used arguments.
 setMethod(
     f = "plotExwas",

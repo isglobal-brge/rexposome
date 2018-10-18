@@ -10,12 +10,14 @@ setMethod(
     signature = "ExWAS",
     definition = function(x, y, select, xlab, ylab) {
         xr <- x
-        x <- psygenet2r::extract(x)
-        x$exposure <- rownames(x)
+        x <- extract(x)
+        x$exposure <- sapply(strsplit(rownames(x), "\\$"), function( it ) {
+            ifelse(length( it ) == 1, it, paste0(it[1], " (", it[2], ")"))
+        })
         if(missing(y)) {
             colnames(x)[3:4] <- c("minE", "maxE")
             if(missing(select)) {
-                select <- x$exposure
+                select <- rownames(x)
             } else {
                 if(sum(select %in% x$exposure) != length(select)) {
                     stop("Selected exposures are not in given ExWAS")
@@ -31,8 +33,10 @@ setMethod(
                 )
         } else {
             yr <- y
-            y <- psygenet2r::extract(y)
-            y$exposure <- rownames(y)
+            y <- extract(y)
+            y$exposure <- sapply(strsplit(rownames(y), "\\$"), function( it ) {
+                ifelse(length( it ) == 1, it, paste0(it[1], " (", it[2], ")"))
+            })
             exposures <- intersect(x$exposure, y$exposure)
 
             if(length(exposures) == 0) {

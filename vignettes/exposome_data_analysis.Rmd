@@ -132,9 +132,6 @@ In summary: All the exposures, rows, in the *description data* file are columns 
 library(rexposome)
 ```
 
-```{r library2, echo=FALSE, message=FALSE}
-library(psygenet2r)
-```
 
 `rexposome` provides two functions to load the *exposome* data: `readExposome` and `loadexposome`. The function `readExposome` will load the exposome data from txt files and `loadExposome` will do the same from standard R `data.frame`s. Both functions will create an `ExposomeSet` object. The `ExposomeSet` is a standard S4 class that will encapsulate the *exposome* data. 
 
@@ -164,10 +161,10 @@ exp <- readExposome(
     exposures = exposures, 
     description = description, 
     phenotype = phenotype,
-    exposures.samCol = 1, 
-    description.expCol = 2, 
-    description.famCol = 1, 
-    phenotype.samCol = 1
+    exposures.samCol = "idnum", 
+    description.expCol = "Exposure", 
+    description.famCol = "Family", 
+    phenotype.samCol = "idnum"
 )
 ```
 
@@ -542,7 +539,7 @@ plotExwas(fl_ew, we_ew, color = clr) +
 
 Then a plot for the effects of a given model can be obtained with `plotEffect`:
 
-```{r exwas_effect_plot, warning=FALSE, fig.width=6, fig.height=16, message=FALSE}
+```{r exwas_effect_plot, warning=FALSE, fig.width=8, fig.height=10, message=FALSE}
 plotEffect(fl_ew)
 ```
 

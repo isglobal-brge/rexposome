@@ -82,10 +82,18 @@ pool_glm <- function (object, method = "smallsample", ex) {
     pval <- 2 * pt(abs(tval), df[j], lower.tail = FALSE)
 
     names(r) <- names(df) <- names(fmi) <- names(lambda) <- names
+
+
+
     fit <- list(call = call, call1 = object$call, call2 = object$call1,
                 nmis = object$nmis, m = m, qhat = qhat, u = u, qbar = qbar,
                 ubar = ubar, b = b, t = t, r = r, dfcom = dfcom, df = df,
                 fmi = fmi, lambda = lambda, pval = pval)
     oldClass(fit) <- c("mipo", oldClass(object))
+
+    # pooled <- pool.fitlist(getfit(object))
+    # rr <- list(call = call, m = m, pooled = pooled)
+    # class(rr) <- c("mipo", "data.frame")
+
     return(fit)
 }

@@ -13,7 +13,8 @@
 `rexposome` requires R version equal or newer than 3.0. The following script allows to install `rexposome` dependencies:
 
 ```r
-source( "http://bioconductor.org/biocLite.R" )
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
 
 packages = c('Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR',
 	'stringr', 'circlize', 'corrplot', 'ggplot2', 'reshape2', 'pryr',
@@ -23,7 +24,7 @@ packages = c('Biobase', 'mice', 'MultiDataSet', 'lsr', 'FactoMineR',
 for( pkg in packages ) {
   if( !pkg %in% rownames( installed.packages() ) ) {
     message( "Installing ", pkg )
-    biocLite( pkg )
+    BiocManager::install( pkg )
   }
 }
 ```

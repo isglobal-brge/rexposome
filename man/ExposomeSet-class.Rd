@@ -54,7 +54,7 @@
 
 \S4method{exposureNames}{ExposomeSet}(object)
 
-\S4method{exwas}{ExposomeSet}(object, formula, filter, family, ...,
+\S4method{exwas}{ExposomeSet}(object, formula, filter, family, ..., baselevels,
   tef = TRUE, verbose = FALSE, warnings = TRUE)
 
 \S4method{familyNames}{ExposomeSet}(object, by.exposure = FALSE)
@@ -124,6 +124,8 @@ from clustering output}
 \item{filter}{Expression to be used to filter \code{\link{ExposomeSet}}}
 
 \item{family}{Family descriving the nature of the health outcome}
+
+\item{baselevels}{Labeled vector with the default base level for categorical exposures.}
 
 \item{tef}{If \code{TRUE} it computed the threshold for effective tests.}
 

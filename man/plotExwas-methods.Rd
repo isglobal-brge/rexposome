@@ -4,7 +4,8 @@
 \alias{plotExwas}
 \title{Function to draw a plot of the pvalues stored in an \code{ExWAS} object}
 \usage{
-plotExwas(object, ..., subtitles, color, exp.order, show.effective = TRUE)
+plotExwas(object, ..., subtitles, color, exp.order, labels,
+  show.effective = TRUE)
 }
 \arguments{
 \item{object}{An \code{ExWAS} object which p-values will be plotted.}
@@ -19,6 +20,9 @@ family's names. Used to colore the exposures.}
 
 \item{exp.order}{(optional) Character vector of exposures used to order
 and subset the plot.}
+
+\item{labels}{(optional) Character vector with the labels for each exposure.
+It must be labeled vector.}
 
 \item{show.effective}{(default \code{TRUE}) If set to \code{FALSE},
 line showing effective test threshold is not shown.}
