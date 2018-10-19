@@ -1,6 +1,6 @@
 Package: rexposome
-Version: 1.3.4
-Title: Exposome exploration and outcome data analysis
+Version: 1.3.5
+Title: Exposome exploration and disease association analysis
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"))
 Maintainer: Carles Hernandez-Ferrer <carles.hernandez@isglobal.org>
