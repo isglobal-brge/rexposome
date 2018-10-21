@@ -1,6 +1,6 @@
 Package: rexposome
-Version: 1.3.5
-Title: Exposome exploration and disease association analysis
+Version: 1.2.1
+Title: Exposome exploration and outcome data analysis
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"))
 Maintainer: Carles Hernandez-Ferrer <carles.hernandez@isglobal.org>
@@ -20,12 +20,3 @@ Suggests: mclust, flexmix, testthat, BiocStyle, knitr, rmarkdown
 biocViews: Software, BiologicalQuestion, Infrastructure, DataImport,
         DataRepresentation, BiomedicalInformatics, ExperimentalDesign,
         MultipleComparison, Classification, Clustering
-git_url: https://git.bioconductor.org/packages/rexposome
-git_branch: master
-git_last_commit: 4421fe0
-git_last_commit_date: 2018-08-30
-Date/Publication: 2018-08-30
-NeedsCompilation: no
-Packaged: 2018-08-31 01:51:08 UTC; biocbuild
-Author: Carles Hernandez-Ferrer [aut, cre],
-  Juan R. Gonzalez [aut]
