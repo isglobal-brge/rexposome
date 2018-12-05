@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="install.html">Contact</a>
+                        <a href="install.html">Installation</a>
                     </li>
                     <!--<li>
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Installation<b class="caret"></b></a>
@@ -61,9 +61,9 @@
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Vignette <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="vignettes/exposome_data_analysis.html" target="_blank">Exposome Data Analysis</a></li>
-                            <li><a href="vignettes/dealing_multiple_imputations.html" target="_blank">Dealing with Multiple Imputations</a></li>
+                            <li><a href="https://bioconductor.org/packages/release/bioc/vignettes/rexposome/inst/doc/mutiple_imputation_data_analysis.html" target="_blank">Dealing with Multiple Imputations</a></li>
                             <li class="divider"></li>
-                            <li><a href="vignettes/exposome_data_integration_with_omic_data.html" target="_blank">Exposome Data Integration with Omic Data</a></li>
+                            <li><a href="https://bioconductor.org/packages/release/bioc/vignettes/rexposome/inst/doc/exposome_data_analysis.html" target="_blank">Exposome Data Integration with Omic Data</a></li>
                         </ul>
                     </li>
                     <li>
@@ -84,16 +84,20 @@
         <!-- Page Heading -->
         <h1 class="my-4">Installation</h1>
         <p>
-            The first step is to get the library <code>BiocInstaller</code> from Biocondcutor. Hence we open an R session and run the following command:
+            The first step is to get the library <code>BiocManager</code> from Bioconductor. Hence we open an R session and run the following command:
         </p>
         
-        <pre><code class="R">source( "http://bioconductor.org/biocLite.R" )</code></pre>
+        <pre><code class="R">install.packages( "BiocManager" )</code></pre>
 
         <p>
-        Having the library <code>BiocInstaller</code> installed and loaded into the R session, the following commands will install <code>rexposome</code> and its dependencies:
+        Having the library <code>BiocManager</code> installed and loaded into the R session, the following command will install <code>rexposome</code> and its dependencies:
         </p>
 
-        <pre><code class="R">biocLite("isglobal-brge/rexposome")</code></pre>
+        <pre><code class="R">install("rexposome", version = "3.8")</code></pre>
+        Finally, the following command will install <code>omicRexposome</code> and its dependencies:
+        </p>
+
+        <pre><code class="R">install("omicRexposome", version = "3.8")</code></pre>
     </div>
     <!-- /.container -->
 
