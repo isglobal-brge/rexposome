@@ -83,6 +83,6 @@ The characterization of the exposome is done with a bunch of functions that foll
 ### Exposome-Phenotype Association
 
   * The function `exwas` allows to perform an Exposome-Wide Association Study by testing the association of each exposure with a given phenotype.
-  * `m_exwas` allows to perform a MultiVariate Exposome-Wide Association Study by using DSA or ElasticNet methods.
+  * `m_exwas` allows to perform a MultiVariate Exposome-Wide Association Study by using ElasticNet methods.
   * `plotExwas` allows to plot a Manhattan plot of the result of an ExWAS (for both `exwas` and `m_exwas`).
   * `plotEffect` allows to plot the effects of each exposure. It can also be used to compare two models.
