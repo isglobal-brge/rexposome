@@ -51,7 +51,7 @@ setMethod(
             }
 
             if(density) {
-                plt <- plt + ggplot2::geom_density(colour = "OrangeRed")
+                plt <- plt + ggplot2::geom_density_ridges(scales = 1)
             }
 
 
