@@ -4,8 +4,15 @@
 \alias{imputeLOD}
 \title{Function to impute values under limit of detection}
 \usage{
-imputeLOD(x, lod, description = NULL, pNA = 0.2, pLOD = 0, log = TRUE,
-  seed = NULL)
+imputeLOD(
+  x,
+  lod,
+  description = NULL,
+  pNA = 0.2,
+  pLOD = 0,
+  log = TRUE,
+  seed = NULL
+)
 }
 \arguments{
 \item{x}{\code{data.frame} containing the exposures as columns and the

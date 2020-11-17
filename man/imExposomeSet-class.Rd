@@ -23,7 +23,6 @@
 \alias{[[,imExposomeSet-method}
 \alias{imExposomeSet-methods}
 \alias{[,imExposomeSet,ANY,ANY,ANY-method}
-\alias{imExposomeSet-methods}
 \alias{[}
 \alias{toES,imExposomeSet-method}
 \title{Class imExposomeSet}
@@ -38,15 +37,23 @@
 
 \S4method{extract}{imExposomeSet}(object, rid = -1, ...)
 
-\S4method{exwas}{imExposomeSet}(object, formula, filter, family, ...,
-  baselevels, tef = TRUE, verbose = FALSE, warnings = TRUE)
+\S4method{exwas}{imExposomeSet}(
+  object,
+  formula,
+  filter,
+  family,
+  ...,
+  baselevels,
+  tef = TRUE,
+  verbose = FALSE,
+  warnings = TRUE
+)
 
 \S4method{familyNames}{imExposomeSet}(object, by.exposure = FALSE)
 
 \S4method{phenotypeNames}{imExposomeSet}(object)
 
-\S4method{plotFamily}{imExposomeSet}(x, family, group, group2,
-  scatter = FALSE, na.omit = TRUE)
+\S4method{plotFamily}{imExposomeSet}(x, family, group, group2, scatter = FALSE, na.omit = TRUE)
 
 \S4method{sampleNames}{imExposomeSet}(object)
 

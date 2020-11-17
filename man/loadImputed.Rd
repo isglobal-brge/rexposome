@@ -4,9 +4,14 @@
 \alias{loadImputed}
 \title{Creation of an imExposomeSet from \code{data.frames}}
 \usage{
-loadImputed(data, description, description.famCol = "family",
-  description.expCol = "exposure", exposures.asFactor = 5,
-  warnings = TRUE)
+loadImputed(
+  data,
+  description,
+  description.famCol = "family",
+  description.expCol = "exposure",
+  exposures.asFactor = 5,
+  warnings = TRUE
+)
 }
 \arguments{
 \item{data}{The \code{data.frame} of both exposures and phentoypes obtained

@@ -21,13 +21,19 @@
 
 \S4method{names}{ExWAS}(x)
 
-\S4method{plotEffect}{ExWAS}(x, y, select, xlab, ylab)
+\S4method{plotEffect}{ExWAS}(x, y, select, labels, xlab, ylab)
 
-\S4method{plotExwas}{ExWAS}(object, ..., subtitles, color, exp.order, labels,
-  show.effective = TRUE)
+\S4method{plotExwas}{ExWAS}(
+  object,
+  ...,
+  subtitles,
+  color,
+  exp.order,
+  labels,
+  show.effective = TRUE
+)
 
-\S4method{plotVolcano}{ExWAS}(x, p.value = -log10(0.001),
-  show.effect = FALSE)
+\S4method{plotVolcano}{ExWAS}(x, p.value = -log10(0.001), labels, show.effect = FALSE)
 
 \S4method{tef}{ExWAS}(object)
 }
@@ -44,6 +50,9 @@
 
 \item{select}{(optional) Vector with the selected exposures}
 
+\item{labels}{(optional) Character vector with the labels for each exposure.
+It must be labeled vector.}
+
 \item{xlab}{(optional) Label for x-axis}
 
 \item{ylab}{(optional) Label for y-axis}
@@ -56,9 +65,6 @@ equal to the number of families. The vector must be names with the
 name of the families.}
 
 \item{exp.order}{(optional) Order of the exposures.}
-
-\item{labels}{(optional) Character vector with the labels for each exposure.
-It must be labeled vector.}
 
 \item{show.effective}{(default TRUE) draws a brown line on the
 threshold given by the effective number of tests.}

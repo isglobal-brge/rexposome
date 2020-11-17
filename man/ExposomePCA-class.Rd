@@ -29,13 +29,30 @@
 
 \S4method{phenotypeNames}{ExposomePCA}(object)
 
-\S4method{plot3PCA}{ExposomePCA}(object, cmpX, cmpY, cmpZ, phenotype, main,
-  angle = 35, pch = 16, legend = TRUE, plines = TRUE)
+\S4method{plot3PCA}{ExposomePCA}(
+  object,
+  cmpX,
+  cmpY,
+  cmpZ,
+  phenotype,
+  main,
+  angle = 35,
+  pch = 16,
+  legend = TRUE,
+  plines = TRUE
+)
 
 \S4method{plotEXP}{ExposomePCA}(object, exposure)
 
-\S4method{plotPCA}{ExposomePCA}(object, set, cmpX = 1, cmpY = 2,
-  show.exposures = FALSE, show.samples = FALSE, phenotype)
+\S4method{plotPCA}{ExposomePCA}(
+  object,
+  set,
+  cmpX = 1,
+  cmpY = 2,
+  show.exposures = FALSE,
+  show.samples = FALSE,
+  phenotype
+)
 
 \S4method{plotPHE}{ExposomePCA}(object, phenotype, exp2fac = 5)
 }

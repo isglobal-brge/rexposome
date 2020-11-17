@@ -24,8 +24,7 @@ setGeneric("Summary", function(object, set=c("exposures", "phenotypes"),
 )
 Standardize of an ExposomeSet.}
 \usage{
-standardize(object, select, method = "normal", na.rm = TRUE,
-  warnings = TRUE)
+standardize(object, select, method = "normal", na.rm = TRUE, warnings = TRUE)
 }
 \arguments{
 \item{object}{\code{ExposomeSet} with exposures to be standardized.}

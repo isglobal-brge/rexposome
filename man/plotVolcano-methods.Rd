@@ -4,12 +4,15 @@
 \alias{plotVolcano}
 \title{Function to draw a plot of the pvalues stored in an \code{ExWAS} object}
 \usage{
-plotVolcano(x, p.value = -log10(0.001), show.effect = FALSE)
+plotVolcano(x, p.value = -log10(0.001), labels, show.effect = FALSE)
 }
 \arguments{
 \item{x}{An \code{ExWAS} object which effect will be ploted.}
 
 \item{p.value}{(default \code{"-log10(0.001)"}) Threshold for P-Value.}
+
+\item{labels}{(optional) Character vector with the labels for each exposure.
+It must be labeled vector.}
 
 \item{show.effect}{(default \code{FALSE}) Applyes an exponential
 transformation on the effects of the exposures.}

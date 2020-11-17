@@ -3,7 +3,6 @@
 \docType{package}
 \name{rexposome}
 \alias{rexposome}
-\alias{rexposome-package}
 \title{rexposome: Package for exposome exploration and outcome data analysis}
 \description{
 #' @section exposures loading and exposures managment:

@@ -4,8 +4,15 @@
 \alias{plotPCA}
 \title{Ploting PCA}
 \usage{
-plotPCA(object, set, cmpX = 1, cmpY = 2, show.exposures = FALSE,
-  show.samples = FALSE, phenotype)
+plotPCA(
+  object,
+  set,
+  cmpX = 1,
+  cmpY = 2,
+  show.exposures = FALSE,
+  show.samples = FALSE,
+  phenotype
+)
 }
 \arguments{
 \item{object}{An onbject of class \link{ExposomePCA}}

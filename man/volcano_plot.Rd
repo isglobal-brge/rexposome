@@ -4,8 +4,15 @@
 \alias{volcano_plot}
 \title{Function to draw a Volcano Plot}
 \usage{
-volcano_plot(pval, fc, names, size = 2, tFC = 2, tPV = -log10(0.001),
-  show.effect = FALSE)
+volcano_plot(
+  pval,
+  fc,
+  names,
+  size = 2,
+  tFC = 2,
+  tPV = -log10(0.001),
+  show.effect = FALSE
+)
 }
 \arguments{
 \item{pval}{numeric vector of P.Values}

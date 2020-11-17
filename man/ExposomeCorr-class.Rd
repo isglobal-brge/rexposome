@@ -18,8 +18,7 @@
 
 \S4method{extract}{ExposomeCorr}(object, sort, ...)
 
-\S4method{plotCorrelation}{ExposomeCorr}(object, type = c("circos", "matrix"),
-  ...)
+\S4method{plotCorrelation}{ExposomeCorr}(object, type = c("circos", "matrix"), ...)
 }
 \arguments{
 \item{x}{Object of class \link{ExposomeCorr}}

@@ -5,8 +5,17 @@
 \title{Testing the association between an exposure and a phenotype of an
 ExposomeSet}
 \usage{
-exwas(object, formula, filter, family, ..., baselevels, tef = TRUE,
-  verbose = FALSE, warnings = TRUE)
+exwas(
+  object,
+  formula,
+  filter,
+  family,
+  ...,
+  baselevels,
+  tef = TRUE,
+  verbose = FALSE,
+  warnings = TRUE
+)
 }
 \arguments{
 \item{object}{\code{ExposomeSet} that will be used for the ExWAS.}

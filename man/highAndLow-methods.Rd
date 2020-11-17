@@ -4,8 +4,14 @@
 \alias{highAndLow}
 \title{Function to convert continuous exposures to categorical exposures}
 \usage{
-highAndLow(object, ngroups = 3, intervals = "standard", select,
-  drop = FALSE, warnings = TRUE)
+highAndLow(
+  object,
+  ngroups = 3,
+  intervals = "standard",
+  select,
+  drop = FALSE,
+  warnings = TRUE
+)
 }
 \arguments{
 \item{object}{An object of class \code{ExposomeSet}.}

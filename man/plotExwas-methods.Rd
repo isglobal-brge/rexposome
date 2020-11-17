@@ -4,8 +4,15 @@
 \alias{plotExwas}
 \title{Function to draw a plot of the pvalues stored in an \code{ExWAS} object}
 \usage{
-plotExwas(object, ..., subtitles, color, exp.order, labels,
-  show.effective = TRUE)
+plotExwas(
+  object,
+  ...,
+  subtitles,
+  color,
+  exp.order,
+  labels,
+  show.effective = TRUE
+)
 }
 \arguments{
 \item{object}{An \code{ExWAS} object which p-values will be plotted.}

@@ -5,8 +5,14 @@
 \title{It creates a \code{data.frame} of boolean indicating if the exposures follows
 a normal distribution or not.}
 \usage{
-normalityTest(object, exposure, th = 0.05, min.val = 5, na.rm = TRUE,
-  warnings = TRUE)
+normalityTest(
+  object,
+  exposure,
+  th = 0.05,
+  min.val = 5,
+  na.rm = TRUE,
+  warnings = TRUE
+)
 }
 \arguments{
 \item{object}{\link{ExposomeSet} with the exposome to be tested.}

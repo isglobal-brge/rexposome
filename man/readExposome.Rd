@@ -4,10 +4,19 @@
 \alias{readExposome}
 \title{Creation of an ExposomeSet from files}
 \usage{
-readExposome(exposures, description, phenotype, sep = ",",
-  na.strings = c("NA", "-", "?", " ", ""), exposures.samCol = "sample",
-  description.expCol = "exposure", description.famCol = "family",
-  phenotype.samCol = "sample", exposures.asFactor = 5, warnings = TRUE)
+readExposome(
+  exposures,
+  description,
+  phenotype,
+  sep = ",",
+  na.strings = c("NA", "-", "?", " ", ""),
+  exposures.samCol = "sample",
+  description.expCol = "exposure",
+  description.famCol = "family",
+  phenotype.samCol = "sample",
+  exposures.asFactor = 5,
+  warnings = TRUE
+)
 }
 \arguments{
 \item{exposures}{String with the path to the file with the matrix of

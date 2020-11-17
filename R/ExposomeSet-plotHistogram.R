@@ -51,7 +51,7 @@ setMethod(
             }
 
             if(density) {
-                plt <- plt + ggridges::geom_density_ridges(scales = 1)
+                plt <- plt + ggridges::geom_density_line(colour = "OrangeRed")
             }
 
 

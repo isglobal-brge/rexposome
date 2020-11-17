@@ -4,7 +4,7 @@
 \alias{plotEffect}
 \title{Function to draw a plot of the pvalues stored in an \code{ExWAS} object}
 \usage{
-plotEffect(x, y, select, xlab, ylab)
+plotEffect(x, y, select, labels, xlab, ylab)
 }
 \arguments{
 \item{x}{An \code{ExWAS} object which effect will be ploted.}
@@ -13,6 +13,9 @@ plotEffect(x, y, select, xlab, ylab)
 effects will be ploted in Y-axis.}
 
 \item{select}{(optional) Character with exposures to be shown.}
+
+\item{labels}{(optional) Character vector with the labels for each exposure.
+It must be labeled vector.}
 
 \item{xlab}{(optional) Label for X-axis.}
 

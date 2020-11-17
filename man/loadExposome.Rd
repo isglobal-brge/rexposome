@@ -4,8 +4,14 @@
 \alias{loadExposome}
 \title{Creation of an ExposomeSet from \code{data.frames}}
 \usage{
-loadExposome(exposures, description, phenotype, description.famCol = "family",
-  exposures.asFactor = 5, warnings = TRUE)
+loadExposome(
+  exposures,
+  description,
+  phenotype,
+  description.famCol = "family",
+  exposures.asFactor = 5,
+  warnings = TRUE
+)
 }
 \arguments{
 \item{exposures}{\code{data.frame} of exposures.}

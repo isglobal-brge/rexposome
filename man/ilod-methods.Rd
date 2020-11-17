@@ -4,8 +4,16 @@
 \alias{ilod}
 \title{Function to impute under-LOD values from an ExposomeSet}
 \usage{
-ilod(object, seed = 1234, lod.col = "LOD", pNA = 0.2, tLog = FALSE,
-  method = "QRILC", warnings = TRUE, ...)
+ilod(
+  object,
+  seed = 1234,
+  lod.col = "LOD",
+  pNA = 0.2,
+  tLog = FALSE,
+  method = "QRILC",
+  warnings = TRUE,
+  ...
+)
 }
 \arguments{
 \item{object}{\code{ExposomeSet} which exposures will be imputed.}

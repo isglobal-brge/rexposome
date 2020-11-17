@@ -4,8 +4,18 @@
 \alias{plot3PCA}
 \title{Ploting PCA in a 3D space}
 \usage{
-plot3PCA(object, cmpX, cmpY, cmpZ, phenotype, main, angle = 35, pch = 16,
-  legend = TRUE, plines = TRUE)
+plot3PCA(
+  object,
+  cmpX,
+  cmpY,
+  cmpZ,
+  phenotype,
+  main,
+  angle = 35,
+  pch = 16,
+  legend = TRUE,
+  plines = TRUE
+)
 }
 \arguments{
 \item{object}{An onbject of class \link{ExposomePCA}}

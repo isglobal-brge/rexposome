@@ -43,8 +43,7 @@
 \usage{
 \S4method{plot}{ExposomeSet,ANY}(x, y, ...)
 
-\S4method{clustering}{ExposomeSet}(object, method, cmethod, ...,
-  warnings = TRUE)
+\S4method{clustering}{ExposomeSet}(object, method, cmethod, ..., warnings = TRUE)
 
 \S4method{correlation}{ExposomeSet}(object, ..., warnings = TRUE)
 
@@ -54,52 +53,82 @@
 
 \S4method{exposureNames}{ExposomeSet}(object)
 
-\S4method{exwas}{ExposomeSet}(object, formula, filter, family, ..., baselevels,
-  tef = TRUE, verbose = FALSE, warnings = TRUE)
+\S4method{exwas}{ExposomeSet}(
+  object,
+  formula,
+  filter,
+  family,
+  ...,
+  baselevels,
+  tef = TRUE,
+  verbose = FALSE,
+  warnings = TRUE
+)
 
 \S4method{familyNames}{ExposomeSet}(object, by.exposure = FALSE)
 
-\S4method{highAndLow}{ExposomeSet}(object, ngroups = 3,
-  intervals = c("standard", "extreme"), select, drop = FALSE,
-  warnings = TRUE)
+\S4method{highAndLow}{ExposomeSet}(
+  object,
+  ngroups = 3,
+  intervals = c("standard", "extreme"),
+  select,
+  drop = FALSE,
+  warnings = TRUE
+)
 
-\S4method{ilod}{ExposomeSet}(object, seed = 1234, lod.col = "LOD",
-  pNA = 0.2, tLog = FALSE, method = "QRILC", warnings = TRUE, ...)
+\S4method{ilod}{ExposomeSet}(
+  object,
+  seed = 1234,
+  lod.col = "LOD",
+  pNA = 0.2,
+  tLog = FALSE,
+  method = "QRILC",
+  warnings = TRUE,
+  ...
+)
 
 \S4method{imputation}{ExposomeSet}(object, select, ..., messages = FALSE)
 
 \S4method{mexwas}{ExposomeSet}(object, phenotype, family, warnings = TRUE)
 
-\S4method{normalityTest}{ExposomeSet}(object, exposure, th = 0.05,
-  min.val = 5, na.rm = TRUE, warnings = TRUE)
+\S4method{normalityTest}{ExposomeSet}(
+  object,
+  exposure,
+  th = 0.05,
+  min.val = 5,
+  na.rm = TRUE,
+  warnings = TRUE
+)
 
 \S4method{pca}{ExposomeSet}(object, npc = 10)
 
 \S4method{phenotypeNames}{ExposomeSet}(object)
 
-\S4method{plotFamily}{ExposomeSet}(x, family, group, group2, scatter = TRUE,
-  na.omit = TRUE)
+\S4method{plotFamily}{ExposomeSet}(x, family, group, group2, scatter = TRUE, na.omit = TRUE)
 
-\S4method{plotHistogram}{ExposomeSet}(x, select, density = TRUE,
-  show.trans = FALSE)
+\S4method{plotHistogram}{ExposomeSet}(x, select, density = TRUE, show.trans = FALSE)
 
-\S4method{plotLOD}{ExposomeSet}(object, lod.col = "LOD", x.max = 100,
-  sort = TRUE)
+\S4method{plotLOD}{ExposomeSet}(object, lod.col = "LOD", x.max = 100, sort = TRUE)
 
-\S4method{plotMissings}{ExposomeSet}(object, set = c("exposures",
-  "phenotypes"), x.max = 100, sort = TRUE)
+\S4method{plotMissings}{ExposomeSet}(
+  object,
+  set = c("exposures", "phenotypes"),
+  x.max = 100,
+  sort = TRUE
+)
 
-\S4method{standardize}{ExposomeSet}(object, select, method = "normal",
-  na.rm = TRUE, warnings = TRUE)
+\S4method{standardize}{ExposomeSet}(object, select, method = "normal", na.rm = TRUE, warnings = TRUE)
 
-\S4method{Summary}{ExposomeSet}(x, set = c("exposures", "phenotypes"), select,
-  ..., na.rm = FALSE)
+\S4method{Summary}{ExposomeSet}(x, set = c("exposures", "phenotypes"), select, ..., na.rm = FALSE)
 
-\S4method{tableLOD}{ExposomeSet}(object, output = "n", lod.col = "LOD",
-  sort = TRUE)
+\S4method{tableLOD}{ExposomeSet}(object, output = "n", lod.col = "LOD", sort = TRUE)
 
-\S4method{tableMissings}{ExposomeSet}(object, set = c("exposures",
-  "phenotypes"), output = "n", sort = TRUE)
+\S4method{tableMissings}{ExposomeSet}(
+  object,
+  set = c("exposures", "phenotypes"),
+  output = "n",
+  sort = TRUE
+)
 
 \S4method{trans}{ExposomeSet}(object, fun, select, by.exposure = FALSE, ...)
 }
