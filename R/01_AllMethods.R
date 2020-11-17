@@ -1036,6 +1036,8 @@ setGeneric("plotExwas", function(object, ..., subtitles, color, exp.order,
 #' @param y (optional) Another \code{ExWAS} object. If provded its
 #' effects will be ploted in Y-axis.
 #' @param select (optional) Character with exposures to be shown.
+#' @param labels (optional) Character vector with the labels for each exposure.
+#' It must be labeled vector.
 #' @param xlab (optional) Label for X-axis.
 #' @param ylab (optional) Label for Y-axis.
 #' @return An object of class \code{ggplot}.
@@ -1047,7 +1049,7 @@ setGeneric("plotExwas", function(object, ..., subtitles, color, exp.order,
 #' @export plotEffect
 #' @seealso \link{exwas} as a constructor for \link{ExWAS} objects,
 #' \link{extract} to obtain a table with the result of the ExWAS
-setGeneric("plotEffect", function(x, y, select, xlab, ylab)
+setGeneric("plotEffect", function(x, y, select, labels, xlab, ylab)
     standardGeneric("plotEffect")
 )
 
@@ -1061,6 +1063,8 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 #' @aliases plotVolcano
 #' @param x An \code{ExWAS} object which effect will be ploted.
 #' @param p.value (default \code{"-log10(0.001)"}) Threshold for P-Value.
+#' @param labels (optional) Character vector with the labels for each exposure.
+#' It must be labeled vector.
 #' @param show.effect (default \code{FALSE}) Applyes an exponential
 #' transformation on the effects of the exposures.
 #' @return An object of class \code{ggplot}.
@@ -1069,7 +1073,7 @@ setGeneric("plotEffect", function(x, y, select, xlab, ylab)
 #' objects, \code{\link{extract}} to obtain a table with the result of
 #' the ExWAS, \code{\link{plotEffect}} to see or compare effects of
 #' one or two models.
-setGeneric("plotVolcano", function(x, p.value = -log10(0.001), show.effect = FALSE)
+setGeneric("plotVolcano", function(x, p.value = -log10(0.001), labels, show.effect = FALSE)
     standardGeneric("plotVolcano")
 )
 

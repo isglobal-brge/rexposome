@@ -8,12 +8,36 @@
 setMethod(
     f = "plotEffect",
     signature = "ExWAS",
-    definition = function(x, y, select, xlab, ylab) {
+    definition = function(x, y, select, labels, xlab, ylab) {
         xr <- x
         x <- extract(x)
         x$exposure <- sapply(strsplit(rownames(x), "\\$"), function( it ) {
             ifelse(length( it ) == 1, it, paste0(it[1], " (", it[2], ")"))
         })
+        x$lbl <- rownames(x)
+        if(!missing(labels)) {
+            x$lbl <- sapply(strsplit(rownames(x), "\\$" ), function(nm) {
+                ex <- ifelse(nm[1] %in% names(labels), labels[nm[1]], nm[1])
+                if(length(nm) == 2) {
+                    ex <- paste0(ex, " (", nm[2], ")")
+                }
+                ex
+            })
+        }
+
+        if(!missing(y)) {
+            y$lbl <- rownames(y)
+            if(!missing(labels)) {
+                y$lbl <- sapply(strsplit(rownames(y), "\\$" ), function(nm) {
+                    ex <- ifelse(nm[1] %in% names(labels), labels[nm[1]], nm[1])
+                    if(length(nm) == 2) {
+                        ex <- paste0(ex, " (", nm[2], ")")
+                    }
+                    ex
+                })
+            }
+        }
+
         if(missing(y)) {
             colnames(x)[3:4] <- c("minE", "maxE")
             if(missing(select)) {
@@ -23,15 +47,16 @@ setMethod(
                     stop("Selected exposures are not in given ExWAS")
                 }
             }
-            ggplot2::ggplot(as.data.frame(x[select, ]), ggplot2::aes_string(x = "effect", y = "exposure")) +
+            ggplot2::ggplot(as.data.frame(x[select, ]), ggplot2::aes_string(x = "effect", y = "lbl")) +
                 ggplot2::geom_point(shape=18, size=5, color="gray60") +
                 ggplot2::geom_errorbarh(ggplot2::aes_string(xmin = "minE", xmax = "maxE")) +
                 ggplot2::theme_bw() +
                 ggplot2::theme(
                     panel.grid.major = ggplot2::element_line(color = "WhiteSmoke", size = 0.3, linetype = "dashed"),
                     panel.grid.minor = ggplot2::element_line(color = "gray40", size = 0.3, linetype = "dashed")
-                )
+                ) + ggplot2::ylab("")
         } else {
+
             yr <- y
             y <- extract(y)
             y$exposure <- sapply(strsplit(rownames(y), "\\$"), function( it ) {
