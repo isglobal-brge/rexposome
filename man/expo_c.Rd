@@ -4,7 +4,9 @@
 \name{expo_c}
 \alias{expo_c}
 \title{\code{ExposomeClust} for testing purpouses}
-\format{An object of class \code{ExposomeClust} of dimension 99 x 1200 x 5.}
+\format{
+An object of class \code{ExposomeClust} of dimension 99 x 1200 x 5.
+}
 \usage{
 data("eclust")
 }

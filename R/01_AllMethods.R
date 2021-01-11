@@ -539,6 +539,9 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2,
 #' @aliases pca
 #' @param object \code{ExposomeSet} which exposures will be used for the PCA
 #' @param npc (by default 10) number of dimensions kept in the results
+#' @param pca (default \code{FALSE}) Set to \code{TRUE} to Perform PCA (only numerical variables) 
+#' or \code{FALSE} to perform FAMD (numerical and categorical)
+#' @param ... Arguments to be passed to imputeFAMD
 #' @return An \code{ExposomePCA} with the values of the PCA.
 #' @seealso \link{plotPCA} to plot the PCA values of an
 #' \link{ExposomePCA}, \link{clustering} to see how the exposures can
@@ -548,7 +551,7 @@ setGeneric("ilod", function(object, seed = 1234, lod.col = "LOD", pNA = 0.2,
 #' data("exposome")
 #' epca <- pca(expo[12:20, ])
 #' @export pca
-setGeneric("pca", function(object, npc = 10)
+setGeneric("pca", function(object, npc = 10, pca = FALSE, ...)
     standardGeneric("pca")
 )
 

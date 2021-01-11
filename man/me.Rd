@@ -4,7 +4,9 @@
 \name{me}
 \alias{me}
 \title{\code{data.frame} for testing purpouses}
-\format{An object of class \code{data.frame} with 654 rows and 57 columns.}
+\format{
+An object of class \code{data.frame} with 654 rows and 57 columns.
+}
 \usage{
 data("me")
 }

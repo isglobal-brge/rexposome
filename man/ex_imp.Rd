@@ -4,7 +4,9 @@
 \name{ex_imp}
 \alias{ex_imp}
 \title{\code{imExposomeSet} for testing purpouses}
-\format{An object of class \code{imExposomeSet} of dimension 47 x 109 x 10.}
+\format{
+An object of class \code{imExposomeSet} of dimension 47 x 109 x 10.
+}
 \usage{
 data("ex_imp")
 }

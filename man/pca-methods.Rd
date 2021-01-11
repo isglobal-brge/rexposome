@@ -4,12 +4,17 @@
 \alias{pca}
 \title{Creation of an ExposomePCA from an ExposomeSet.}
 \usage{
-pca(object, npc = 10)
+pca(object, npc = 10, pca = FALSE, ...)
 }
 \arguments{
 \item{object}{\code{ExposomeSet} which exposures will be used for the PCA}
 
 \item{npc}{(by default 10) number of dimensions kept in the results}
+
+\item{pca}{(default \code{FALSE}) Set to \code{TRUE} to Perform PCA (only numerical variables) 
+or \code{FALSE} to perform FAMD (numerical and categorical)}
+
+\item{...}{Arguments to be passed to imputeFAMD}
 }
 \value{
 An \code{ExposomePCA} with the values of the PCA.

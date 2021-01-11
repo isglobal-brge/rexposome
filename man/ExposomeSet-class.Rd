@@ -100,7 +100,7 @@
   warnings = TRUE
 )
 
-\S4method{pca}{ExposomeSet}(object, npc = 10)
+\S4method{pca}{ExposomeSet}(object, npc = 10, pca = FALSE, ...)
 
 \S4method{phenotypeNames}{ExposomeSet}(object)
 
@@ -137,7 +137,7 @@
 
 \item{y}{NOT USED}
 
-\item{...}{Argument sent given method.}
+\item{...}{Arguments to be passed to imputeFAMD}
 
 \item{object}{An \code{\link{ExposomeSet}} object.}
 
@@ -195,6 +195,8 @@ will be displayed.}
 \item{na.rm}{If set to \code{TRUE} removes \code{NA} values}
 
 \item{npc}{Number of PC to be kept}
+
+\item{pca}{Perform PCA (only numerical variables) or FAMD (numerical and categorical)}
 
 \item{group}{Phenotype to group exposures}
 

@@ -4,7 +4,9 @@
 \name{expo}
 \alias{expo}
 \title{\code{ExposomeSet} for testing purpouses}
-\format{An object of class \code{ExposomeSet} of dimension 104 x 1200 x 4.}
+\format{
+An object of class \code{ExposomeSet} of dimension 104 x 1200 x 4.
+}
 \usage{
 data("exposome")
 }
