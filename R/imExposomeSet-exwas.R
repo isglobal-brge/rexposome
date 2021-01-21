@@ -105,13 +105,14 @@ setMethod(
                         p <- mice::pool.compare(mira_glm, mira_mod0)$pvalue
 
                         rn2 <- paste( ex, levels( dta[ , ex ] ), sep = "$" )[ seq( 2, length( levels( dta[ , ex ] ) ) ) ]
-
-                        items[[ex]] <- rbind(cbind(as.numeric(dt[startsWith(rownames(dt), ex), c(1, 6, 7, 5)]), rn2), c(NA, NA, NA, p, ex))
+                        
+                        items[[ex]] <- rbind(cbind(as.numeric(dt[startsWith(rownames(dt), ex), c(2, 7, 8, 6)]), rn2), c(NA, NA, NA, p, ex))
                         rownames(items[[ex]]) <- items[[ex]][ , 5]
                         ex_names <- c(ex_names, rownames(items[[ex]]))
                         colnames(items[[ex]]) <- c("effect", "x2.5","x97.5", "pvalue", "name")
                     } else {
-                        items[[ex]] <- c(as.numeric(dt[2, c(1, 6, 7, 5)]), ex)
+                        # browser()
+                        items[[ex]] <- c(as.numeric(dt[2, c(2, 7, 8, 6)]), ex)
                         ex_names <- c(ex_names, ex)
                         names(items[[ex]]) <- c("effect", "x2.5","x97.5", "pvalue", "name")
                     }
@@ -126,7 +127,7 @@ setMethod(
             }
         }
 
-        message( "A" )
+        # message( "A" )
 
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
