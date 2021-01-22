@@ -1,5 +1,5 @@
 Package: rexposome
-Version: 1.2.3
+Version: 1.13.1
 Title: Exposome exploration and outcome data analysis
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"))
@@ -9,14 +9,50 @@ Description: Package that allows to explore the exposome and to perform
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr
-Depends: R (>= 3.5), Biobase
-Imports: methods, utils, stats, lsr, FactoMineR, stringr, circlize,
-        corrplot, ggplot2, reshape2, pryr, S4Vectors, imputeLCMD,
-        scatterplot3d, glmnet, gridExtra, grid, Hmisc, gplots, gtools,
-        scales, lme4, grDevices, graphics, ggrepel, mice
-Suggests: mclust, flexmix, testthat, BiocStyle, knitr, rmarkdown
-biocViews: Software, BiologicalQuestion, Infrastructure, DataImport,
-        DataRepresentation, BiomedicalInformatics, ExperimentalDesign,
-        MultipleComparison, Classification, Clustering
+Depends:
+    R (>= 3.5),
+    Biobase
+Imports: methods,
+    utils,
+    stats,
+    lsr,
+    FactoMineR,
+    stringr,
+    circlize,
+    corrplot,
+    ggplot2,
+    reshape2,
+    pryr,
+    S4Vectors,
+    imputeLCMD,
+    scatterplot3d,
+    glmnet,
+    gridExtra,
+    grid,
+    Hmisc,
+    gplots,
+    gtools,
+    scales,
+    lme4,
+    grDevices, 
+    graphics,
+    ggrepel,
+    mice
+Suggests: mclust,
+    flexmix,
+    testthat,
+    BiocStyle,
+    knitr,
+    rmarkdown
+biocViews: Software,
+    BiologicalQuestion,
+    Infrastructure,
+    DataImport,
+    DataRepresentation,
+    BiomedicalInformatics,
+    ExperimentalDesign,
+    MultipleComparison,
+    Classification, 
+    Clustering
