@@ -1,6 +1,6 @@
 #' @describeIn ExWAS Draws a plot with the confidence interval of each
 #' exposure. Alows to compare two ExWAS instances.
-# @param x An \code{\link{ExWAS}} object
+#' @param x An \code{\link{ExWAS}} object
 #' @param y An \code{\link{ExWAS}} object
 #' @param select (optional) Vector with the selected exposures
 #' @param xlab (optional) Label for x-axis
@@ -9,6 +9,7 @@ setMethod(
     f = "plotEffect",
     signature = "ExWAS",
     definition = function(x, y, select, labels, xlab, ylab) {
+        
         xr <- x
         x <- extract(x)
         x$exposure <- sapply(strsplit(rownames(x), "\\$"), function( it ) {
@@ -26,6 +27,11 @@ setMethod(
         }
 
         if(!missing(y)) {
+            yr <- y 
+            y <- extract(y) 
+            y$exposure <- sapply(strsplit(rownames(y), "\\$"), function( it ) { 
+                ifelse(length( it ) == 1, it, paste0(it[1], " (", it[2], ")")) 
+            }) 
             y$lbl <- rownames(y)
             if(!missing(labels)) {
                 y$lbl <- sapply(strsplit(rownames(y), "\\$" ), function(nm) {
@@ -56,12 +62,6 @@ setMethod(
                     panel.grid.minor = ggplot2::element_line(color = "gray40", size = 0.3, linetype = "dashed")
                 ) + ggplot2::ylab("")
         } else {
-
-            yr <- y
-            y <- extract(y)
-            y$exposure <- sapply(strsplit(rownames(y), "\\$"), function( it ) {
-                ifelse(length( it ) == 1, it, paste0(it[1], " (", it[2], ")"))
-            })
             exposures <- intersect(x$exposure, y$exposure)
 
             if(length(exposures) == 0) {
@@ -73,7 +73,7 @@ setMethod(
             }
 
             z <- merge(x[exposures, ], y[exposures, ], by="exposure")
-            colnames(z)[c(4:5, 8:9)] <- c("minE.x", "maxE.x", "minE.y", "maxE.y")
+            colnames(z)[c(4:5, 9:10)] <- c("minE.x", "maxE.x", "minE.y", "maxE.y")
 
             if(missing(select)) {
                 select <- z$exposure

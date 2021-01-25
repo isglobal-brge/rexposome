@@ -38,7 +38,7 @@
 \S4method{tef}{ExWAS}(object)
 }
 \arguments{
-\item{x}{Object of class \code{ExWAS}}
+\item{x}{An \code{\link{ExWAS}} object}
 
 \item{y}{An \code{\link{ExWAS}} object}
 

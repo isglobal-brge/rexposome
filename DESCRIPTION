@@ -1,5 +1,5 @@
 Package: rexposome
-Version: 1.12.1
+Version: 1.12.2
 Title: Exposome exploration and outcome data analysis
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"))
@@ -9,7 +9,7 @@ Description: Package that allows to explore the exposome and to perform
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Depends:
     R (>= 3.5),

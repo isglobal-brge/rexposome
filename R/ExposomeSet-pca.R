@@ -6,7 +6,7 @@ setMethod(
     f = "pca",
     signature = "ExposomeSet",
     definition = function(object, npc = 10, pca = FALSE, ...) {
-        if(pca == TRUE){
+        if(pca == TRUE | all(unlist(lapply(expos(object), class)) %in% c("numeric", "integer"))){
             select <- rownames(fData(object))[fData(object)$`.type` == "numeric"]
             exposures <- expos(object)[ , select]
             pca_expo <- FactoMineR::PCA(exposures,
