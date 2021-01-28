@@ -2,7 +2,8 @@ Package: rexposome
 Version: 1.13.2
 Title: Exposome exploration and outcome data analysis
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
-    person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"))
+    person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"),
+    person("Xavier", "Escribà-Montagut", ,"xavier.escriba@isglobal.org", role = "aut"))
 Maintainer: Xavier Escribà Montagut <xavier.escriba@isglobal.org>
 Description: Package that allows to explore the exposome and to perform 
     association analyses between exposures and health outcomes.
