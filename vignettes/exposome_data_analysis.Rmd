@@ -45,6 +45,8 @@ The first step is to load *exposome* data on R. `rexposome` provides to function
 
 ## Data Format
 
+### Three table format
+
 `rexposome` defines the *exposome* data as a three different data-sets:
 
   1) Description Data
@@ -116,17 +118,13 @@ This rules are easy seen in the following figure:
 
 In summary: All the exposures, rows, in the *description data* file are columns in the *exposures data* file (plus the column for identifying subjects). All the subjects in the *exposures data* files are, also, in the *phenotype data* file.
 
-To ease the life of researchers that have their datasets as one big table (exposures and phenotypes combined in a single table), we offer the option of using it as a input to rexposome. Please look into the documentation of the `loadExposome_plain()` function for further details on how to load this type of data. A few remarks on that methodology:
+### Single table format
+
+To ease the life of researchers that have their datasets as one big table (exposures and phenotypes combined in a single table), we offer the option of using it as a input to `rexposome`. Please look into the documentation of the `loadExposome_plain()` function for further details on how to load this type of data. A few remarks on that methodology:
 
 + The exposures can be grouped into families by passing a list argument
-+ Internally this function converts an exposures/phenotypes table into the three individual tables needed by rexposome
++ Internally this function converts an exposures/phenotypes table into the three individual tables needed by `rexposome`
 + There is no option of adding description fields to the exposures
-
-
-
-
-
-
 
 # Analysis
 
