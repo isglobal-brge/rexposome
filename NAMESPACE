@@ -3,6 +3,7 @@
 export(classification)
 export(clustering)
 export(correlation)
+export(expo_assoc)
 export(expos)
 export(exposureNames)
 export(extract)

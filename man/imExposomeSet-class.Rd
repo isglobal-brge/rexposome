@@ -20,7 +20,7 @@
 \alias{phenotypeNames,imExposomeSet-method}
 \alias{plotFamily,imExposomeSet-method}
 \alias{sampleNames,imExposomeSet-method}
-\alias{[[,imExposomeSet,ANY,ANY-method}
+\alias{[[,imExposomeSet-method}
 \alias{imExposomeSet-methods}
 \alias{[,imExposomeSet,ANY,ANY,ANY-method}
 \alias{[}
@@ -57,7 +57,7 @@
 
 \S4method{sampleNames}{imExposomeSet}(object)
 
-\S4method{[[}{imExposomeSet,ANY,ANY}(x, i)
+\S4method{[[}{imExposomeSet}(x, i)
 
 \S4method{[}{imExposomeSet,ANY,ANY,ANY}(x, i, j, k, ..., drop = FALSE)
 
