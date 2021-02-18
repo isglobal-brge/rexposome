@@ -4,11 +4,9 @@ author:
 - name: Carles Hernandez-Ferrer
   affiliation:
   - &epigeny Spanish National Center for Genomic Analysis (CNAG)
-  email: carles.hernandez@cnag.crg.eu 
 - name: Xavier Escriba-Montagut
   affiliation:
   - &isglobal Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Insitute for Global Health (ISGlobal) 
-  email: xavier.escriba@isglobal.org
 - name: Juan R. Gonzalez
   affiliation:
   - &isglobal Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Insitute for Global Health (ISGlobal)
