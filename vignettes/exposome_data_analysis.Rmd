@@ -1,6 +1,19 @@
 ---
 title: "Exposome Data Analysis"
-author: "Carles Hernandez-Ferrer and Juan R. Gonzalez"
+author:
+- name: Carles Hernandez-Ferrer
+  affiliation:
+  - &epigeny Spanish National Center for Genomic Analysis (CNAG)
+  email: carles.hernandez@cnag.crg.eu 
+- name: Xavier Escriba-Montagut
+  affiliation:
+  - &isglobal Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Insitute for Global Health (ISGlobal) 
+  email: xavier.escriba@isgloba.org
+- name: Juan R. Gonzalez
+  affiliation:
+  - &isglobal Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Insitute for Global Health (ISGlobal)
+  - &uab Department of Mathematics, Autonomous University of Barcelona (UAB)
+  email: juanr.gonzalez@isglobal.org
 date: "`r doc_date()`"
 package: "`r pkg_ver('rexposome')`"
 abstract: >
@@ -331,7 +344,7 @@ exp <- imputation(exp)
 
 To use `mice` package instead of `hmisc`, see the vignette entitles *Dealing with Multiple Imputations*.
 
-### Exposures Behaviour
+### Exposures Characterization (i.e. data visualization)
 
 We can get a snapshot of the behaviour of the full *exposome* using the method `plotFamily` or its wrapper `plot`. This function allows drawing a plot of a given family of exposures or a mosaic with all the exposures.
 
@@ -471,7 +484,7 @@ table(classification(exp_c))
 As seen, the groups are given as numbers and the `plotClassification` transforms it to names (_Group 1_, _Group 2_ and _Group 3_).
 
 
-## Exposure Association
+## Exposure associations
 
 Once preprocessed the exposome its association with health outcomes can be tested through three different approaches:
 
@@ -509,7 +522,7 @@ The conclusions that can be taken from the heat map are:
   * **sex** is associated to **PC 6** and **PC 10**.
   * **flu** is associated to **PC 5**.
 
-### Exposome-Wide Association Studies (ExWAS)
+### Exposure/Enviroment/Exposome Wide Association Studies (ExWAS)
 
 Method `exwas` performs univariate test of the association between exposures and health outcomes. This method requests a `formula` to test and the family of the distribution of the health outcome (dependent variable).
 
@@ -550,7 +563,7 @@ plotEffect(fl_ew)
 ```
 
 
-### Multivariate Exposome Analysis
+### Multivariate ExWAS
 
 The last approach is a multivariate analysis in order to find the group of exposures related to the health outcome. This can be done using methods like Elastic Net. The method `mexwas` applies elastic net to the exposures given a health outcome of interest.
 
