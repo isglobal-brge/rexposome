@@ -5,7 +5,7 @@
 #' @param verbose If set to \code{TRUE} is shows messages on progression.
 #' @param warnings If set to \code{TRUE} it prints the warning messsages.
 setMethod(
-  f = "expo_assoc",
+  f = "invExWAS",
   signature = "ExposomeSet",
   definition = function(object, formula, filter,
                         tef = TRUE, verbose = FALSE, warnings = TRUE){

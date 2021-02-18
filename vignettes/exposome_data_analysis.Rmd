@@ -8,7 +8,7 @@ author:
 - name: Xavier Escriba-Montagut
   affiliation:
   - &isglobal Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Insitute for Global Health (ISGlobal) 
-  email: xavier.escriba@isgloba.org
+  email: xavier.escriba@isglobal.org
 - name: Juan R. Gonzalez
   affiliation:
   - &isglobal Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Insitute for Global Health (ISGlobal)
@@ -138,6 +138,25 @@ To ease the life of researchers that have their datasets as one big table (expos
 + The exposures can be grouped into families by passing a list argument
 + Internally this function converts an exposures/phenotypes table into the three individual tables needed by `rexposome`
 + There is no option of adding description fields to the exposures
+
+An example of single table is the following:
+
+```
+id    bde100  bde138  bde209    asthma   BMI      ...
+sub01  2.4665  0.7702  1.6866   control  23.2539  ...
+sub02  0.7799  1.4147  1.2907   asthma   24.4498  ...  
+sub03 -1.6583 -0.9851 -0.8902   asthma   15.2356  ... 
+sub04 -1.0812 -0.6639 -0.2988   control  25.1387  ... 
+sub05 -0.2842 -0.1518 -1.5291   control  22.0477  ...
+...   ...     ...      ...      ...      ...
+```
+
+And a visual representation of this single tables is the following:
+
+<center>
+![](plain_tables.png)
+</center>
+
 
 # Analysis
 
@@ -524,7 +543,15 @@ The conclusions that can be taken from the heat map are:
 
 ### Exposure/Enviroment/Exposome Wide Association Studies (ExWAS)
 
-Method `exwas` performs univariate test of the association between exposures and health outcomes. This method requests a `formula` to test and the family of the distribution of the health outcome (dependent variable).
+Method `exwas` performs univariate test of the association between exposures and health outcomes. This method requests a `formula` to test and the family of the distribution of the health outcome (dependent variable). The models fitted are:
+
+```{}
+phenotype ~ exposure_1 + covar1 + ... + covarN
+phenotype ~ exposure_2 + covar1 + ... + covarN
+phenotype ~ exposure_3 + covar1 + ... + covarN
+...
+phenotype ~ exposure_M + covar1 + ... + covarN
+```
 
 The following line performs an ExWAS on flu and wheezing adjusted by sex and age. Since the content of `flu` and others in the `ExposomeSet` is dichotomous, the `family` is set to binomial (for more information see `?glm`).
 
@@ -562,6 +589,40 @@ Then a plot for the effects of a given model can be obtained with `plotEffect`:
 plotEffect(fl_ew)
 ```
 
+### Inverse ExWAS
+
+Method `invExWAS` performs a similar association test between exposures and health outcomes. The method asks for a `formula` to indicate the health outcome and covariables of interest for the association test. The difference to the regular ExWAS is on the model fitted, which on the inverse ExWAS is:
+
+```{}
+exposure_1 ~ phenotype + covar1 + ... + covarN
+exposure_2 ~ phenotype + covar1 + ... + covarN
+exposure_3 ~ phenotype + covar1 + ... + covarN
+...
+exposure_M ~ phenotype + covar1 + ... + covarN
+```
+
+Since not all exposures on a dataset have to be of the same family, linear models (`lm`) are fitted for numerical exposures, while multinomial log-linear models (`nnet::multinom`) are fitted for categorical variables.
+
+The following examples perforns an inverse ExWAS analysis on flu adjusted by sex, note that no left hand side term needs to be supplied, since the left term will be all the exposures on the dataset, if a left han side term is supplied it will be ignored.
+
+```{r}
+inv_ex <- invExWAS(exp, formula = ~ flu + sex)
+inv_ex
+```
+
+Since the object returned by `invExWAS` is of class `ExWAS`, all the previous manipulation explained can be used on it. Following the example we can extract the table of results:
+
+```{r}
+head(extract(inv_ex))
+```
+
+And we can also use the visualization methods:
+
+```{r}
+clr <- rainbow(length(familyNames(exp)))
+names(clr) <- familyNames(exp)
+plotExwas(inv_ex, color = clr) + ggtitle("Inverse Exposome Association Study - Univariate Approach")
+```
 
 ### Multivariate ExWAS
 

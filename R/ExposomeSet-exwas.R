@@ -114,7 +114,7 @@ setMethod(
 
         ## Compute the threshold for effective tests
         if(tef) {
-            cormat <- extract(correlation(object,
+            cormat <- rexposome::extract(rexposome::correlation(object,
                                           use="pairwise.complete.obs", method.cor = "pearson"))
             M <- ncol(cormat)
             lambdas <- base::eigen(cormat)$values
