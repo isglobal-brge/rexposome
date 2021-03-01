@@ -4,8 +4,8 @@
 %   R/ExposomeSet-dim.R, R/ExposomeSet-expos.R, R/ExposomeSet-exposureNames.R,
 %   R/ExposomeSet-exwas.R, R/ExposomeSet-familyNames.R,
 %   R/ExposomeSet-highAndLow.R, R/ExposomeSet-ilod.R,
-%   R/ExposomeSet-imputation.R, R/ExposomeSet-mexwas.R,
-%   R/ExposomeSet-normalityTest.R, R/ExposomeSet-pca.R,
+%   R/ExposomeSet-imputation.R, R/ExposomeSet-invExWAS.R,
+%   R/ExposomeSet-mexwas.R, R/ExposomeSet-normalityTest.R, R/ExposomeSet-pca.R,
 %   R/ExposomeSet-phenotypeNames.R, R/ExposomeSet-plotFamily.R,
 %   R/ExposomeSet-plotHistogram.R, R/ExposomeSet-plotLOD.R,
 %   R/ExposomeSet-plotMissings.R, R/ExposomeSet-standardize.R,
@@ -26,6 +26,7 @@
 \alias{highAndLow,ExposomeSet-method}
 \alias{ilod,ExposomeSet-method}
 \alias{imputation,ExposomeSet-method}
+\alias{invExWAS,ExposomeSet-method}
 \alias{mexwas,ExposomeSet-method}
 \alias{normalityTest,ExposomeSet-method}
 \alias{pca,ExposomeSet-method}
@@ -89,6 +90,8 @@
 
 \S4method{imputation}{ExposomeSet}(object, select, ..., messages = FALSE)
 
+\S4method{invExWAS}{ExposomeSet}(object, formula, filter, tef = TRUE, verbose = FALSE, warnings = TRUE)
+
 \S4method{mexwas}{ExposomeSet}(object, phenotype, family, warnings = TRUE)
 
 \S4method{normalityTest}{ExposomeSet}(
@@ -146,9 +149,9 @@
 \item{cmethod}{Function implementing a systsme to retrieve classification
 from clustering output}
 
-\item{warnings}{If set to \code{TRUE} shows intermediate warnings.}
+\item{warnings}{If set to \code{TRUE} it prints the warning messsages.}
 
-\item{formula}{Formula, not including exposures, to be tested.}
+\item{formula}{Formula, not including exposures, to be tested. No need to provide response (left term)}
 
 \item{filter}{Expression to be used to filter \code{\link{ExposomeSet}}}
 
@@ -254,6 +257,8 @@ family of each exposure.
 \item \code{ilod}: Imputation of under-LOD values of exposures.
 
 \item \code{imputation}: Imputation of missing values of exposures.
+
+\item \code{invExWAS}: Performs an EXposome-Wide Association Study (modelling the exposures as response)
 
 \item \code{mexwas}: Performs a Multiple-EXposure-Wide Association Study.
 

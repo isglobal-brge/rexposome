@@ -943,8 +943,43 @@ setGeneric("mexwas", function(object, phenotype, family, warnings = TRUE)
     standardGeneric("mexwas")
 )
 
-
 # -----------------------------------------------------------------------------
+
+#' Testing the association between an exposure and a phenotype of an
+#' ExposomeSet (modelling the exposures as response)
+#'
+#' The \code{invExWAS} method performs an "Exposome-Wide Association Study" (ExWAS)
+#' using the exposures in \link{ExposomeSet} and one of its phenotype. (modelling the exposures as response)
+#'
+#' @name invExWAS
+#' @rdname invExWAS-methods
+#' @aliases invExWAS
+#' @param object \code{ExposomeSet} that will be used for the ExWAS.
+#' @param formula \code{formula} indicating the test to be done. If any
+#' exposure is included it will be used as covariate. \code{exwas} metho will
+#' perform the test for each exposure.
+#' @param filter \code{expression} to be used to filter the individuals
+#' included into the test.
+#' @param tef (default \code{TRUE}) If \code{TRUE} it computed the
+#' effective number of tests and the threhold for the effective
+#' number of tests. Usually it needs imputed data.
+#' @param verbose (default \code{FALSE}) If set o true messages along the
+#' tests are shown.
+#' @param warnings (default \code{TRUE}) If set to \code{FALSE} warnings will
+#' not be displayed.
+#' @return An code{ExWAS} object with the result of the association study
+#' @examples
+#' data(exposome)
+#' w1 <- invExWAS(expo, ~BMI)
+#' w2 <- invExWAS(expo, ~BMI + sex)
+#' plotExwas(w1, w2)
+#' @export invExWAS
+#' @seealso \link{extract} to obtain a table with the result of the ExWAS,
+#' \link{plotExwas} to plot the results of the association
+setGeneric("invExWAS", function(object, formula, filter,
+                                  tef = TRUE, verbose = FALSE, warnings = TRUE)
+    standardGeneric("invExWAS")
+)
 
 #' Testing the association between an exposure and a phenotype of an
 #' ExposomeSet
