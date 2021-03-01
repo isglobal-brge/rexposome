@@ -636,7 +636,7 @@ names(clr) <- familyNames(exp)
 plotExwas(inv_ex, color = clr) + ggtitle("Inverse Exposome Association Study - Univariate Approach")
 ```
 
-### Multivariate ExWAS
+### Variable selection ExWAS
 
 The last approach is a multivariate analysis in order to find the group of exposures related to the health outcome. This can be done using methods like Elastic Net. The method `mexwas` applies elastic net to the exposures given a health outcome of interest.
 
