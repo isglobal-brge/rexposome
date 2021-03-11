@@ -127,6 +127,18 @@ loadExposome <- function(exposures, description, phenotype,
         stop("Samples's names in exposures and in phenotype files don't match.")
     }
     rm(exp.col, exp.row, des.row, phe.row)
+    
+    ## ------------------------------------------------------------------------
+    # Check that the exposure names on exposures and description file are valid,
+    # if not, use function base::make.names to create valid names
+    valid_exposure_names <- make.names(colnames(exposures))
+    if(!identical(valid_exposure_names, colnames(exposures))){
+        warning("Some exposure names were not valid R names, all the non valid characters
+                will be changed for a point [.]. Please use the function exposureNames()
+                on the created object to check the updated names.")
+        colnames(exposures) <- valid_exposure_names
+        rownames(description) <- valid_exposure_names
+    }
     ## ------------------------------------------------------------------------
 
     ## Need to create _status
