@@ -71,7 +71,7 @@ readExposome <- function(exposures, description, phenotype,
     exposures.asFactor = 5, warnings = TRUE) {
 
     ## Load the three dataframes
-    exp <- utils::read.table(exposures, header = TRUE,
+    exp <- utils::read.table(exposures, header = TRUE, check.names = FALSE,
         row.names = exposures.samCol, sep = sep, na.strings = na.strings)
     phe <- utils::read.table(phenotype, header = TRUE,
         row.names = phenotype.samCol, sep = sep, na.strings = na.strings,
