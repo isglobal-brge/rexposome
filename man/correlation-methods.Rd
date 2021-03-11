@@ -22,9 +22,15 @@ exposures and their description
 }
 \description{
 Method to calculate the correlation between the exposures of an
-\link{ExposomeSet}. Only numerical-exposures (non categorical) will
-be computed. The function creates and returns an \link{ExposomeCorr}
-object.
+\link{ExposomeSet}. The correlation method takes into account the 
+nature of each pair of exposures: continuous vs. continuous uses 
+cor function from R base, categorical vs. categorical uses 
+cramerV function from lsr R package and categorical vs. continuous 
+exposures correlation is calculated as the square root of 
+the adjusted r-square obtained from fitting a lineal model with 
+the categorical exposures as dependent variable and the continuous 
+exposure as independent variable. The function creates and returns 
+an \link{ExposomeCorr} object.
 }
 \examples{
 data("exposome")
