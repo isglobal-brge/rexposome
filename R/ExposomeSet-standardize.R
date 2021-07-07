@@ -47,8 +47,14 @@ setMethod(
 
         dd <- apply(dd, 2, function(x) as.numeric(as.character(x)))
         dd <- scale(dd, center = center, scale = vari)
-        dd <- cbind(dd,
-            t(assayData(object)[["exp"]][select.no, ]))
+        if(length(select.no) < 2){
+          dd <- cbind(dd,
+                      assayData(object)[["exp"]][select.no, ])
+          colnames(dd)[ncol(dd)] <- select.no
+        } else {
+          dd <- cbind(dd,
+                      t(assayData(object)[["exp"]][select.no, ]))
+        }
 
         assayData(object) <- assayDataNew("environment",
             exp = t(dd)[rownames(assayDataElement(object, "exp")), ])
