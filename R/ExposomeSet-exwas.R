@@ -28,7 +28,6 @@ setMethod(
             formula <- formula(formula)
         }
 
-        form <- as.character(formula)
         cL <- ifelse(missing(baselevels), FALSE, TRUE)
 
         ne <- c()
@@ -48,8 +47,7 @@ setMethod(
                 }
             }
             # /
-
-            frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
+            frm <- update(formula, formula(paste("~ +", ex, "+ .")))
             nr <- nrow(dta)
             for(phe in all.vars(frm)) {
                 dta <- dta[!is.na(dta[ , phe]), ]
@@ -75,7 +73,7 @@ setMethod(
             tryCatch({
                 typ <- fData(object)[ ex, ".type" ]
                 typ <- ifelse( typ != "factor", FALSE, length( levels( dta[ , ex ] ) ) > 2 )
-
+                
                 mod <- stats::glm(family=family, formula = frm, data = dta)
                 mod0 <- update(mod, as.formula(paste0(". ~ . - ", all.vars(frm)[2])))
                 effect <- c(mod$coef[2], suppressMessages(confint.default(mod)[2,]))

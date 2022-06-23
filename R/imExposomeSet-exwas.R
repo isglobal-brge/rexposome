@@ -40,7 +40,7 @@ setMethod(
             stop("Not all variables (", paste( sel, collapse = ", " ), ") exists in given 'imExposomeSet'.")
         }
 
-        form <- as.character(formula)
+        # form <- as.character(formula)
         cL <- ifelse(missing(baselevels), FALSE, TRUE)
 
         ne <- list()
@@ -51,7 +51,8 @@ setMethod(
                 message("Processing '", ex, "'.")
             }
 
-            frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
+            # frm <- as.formula(paste0(form[2], "~", ex, "+", form[3]))
+            frm <- update(formula, formula(paste("~ +", ex, "+ .")))
 
             # check if relevel is necessary
             if(cL) {
@@ -105,8 +106,9 @@ setMethod(
                         p <- mice::pool.compare(mira_glm, mira_mod0)$pvalue
 
                         rn2 <- paste( ex, levels( dta[ , ex ] ), sep = "$" )[ seq( 2, length( levels( dta[ , ex ] ) ) ) ]
-                        
-                        items[[ex]] <- rbind(cbind(as.numeric(dt[startsWith(rownames(dt), ex), c(2, 7, 8, 6)]), rn2), c(NA, NA, NA, p, ex))
+                        # browser()
+                        # items[[ex]] <- rbind(cbind(as.numeric(dt[startsWith(rownames(dt), ex), c(2, 7, 8, 6)]), rn2), c(NA, NA, NA, p, ex))
+                        items[[ex]] <- rbind(cbind(dt[startsWith(as.character(dt[,1]), ex), c(2, 7, 8, 6)], rn2), c(NA, NA, NA, p, ex))
                         rownames(items[[ex]]) <- items[[ex]][ , 5]
                         ex_names <- c(ex_names, rownames(items[[ex]]))
                         colnames(items[[ex]]) <- c("effect", "x2.5","x97.5", "pvalue", "name")
@@ -132,7 +134,7 @@ setMethod(
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
         }
-
+        # browser()
         items <- data.frame(do.call(rbind, items))
         colnames(items) <- c("effect", "2.5","97.5", "pvalue", "ex")
         rownames(items) <- ex_names # exposureNames(object)
