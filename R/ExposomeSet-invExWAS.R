@@ -17,7 +17,8 @@ setMethod(
     if(class(formula) == "character") {
       formula <- formula(formula)
     }
-    results <- as.data.frame(t(sapply(exposureNames(object), function(ex){
+
+    results <- do.call(rbind, lapply(exposureNames(object), function(ex){
       tryCatch({
         if(verbose) {
           message("Processing '", ex, "'.")
@@ -26,7 +27,7 @@ setMethod(
         typ <- class(dta[,ex])
         if(typ == "factor"){
           mod <- nnet::multinom(ff, data=dta, model = FALSE, trace = FALSE)
-        } 
+        }
         else {
           mod <- lm(ff, data=dta, model = FALSE)
         }
@@ -38,16 +39,31 @@ setMethod(
                        data=if(is.null(mod$na.action)){dta}else{dta[-mod$na.action,]})
         pp <- anova(mod0, mod)
         pvalue <- pp[2, ncol(pp)]
-        effect <- c(coef(mod)[2],
-                    confint.default(mod)[2,])
-        return(c(effect, pvalue))
+        if(typ == "factor" & ncol(data.frame(coef(mod))) > 1){
+          effect <- data.frame(coef(mod)[,2], t(confint(mod)[2,,]))
+          rownames(effect) <- make.names(paste0(ex, rownames(data.frame(coef(mod)))))
+          effect <- data.frame(effect, pvalue)
+          colnames(effect) <- c("effect", "2.5","97.5", "pvalue")
+          return(effect)
+        } else {
+          effect <- c(coef(mod)[2],
+                      confint.default(mod)[2,])
+          ret <- data.frame(t(data.frame(c(effect, pvalue))))
+          rownames(ret) <- ex
+          colnames(ret) <- c("effect", "2.5","97.5", "pvalue")
+          return(ret)
+        }
       }, error = function(e) {
         if(warnings) {
           message("[warning]: ", e)
+          ret <- data.frame(NA, NA, NA, NA)
+          rownames(ret) <- ex
+          colnames(ret) <- c("effect", "2.5","97.5", "pvalue")
+          return(ret)
         }
       })
-    })))
-    colnames(results) <- c("effect", "2.5","97.5", "pvalue")
+    }))
+    
     if(tef) {
       cormat <- extract(correlation(object,
                                     use="pairwise.complete.obs", method.cor = "pearson"))

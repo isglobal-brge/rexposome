@@ -47,7 +47,9 @@ setMethod(
 
         dd <- apply(dd, 2, function(x) as.numeric(as.character(x)))
         dd <- scale(dd, center = center, scale = vari)
-        if(length(select.no) < 2){
+        if(length(select.no) == 0){
+          dd <- dd
+        } else if (length(select.no) < 2){
           dd <- cbind(dd,
                       assayData(object)[["exp"]][select.no, ])
           colnames(dd)[ncol(dd)] <- select.no
