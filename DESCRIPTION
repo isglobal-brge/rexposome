@@ -1,5 +1,5 @@
 Package: rexposome
-Version: 1.18.0
+Version: 1.18.1
 Title: Exposome exploration and outcome data analysis
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"),
