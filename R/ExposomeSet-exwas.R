@@ -61,7 +61,7 @@ setMethod(
                 }
             }
             dta <- dta[ , all.vars(frm)]
-
+            form <- as.character(formula)
             if(warnings & nrow(dta) - nr != 0) {
                 warning("Data from '", paste0(form[2], "~", ex, "+", form[3]), "' was reduced from ", nr, " to ", nrow(dta))
             }
