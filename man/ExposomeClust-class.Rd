@@ -41,15 +41,15 @@ applying a clustering method on the \code{ExposomeSet}' exposures.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{plot}: Wrapper for \code{plotClassification} method.
+\item \code{plot(x = ExposomeClust, y = ANY)}: Wrapper for \code{plotClassification} method.
 
-\item \code{classification}: Return classe asigned to each sample
+\item \code{classification(ExposomeClust)}: Return classe asigned to each sample
 
-\item \code{plotClassification}: Draws a heatmap for the samples' classification.
+\item \code{plotClassification(ExposomeClust)}: Draws a heatmap for the samples' classification.
 
-\item \code{sampleNames}: Method to obtain samples' names
+\item \code{sampleNames(ExposomeClust)}: Method to obtain samples' names
+
 }}
-
 \section{Slots}{
 
 \describe{

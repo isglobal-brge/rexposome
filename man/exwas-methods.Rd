@@ -14,7 +14,8 @@ exwas(
   baselevels,
   tef = TRUE,
   verbose = FALSE,
-  warnings = TRUE
+  warnings = TRUE,
+  robust = FALSE
 )
 }
 \arguments{

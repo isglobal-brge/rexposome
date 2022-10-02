@@ -63,7 +63,8 @@
   baselevels,
   tef = TRUE,
   verbose = FALSE,
-  warnings = TRUE
+  warnings = TRUE,
+  robust = FALSE
 )
 
 \S4method{familyNames}{ExposomeSet}(object, by.exposure = FALSE)
@@ -235,62 +236,62 @@ description and the samples phenotype. It is the starting object for
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{plot}: Wrapper for \code{plotFamily} method.
+\item \code{plot(x = ExposomeSet, y = ANY)}: Wrapper for \code{plotFamily} method.
 
-\item \code{clustering}: Performs clustering on samples based on exposure levels.
+\item \code{clustering(ExposomeSet)}: Performs clustering on samples based on exposure levels.
 
-\item \code{correlation}: Computes correlation on exposures.
+\item \code{correlation(ExposomeSet)}: Computes correlation on exposures.
 
-\item \code{dim}: Returns the number of exsures, samples and phenotypes.
+\item \code{dim(ExposomeSet)}: Returns the number of exsures, samples and phenotypes.
 
-\item \code{expos}: Returns a \code{data.frame} with exposures.
+\item \code{expos(ExposomeSet)}: Returns a \code{data.frame} with exposures.
 
-\item \code{exposureNames}: Getter to obtain the exposures's names.
+\item \code{exposureNames(ExposomeSet)}: Getter to obtain the exposures's names.
 
-\item \code{exwas}: Performs an EXposome-Wide Association Study
+\item \code{exwas(ExposomeSet)}: Performs an EXposome-Wide Association Study
 
-\item \code{familyNames}: Getter to obtain the families's names of the
+\item \code{familyNames(ExposomeSet)}: Getter to obtain the families's names of the
 family of each exposure.
 
-\item \code{highAndLow}: Performs a discretization of continuous exposures.
+\item \code{highAndLow(ExposomeSet)}: Performs a discretization of continuous exposures.
 
-\item \code{ilod}: Imputation of under-LOD values of exposures.
+\item \code{ilod(ExposomeSet)}: Imputation of under-LOD values of exposures.
 
-\item \code{imputation}: Imputation of missing values of exposures.
+\item \code{imputation(ExposomeSet)}: Imputation of missing values of exposures.
 
-\item \code{invExWAS}: Performs an EXposome-Wide Association Study (modelling the exposures as response)
+\item \code{invExWAS(ExposomeSet)}: Performs an EXposome-Wide Association Study (modelling the exposures as response)
 
-\item \code{mexwas}: Performs a Multiple-EXposure-Wide Association Study.
+\item \code{mexwas(ExposomeSet)}: Performs a Multiple-EXposure-Wide Association Study.
 
-\item \code{normalityTest}: Test the normality of each exposure.
+\item \code{normalityTest(ExposomeSet)}: Test the normality of each exposure.
 
-\item \code{pca}: Performs a PCA
+\item \code{pca(ExposomeSet)}: Performs a PCA
 
-\item \code{phenotypeNames}: Getter to obtain the phenotypes's names.
+\item \code{phenotypeNames(ExposomeSet)}: Getter to obtain the phenotypes's names.
 
-\item \code{plotFamily}: Draws a boxplot or accumulated-bar plot for each
+\item \code{plotFamily(ExposomeSet)}: Draws a boxplot or accumulated-bar plot for each
 exposure in a given family.
 
-\item \code{plotHistogram}: Draws an histogram of a given continuous exposure
+\item \code{plotHistogram(ExposomeSet)}: Draws an histogram of a given continuous exposure
 or a pie chart if a given categorycal exposure.
 
-\item \code{plotLOD}: Draws a barchart with the amount of under-LOD values.
+\item \code{plotLOD(ExposomeSet)}: Draws a barchart with the amount of under-LOD values.
 
-\item \code{plotMissings}: Draws a bar-plot with the amount of missing values.
+\item \code{plotMissings(ExposomeSet)}: Draws a bar-plot with the amount of missing values.
 
-\item \code{standardize}: Standardization of exposures.
+\item \code{standardize(ExposomeSet)}: Standardization of exposures.
 
-\item \code{Summary}: Summary of both continuous and categorical exposures
+\item \code{Summary(ExposomeSet)}: Summary of both continuous and categorical exposures
 
-\item \code{tableLOD}: Returns a vector with the number of under-LOD values
+\item \code{tableLOD(ExposomeSet)}: Returns a vector with the number of under-LOD values
 per exposure.
 
-\item \code{tableMissings}: Returns a vector with the number of missing values
+\item \code{tableMissings(ExposomeSet)}: Returns a vector with the number of missing values
 per exposure.
 
-\item \code{trans}: Transformation of exposures.
+\item \code{trans(ExposomeSet)}: Transformation of exposures.
+
 }}
-
 \section{Slots}{
 
 \describe{

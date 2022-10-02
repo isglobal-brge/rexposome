@@ -109,25 +109,25 @@ multiple results of computing the PCA.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{plot}: Wrapper for \code{plotPCA} method.
+\item \code{plot(x = ExposomePCA, y = ANY)}: Wrapper for \code{plotPCA} method.
 
-\item \code{exposureNames}: Getter to obtain the exposures's names.
+\item \code{exposureNames(ExposomePCA)}: Getter to obtain the exposures's names.
 
-\item \code{extract}: Method to extract the raw results of the PCA.
+\item \code{extract(ExposomePCA)}: Method to extract the raw results of the PCA.
 
-\item \code{ndim}: Number of principal components in an ExposomePCA.
+\item \code{ndim(ExposomePCA)}: Number of principal components in an ExposomePCA.
 
-\item \code{phenotypeNames}: Getter to obtain the phenotype's names.
+\item \code{phenotypeNames(ExposomePCA)}: Getter to obtain the phenotype's names.
 
-\item \code{plot3PCA}: Methdo to draw a 3D plot for PCA
+\item \code{plot3PCA(ExposomePCA)}: Methdo to draw a 3D plot for PCA
 
-\item \code{plotEXP}: Plot correlation between exposures and PCA
+\item \code{plotEXP(ExposomePCA)}: Plot correlation between exposures and PCA
 
-\item \code{plotPCA}: Methdo to draw a 2D plot for PCA
+\item \code{plotPCA(ExposomePCA)}: Methdo to draw a 2D plot for PCA
 
-\item \code{plotPHE}: Plot association score between phentoypes and PCA
+\item \code{plotPHE(ExposomePCA)}: Plot association score between phentoypes and PCA
+
 }}
-
 \section{Slots}{
 
 \describe{

@@ -13,5 +13,10 @@ setMethod(
             cat("Threshold for effective tests (TEF):  NOT COMPUTED\n")
         }
         cat(" . Tests < TEF:", sum(object@comparison$pvalue < tef(object)), "\n")
+        if(!is.null(object@robust.std.err)){
+          cat("Robust standar errors: Computed\n")
+        } else {
+          cat("Robust standar errors: Not computed\n")
+        }
     }
 )

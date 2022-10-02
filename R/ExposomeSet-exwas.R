@@ -9,7 +9,7 @@ setMethod(
     f = "exwas",
     signature = "ExposomeSet",
     definition = function(object, formula, filter, family, ..., baselevels,
-            tef = TRUE, verbose = FALSE, warnings = TRUE) {
+            tef = TRUE, verbose = FALSE, warnings = TRUE, robust = FALSE) {
         dta <- cbind(expos(object), pData(object))
         if(!missing(filter)) {
             sel <- eval(substitute(filter), as.data.frame(dta))
@@ -32,6 +32,7 @@ setMethod(
 
         ne <- c()
         items <- rbind(1:5)
+        robust.std.err <- NULL
         colnames(items) <- c("effect", "2.5","97.5", "pvalue", "name")
         dta_all <- dta
         for(ex in exposureNames(object)) {
@@ -73,8 +74,12 @@ setMethod(
             tryCatch({
                 typ <- fData(object)[ ex, ".type" ]
                 typ <- ifelse( typ != "factor", FALSE, length( levels( dta[ , ex ] ) ) > 2 )
-                
                 mod <- stats::glm(family=family, formula = frm, data = dta)
+                if(robust){
+                  cov.m1 <- sandwich::vcovHC(mod, type = "HC0")
+                  std.err <- sqrt(diag(cov.m1))[2]
+                  robust.std.err <- rbind(robust.std.err, c(std.err, ex))
+                }
                 mod0 <- update(mod, as.formula(paste0(". ~ . - ", all.vars(frm)[2])))
                 effect <- c(mod$coef[2], suppressMessages(confint.default(mod)[2,]))
                 p <- anova(mod, mod0, test = test)
@@ -87,10 +92,8 @@ setMethod(
                     items <- rbind(items, tbl)
                     items <- rbind(items, c(NA, NA, NA, p2, ex))
                 } else {
-                    items <- rbind(items, c(effect, p2, ex))
+                  items <- rbind(items, c(effect, p2, ex))
                 }
-
-
             }, error = function(e) {
                 if(warnings) {
                     message("[warning]: ", e)
@@ -99,13 +102,16 @@ setMethod(
                 p2 <- NULL
                 ne <- c(ne, ex)
                 items <- rbind(items, c(effect, p2, ex))
+                if(robust){
+                  robust.std.err <- rbind(robust.std.err, c(NA, ex))
+                }
             })
         }
 
         if(length(ne) != 0) {
             warning("The association of some exposures (", length(ne), ") could not be evaluated. Their effect and p-value were set to NULL.")
         }
-
+        
         items <- data.frame(items, stringsAsFactors = FALSE)
         rownames(items) <- items[ , 5] # exposureNames(object)
         items <- items[-1, -5]
@@ -122,13 +128,17 @@ setMethod(
         } else {
             alpha_corrected <- 0
         }
+        
+        if(robust){
+          colnames(robust.std.err) <- c("Robust std.err.", "Exposure")
+        }
         ## /
-
         new("ExWAS",
             effective = alpha_corrected,
             comparison = S4Vectors::DataFrame(items),
             description = S4Vectors::DataFrame(pData(featureData(object))),
-            formula = formula
+            formula = formula,
+            robust.std.err = robust.std.err
         )
     }
 )

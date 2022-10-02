@@ -110,7 +110,8 @@ setClass(
         effective = "numeric",
         formula = "formula",
         comparison = "DataFrame",
-        description = "DataFrame"
+        description = "DataFrame",
+        robust.std.err = "matrix"
     )
 )
 

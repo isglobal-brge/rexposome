@@ -45,16 +45,16 @@ with the original source. It extends \link{eSet-class}.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{plot}: Wrapper for \code{plotClassification} method.
+\item \code{plot(x = ExposomeCorr, y = ANY)}: Wrapper for \code{plotClassification} method.
 
-\item \code{dim}: Return the dimension of the internat matrix of
+\item \code{dim(ExposomeCorr)}: Return the dimension of the internat matrix of
 correlation.
 
-\item \code{extract}: Return the raw correlation matrix
+\item \code{extract(ExposomeCorr)}: Return the raw correlation matrix
 
-\item \code{plotCorrelation}: Draws both a matrix of circos plot of correlations
+\item \code{plotCorrelation(ExposomeCorr)}: Draws both a matrix of circos plot of correlations
+
 }}
-
 \section{Slots}{
 
 \describe{

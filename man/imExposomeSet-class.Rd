@@ -46,7 +46,8 @@
   baselevels,
   tef = TRUE,
   verbose = FALSE,
-  warnings = TRUE
+  warnings = TRUE,
+  robust = FALSE
 )
 
 \S4method{familyNames}{imExposomeSet}(object, by.exposure = FALSE)
@@ -122,37 +123,37 @@ and \code{phenoData} are coordinated.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{plot}: Wrapper for \code{plotFamily} method.
+\item \code{plot(x = imExposomeSet, y = ANY)}: Wrapper for \code{plotFamily} method.
 
-\item \code{dim}: Returns the number of exsures, samples and phenotypes.
+\item \code{dim(imExposomeSet)}: Returns the number of exsures, samples and phenotypes.
 
-\item \code{expos}: Returns a \code{data.frame} with exposures.
+\item \code{expos(imExposomeSet)}: Returns a \code{data.frame} with exposures.
 
-\item \code{exposureNames}: Method to obtain samples' names
+\item \code{exposureNames(imExposomeSet)}: Method to obtain samples' names
 
-\item \code{extract}: Method to extract exposures for a single imputation
+\item \code{extract(imExposomeSet)}: Method to extract exposures for a single imputation
 
-\item \code{exwas}: Performs an EXposome-Wide Association Study
+\item \code{exwas(imExposomeSet)}: Performs an EXposome-Wide Association Study
 
-\item \code{familyNames}: Getter to obtain the families's names of the
+\item \code{familyNames(imExposomeSet)}: Getter to obtain the families's names of the
 family of each exposure.
 
-\item \code{phenotypeNames}: Getter to obtain the families's names of the
+\item \code{phenotypeNames(imExposomeSet)}: Getter to obtain the families's names of the
 family of each exposure.
 
-\item \code{plotFamily}: Draws a boxplot or accumulated-bar plot for each
+\item \code{plotFamily(imExposomeSet)}: Draws a boxplot or accumulated-bar plot for each
 exposure in the all imputed sets.
 
-\item \code{sampleNames}: Method to obtain samples' names
+\item \code{sampleNames(imExposomeSet)}: Method to obtain samples' names
 
 \item \code{[[}: Get an \code{ExposomeSet} with the selected
 imputation
 
-\item \code{[}: Subset an \code{imExposomeSet}
+\item \code{x[i}: Subset an \code{imExposomeSet}
 
-\item \code{toES}: Returns an \code{\link{ExposomeSet}} with ethe given imputation.
+\item \code{toES(imExposomeSet)}: Returns an \code{\link{ExposomeSet}} with ethe given imputation.
+
 }}
-
 \section{Slots}{
 
 \describe{
