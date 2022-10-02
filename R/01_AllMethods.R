@@ -1031,7 +1031,7 @@ setGeneric("invExWAS", function(object, formula, filter,
 #' @seealso \link{extract} to obtain a table with the result of the ExWAS,
 #' \link{plotExwas} to plot the results of the ExWAS
 setGeneric("exwas", function(object, formula, filter, family, ..., baselevels,
-        tef = TRUE, verbose = FALSE, warnings = TRUE)
+        tef = TRUE, verbose = FALSE, warnings = TRUE, robust = FALSE)
     standardGeneric("exwas")
 )
 
@@ -1181,4 +1181,19 @@ setGeneric("toES", function(object, rid = 1)
 #' @export extract
 setGeneric ("extract",
             function(object, ...){standardGeneric("extract")}
+)
+
+#' Raw data from \code{ExWAS}
+#'
+#' Returns internal table of robust SD of objects of class \code{ExWAS}
+#'
+#' @name get_robust_sd
+#' @rdname get_robust_sd-methods
+#' @aliases extract
+#' @param object Object of class \code{ExWAS}
+#' @param ... NO USED
+#' @return A \code{data.frame} containing the raw result from robust SD
+#' @export get_robust_sd
+setGeneric ("get_robust_sd",
+            function(object, ...){standardGeneric("get_robust_sd")}
 )

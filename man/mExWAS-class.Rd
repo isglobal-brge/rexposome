@@ -60,14 +60,14 @@ Study".
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{plot}: Wrapper for \code{plotExwas} method.
+\item \code{plot(x = mExWAS, y = ANY)}: Wrapper for \code{plotExwas} method.
 
-\item \code{extract}: Method to obtain the generated model
+\item \code{extract(mExWAS)}: Method to obtain the generated model
 
-\item \code{plotExwas}: Method to plot a heap-map with the coeficient of each
+\item \code{plotExwas(mExWAS)}: Method to plot a heap-map with the coeficient of each
 exposure
-}}
 
+}}
 \section{Slots}{
 
 \describe{
