@@ -32,7 +32,7 @@ setMethod(
 
         ne <- c()
         items <- rbind(1:5)
-        robust.std.err <- NULL
+        robust.std.err <- data.frame()
         colnames(items) <- c("effect", "2.5","97.5", "pvalue", "name")
         dta_all <- dta
         for(ex in exposureNames(object)) {

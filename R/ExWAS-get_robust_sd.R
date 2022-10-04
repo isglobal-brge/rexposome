@@ -5,6 +5,6 @@ setMethod(
   f = "get_robust_sd",
   signature = "ExWAS",
   definition = function(object, sort = TRUE, ...) {
-    data.frame(object@robust.std.err)
+    object@robust.std.err
   }
 )
