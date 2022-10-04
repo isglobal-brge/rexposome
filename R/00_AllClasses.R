@@ -111,7 +111,7 @@ setClass(
         formula = "formula",
         comparison = "DataFrame",
         description = "DataFrame",
-        robust.std.err = "matrix"
+        robust.std.err = "data.frame"
     )
 )
 
