@@ -109,7 +109,7 @@ loadExposome <- function(exposures, description, phenotype,
     exp.col <- exp.col[order(exp.col)]
     exp.row <- rownames(exposures)
     exp.row <- exp.row[order(exp.row), drop=FALSE]
-    exposures <- exposures[exp.row, exp.col]
+    exposures <- exposures[exp.row, exp.col, drop=FALSE]
 
     des.row <- rownames(description)
     des.row <- des.row[order(des.row)]
