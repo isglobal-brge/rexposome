@@ -1,5 +1,5 @@
 Package: rexposome
-Version: 1.24.0
+Version: 1.24.1
 Title: Exposome exploration and outcome data analysis
 Authors@R: c(person("Carles", "Hernandez-Ferrer", , "carles.hernandez@isglobal.org", c("aut", "cre")),
     person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = "aut"),
@@ -24,6 +24,7 @@ Imports: methods,
     circlize,
     corrplot,
     ggplot2,
+    ggridges,
     reshape2,
     pryr,
     S4Vectors,
@@ -46,6 +47,7 @@ Suggests: mclust,
     testthat,
     BiocStyle,
     knitr,
+    formatR,
     rmarkdown
 biocViews: Software,
     BiologicalQuestion,
