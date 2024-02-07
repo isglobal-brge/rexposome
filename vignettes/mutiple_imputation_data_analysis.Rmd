@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 BiocStyle::markdown()
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, crop = NULL)
 ```
 
 # Introduction
