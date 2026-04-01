@@ -7,7 +7,7 @@ setMethod(
         crm.arg <- list()
         lm.arg <- list()
         drop <- c("x", "y", "method")
-        dots <- pryr::named_dots(...)
+        dots <- list(...)
         for(name in names(dots)) {
             if(name %in% drop) {
                 stop("Invalid argument '", name, "'. No arguments 'x', 'y' or ",

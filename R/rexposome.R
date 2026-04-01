@@ -51,7 +51,6 @@
 #' @importFrom ggplot2 scale_fill_manual scale_fill_continuous scale_fill_discrete scale_fill_gradient2
 #' @importFrom ggplot2 scale_y_continuous scale_fill_brewer
 #' @importFrom reshape2 melt
-#' @importFrom pryr named_dots
 #' @importFrom imputeLCMD impute.QRILC impute.MinProb
 #' @importFrom scatterplot3d scatterplot3d
 #' @importFrom glmnet cv.glmnet glmnet
