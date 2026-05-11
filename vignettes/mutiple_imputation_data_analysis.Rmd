@@ -14,7 +14,6 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-BiocStyle::markdown()
 knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, crop = NULL)
 ```
 
@@ -116,7 +115,7 @@ for(set in 1:5) {
     im[ , ".id"] <- rownames(im)
     me <- rbind(me, im)
 }
-me <- me[ , c(".imp", ".id", colnames(me)[-(97:98)])]
+me <- me[ , c(".imp", ".id", setdiff(colnames(me), c(".imp", ".id")))]
 rownames(me) <- 1:nrow(me)
 dim(me)
 ```
